@@ -38,7 +38,7 @@
 \begin{document}
 
 \title{JHU THESIS TEMPLATE}
-\author{R. Jacob Vogelstein}
+\author{Sancar Adali}
 \degreemonth{May}
 \degreeyear{2007} 
 \dissertation
@@ -47,8 +47,17 @@
 
 
 % add your chapters, best way is to have separate TeX files for each chapter
-\include{chapter0}
-\include{chapter1}
+\input{chapter0}
+\input{chapter1}
+\input{chapter2}
+\input{chapter3}
+\input{chapter4}
+\input{chapter5}
+\input{chapter6}
+\input{chapter7}
+\input{chapter8}
+\input{chapter9}
+\input{chapter10}
 
 \include{appendix}
 
