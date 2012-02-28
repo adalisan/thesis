@@ -8,7 +8,7 @@ A citation \cite{A}.
 A citation without brackets \citen{B}. 
 Multiple citations \cite{A, B, C}.
 
-\section{Section}
+\section{Multidimensional Scaling in the general setting}
 \label{sec:section}
 
 This is a section.  Here's a reference to a different section:
@@ -37,8 +37,7 @@ This is a subsection.
 % \label{fig:twofigures}
 % \end{figure}
 
-\section[Optional table of contents heading]{Section with\\linebreaks in\\the
-name}
+\section[Optional table of contents heading]{Different criterion for MDS?}
 
 This is another section.
 

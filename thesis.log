@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.7.21)  25 OCT 2011 22:15
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.12.29)  27 FEB 2012 19:32
 entering extended mode
-**C:/Users/Sancar/Documents/projects/thesisdoc/thesis.tex
-(C:/Users/Sancar/Documents/projects/thesisdoc/thesis.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+**thesis.tex
+(C:\Users\Sancar\Documents\projects\thesisdoc\thesis.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
 croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
 lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
@@ -138,22 +138,36 @@ Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
 Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
 Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
 Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
-Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 311.
-Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 312.
-Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 313.
-Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 314.
-Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 315.
-Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 316.
-Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 317.
-Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 318.
-Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 319.
-Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 320.
-Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 321.
-Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 322.
-Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 323.
-Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 324.
-Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 325.
-Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 326.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 311.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 312.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 313.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 314.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 315.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 316.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 317.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 318.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 319.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 320.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 321.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 322.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 323.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 324.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 326.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 327.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 328.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 329.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 330.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 331.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 332.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 333.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 334.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 335.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 336.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 337.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
@@ -318,18 +332,374 @@ LaTeX Font Info:    ... okay on input line 38.
 l.42 \degreemonth
                  {May}
 ? 
-! Emergency stop.
-l.42 \degreemonth
-                 {May}
-End of file on the terminal!
+! Undefined control sequence.
+l.43 \degreeyear
+                {2007}
+? 
+! Undefined control sequence.
+l.44 \dissertation
+                  
+? 
+! Undefined control sequence.
+l.45 \doctorphilosophy
+                      
+? 
+! Undefined control sequence.
+l.46 \copyrightnotice
+                     
+? 
+(C:\Users\Sancar\Documents\projects\thesisdoc\chapter0.tex [1
 
- 
+{C:/Users/Sancar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+LaTeX Font Info:    Try loading font information for U+msa on input line 5.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 5.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+) [1
+
+
+] [2
+
+]
+
+! LaTeX Error: Environment acknowledgment undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 \begin{acknowledgment}
+                           
+? 
+
+! LaTeX Error: \begin{frontmatter} on input line 2 ended by \end{acknowledgment
+}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{acknowledgment}
+                         
+? 
+Runaway argument?
+! Paragraph ended before \dedication was complete.
+<to be read again> 
+                   \par 
+l.25 
+     
+? 
+[3]
+No file thesis.toc.
+\tf@toc=\write4
+[4
+
+]
+No file thesis.lot.
+\tf@lot=\write5
+[5
+
+]
+No file thesis.lof.
+\tf@lof=\write6
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter1.tex [6
+
+]
+Chapter 1.
+
+LaTeX Warning: Citation `A' on page vii undefined on input line 7.
+
+
+LaTeX Warning: Citation `B' on page vii undefined on input line 8.
+
+
+LaTeX Warning: Citation `A' on page vii undefined on input line 9.
+
+
+LaTeX Warning: Citation `B' on page vii undefined on input line 9.
+
+
+LaTeX Warning: Citation `C' on page vii undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:subsection' on page vii undefined on input line 1
+5.
+
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter2.tex [7
+
+]
+Chapter 2.
+
+LaTeX Warning: Citation `A' on page viii undefined on input line 7.
+
+
+LaTeX Warning: Citation `B' on page viii undefined on input line 8.
+
+
+LaTeX Warning: Citation `A' on page viii undefined on input line 9.
+
+
+LaTeX Warning: Citation `B' on page viii undefined on input line 9.
+
+
+LaTeX Warning: Citation `C' on page viii undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:subsection' on page viii undefined on input line 
+15.
+
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter3.tex [8
+
+]
+Chapter 3.
+
+LaTeX Warning: Citation `A' on page ix undefined on input line 7.
+
+
+LaTeX Warning: Citation `B' on page ix undefined on input line 8.
+
+
+LaTeX Warning: Citation `A' on page ix undefined on input line 9.
+
+
+LaTeX Warning: Citation `B' on page ix undefined on input line 9.
+
+
+LaTeX Warning: Citation `C' on page ix undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:subsection' on page ix undefined on input line 15
+.
+
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter4.tex [9
+
+] [10]
+Chapter 4.
+
+LaTeX Warning: Citation `A' on page xi undefined on input line 7.
+
+
+LaTeX Warning: Citation `B' on page xi undefined on input line 8.
+
+
+LaTeX Warning: Citation `A' on page xi undefined on input line 9.
+
+
+LaTeX Warning: Citation `B' on page xi undefined on input line 9.
+
+
+LaTeX Warning: Citation `C' on page xi undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:subsection' on page xi undefined on input line 15
+.
+
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter5.tex [11
+
+]
+Chapter 5.
+
+LaTeX Warning: Citation `A' on page xii undefined on input line 7.
+
+
+LaTeX Warning: Citation `B' on page xii undefined on input line 8.
+
+
+LaTeX Warning: Citation `A' on page xii undefined on input line 9.
+
+
+LaTeX Warning: Citation `B' on page xii undefined on input line 9.
+
+
+LaTeX Warning: Citation `C' on page xii undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:subsection' on page xii undefined on input line 1
+5.
+
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter6.tex [12
+
+]
+Chapter 6.
+
+LaTeX Warning: Citation `A' on page xiii undefined on input line 7.
+
+
+LaTeX Warning: Citation `B' on page xiii undefined on input line 8.
+
+
+LaTeX Warning: Citation `A' on page xiii undefined on input line 9.
+
+
+LaTeX Warning: Citation `B' on page xiii undefined on input line 9.
+
+
+LaTeX Warning: Citation `C' on page xiii undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:subsection' on page xiii undefined on input line 
+15.
+
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter7.tex [13
+
+] [14]
+Chapter 7.
+
+LaTeX Warning: Citation `A' on page xv undefined on input line 7.
+
+
+LaTeX Warning: Citation `B' on page xv undefined on input line 8.
+
+
+LaTeX Warning: Citation `A' on page xv undefined on input line 9.
+
+
+LaTeX Warning: Citation `B' on page xv undefined on input line 9.
+
+
+LaTeX Warning: Citation `C' on page xv undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:subsection' on page xv undefined on input line 15
+.
+
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter8.tex [15
+
+]
+Chapter 8.
+
+LaTeX Warning: Citation `A' on page xvi undefined on input line 7.
+
+
+LaTeX Warning: Citation `B' on page xvi undefined on input line 8.
+
+
+LaTeX Warning: Citation `A' on page xvi undefined on input line 9.
+
+
+LaTeX Warning: Citation `B' on page xvi undefined on input line 9.
+
+
+LaTeX Warning: Citation `C' on page xvi undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:subsection' on page xvi undefined on input line 1
+5.
+
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter9.tex [16
+
+]
+Chapter 9.
+
+LaTeX Warning: Citation `A' on page xvii undefined on input line 7.
+
+
+LaTeX Warning: Citation `B' on page xvii undefined on input line 8.
+
+
+LaTeX Warning: Citation `A' on page xvii undefined on input line 9.
+
+
+LaTeX Warning: Citation `B' on page xvii undefined on input line 9.
+
+
+LaTeX Warning: Citation `C' on page xvii undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:subsection' on page xvii undefined on input line 
+15.
+
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter10.tex [17
+
+]
+Chapter 10.
+
+LaTeX Warning: Citation `A' on page xviii undefined on input line 7.
+
+
+LaTeX Warning: Citation `B' on page xviii undefined on input line 8.
+
+
+LaTeX Warning: Citation `A' on page xviii undefined on input line 9.
+
+
+LaTeX Warning: Citation `B' on page xviii undefined on input line 9.
+
+
+LaTeX Warning: Citation `C' on page xviii undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:subsection' on page xviii undefined on input line
+ 15.
+
+) [18
+
+]
+No file appendix.tex.
+No file thesis.bbl.
+
+! LaTeX Error: Environment vita undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.70 \begin{vita}
+                 
+? 
+
+! LaTeX Error: File `rjvheadshot' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.73 ...t=2.5in,clip,keepaspectratio]{rjvheadshot}
+                                                  
+? 
+
+! LaTeX Error: \begin{document} ended by \end{vita}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.92 \end{vita}
+               
+? 
+[19
+
+
+] (C:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux
+(C:\Users\Sancar\Documents\projects\thesisdoc\appendix.aux))
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3424 strings out of 494049
- 44233 string characters out of 3148438
- 92280 words of memory out of 3000000
- 6694 multiletter control sequences out of 15000+200000
- 6199 words of font info for 17 fonts, out of 3000000 for 9000
+ 3593 strings out of 494045
+ 47117 string characters out of 3148383
+ 94321 words of memory out of 3000000
+ 6765 multiletter control sequences out of 15000+200000
+ 25248 words of font info for 61 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 35i,1n,43p,335b,80s stack positions out of 5000i,500n,10000p,200000b,50000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 35i,10n,43p,290b,220s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on thesis.pdf (20 pages, 79828 bytes).
+PDF statistics:
+ 87 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
