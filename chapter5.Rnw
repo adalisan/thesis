@@ -1,5 +1,5 @@
-\chapter{Relationship to Kernels}
-\label{sec:Kernels}
+\chapter{Principal Components Analysis and Procrustes Analysis}
+\label{sec:PoM}
 \chaptermark{Optional running chapter heading}
 
 Introduction.
@@ -8,7 +8,7 @@ A citation \cite{A}.
 A citation without brackets \citen{B}. 
 Multiple citations \cite{A, B, C}.
 
-\section{Section}
+\section{Principal Components Analyis}
 \label{sec:section}
 
 This is a section.  Here's a reference to a different section:
@@ -37,8 +37,7 @@ This is a subsection.
 % \label{fig:twofigures}
 % \end{figure}
 
-\section[Optional table of contents heading]{Section with\\linebreaks in\\the
-name}
+\section[Optional table of contents heading]{Probabilistic Principal Components Analysis}
 
 This is another section.
 
@@ -68,3 +67,7 @@ Another paragraph with a list:
 \end{itemize}
 %
 \noindent Again, we don't indent here.
+
+\section{Procrustes Analysis}
+
+\section{Generalized Procrustes Analysis ($K>2$)}

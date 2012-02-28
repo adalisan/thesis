@@ -1,5 +1,5 @@
-\chapter{Probabilistic Models of MDS}
-\label{sec:ProbMDS}
+\chapter{Grassmannian Manifold and  Metrics}
+\label{sec:Grassmann}
 \chaptermark{Optional running chapter heading}
 
 Introduction.
@@ -8,63 +8,9 @@ A citation \cite{A}.
 A citation without brackets \citen{B}. 
 Multiple citations \cite{A, B, C}.
 
-\section{Section}
-\label{sec:section}
+\section{Grassmannian Manifold}
 
-This is a section.  Here's a reference to a different section:
-\ref{sec:subsection}.
 
-\subsection{Subsection}
-\label{sec:subsection}
+\section[Optional table of contents heading]{Metrics in Grassmannian Manifold}
 
-This is a subsection.
-
-% \begin{figure}[t]
-% \centering
-% \includegraphics[width=\textwidth]{figure}
-% \caption{Caption.}
-% \label{fig:figure}
-% \end{figure}
-% 
-% \begin{figure}[t]
-% \centering
-% \begin{tabular}{c c}
-% \includegraphics[height=2.5in]{figureA} &
-% \includegraphics[width=3in]{figureB}\\
-% (A) & (B)
-% \end{tabular}
-% \caption{Two figures.}
-% \label{fig:twofigures}
-% \end{figure}
-
-\section[Optional table of contents heading]{Section with\\linebreaks in\\the
-name}
-
-This is another section.
-
-\subsection{Another subsection}
-
-\subsubsection{Subsubsection}
-
-\paragraph{Heading level below subsubsection}
-\label{sec:paragraph}
-
-And I quote: 
-%
-\begin{quote}
-La la la.
-\end{quote}
-%
-\noindent No ident after end of quote.  
-
-Another paragraph with a list:
-%
-\begin{itemize}
-%  
-\item Item 1
-%
-\item Item 2
-%
-\end{itemize}
-%
-\noindent Again, we don't indent here.
+\section{Relationship with Commensurability}

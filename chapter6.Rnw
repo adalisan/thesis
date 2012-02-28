@@ -1,5 +1,5 @@
-\chapter{Multiple Minima in  Multidimensional Scaling }
-\label{sec:MultMinima}
+\chapter{Canonical Correlation Analysis}
+\label{sec:CCA}
 \chaptermark{Optional running chapter heading}
 
 Introduction.
@@ -8,7 +8,7 @@ A citation \cite{A}.
 A citation without brackets \citen{B}. 
 Multiple citations \cite{A, B, C}.
 
-\section{Section}
+\section{Canonical Correlation Analysis}
 \label{sec:section}
 
 This is a section.  Here's a reference to a different section:
@@ -37,8 +37,7 @@ This is a subsection.
 % \label{fig:twofigures}
 % \end{figure}
 
-\section[Optional table of contents heading]{Section with\\linebreaks in\\the
-name}
+\section[Optional table of contents heading]{Kerne Canonical Correlation Analyis}
 
 This is another section.
 
@@ -68,3 +67,5 @@ Another paragraph with a list:
 \end{itemize}
 %
 \noindent Again, we don't indent here.
+
+\section{Geometric Interpretation of CCA}

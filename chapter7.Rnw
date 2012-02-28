@@ -1,5 +1,5 @@
-\chapter{Incommensurability Phenomenon}
-\label{sec:Incommensurate}
+\chapter{Relationship to Kernels}
+\label{sec:Kernels}
 \chaptermark{Optional running chapter heading}
 
 Introduction.
@@ -8,13 +8,13 @@ A citation \cite{A}.
 A citation without brackets \citen{B}. 
 Multiple citations \cite{A, B, C}.
 
-\section{Section}
+\section{Kernel Methods for Learning}
 \label{sec:section}
 
 This is a section.  Here's a reference to a different section:
 \ref{sec:subsection}.
 
-\subsection{Subsection}
+\subsection{Kernel PCA}
 \label{sec:subsection}
 
 This is a subsection.
@@ -42,7 +42,7 @@ name}
 
 This is another section.
 
-\subsection{Another subsection}
+\subsection{Kernel CCA}
 
 \subsubsection{Subsubsection}
 
@@ -68,3 +68,4 @@ Another paragraph with a list:
 \end{itemize}
 %
 \noindent Again, we don't indent here.
+\section{Multiple Kernel Learning}

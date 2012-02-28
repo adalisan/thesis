@@ -1,70 +1,18 @@
-\chapter{Canonical Correlation Analysis}
-\label{sec:CCA}
+\chapter{Fidelity and Commensurability}
+\label{sec:FidComm}
 \chaptermark{Optional running chapter heading}
 
-Introduction.
-
-A citation \cite{A}. 
-A citation without brackets \citen{B}. 
-Multiple citations \cite{A, B, C}.
-
-\section{Section}
+The concepts of  Fidelity and Commensurability
+\section{Fidelity in the Dissimilarity Representation}
 \label{sec:section}
 
-This is a section.  Here's a reference to a different section:
-\ref{sec:subsection}.
+\section{Commensurability in the Dissimilarity Representation}
 
-\subsection{Subsection}
-\label{sec:subsection}
 
-This is a subsection.
+\section{Fidelity Commensurability Tradeoff}
 
-% \begin{figure}[t]
-% \centering
-% \includegraphics[width=\textwidth]{figure}
-% \caption{Caption.}
-% \label{fig:figure}
-% \end{figure}
-% 
-% \begin{figure}[t]
-% \centering
-% \begin{tabular}{c c}
-% \includegraphics[height=2.5in]{figureA} &
-% \includegraphics[width=3in]{figureB}\\
-% (A) & (B)
-% \end{tabular}
-% \caption{Two figures.}
-% \label{fig:twofigures}
-% \end{figure}
 
-\section[Optional table of contents heading]{Section with\\linebreaks in\\the
-name}
+\section{MDS with raw-stress criterion as  simultaneous Fidelity Commensurabilty optimization}
 
-This is another section.
-
-\subsection{Another subsection}
-
-\subsubsection{Subsubsection}
-
-\paragraph{Heading level below subsubsection}
-\label{sec:paragraph}
-
-And I quote: 
-%
-\begin{quote}
-La la la.
-\end{quote}
-%
-\noindent No ident after end of quote.  
-
-Another paragraph with a list:
-%
-\begin{itemize}
-%  
-\item Item 1
-%
-\item Item 2
-%
-\end{itemize}
-%
-\noindent Again, we don't indent here.
+\section{Incommensurability phenomenon}
+\subsection{ A symmetric example}

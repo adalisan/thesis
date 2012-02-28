@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.12.29)  27 FEB 2012 19:32
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.12.29)  28 FEB 2012 07:46
 entering extended mode
 **thesis.tex
 (C:\Users\Sancar\Documents\projects\thesisdoc\thesis.tex
@@ -13,28 +13,19 @@ an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese,
 romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
 sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
 senglishmax, welsh, loaded.
-("C:\Program Files\MiKTeX 2.9\tex\latex\thesis\thesis.cls"
-Document Class: thesis 1996/25/01 1.0g LaTeX document class (wm).
-\hours=\count79
-\minutes=\count80
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\bk12.clo"
-File: bk12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
-)
-\c@part=\count81
-\c@chapter=\count82
-\c@section=\count83
-\c@subsection=\count84
-\c@subsubsection=\count85
-\c@paragraph=\count86
-\c@subparagraph=\count87
-\beforechaptervspace=\skip41
-\afterchaptervspace=\skip42
-\exampleindent=\skip43
-\c@figure=\count88
-\c@table=\count89
-\abovecaptionskip=\skip44
-\belowcaptionskip=\skip45
-\bibindent=\dimen102
+(C:\Users\Sancar\Documents\projects\thesisdoc\thesis.cls
+Document Class: thesis 2005/11/10 version 0.3.2 JHU Thesis Class
+(C:\Users\Sancar\Documents\projects\thesisdoc\jhu12.clo)
+\descriptionmargin=\dimen102
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
 )
 (C:\Users\Sancar\Documents\projects\thesisdoc\Sweave.sty
 Package: Sweave 
@@ -69,7 +60,7 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count90
+\Gread@gobject=\count88
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
@@ -79,11 +70,11 @@ Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)
-\FV@CodeLineNo=\count91
+\FV@CodeLineNo=\count89
 \FV@InFile=\read1
 \FV@TabBox=\box26
-\c@FancyVerbLine=\count92
-\FV@StepNumber=\count93
+\c@FancyVerbLine=\count90
+\FV@StepNumber=\count91
 \FV@OutFile=\write3
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\upquote\upquote.sty"
 Package: upquote 2003/08/11 v1.1 Covington's upright-quote modification to verb
@@ -198,7 +189,7 @@ Package: cite 2010/09/10  v 5.3
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
 Package: amsmath 2000/07/18 v2.13 AMS math features
-\@mathmargin=\skip46
+\@mathmargin=\skip41
 
 For additional information on amsmath, use the `?' option.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amstext.sty"
@@ -216,13 +207,13 @@ Package: amsbsy 1999/11/29 v1.2d
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsopn.sty"
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count94
+\inf@bad=\count92
 LaTeX Info: Redefining \frac on input line 211.
-\uproot@=\count95
-\leftroot@=\count96
+\uproot@=\count93
+\leftroot@=\count94
 LaTeX Info: Redefining \overline on input line 307.
-\classnum@=\count97
-\DOTSCASE@=\count98
+\classnum@=\count95
+\DOTSCASE@=\count96
 LaTeX Info: Redefining \ldots on input line 379.
 LaTeX Info: Redefining \dots on input line 382.
 LaTeX Info: Redefining \cdots on input line 467.
@@ -231,15 +222,15 @@ LaTeX Info: Redefining \cdots on input line 467.
 \big@size=\dimen107
 LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
-\macc@depth=\count99
-\c@MaxMatrixCols=\count100
+\macc@depth=\count97
+\c@MaxMatrixCols=\count98
 \dotsspace@=\muskip10
-\c@parentequation=\count101
-\dspbrk@lvl=\count102
+\c@parentequation=\count99
+\dspbrk@lvl=\count100
 \tag@help=\toks16
-\row@=\count103
-\column@=\count104
-\maxfields@=\count105
+\row@=\count101
+\column@=\count102
+\maxfields@=\count103
 \andhelp@=\toks17
 \eqnshift@=\dimen108
 \alignsep@=\dimen109
@@ -248,8 +239,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \totwidth@=\dimen112
 \lineht@=\dimen113
 \@envbody=\toks18
-\multlinegap=\skip47
-\multlinetaggap=\skip48
+\multlinegap=\skip42
+\multlinetaggap=\skip43
 \mathdisplay@stack=\toks19
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
@@ -272,29 +263,81 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen114
 \extrarowheight=\dimen115
 \NC@list=\toks20
-\extratabsurround=\skip49
-\backup@length=\skip50
+\extratabsurround=\skip44
+\backup@length=\skip45
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\wrapfig\wrapfig.sty"
 \wrapoverhang=\dimen116
 \WF@size=\dimen117
-\c@WF@wrappedlines=\count106
+\c@WF@wrappedlines=\count104
 \WF@box=\box29
 \WF@everypar=\toks21
 Package: wrapfig 2003/01/31  v 3.6
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
-\fancy@headwidth=\skip51
-\f@ncyO@elh=\skip52
-\f@ncyO@erh=\skip53
-\f@ncyO@olh=\skip54
-\f@ncyO@orh=\skip55
-\f@ncyO@elf=\skip56
-\f@ncyO@erf=\skip57
-\f@ncyO@olf=\skip58
-\f@ncyO@orf=\skip59
+\fancy@headwidth=\skip46
+\f@ncyO@elh=\skip47
+\f@ncyO@erh=\skip48
+\f@ncyO@olh=\skip49
+\f@ncyO@orh=\skip50
+\f@ncyO@elf=\skip51
+\f@ncyO@erf=\skip52
+\f@ncyO@olf=\skip53
+\f@ncyO@orf=\skip54
 )
-No file thesis.aux.
+(C:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux
+
+LaTeX Warning: Label `sec:section' multiply defined.
+
+
+LaTeX Warning: Label `sec:subsection' multiply defined.
+
+
+LaTeX Warning: Label `sec:section' multiply defined.
+
+
+LaTeX Warning: Label `sec:subsection' multiply defined.
+
+
+LaTeX Warning: Label `sec:paragraph' multiply defined.
+
+
+LaTeX Warning: Label `sec:section' multiply defined.
+
+
+LaTeX Warning: Label `sec:subsection' multiply defined.
+
+
+LaTeX Warning: Label `sec:paragraph' multiply defined.
+
+
+LaTeX Warning: Label `sec:CCA' multiply defined.
+
+
+LaTeX Warning: Label `sec:section' multiply defined.
+
+
+LaTeX Warning: Label `sec:subsection' multiply defined.
+
+
+LaTeX Warning: Label `sec:paragraph' multiply defined.
+
+
+LaTeX Warning: Label `sec:section' multiply defined.
+
+
+LaTeX Warning: Label `sec:subsection' multiply defined.
+
+
+LaTeX Warning: Label `sec:paragraph' multiply defined.
+
+
+LaTeX Warning: Label `sec:section' multiply defined.
+
+
+LaTeX Warning: Label `sec:subsection' multiply defined.
+
+(C:\Users\Sancar\Documents\projects\thesisdoc\appendix.aux))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
@@ -309,6 +352,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 38.
+
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
@@ -316,41 +360,18 @@ LaTeX Font Info:    ... okay on input line 38.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count107
+\scratchcounter=\count105
 \scratchdimen=\dimen118
 \scratchbox=\box30
-\nofMPsegments=\count108
-\nofMParguments=\count109
+\nofMPsegments=\count106
+\nofMParguments=\count107
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count110
+\MPscratchCnt=\count108
 \MPscratchDim=\dimen119
-\MPnumerator=\count111
-\makeMPintoPDFobject=\count112
+\MPnumerator=\count109
+\makeMPintoPDFobject=\count110
 \everyMPtoPDFconversion=\toks23
-)
-! Undefined control sequence.
-l.42 \degreemonth
-                 {May}
-? 
-! Undefined control sequence.
-l.43 \degreeyear
-                {2007}
-? 
-! Undefined control sequence.
-l.44 \dissertation
-                  
-? 
-! Undefined control sequence.
-l.45 \doctorphilosophy
-                      
-? 
-! Undefined control sequence.
-l.46 \copyrightnotice
-                     
-? 
-(C:\Users\Sancar\Documents\projects\thesisdoc\chapter0.tex [1
-
-{C:/Users/Sancar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter0.tex
 LaTeX Font Info:    Try loading font information for U+msa on input line 5.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
@@ -360,346 +381,223 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 5.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [1
+)
+LaTeX Font Info:    Try loading font information for TS1+aer on input line 5.
+LaTeX Font Info:    No file TS1aer.fd. on input line 5.
 
 
-] [2
+LaTeX Font Warning: Font shape `TS1/aer/m/n' undefined
+(Font)              using `TS1/cmr/m/n' instead
+(Font)              for symbol `textcopyright' on input line 5.
+
+
+Underfull \vbox (badness 4279) detected at line 5
+ []
+
+[1
+
+{C:/Users/Sancar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
 
 ]
+[3
 
-! LaTeX Error: Environment acknowledgment undefined.
+] [4
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.18 \begin{acknowledgment}
-                           
-? 
+] (C:\Users\Sancar\Documents\projects\thesisdoc\thesis.toc [5
 
-! LaTeX Error: \begin{frontmatter} on input line 2 ended by \end{acknowledgment
-}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.22 \end{acknowledgment}
-                         
-? 
-Runaway argument?
-! Paragraph ended before \dedication was complete.
-<to be read again> 
-                   \par 
-l.25 
-     
-? 
-[3]
-No file thesis.toc.
+] [6]
+[7])
 \tf@toc=\write4
-[4
-
-]
-No file thesis.lot.
+ [8] (C:\Users\Sancar\Documents\projects\thesisdoc\thesis.lot)
 \tf@lot=\write5
-[5
+ [9
 
 ]
-No file thesis.lof.
+(C:\Users\Sancar\Documents\projects\thesisdoc\thesis.lof)
 \tf@lof=\write6
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter1.tex [6
+ [10
 
-]
+])
+(C:\Users\Sancar\Documents\projects\thesisdoc\chapter1.tex
 Chapter 1.
-
-LaTeX Warning: Citation `A' on page vii undefined on input line 7.
-
-
-LaTeX Warning: Citation `B' on page vii undefined on input line 8.
-
-
-LaTeX Warning: Citation `A' on page vii undefined on input line 9.
-
-
-LaTeX Warning: Citation `B' on page vii undefined on input line 9.
-
-
-LaTeX Warning: Citation `C' on page vii undefined on input line 9.
-
-
-LaTeX Warning: Reference `sec:subsection' on page vii undefined on input line 1
-5.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter2.tex [7
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter2.tex [1
 
 ]
 Chapter 2.
-
-LaTeX Warning: Citation `A' on page viii undefined on input line 7.
-
-
-LaTeX Warning: Citation `B' on page viii undefined on input line 8.
-
-
-LaTeX Warning: Citation `A' on page viii undefined on input line 9.
-
-
-LaTeX Warning: Citation `B' on page viii undefined on input line 9.
-
-
-LaTeX Warning: Citation `C' on page viii undefined on input line 9.
-
-
-LaTeX Warning: Reference `sec:subsection' on page viii undefined on input line 
-15.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter3.tex [8
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter3.tex [2
 
 ]
 Chapter 3.
 
-LaTeX Warning: Citation `A' on page ix undefined on input line 7.
+Overfull \hbox (1.9142pt too wide) in paragraph at lines 23--23
+[]\T1/aer/bx/n/20.74 Maximum Like-li-hood MDS and MUL-
+ []
 
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter4.tex [3
 
-LaTeX Warning: Citation `B' on page ix undefined on input line 8.
-
-
-LaTeX Warning: Citation `A' on page ix undefined on input line 9.
-
-
-LaTeX Warning: Citation `B' on page ix undefined on input line 9.
-
-
-LaTeX Warning: Citation `C' on page ix undefined on input line 9.
-
-
-LaTeX Warning: Reference `sec:subsection' on page ix undefined on input line 15
-.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter4.tex [9
-
-] [10]
+] [4]
 Chapter 4.
 
-LaTeX Warning: Citation `A' on page xi undefined on input line 7.
+Overfull \hbox (2.06015pt too wide) in paragraph at lines 6--6
+[]\T1/aer/bx/n/20.74 Fidelity in the Dis-sim-i-lar-ity Rep-re-sen-
+ []
 
 
-LaTeX Warning: Citation `B' on page xi undefined on input line 8.
+Overfull \hbox (4.86028pt too wide) in paragraph at lines 15--15
+\T1/aer/bx/n/20.74 mul-ta-ne-ous Fi-delity Com-men-su-ra-bilty
+ []
 
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter5.tex [5
 
-LaTeX Warning: Citation `A' on page xi undefined on input line 9.
-
-
-LaTeX Warning: Citation `B' on page xi undefined on input line 9.
-
-
-LaTeX Warning: Citation `C' on page xi undefined on input line 9.
-
-
-LaTeX Warning: Reference `sec:subsection' on page xi undefined on input line 15
-.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter5.tex [11
-
-]
+] [6]
 Chapter 5.
 
-LaTeX Warning: Citation `A' on page xii undefined on input line 7.
+LaTeX Warning: Citation `A' on page 7 undefined on input line 7.
 
 
-LaTeX Warning: Citation `B' on page xii undefined on input line 8.
+LaTeX Warning: Citation `B' on page 7 undefined on input line 8.
 
 
-LaTeX Warning: Citation `A' on page xii undefined on input line 9.
+LaTeX Warning: Citation `A' on page 7 undefined on input line 9.
 
 
-LaTeX Warning: Citation `B' on page xii undefined on input line 9.
+LaTeX Warning: Citation `B' on page 7 undefined on input line 9.
 
 
-LaTeX Warning: Citation `C' on page xii undefined on input line 9.
+LaTeX Warning: Citation `C' on page 7 undefined on input line 9.
 
-
-LaTeX Warning: Reference `sec:subsection' on page xii undefined on input line 1
-5.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter6.tex [12
+[7
 
 ]
+
+LaTeX Font Warning: Font shape `T1/aer/bx/sc' undefined
+(Font)              using `T1/aer/bx/n' instead on input line 48.
+
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter6.tex [8]
 Chapter 6.
 
-LaTeX Warning: Citation `A' on page xiii undefined on input line 7.
+LaTeX Warning: Citation `A' on page 9 undefined on input line 7.
 
 
-LaTeX Warning: Citation `B' on page xiii undefined on input line 8.
+LaTeX Warning: Citation `B' on page 9 undefined on input line 8.
 
 
-LaTeX Warning: Citation `A' on page xiii undefined on input line 9.
+LaTeX Warning: Citation `A' on page 9 undefined on input line 9.
 
 
-LaTeX Warning: Citation `B' on page xiii undefined on input line 9.
+LaTeX Warning: Citation `B' on page 9 undefined on input line 9.
 
 
-LaTeX Warning: Citation `C' on page xiii undefined on input line 9.
+LaTeX Warning: Citation `C' on page 9 undefined on input line 9.
 
+[9
 
-LaTeX Warning: Reference `sec:subsection' on page xiii undefined on input line 
-15.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter7.tex [13
-
-] [14]
+]) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter7.tex [10]
 Chapter 7.
 
-LaTeX Warning: Citation `A' on page xv undefined on input line 7.
+LaTeX Warning: Citation `A' on page 11 undefined on input line 7.
 
 
-LaTeX Warning: Citation `B' on page xv undefined on input line 8.
+LaTeX Warning: Citation `B' on page 11 undefined on input line 8.
 
 
-LaTeX Warning: Citation `A' on page xv undefined on input line 9.
+LaTeX Warning: Citation `A' on page 11 undefined on input line 9.
 
 
-LaTeX Warning: Citation `B' on page xv undefined on input line 9.
+LaTeX Warning: Citation `B' on page 11 undefined on input line 9.
 
 
-LaTeX Warning: Citation `C' on page xv undefined on input line 9.
+LaTeX Warning: Citation `C' on page 11 undefined on input line 9.
 
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter8.tex [11
 
-LaTeX Warning: Reference `sec:subsection' on page xv undefined on input line 15
-.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter8.tex [15
-
-]
+] [12]
 Chapter 8.
 
-LaTeX Warning: Citation `A' on page xvi undefined on input line 7.
+LaTeX Warning: Citation `A' on page 13 undefined on input line 7.
 
 
-LaTeX Warning: Citation `B' on page xvi undefined on input line 8.
+LaTeX Warning: Citation `B' on page 13 undefined on input line 8.
 
 
-LaTeX Warning: Citation `A' on page xvi undefined on input line 9.
+LaTeX Warning: Citation `A' on page 13 undefined on input line 9.
 
 
-LaTeX Warning: Citation `B' on page xvi undefined on input line 9.
+LaTeX Warning: Citation `B' on page 13 undefined on input line 9.
 
 
-LaTeX Warning: Citation `C' on page xvi undefined on input line 9.
+LaTeX Warning: Citation `C' on page 13 undefined on input line 9.
 
-
-LaTeX Warning: Reference `sec:subsection' on page xvi undefined on input line 1
-5.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter9.tex [16
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter9.tex [13
 
 ]
 Chapter 9.
 
-LaTeX Warning: Citation `A' on page xvii undefined on input line 7.
+LaTeX Warning: Citation `A' on page 14 undefined on input line 7.
 
 
-LaTeX Warning: Citation `B' on page xvii undefined on input line 8.
+LaTeX Warning: Citation `B' on page 14 undefined on input line 8.
 
 
-LaTeX Warning: Citation `A' on page xvii undefined on input line 9.
+LaTeX Warning: Citation `A' on page 14 undefined on input line 9.
 
 
-LaTeX Warning: Citation `B' on page xvii undefined on input line 9.
+LaTeX Warning: Citation `B' on page 14 undefined on input line 9.
 
 
-LaTeX Warning: Citation `C' on page xvii undefined on input line 9.
+LaTeX Warning: Citation `C' on page 14 undefined on input line 9.
 
-
-LaTeX Warning: Reference `sec:subsection' on page xvii undefined on input line 
-15.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter10.tex [17
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter10.tex [14
 
 ]
 Chapter 10.
+) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter11.tex [15
 
-LaTeX Warning: Citation `A' on page xviii undefined on input line 7.
-
-
-LaTeX Warning: Citation `B' on page xviii undefined on input line 8.
-
-
-LaTeX Warning: Citation `A' on page xviii undefined on input line 9.
-
-
-LaTeX Warning: Citation `B' on page xviii undefined on input line 9.
-
-
-LaTeX Warning: Citation `C' on page xviii undefined on input line 9.
-
-
-LaTeX Warning: Reference `sec:subsection' on page xviii undefined on input line
- 15.
-
-) [18
+]
+Chapter 11.
+) [16
 
 ]
 No file appendix.tex.
 No file thesis.bbl.
-
-! LaTeX Error: Environment vita undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.70 \begin{vita}
-                 
-? 
-
-! LaTeX Error: File `rjvheadshot' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.73 ...t=2.5in,clip,keepaspectratio]{rjvheadshot}
-                                                  
-? 
-
-! LaTeX Error: \begin{document} ended by \end{vita}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.92 \end{vita}
-               
-? 
-[19
+<rjvheadshot.jpg, id=89, 69.3792pt x 85.7604pt>
+File: rjvheadshot.jpg Graphic file (type jpg)
+ <use rjvheadshot.jpg>
+Package pdftex.def Info: rjvheadshot.jpg used on input line 74.
+(pdftex.def)             Requested size: 144.54771pt x 178.67706pt.
+ [17
 
 
-] (C:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux
+
+ <C:/Users/Sancar/Documents/projects/thesisdoc/rjvheadshot.jpg>]
+(C:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux
 (C:\Users\Sancar\Documents\projects\thesisdoc\appendix.aux))
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3593 strings out of 494045
- 47117 string characters out of 3148383
- 94321 words of memory out of 3000000
- 6765 multiletter control sequences out of 15000+200000
- 25248 words of font info for 61 fonts, out of 3000000 for 9000
+ 3489 strings out of 494045
+ 46751 string characters out of 3148383
+ 96558 words of memory out of 3000000
+ 6647 multiletter control sequences out of 15000+200000
+ 37013 words of font info for 85 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 35i,10n,43p,290b,220s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on thesis.pdf (20 pages, 79828 bytes).
+ 35i,11n,48p,290b,318s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Sancar\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
+\tcrm1200.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on thesis.pdf (27 pages, 88075 bytes).
 PDF statistics:
- 87 PDF objects out of 1000 (max. 8388607)
+ 113 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 12 words of extra memory for PDF output out of 10000 (max. 10000000)
 
