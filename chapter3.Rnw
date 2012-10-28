@@ -5,19 +5,23 @@
 Introduction to MDS and dissimilarity representation to MDS
 
 \section{Multidimensional Scaling in the general setting}
+Multidimensional Scaling is  a method to  (MDS)~\cite{CMDS,borg+groenen:1997,duin2005dissimilarity}  embed dissimilarities between examples  in the Euclidean space  with a chosen dimension $d$ such that the distances between the embeddings are as close as possible (in various senses) to the original dissimilarities. Different criterion functions can be used to measure how close the distances are  to the given dissimilarities, leading to different embedded configurations. These different variants of MDS can be described using a single formulation.
 \label{sec:section}
+Let $\mathcal(D)$ be a $nxn$ dissimilarity matrix.
 
 \section{Different criterion for MDS?}
 
-This is another section.
+
 
 \subsection{Metric MDS}
+
 \subsection{Ordinal MDS}
 
 
 \subsection{Stress Criterion}
 
 \section{Classical MDS and the Strain Criterion}
+
 \section{Effect of Noise}
 
 \section{Maximum Likelihood MDS and MULTISCALE}
