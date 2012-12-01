@@ -7,7 +7,7 @@ Introduction to MDS and dissimilarity representation to MDS
 \section{Multidimensional Scaling in the general setting}
 Multidimensional Scaling is  a method to  (MDS)~\cite{CMDS,borg+groenen:1997,duin2005dissimilarity}  embed dissimilarities between examples  in the Euclidean space  with a chosen dimension $d$ such that the distances between the embeddings are as close as possible (in various senses) to the original dissimilarities. Different criterion functions can be used to measure how close the distances are  to the given dissimilarities, leading to different embedded configurations. These different variants of MDS can be described using a single formulation.
 \label{sec:section}
-Let $\mathcal(D)$ be a $nxn$ dissimilarity matrix.
+Consider a  set of n objects. For each pair of objects, the dissimilarity value, denoted by $d_{ij}$ is a non-negative real number which quantifies how dissimilar those two objects are. The collection of these values form the matrix $\mathcal(D)$ , which is  a $nxn$ dissimilarity matrix. While ,generally, finite set of objects are being considered; for a dissimilarity matrix, we can consider the objects as points in a space, whose neighborhood relationship is defined by the dissimilarity measure ( a function of   $d_{ij}$) . Therefore, we can consider any   The dissimilarities have to satisfy $d_{ij}\geq 0$ and $d_{ii}=0$ and $d_{ij}=d_{ij}$. Therefore  $\mathcal(D)$ is non-negative, hollow and symmetric. If, in addition, each triplet of dissimilarities $d_{ij}$, $d_{ik}$ and $d_{ik}$  satisfy the triangle inequality, then D is called ``metric" an Euclidean distance matrix,
 
 \section{Different criterion for MDS?}
 
