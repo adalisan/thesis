@@ -10,10 +10,11 @@ Multidimensional Scaling is  a method to  (MDS)~\cite{CMDS,borg+groenen:1997,dui
 Consider a  set of n objects. For each pair of objects, the dissimilarity value, denoted by $d_{ij}$ is a non-negative real number which quantifies how dissimilar those two objects are. The collection of these values form the matrix $\mathcal(D)$ , which is  a $nxn$ dissimilarity matrix. While ,generally, finite set of objects are being considered; for a dissimilarity matrix, we can consider the objects as points in a space, whose neighborhood relationship is defined by the dissimilarity measure ( a function of   $d_{ij}$) . Therefore, we can consider any   The dissimilarities have to satisfy $d_{ij}\geq 0$ and $d_{ii}=0$ and $d_{ij}=d_{ij}$. Therefore  $\mathcal(D)$ is non-negative, hollow and symmetric. If, in addition, each triplet of dissimilarities $d_{ij}$, $d_{ik}$ and $d_{ik}$  satisfy the triangle inequality, then D is called ``metric" an Euclidean distance matrix,
 
 \section{Different criterion for MDS?}
-
+Multidimensional Scaling finds a configuration of points consistent with given dissimilarities in a finite dimensional Euclideans space. There are various variants of MDS that use different measure of consistency.  
 
 
 \subsection{Metric MDS}
+ Minimizing $\sum(y-$
 
 \subsection{Ordinal MDS}
 
