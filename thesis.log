@@ -1,21 +1,21 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2011.12.29)  28 FEB 2012 07:46
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2012.12.2)  16 JAN 2013 22:07
 entering extended mode
 **thesis.tex
-(C:\Users\Sancar\Documents\projects\thesisdoc\thesis.tex
+(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
 croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
-lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
-ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
-vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
-an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
-romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
-sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
-senglishmax, welsh, loaded.
-(C:\Users\Sancar\Documents\projects\thesisdoc\thesis.cls
+lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.cls
 Document Class: thesis 2005/11/10 version 0.3.2 JHU Thesis Class
-(C:\Users\Sancar\Documents\projects\thesisdoc\jhu12.clo)
+(F:\Users\Sancar\Documents\projects\thesisdoc\jhu12.clo)
 \descriptionmargin=\dimen102
 \c@part=\count79
 \c@chapter=\count80
@@ -27,45 +27,45 @@ Document Class: thesis 2005/11/10 version 0.3.2 JHU Thesis Class
 \c@figure=\count86
 \c@table=\count87
 )
-(C:\Users\Sancar\Documents\projects\thesisdoc\Sweave.sty
+(F:\Users\Sancar\Documents\projects\thesisdoc\Sweave.sty
 Package: Sweave 
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
-Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count88
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\fancyvrb\fancyvrb.sty"
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyvrb\fancyvrb.sty
 Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
@@ -76,135 +76,56 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 \c@FancyVerbLine=\count90
 \FV@StepNumber=\count91
 \FV@OutFile=\write3
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\upquote\upquote.sty"
-Package: upquote 2003/08/11 v1.1 Covington's upright-quote modification to verb
-atim and verb
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty"
-Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
-Package textcomp Info: Sub-encoding information:
-(textcomp)               5 = only ISO-Adobe without \textcurrency
-(textcomp)               4 = 5 + \texteuro
-(textcomp)               3 = 4 + \textohm
-(textcomp)               2 = 3 + \textestimated + \textcurrency
-(textcomp)               1 = TS1 - \textcircled - \t
-(textcomp)               0 = TS1 (full)
-(textcomp)             Font families with sub-encoding setting implement
-(textcomp)             only a restricted character set as indicated.
-(textcomp)             Family '?' is the default used for unknown fonts.
-(textcomp)             See the documentation for details.
-Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def"
-File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 )
-LaTeX Info: Redefining \oldstylenums on input line 266.
-Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
-Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
-Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
-Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
-Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
-Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
-Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
-Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
-Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
-Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
-Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
-Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
-Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
-Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
-Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
-Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
-Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
-Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
-Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
-Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
-Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
-Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
-Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
-Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
-
-Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
-Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
-Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
-Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
-Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
-Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
-Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 311.
-Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 312.
-Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 313.
-Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 314.
-Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 315.
-Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 316.
-Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 317.
-Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 318.
-Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 319.
-Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 320.
-Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 321.
-Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 322.
-Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 323.
-Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 324.
-Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 325.
-Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 326.
-Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 327.
-Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 328.
-Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 329.
-Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 330.
-Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 331.
-Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 332.
-Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 333.
-Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 334.
-Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 335.
-Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 336.
-Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 337.
-Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
-Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
-Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
-))
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\upquote\upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def"
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\ae\ae.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\ae.sty"
 Package: ae 2001/02/12 1.3 Almost European Computer Modern
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def"
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 )
 LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aer.fd"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aer.fd"
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 ))))
-("C:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty"
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\cite\cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 373.
 Package: cite 2010/09/10  v 5.3
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip41
 
 For additional information on amsmath, use the `?' option.
-("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amstext.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amstext.sty"
 Package: amstext 2000/06/29 v2.01
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsgen.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks15
 \ex@=\dimen105
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsbsy.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsbsy.sty"
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen106
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsopn.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsopn.sty"
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count92
@@ -245,20 +166,20 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
 Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\fixltx2e.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fixltx2e.sty"
 Package: fixltx2e 2006/09/13 v1.1m fixes to LaTeX
 LaTeX Info: Redefining \em on input line 420.
 LaTeX Info: The control sequence `\[' is already robust on input line 471.
 LaTeX Info: The control sequence `\]' is already robust on input line 472.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty"
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen114
 \extrarowheight=\dimen115
@@ -266,7 +187,7 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \extratabsurround=\skip44
 \backup@length=\skip45
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\wrapfig\wrapfig.sty"
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\wrapfig\wrapfig.sty
 \wrapoverhang=\dimen116
 \WF@size=\dimen117
 \c@WF@wrappedlines=\count104
@@ -274,7 +195,7 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \WF@everypar=\toks21
 Package: wrapfig 2003/01/31  v 3.6
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
 \fancy@headwidth=\skip46
 \f@ncyO@elh=\skip47
 \f@ncyO@erh=\skip48
@@ -285,59 +206,7 @@ Package: wrapfig 2003/01/31  v 3.6
 \f@ncyO@olf=\skip53
 \f@ncyO@orf=\skip54
 )
-(C:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux
-
-LaTeX Warning: Label `sec:section' multiply defined.
-
-
-LaTeX Warning: Label `sec:subsection' multiply defined.
-
-
-LaTeX Warning: Label `sec:section' multiply defined.
-
-
-LaTeX Warning: Label `sec:subsection' multiply defined.
-
-
-LaTeX Warning: Label `sec:paragraph' multiply defined.
-
-
-LaTeX Warning: Label `sec:section' multiply defined.
-
-
-LaTeX Warning: Label `sec:subsection' multiply defined.
-
-
-LaTeX Warning: Label `sec:paragraph' multiply defined.
-
-
-LaTeX Warning: Label `sec:CCA' multiply defined.
-
-
-LaTeX Warning: Label `sec:section' multiply defined.
-
-
-LaTeX Warning: Label `sec:subsection' multiply defined.
-
-
-LaTeX Warning: Label `sec:paragraph' multiply defined.
-
-
-LaTeX Warning: Label `sec:section' multiply defined.
-
-
-LaTeX Warning: Label `sec:subsection' multiply defined.
-
-
-LaTeX Warning: Label `sec:paragraph' multiply defined.
-
-
-LaTeX Warning: Label `sec:section' multiply defined.
-
-
-LaTeX Warning: Label `sec:subsection' multiply defined.
-
-(C:\Users\Sancar\Documents\projects\thesisdoc\appendix.aux))
+(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
@@ -350,15 +219,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 38.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
-File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    ... okay on input line 38.
-
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count105
 \scratchdimen=\dimen118
@@ -371,233 +233,28 @@ LaTeX Font Info:    ... okay on input line 38.
 \MPnumerator=\count109
 \makeMPintoPDFobject=\count110
 \everyMPtoPDFconversion=\toks23
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter0.tex
-LaTeX Font Info:    Try loading font information for U+msa on input line 5.
+) (F:\Users\Sancar\Documents\projects\thesisdoc\thesis-concordance.tex)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
-File: umsa.fd 2009/06/22 v3.00 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 5.
+! LaTeX Error: File `chapter0.tex' not found.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
-File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-)
-LaTeX Font Info:    Try loading font information for TS1+aer on input line 5.
-LaTeX Font Info:    No file TS1aer.fd. on input line 5.
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: tex)
 
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.51 \input{chapter0}
+                     
+*** (cannot \read from terminal in nonstop modes)
 
-LaTeX Font Warning: Font shape `TS1/aer/m/n' undefined
-(Font)              using `TS1/cmr/m/n' instead
-(Font)              for symbol `textcopyright' on input line 5.
-
-
-Underfull \vbox (badness 4279) detected at line 5
- []
-
-[1
-
-{C:/Users/Sancar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
-
-]
-[3
-
-] [4
-
-] (C:\Users\Sancar\Documents\projects\thesisdoc\thesis.toc [5
-
-] [6]
-[7])
-\tf@toc=\write4
- [8] (C:\Users\Sancar\Documents\projects\thesisdoc\thesis.lot)
-\tf@lot=\write5
- [9
-
-]
-(C:\Users\Sancar\Documents\projects\thesisdoc\thesis.lof)
-\tf@lof=\write6
- [10
-
-])
-(C:\Users\Sancar\Documents\projects\thesisdoc\chapter1.tex
-Chapter 1.
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter2.tex [1
-
-]
-Chapter 2.
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter3.tex [2
-
-]
-Chapter 3.
-
-Overfull \hbox (1.9142pt too wide) in paragraph at lines 23--23
-[]\T1/aer/bx/n/20.74 Maximum Like-li-hood MDS and MUL-
- []
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter4.tex [3
-
-] [4]
-Chapter 4.
-
-Overfull \hbox (2.06015pt too wide) in paragraph at lines 6--6
-[]\T1/aer/bx/n/20.74 Fidelity in the Dis-sim-i-lar-ity Rep-re-sen-
- []
-
-
-Overfull \hbox (4.86028pt too wide) in paragraph at lines 15--15
-\T1/aer/bx/n/20.74 mul-ta-ne-ous Fi-delity Com-men-su-ra-bilty
- []
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter5.tex [5
-
-] [6]
-Chapter 5.
-
-LaTeX Warning: Citation `A' on page 7 undefined on input line 7.
-
-
-LaTeX Warning: Citation `B' on page 7 undefined on input line 8.
-
-
-LaTeX Warning: Citation `A' on page 7 undefined on input line 9.
-
-
-LaTeX Warning: Citation `B' on page 7 undefined on input line 9.
-
-
-LaTeX Warning: Citation `C' on page 7 undefined on input line 9.
-
-[7
-
-]
-
-LaTeX Font Warning: Font shape `T1/aer/bx/sc' undefined
-(Font)              using `T1/aer/bx/n' instead on input line 48.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter6.tex [8]
-Chapter 6.
-
-LaTeX Warning: Citation `A' on page 9 undefined on input line 7.
-
-
-LaTeX Warning: Citation `B' on page 9 undefined on input line 8.
-
-
-LaTeX Warning: Citation `A' on page 9 undefined on input line 9.
-
-
-LaTeX Warning: Citation `B' on page 9 undefined on input line 9.
-
-
-LaTeX Warning: Citation `C' on page 9 undefined on input line 9.
-
-[9
-
-]) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter7.tex [10]
-Chapter 7.
-
-LaTeX Warning: Citation `A' on page 11 undefined on input line 7.
-
-
-LaTeX Warning: Citation `B' on page 11 undefined on input line 8.
-
-
-LaTeX Warning: Citation `A' on page 11 undefined on input line 9.
-
-
-LaTeX Warning: Citation `B' on page 11 undefined on input line 9.
-
-
-LaTeX Warning: Citation `C' on page 11 undefined on input line 9.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter8.tex [11
-
-] [12]
-Chapter 8.
-
-LaTeX Warning: Citation `A' on page 13 undefined on input line 7.
-
-
-LaTeX Warning: Citation `B' on page 13 undefined on input line 8.
-
-
-LaTeX Warning: Citation `A' on page 13 undefined on input line 9.
-
-
-LaTeX Warning: Citation `B' on page 13 undefined on input line 9.
-
-
-LaTeX Warning: Citation `C' on page 13 undefined on input line 9.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter9.tex [13
-
-]
-Chapter 9.
-
-LaTeX Warning: Citation `A' on page 14 undefined on input line 7.
-
-
-LaTeX Warning: Citation `B' on page 14 undefined on input line 8.
-
-
-LaTeX Warning: Citation `A' on page 14 undefined on input line 9.
-
-
-LaTeX Warning: Citation `B' on page 14 undefined on input line 9.
-
-
-LaTeX Warning: Citation `C' on page 14 undefined on input line 9.
-
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter10.tex [14
-
-]
-Chapter 10.
-) (C:\Users\Sancar\Documents\projects\thesisdoc\chapter11.tex [15
-
-]
-Chapter 11.
-) [16
-
-]
-No file appendix.tex.
-No file thesis.bbl.
-<rjvheadshot.jpg, id=89, 69.3792pt x 85.7604pt>
-File: rjvheadshot.jpg Graphic file (type jpg)
- <use rjvheadshot.jpg>
-Package pdftex.def Info: rjvheadshot.jpg used on input line 74.
-(pdftex.def)             Requested size: 144.54771pt x 178.67706pt.
- [17
-
-
-
- <C:/Users/Sancar/Documents/projects/thesisdoc/rjvheadshot.jpg>]
-(C:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux
-(C:\Users\Sancar\Documents\projects\thesisdoc\appendix.aux))
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+ 
 Here is how much of TeX's memory you used:
- 3489 strings out of 494045
- 46751 string characters out of 3148383
- 96558 words of memory out of 3000000
- 6647 multiletter control sequences out of 15000+200000
- 37013 words of font info for 85 fonts, out of 3000000 for 9000
- 715 hyphenation exceptions out of 8191
- 35i,11n,48p,290b,318s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Sancar\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
-\tcrm1200.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on thesis.pdf (27 pages, 88075 bytes).
-PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 12 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 2850 strings out of 493921
+ 36791 string characters out of 3144873
+ 89976 words of memory out of 3000000
+ 6127 multiletter control sequences out of 15000+200000
+ 6199 words of font info for 17 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 35i,1n,43p,290b,80s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

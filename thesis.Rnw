@@ -36,6 +36,7 @@
 %\makeglossary % enable the glossary
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \title{JHU THESIS TEMPLATE}
 \author{Sancar Adali}
