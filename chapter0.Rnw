@@ -10,8 +10,8 @@ Abstract goes here.
 
 \vspace{1cm}
 
-\noindent Primary Reader: Some Person\\
-Secondary Reader: Someone Else
+\noindent Primary Reader: Carey E Priebe\\
+Secondary Reader: Daniel E Fishkind
 
 \end{abstract}
 

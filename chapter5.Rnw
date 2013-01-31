@@ -1,73 +1,47 @@
+
 \chapter{Principal Components Analysis and Procrustes Analysis}
 \label{sec:PoM}
 \chaptermark{Optional running chapter heading}
 
-Introduction.
-
-A citation \cite{A}. 
-A citation without brackets \citen{B}. 
-Multiple citations \cite{A, B, C}.
-
-\section{Principal Components Analyis}
-\label{sec:section}
-
-This is a section.  Here's a reference to a different section:
-\ref{sec:subsection}.
-
-\subsection{Subsection}
-\label{sec:subsection}
-
-This is a subsection.
-
-% \begin{figure}[t]
-% \centering
-% \includegraphics[width=\textwidth]{figure}
-% \caption{Caption.}
-% \label{fig:figure}
-% \end{figure}
-% 
-% \begin{figure}[t]
-% \centering
-% \begin{tabular}{c c}
-% \includegraphics[height=2.5in]{figureA} &
-% \includegraphics[width=3in]{figureB}\\
-% (A) & (B)
-% \end{tabular}
-% \caption{Two figures.}
-% \label{fig:twofigures}
-% \end{figure}
-
-\section[Optional table of contents heading]{Probabilistic Principal Components Analysis}
-
-This is another section.
-
-\subsection{Another subsection}
-
-\subsubsection{Subsubsection}
-
-\paragraph{Heading level below subsubsection}
-\label{sec:paragraph}
-
-And I quote: 
-%
-\begin{quote}
-La la la.
-\end{quote}
-%
-\noindent No ident after end of quote.  
-
-Another paragraph with a list:
-%
-\begin{itemize}
-%  
-\item Item 1
-%
-\item Item 2
-%
-\end{itemize}
-%
-\noindent Again, we don't indent here.
 
 \section{Procrustes Analysis}
 
+Since separate  condition dissimilarities are available, a straightforward approach is to embed each conditional dissimilarity matrix, $\Delta_1$ and $\Delta_2$, separately  in  $d$-dimensional Euclidean space (call these embedded configurations $X_1$ and $X_2$, respectively) and then find a mapping function $\rho :\mathbb{R}^{d}\rightarrow\mathbb{R}^{d}$ that maps each point in $X_2$ to approximately its corresponding point in $X_1$. This approach can be seen as a specific example of the general setting where the commensurate space is d-dimensional  Euclidean space and $\rho_1$ in  ~\ref{fig:fig1} is the identity map. 
+
+Estimation of $\rho$ is carried out using  Procrustes Analysis  on training data. Procrustes Analysis~\cite{Sibson} finds a orthonormal matrix $\mathbf{Q}^*$ that minimizes the sum of squared distances between the  target configuration $X_1$ and  the configuration $X_2$ transformed by $\mathbf{Q}^*$, i.e.,
+ \[\mathbf{Q}^* = \argmin_{Q^TQ = I} \|X_1 - X_2Q\|_F\] 
+ where $\|\cdot\|_F$ is the Frobenius norm on matrices. The map $\rho$ estimated by the linear map $\mathbf{Q}^*$   makes the separate MDS embeddings as commensurate as possible. Once such a mapping is computed, one can out-of-sample embed  new dissimilarities for each condition (separately)  and  use $\mathbf{Q}^*$ to make the embeddings commensurate.
+One can then compute the test statistic $\tau$ (the distance between commensurate embeddings) for  the hypothesis testing problem. This approach will be referred to  as P$\circ$M - Procrustes $\circ$MDS.
+
+Note that the Procrustes transformation $\mathbf{Q}^*$  is limited to  a linear transformation consisting of rotation and reflection and possibly also scaling components. The optimal mapping might  very well be   non-linear. If a larger class of mappings is considered, this would result in a smaller model bias but also larger variability for the mapping function. By only considering the class of linear transformations, it is possible to learn $\mathbf{Q}^{*}$ with the limited sample size.
+
+\subsection{Relation of $P\circ M$ and Joint Optimization of Fidelity and Commensurability} 
+
+Suppose the weights are chosen to be $w_{ijk_1k_2}=w$ for commensurability terms and $w_{ijk_1k_2}=1-w$ for fidelity terms in equation \eqref{eq:FidCommSep}. For the resulting weight matrix $W$, define 
+\begin{equation}
+f_w(D(\cdot),M) = \sigma_W(\cdot) \label{fid-comm-tradeoff-func}
+\end{equation}
+ where $M$ is the omnibus matrix obtained from  a given pair of dissimilarity matrices, $\Delta_1$ and $\Delta_2$, as in equation \eqref{omnibus}.   As $w$ goes to 0, the configuration embedded by JOFC converges to a configuration equivalent to (up to rotation and reflection)  the configuration embedded by P$\circ$M.
+
+
+\begin{thm}
+Define $\sigma(\cdot)=\sigma_{W=\bm{1}}(\cdot)$ (unweighted raw stress) where $\bm{1}$ is a matrix of 1's.
+ Let $\mathbf{X}_1$ and $\mathbf{X}_2$ be the corresponding $n\times p$ configuration matrices with column means of $\bm{0}$ (obtained from separately embedding  $\Delta_1$ and $\Delta_2$ by minimizing the raw stress $\sigma(\cdot)$ ). 
+Let  $\mathbf{Q}=\argmin_{\mathbf{P^T}\mathbf{P}=\mathbf{P}\mathbf{P^T}=\mathbf{I}}||{\mathbf{X}_1-\mathbf{X}_2}\mathbf{P}||^2$ ,   $\mathbf{\tilde{X}}_2= \mathbf{X}_2\mathbf{Q}$, 
+and let  
+$\mathbf{X}=\left[\begin{array}{c}
+\mathbf{X}_1\\
+\mathbf{\tilde{X}}_2
+\end{array}\right]$.
+
+For $w>0$, let $\mathbf{Y}_{w} = \left[\begin{array}{c}
+\mathbf{Y}_1\\
+\mathbf{Y}_2
+\end{array}\right]$  be  a $2n \times p$ configuration matrix obtained by minimization of 
+$ f(\mcY, M) =(1-w)\left({\sigma{(\mcY_1)}}+{\sigma{(\mcY_2)}}\right)+w||{\mcY_1-\mcY_2}||^2 $ with respect to  $\mcY=\left[\begin{array}{c}
+\mcY_1\\
+\mcY_2
+\end{array}\right]$ with the constraint that $\mcY_1$ and $\mcY_2$ are two $n \times p$ configuration matrices having column means of $\bm{0}$. Then, $$lim_{w\rightarrow0}\mathbf{Y}_{w}=\mathbf{X}\mathbf{R}$$ for a $p\times p$ orthonormal matrix $\mathbf{R}$. ($\mathbf{R}$ is a transformation matrix with a rotation and possibly a reflection component.)
+\end{thm}
+ 
 \section{Generalized Procrustes Analysis ($K>2$)}

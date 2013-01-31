@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2012.12.2)  16 JAN 2013 22:07
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2012.12.2)  31 JAN 2013 01:01
 entering extended mode
 **thesis.tex
 (F:\Users\Sancar\Documents\projects\thesisdoc\thesis.tex
@@ -108,6 +108,17 @@ LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 373.
 Package: cite 2010/09/10  v 5.3
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2009/06/22 v3.00
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\@emptytoks=\toks15
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip41
@@ -118,7 +129,7 @@ Package: amstext 2000/06/29 v2.01
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks15
+\@emptytoks=\toks16
 \ex@=\dimen105
 ))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsbsy.sty"
@@ -148,30 +159,223 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \dotsspace@=\muskip10
 \c@parentequation=\count99
 \dspbrk@lvl=\count100
-\tag@help=\toks16
+\tag@help=\toks17
 \row@=\count101
 \column@=\count102
 \maxfields@=\count103
-\andhelp@=\toks17
+\andhelp@=\toks18
 \eqnshift@=\dimen108
 \alignsep@=\dimen109
 \tagshift@=\dimen110
 \tagwidth@=\dimen111
 \totwidth@=\dimen112
 \lineht@=\dimen113
-\@envbody=\toks18
+\@envbody=\toks19
 \multlinegap=\skip42
 \multlinetaggap=\skip43
-\mathdisplay@stack=\toks19
+\mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
-Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\classes\amsthm.sty"
+Package: amsthm 2004/08/06 v2.20
+\thm@style=\toks21
+\thm@bodyfont=\toks22
+\thm@headfont=\toks23
+\thm@notefont=\toks24
+\thm@headpunct=\toks25
+\thm@preskip=\skip44
+\thm@postskip=\skip45
+\thm@headsep=\skip46
+\dth@everypar=\toks26
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amscd.sty"
+Package: amscd 1999/11/29 v2.0
+\athelp@=\toks27
+\minaw@=\dimen114
+\bigaw@=\dimen115
+\minCDarrowwidth=\dimen116
+)
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\subcaption.sty
+Package: subcaption 2012/01/12 v1.1d Sub-captions (AR)
+
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
+Package: caption 2012/02/19 v3.2f Customizing captions (AR)
+
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
+Package: caption3 2012/01/12 v1.4b caption3 kernel (AR)
+\captionmargin=\dimen117
+\captionmargin@=\dimen118
+\captionwidth=\dimen119
+\caption@indent=\dimen120
+\caption@parindent=\dimen121
+\caption@hangindent=\dimen122
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2->\par \ifdim \prevdepth 
+>-\p@ \vskip 10\p@ \relax \fi \setbox \@tempboxa \hbox {\vbox to\topskip {}#1: 
+#2\unskip \strut }\ifdim \wd \@tempboxa >\hsize {\ssp #1: #2\unskip \strut \par
+ } \else \hbox to\hsize {\hfil \unhbox \@tempboxa \hfil }\fi .
+\c@ContinuedFloat=\count104
+)
+\c@subfigure=\count105
+\c@subtable=\count106
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen123
+\Hy@linkcounter=\count107
+\Hy@pagecounter=\count108
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count109
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `final' set `true' on input line 4319.
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count110
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ltxmisc\url.sty"
+\Urlmuskip=\muskip11
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen124
+\Fld@menulength=\count111
+\Field@Width=\dimen125
+\Fld@charsize=\dimen126
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count112
+\c@Item=\count113
+\c@Hfootnote=\count114
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count115
+\c@bookmark@seq@number=\count116
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip49
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\jknappen\mathrsfs.sty"
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup6
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\bm.sty"
+Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup7
+\symboldletters=\mathgroup8
+\symboldsymbols=\mathgroup9
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
+LaTeX Info: Redefining \bm on input line 204.
+)
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\ms\ragged2e.sty
+Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
+
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\ms\everysel.sty
+Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
+)
+\CenteringLeftskip=\skip50
+\RaggedLeftLeftskip=\skip51
+\RaggedRightLeftskip=\skip52
+\CenteringRightskip=\skip53
+\RaggedLeftRightskip=\skip54
+\RaggedRightRightskip=\skip55
+\CenteringParfillskip=\skip56
+\RaggedLeftParfillskip=\skip57
+\RaggedRightParfillskip=\skip58
+\JustifyingParfillskip=\skip59
+\CenteringParindent=\skip60
+\RaggedLeftParindent=\skip61
+\RaggedRightParindent=\skip62
+\JustifyingParindent=\skip63
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fixltx2e.sty"
 Package: fixltx2e 2006/09/13 v1.1m fixes to LaTeX
@@ -181,80 +385,841 @@ LaTeX Info: The control sequence `\]' is already robust on input line 472.
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty"
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
-\col@sep=\dimen114
-\extrarowheight=\dimen115
-\NC@list=\toks20
-\extratabsurround=\skip44
-\backup@length=\skip45
+\col@sep=\dimen127
+\extrarowheight=\dimen128
+\NC@list=\toks28
+\extratabsurround=\skip64
+\backup@length=\skip65
 )
 (C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\wrapfig\wrapfig.sty
-\wrapoverhang=\dimen116
-\WF@size=\dimen117
-\c@WF@wrappedlines=\count104
+\wrapoverhang=\dimen129
+\WF@size=\dimen130
+\c@WF@wrappedlines=\count117
 \WF@box=\box29
-\WF@everypar=\toks21
+\WF@everypar=\toks29
 Package: wrapfig 2003/01/31  v 3.6
 )
-(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
-\fancy@headwidth=\skip46
-\f@ncyO@elh=\skip47
-\f@ncyO@erh=\skip48
-\f@ncyO@olh=\skip49
-\f@ncyO@orh=\skip50
-\f@ncyO@elf=\skip51
-\f@ncyO@erf=\skip52
-\f@ncyO@olf=\skip53
-\f@ncyO@orf=\skip54
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
+Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks30
+\verbatim@line=\toks31
+\verbatim@in@stream=\read2
 )
-(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
+(C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
+\fancy@headwidth=\skip66
+\f@ncyO@elh=\skip67
+\f@ncyO@erh=\skip68
+\f@ncyO@olh=\skip69
+\f@ncyO@orh=\skip70
+\f@ncyO@elf=\skip71
+\f@ncyO@erf=\skip72
+\f@ncyO@olf=\skip73
+\f@ncyO@orf=\skip74
+)
+\c@thm=\count118
+\c@cor=\count119
+\c@lem=\count120
+
+(F:\Users\Sancar\Documents\projects\thesisdoc\common.tex)
+(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux
+
+LaTeX Warning: Label `sec:section' multiply defined.
+
+
+LaTeX Warning: Label `fig:ROC-d' multiply defined.
+
+
+LaTeX Warning: Label `fig:Finalconfig-MultMin-w-0_8_a' multiply defined.
+
+
+LaTeX Warning: Label `sec:graph-prob' multiply defined.
+
+(F:\Users\Sancar\Documents\projects\thesisdoc\appendix.aux))
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
 
 (C:\Users\Sancar\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count105
-\scratchdimen=\dimen118
+\scratchcounter=\count121
+\scratchdimen=\dimen131
 \scratchbox=\box30
-\nofMPsegments=\count106
-\nofMParguments=\count107
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count108
-\MPscratchDim=\dimen119
-\MPnumerator=\count109
-\makeMPintoPDFobject=\count110
-\everyMPtoPDFconversion=\toks23
-) (F:\Users\Sancar\Documents\projects\thesisdoc\thesis-concordance.tex)
+\nofMPsegments=\count122
+\nofMParguments=\count123
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count124
+\MPscratchDim=\dimen132
+\MPnumerator=\count125
+\makeMPintoPDFobject=\count126
+\everyMPtoPDFconversion=\toks33
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: wrapfig package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\AtBeginShipoutBox=\box31
 
-! LaTeX Error: File `chapter0.tex' not found.
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: tex)
+Package hyperref Warning: Height of page (\paperheight) is invalid (0.0pt),
+(hyperref)                using 11in.
 
-Enter file name: 
-! Emergency stop.
-<read *> 
-         
-l.51 \input{chapter0}
-                     
-*** (cannot \read from terminal in nonstop modes)
+Package hyperref Info: Link coloring OFF on input line 58.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count127
+)
+LaTeX Info: Redefining \ref on input line 58.
+LaTeX Info: Redefining \pageref on input line 58.
+LaTeX Info: Redefining \nameref on input line 58.
+
+(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.out)
+(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.out)
+\@outlinefile=\write4
+
+ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 58.
+
+(F:\Users\Sancar\Documents\projects\thesisdoc\thesis-concordance.tex)
+LaTeX Font Info:    Try loading font information for U+msa on input line 77.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 77.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 77.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 77.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
+File: omsaer.fd 1999/12/27
+)
+LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 77.
+
+Underfull \vbox (badness 4279) detected at line 77
+ []
+
+[1
+
+{C:/Users/Sancar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
+
+]
+[3
+
+] [4
+
+] (F:\Users\Sancar\Documents\projects\thesisdoc\thesis.toc [5
+
+] [6]
+[7])
+\tf@toc=\write5
+ [8] (F:\Users\Sancar\Documents\projects\thesisdoc\thesis.lot)
+\tf@lot=\write6
+ [9
+
+]
+(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.lof)
+\tf@lof=\write7
+ [10
+
+]
+Chapter 1.
+
+<./../DataFusion/graphs/gen-model-orig-proj.pdf, id=364, 269.005pt x 254.9525pt
+>
+File: ./../DataFusion/graphs/gen-model-orig-proj.pdf Graphic file (type pdf)
+ <use ./../DataFusion/graphs/gen-model-orig-proj.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/gen-model-orig-proj.pdf used on
+ input line 126.
+(pdftex.def)             Requested size: 201.75325pt x 191.21388pt.
+ [1
+
+] [2 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/gen-model-orig-proj.
+pdf>]
+
+LaTeX Warning: Citation `Duin' on page 3 undefined on input line 140.
+
+
+LaTeX Warning: Citation `NadlerSmith1993' on page 3 undefined on input line 140
+.
+
+[3] [4]
+
+LaTeX Warning: Reference `gen-model' on page 5 undefined on input line 146.
+
+[5]
+Overfull \hbox (5.23434pt too wide) in paragraph at lines 160--162
+[]\T1/aer/m/n/12 Given dis-sim-i-lar-i-ties be-tween $\OML/cmm/m/it/12 K$ \T1/a
+er/m/n/12 new mea-sure-ments/observations ($\OML/cmm/b/it/12 y[]\OT1/cmr/m/n/12
+ ; \OML/cmm/m/it/12 k \OT1/cmr/m/n/12 = 1\OML/cmm/m/it/12 ; [] ; K$\T1/aer/m/n/
+12 )
+ []
+
+[6] [7] [8]
+Chapter 2.
+[9
+
+]
+
+LaTeX Warning: Reference `sec:JOFC' on page 10 undefined on input line 207.
+
+[10] [11]
+Chapter 3.
+[12
+
+] [13] [14] [15]
+Runaway argument?
  
+! Paragraph ended before \align* was complete.
+<to be read again> 
+                   \par 
+l.265 
+      
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.265 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.265 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Display math should end with $$.
+<to be read again> 
+                   \par 
+l.265 
+      
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+! Misplaced \cr.
+\math@cr@@@ ->\cr 
+                  
+l.266 \end{align*}
+                  
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced \noalign.
+\math@cr@@ ... \iffalse }\fi \math@cr@@@ \noalign 
+                                                  {\vskip #1\relax }
+l.266 \end{align*}
+                  
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+! Misplaced \noalign.
+\black@ #1->\noalign 
+                     {\ifdim #1>\displaywidth \dimen@ \prevdepth \nointerlin...
+l.266 \end{align*}
+                  
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+! Extra }, or forgotten \endgroup.
+\endalign ->\math@cr \black@ \totwidth@ \egroup 
+                                                \ifingather@ \restorealignst...
+l.266 \end{align*}
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.266 \end{align*}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Display math should end with $$.
+<to be read again> 
+                   \endgroup 
+l.266 \end{align*}
+                  
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+Overfull \hbox (1.9142pt too wide) in paragraph at lines 271--271
+[]\T1/aer/bx/n/20.74 Maximum Like-li-hood MDS and MUL-
+ []
+
+[16] [17]
+Chapter 4.
+[18
+
+]
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 291.
+
+
+LaTeX Warning: Reference `omnibus' on page 19 undefined on input line 302.
+
+
+Overfull \hbox (5.62944pt too wide) in paragraph at lines 302--303
+[]\T1/aer/m/it/12 Although the between-condition dis-sim-i-lar-i-ties of the sa
+me ob-ject, $[]\OT1/cmr/m/n/12 )$\T1/aer/m/it/12 ,
+ []
+
+[19] [20]
+Overfull \hbox (48.31865pt too wide) in paragraph at lines 324--324
+[] 
+ []
+
+
+LaTeX Warning: Reference `omnibus' on page 21 undefined on input line 338.
+
+[21]
+Overfull \hbox (4.25897pt too wide) in paragraph at lines 362--362
+[]\T1/aer/bx/n/20.74 Fidelity and Com-men-su-ra-bil-ity Trade-
+ []
+
+[22] [23]
+Chapter 5.
+
+Overfull \hbox (2.26064pt too wide) in paragraph at lines 379--380
+\T1/aer/m/n/12 to em-bed each con-di-tional dis-sim-i-lar-ity ma-trix, $\OT1/cm
+r/m/n/12 []$ \T1/aer/m/n/12 and $\OT1/cmr/m/n/12 []$\T1/aer/m/n/12 , sep-a-ra
+tely in $\OML/cmm/m/it/12 d$\T1/aer/m/n/12 -dimensional
+ []
+
+[24
+
+]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 388.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\circ' on input line 388.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 388.
+
+[25]
+
+LaTeX Warning: Reference `omnibus' on page 26 undefined on input line 394.
+
+[26]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 417.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 417.
+
+[27]
+Chapter 6.
+[28
+
+]
+Overfull \hbox (4.09077pt too wide) in paragraph at lines 435--437
+\T1/aer/m/n/12 subject to con-straints $\OML/cmm/m/it/12 E\OT1/cmr/m/n/12 [[]] 
+= 1$ \T1/aer/m/n/12 , $\OML/cmm/m/it/12 E\OT1/cmr/m/n/12 [[]] = 1$\T1/aer/m/n/1
+2 , $\OML/cmm/m/it/12 E\OT1/cmr/m/n/12 [[]] =$
+ []
+
+
+Overfull \hbox (16.84674pt too wide) in paragraph at lines 435--437
+$\OML/cmm/m/it/12 E\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 XY[]\OT1/cmr/m/n/12 ]$ \T1
+/aer/m/n/12 are re-placed with their sam-ple es-ti-mates. The di-rec-tion vec-t
+ors $[]\OML/cmm/m/it/12 ; i \OT1/cmr/m/n/12 =$
+ []
+
+[29]
+
+LaTeX Warning: Reference `subsec:PoM' on page 30 undefined on input line 442.
+
+[30]
+Chapter 7.
+
+LaTeX Warning: Reference `fig-stats-p' on page 31 undefined on input line 473.
+
+[31
+
+]
+
+LaTeX Warning: Reference `noise' on page 32 undefined on input line 479.
+
+
+LaTeX Warning: Reference `eq:noise-expr' on page 32 undefined on input line 479
+.
+
+
+LaTeX Warning: Reference `eq:noise-expr' on page 32 undefined on input line 480
+.
+
+[32] [33]
+<./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0_01.pdf, id=574, 505.89pt x 504.8
+8625pt>
+File: ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0_01.pdf Graphic file (type p
+df)
+ <use ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0_01.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0_01.pdf u
+sed on input line 512.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+<./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0.pdf, id=575, 505.89pt x 504.8862
+5pt>
+File: ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0.pdf Graphic file (type pdf)
+
+ <use ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0.pdf used
+ on input line 518.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+<./../DataFusion/graphs/OOSMVN-power-w-c0_01.pdf, id=576, 505.89pt x 504.88625p
+t>
+File: ./../DataFusion/graphs/OOSMVN-power-w-c0_01.pdf Graphic file (type pdf)
+ <use ./../DataFusion/graphs/OOSMVN-power-w-c0_01.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/OOSMVN-power-w-c0_01.pdf used o
+n input line 524.
+(pdftex.def)             Requested size: 480.59276pt x 479.63919pt.
+
+<./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf, id=577, 504.88
+625pt x 504.88625pt>
+File: ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf Graphic fi
+le (type pdf)
+
+<use ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-01-
+n150.pdf used on input line 531.
+(pdftex.def)             Requested size: 176.71283pt x 176.71283pt.
+
+<./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n150.pdf, id=578, 490.83376
+pt x 490.83376pt>
+File: ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n150.pdf Graphic file 
+(type pdf)
+
+<use ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n150.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n15
+0.pdf used on input line 537.
+(pdftex.def)             Requested size: 171.79439pt x 171.79439pt.
+
+<./../DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf, id=579, 490.83376pt x 4
+90.83376pt>
+File: ./../DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf Graphic file (type 
+pdf)
+ <use ./../DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf 
+used on input line 543.
+(pdftex.def)             Requested size: 466.28941pt x 466.28941pt.
+
+[34 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/MVN-FC-Tradeoff-OOS-c
+0_01.pdf>] [35 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/MVN-FC-Tra
+deoff-OOS-c0.pdf>] [36 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/OO
+SMVN-power-w-c0_01.pdf>] [37 <F:/Users/Sancar/Documents/projects/DataFusion/gra
+phs/Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf>] [38 <F:/Users/Sancar/Documents/pr
+ojects/DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n150.pdf>] [39 <F:/Users/S
+ancar/Documents/projects/DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf>]
+Overfull \hbox (0.33844pt too wide) in paragraph at lines 595--597
+[]\T1/aer/m/n/12 For a fixed $\OML/cmm/m/it/12 $ \T1/aer/m/n/12 value, one can
+ com-pute two crit-i-cal val-ues $\OML/cmm/m/it/12 c\OT1/cmr/m/n/12 (0\OML/cmm/
+m/it/12 :\OT1/cmr/m/n/12 5) = \OML/cmm/m/it/12 max[]\OMS/cmsy/m/n/12 f\OML/cmm/
+m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 T[]\OT1/cmr/m/n/12 (0\OML/cmm/m/it/1
+2 :\OT1/cmr/m/n/12 5) \OML/cmm/m/it/12 >$
+ []
+
+[40] [41]
+<./../DataFusion/graphs/MVN_JOFC_q_90_c_0_001.pdf, id=642, 506.89375pt x 502.87
+875pt>
+File: ./../DataFusion/graphs/MVN_JOFC_q_90_c_0_001.pdf Graphic file (type pdf)
+ <use ./../DataFusion/graphs/MVN_JOFC_q_90_c_0_001.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/MVN_JOFC_q_90_c_0_001.pdf used 
+on input line 631.
+(pdftex.def)             Requested size: 346.89731pt x 344.15526pt.
+ [42] [43 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/MVN_JOFC_q_90_c
+_0_001.pdf>]
+<./../DataFusion/graphs/FidCommPaperwiki-two-cond-plot.pdf, id=662, 505.89pt x 
+505.89pt>
+File: ./../DataFusion/graphs/FidCommPaperwiki-two-cond-plot.pdf Graphic file (t
+ype pdf)
+ <use ./../DataFusion/graphs/FidCommPaperwiki-two-cond-plot.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/FidCommPaperwiki-two-cond-plot.
+pdf used on input line 712.
+(pdftex.def)             Requested size: 346.89731pt x 346.90308pt.
+
+[44] <./../DataFusion/graphs/ROC-d-2.pdf, id=673, 505.89pt x 504.88625pt>
+File: ./../DataFusion/graphs/ROC-d-2.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/ROC-d-2.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/ROC-d-2.pdf used on input line 
+724.
+(pdftex.def)             Requested size: 216.81pt x 216.38037pt.
+
+<./../DataFusion/graphs/ROC-d-5.pdf, id=674, 505.89pt x 504.88625pt>
+File: ./../DataFusion/graphs/ROC-d-5.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/ROC-d-5.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/ROC-d-5.pdf used on input line 
+731.
+(pdftex.def)             Requested size: 216.81pt x 216.38037pt.
+
+<./../DataFusion/graphs/ROC-d-7.pdf, id=675, 446.66875pt x 445.665pt>
+File: ./../DataFusion/graphs/ROC-d-7.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/ROC-d-7.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/ROC-d-7.pdf used on input line 
+737.
+(pdftex.def)             Requested size: 203.80193pt x 203.3491pt.
+
+<./../DataFusion/graphs/ROC-d-10.pdf, id=676, 505.89pt x 504.88625pt>
+File: ./../DataFusion/graphs/ROC-d-10.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/ROC-d-10.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/ROC-d-10.pdf used on input line
+ 743.
+(pdftex.def)             Requested size: 203.80193pt x 203.39925pt.
+ [45 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/FidCommPaperwiki-two
+-cond-plot.pdf>]
+<./../DataFusion/graphs/ROC-d-15.pdf, id=688, 505.89pt x 504.88625pt>
+File: ./../DataFusion/graphs/ROC-d-15.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/ROC-d-15.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/ROC-d-15.pdf used on input line
+ 756.
+(pdftex.def)             Requested size: 151.76816pt x 151.46703pt.
+
+
+LaTeX Warning: Reference `sec:RelatedWork' on page 46 undefined on input line 7
+72.
+
+[46] [47 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/ROC-d-2.pdf> <F:
+/Users/Sancar/Documents/projects/DataFusion/graphs/ROC-d-5.pdf> <F:/Users/Sanca
+r/Documents/projects/DataFusion/graphs/ROC-d-7.pdf> <F:/Users/Sancar/Documents/
+projects/DataFusion/graphs/ROC-d-10.pdf>] [48 <F:/Users/Sancar/Documents/projec
+ts/DataFusion/graphs/ROC-d-15.pdf>] [49]
+
+LaTeX Warning: Reference `omnibus' on page 50 undefined on input line 818.
+
+
+<./../DataFusion/graphs/FidCommPapergraph-plot-1.pdf, id=732, 505.89pt x 505.89
+pt>
+File: ./../DataFusion/graphs/FidCommPapergraph-plot-1.pdf Graphic file (type pd
+f)
+ <use ./../DataFusion/graphs/FidCommPapergraph-plot-1.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/FidCommPapergraph-plot-1.pdf us
+ed on input line 833.
+(pdftex.def)             Requested size: 328.82458pt x 328.82458pt.
+ [50] [51 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/FidCommPapergra
+ph-plot-1.pdf>]
+<./../DataFusion/FidCommPaper-graph-plot-4.pdf, id=749, 433.62pt x 433.62pt>
+File: ./../DataFusion/FidCommPaper-graph-plot-4.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/FidCommPaper-graph-plot-4.pdf>
+Package pdftex.def Info: ./../DataFusion/FidCommPaper-graph-plot-4.pdf used on 
+input line 852.
+(pdftex.def)             Requested size: 346.89731pt x 346.91632pt.
+
+<./../DataFusion/graphs/bitflip_JOFC.pdf, id=752, 597.23125pt x 845.1575pt>
+File: ./../DataFusion/graphs/bitflip_JOFC.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/bitflip_JOFC.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/bitflip_JOFC.pdf used on input 
+line 856.
+(pdftex.def)             Requested size: 346.89731pt x 490.90099pt.
+ [52 <F:/Users/Sancar/Documents/projects/DataFusion/FidCommPaper-graph-plot-4.p
+df>] [53] [54 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/bitflip_JOF
+C.pdf>]
+Chapter 8.
+
+Package hyperref Warning: Difference (3) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 868.
+
+<./../DataFusion/graphs/multmin-diag.pdf, id=777, 318.05324pt x 289.16531pt>
+File: ./../DataFusion/graphs/multmin-diag.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/multmin-diag.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/multmin-diag.pdf used on input 
+line 878.
+(pdftex.def)             Requested size: 111.32028pt x 101.20937pt.
+ [55
+
+] [56 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/multmin-diag.pdf>] 
+[57]
+
+Package caption Warning: \label without proper \caption on input line 1055.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `stress-val-table' on page 58 undefined on input line 
+899.
+
+[58]
+<./../DataFusion/graphs/true-min-w-0_1.pdf, id=822, 505.89pt x 504.88625pt>
+File: ./../DataFusion/graphs/true-min-w-0_1.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/true-min-w-0_1.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/true-min-w-0_1.pdf used on inpu
+t line 906.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+<./../DataFusion/graphs/other-min-w-0_1.pdf, id=823, 505.89pt x 504.88625pt>
+File: ./../DataFusion/graphs/other-min-w-0_1.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/other-min-w-0_1.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/other-min-w-0_1.pdf used on inp
+ut line 913.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+Overfull \hbox (19.45854pt too wide) in paragraph at lines 904--917
+[][]   [] 
+ []
+
+<./../DataFusion/true-min-w0_5.pdf, id=824, 505.89pt x 504.88625pt>
+File: ./../DataFusion/true-min-w0_5.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/true-min-w0_5.pdf>
+Package pdftex.def Info: ./../DataFusion/true-min-w0_5.pdf used on input line 9
+30.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+<./../DataFusion/other-min-w0_5.pdf, id=825, 505.89pt x 504.88625pt>
+File: ./../DataFusion/other-min-w0_5.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/other-min-w0_5.pdf>
+Package pdftex.def Info: ./../DataFusion/other-min-w0_5.pdf used on input line 
+938.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+Overfull \hbox (19.45854pt too wide) in paragraph at lines 928--943
+[][]   [] 
+ []
+
+<./../DataFusion/true-min-w0_8.pdf, id=826, 505.89pt x 504.88625pt>
+File: ./../DataFusion/true-min-w0_8.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/true-min-w0_8.pdf>
+Package pdftex.def Info: ./../DataFusion/true-min-w0_8.pdf used on input line 9
+52.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+<./../DataFusion/other-min-w0_8.pdf, id=827, 505.89pt x 504.88625pt>
+File: ./../DataFusion/other-min-w0_8.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/other-min-w0_8.pdf>
+Package pdftex.def Info: ./../DataFusion/other-min-w0_8.pdf used on input line 
+960.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+Overfull \hbox (19.45854pt too wide) in paragraph at lines 950--965
+[][]   [] 
+ []
+
+<./../DataFusion/graphs/true-min-w0_81.pdf, id=828, 505.89pt x 504.88625pt>
+File: ./../DataFusion/graphs/true-min-w0_81.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/true-min-w0_81.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/true-min-w0_81.pdf used on inpu
+t line 976.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+<./../DataFusion/graphs/other-min-w0_81.pdf, id=829, 505.89pt x 504.88625pt>
+File: ./../DataFusion/graphs/other-min-w0_81.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/other-min-w0_81.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/other-min-w0_81.pdf used on inp
+ut line 983.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+Overfull \hbox (19.45854pt too wide) in paragraph at lines 974--987
+[][]   [] 
+ []
+
+<./../DataFusion/graphs/true-min-w0_84.pdf, id=830, 505.89pt x 504.88625pt>
+File: ./../DataFusion/graphs/true-min-w0_84.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/true-min-w0_84.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/true-min-w0_84.pdf used on inpu
+t line 999.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+<./../DataFusion/graphs/other-min-w0_84.pdf, id=831, 505.89pt x 504.88625pt>
+File: ./../DataFusion/graphs/other-min-w0_84.pdf Graphic file (type pdf)
+
+<use ./../DataFusion/graphs/other-min-w0_84.pdf>
+Package pdftex.def Info: ./../DataFusion/graphs/other-min-w0_84.pdf used on inp
+ut line 1006.
+(pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
+
+Overfull \hbox (19.45854pt too wide) in paragraph at lines 997--1010
+[][]   [] 
+ []
+
+
+Overfull \hbox (69.40771pt too wide) in paragraph at lines 1023--1031
+ [] 
+ []
+
+
+Overfull \hbox (69.40771pt too wide) in paragraph at lines 1033--1041
+ [][] 
+ []
+
+
+Overfull \hbox (69.40771pt too wide) in paragraph at lines 1044--1052
+ [][] 
+ []
+
+[59 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/true-min-w-0_1.pdf> <
+F:/Users/Sancar/Documents/projects/DataFusion/graphs/other-min-w-0_1.pdf>]
+[60 <F:/Users/Sancar/Documents/projects/DataFusion/true-min-w0_5.pdf> <F:/Users
+/Sancar/Documents/projects/DataFusion/other-min-w0_5.pdf> <F:/Users/Sancar/Docu
+ments/projects/DataFusion/true-min-w0_8.pdf> <F:/Users/Sancar/Documents/project
+s/DataFusion/other-min-w0_8.pdf>] [61 <F:/Users/Sancar/Documents/projects/DataF
+usion/graphs/true-min-w0_81.pdf> <F:/Users/Sancar/Documents/projects/DataFusion
+/graphs/other-min-w0_81.pdf> <F:/Users/Sancar/Documents/projects/DataFusion/gra
+phs/true-min-w0_84.pdf> <F:/Users/Sancar/Documents/projects/DataFusion/graphs/o
+ther-min-w0_84.pdf>] [62]
+Chapter 9.
+
+LaTeX Warning: Citation `A' on page 63 undefined on input line 1131.
+
+
+LaTeX Warning: Citation `B' on page 63 undefined on input line 1132.
+
+
+LaTeX Warning: Citation `A' on page 63 undefined on input line 1133.
+
+
+LaTeX Warning: Citation `B' on page 63 undefined on input line 1133.
+
+
+LaTeX Warning: Citation `C' on page 63 undefined on input line 1133.
+
+[63
+
+]
+Chapter 10.
+[64
+
+]
+Chapter 11.
+[65
+
+]
+No file appendix.tex.
+(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.bbl [66
+
+
+
+] [67] [68]
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `English'. Using the pattern for
+** the default language instead.
+** WARNING: IEEEtran.bst: No hyphenation pattern has been
+** loaded for the language `English'. Using the pattern for
+** the default language instead.
+[69]) [70] <rjvheadshot.jpg, id=969, 69.3792pt x 85.7604pt>
+File: rjvheadshot.jpg Graphic file (type jpg)
+
+<use rjvheadshot.jpg>
+Package pdftex.def Info: rjvheadshot.jpg used on input line 1159.
+(pdftex.def)             Requested size: 144.54771pt x 178.67706pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1165.
+ [71
+
+ <F:/Users/Sancar/Documents/projects/thesisdoc/rjvheadshot.jpg>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1165.
+ (F:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux
+(F:\Users\Sancar\Documents\projects\thesisdoc\appendix.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1165.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1165.
+
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 0D48142A52C0CBA32152EB0DA8BB57A2;3745.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1165.
+ ) 
 Here is how much of TeX's memory you used:
- 2850 strings out of 493921
- 36791 string characters out of 3144873
- 89976 words of memory out of 3000000
- 6127 multiletter control sequences out of 15000+200000
- 6199 words of font info for 17 fonts, out of 3000000 for 9000
+ 8850 strings out of 493921
+ 134221 string characters out of 3144873
+ 217409 words of memory out of 3000000
+ 11717 multiletter control sequences out of 15000+200000
+ 52822 words of font info for 126 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 35i,1n,43p,290b,80s stack positions out of 5000i,500n,10000p,200000b,50000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 42i,17n,48p,1834b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx6.pfb><C:
+/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Prog
+ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb>
+Output written on thesis.pdf (81 pages, 614264 bytes).
+PDF statistics:
+ 1080 PDF objects out of 1200 (max. 8388607)
+ 185 named destinations out of 1000 (max. 500000)
+ 616 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -2,70 +2,47 @@
 \label{sec:CCA}
 \chaptermark{Optional running chapter heading}
 
-Introduction.
+Again MDS is used  to compute embedding configurations, $ X_1$ and $X_2$. It is desirable to  embed into the highest dimensional space  possible ($\mathbb{R}^{d'}$ where $d'=p+q$ for the Gaussian and Dirichlet settings)  to  preserve as many of the signal dimensions as possible (at the risk of possibly including  some noise dimensions). CCA~\cite{Hardoon2004}, then,  yields two mappings $\mathcal{U}_1$ and $\mathcal{U}_2$ that map these embeddings in $\mathbb{R}^{d'}$ to  the low-dimensional commensurate space ($\mathbb{R}^d$). 
+While embedding the dissimilarities in the the highest dimension possible is a good idea for preserving the signal dimensions, in the presence of noise dimensions, the embeddings will incorporate the noise. Even if the dissimilarities are errorless representation of measurements of a particular dimension, for  the  sake of inference, it is preferable  embed at a lower  dimension due to bias-variance tradeoff. This variant of CCA approach, which is called regularized CCA, with the  embedding dimension choice $d'< (p+q)$ is expected to have performance better than CCA approach.
 
-A citation \cite{A}. 
-A citation without brackets \citen{B}. 
-Multiple citations \cite{A, B, C}.
+\subsubsection*{Canonical Correlational Analysis}
 
-\section{Canonical Correlation Analysis}
-\label{sec:section}
+ Let $X$ and $Y$ be two $s$-dimensional random vectors. If  one wants to find  the pair of linear projection operators $U_1:\mathbb{R}^s \rightarrow  \mathbb{R}$, $U_2 :\mathbb{R}^s \rightarrow  \mathbb{R}$ that maximize correlation between the projections of   $X$ and $Y$, CCA finds the solution as stated in the  optimization problem
+$$
+{\hat{(u)}_1 ,\hat{(u)}_2}=\arg\max_{u_1\in\mathbb{R}^s,u_2\in\mathbb{R}^s} {\frac{E[u_1^{T}XY^Tu_2]}{{E[u_1^{T}XX^T u_1]}{E[u_2^{T}YY^T u_2]}}}$$
+with the constraints $E[{u_1^{T}XX^T u_1}]=1 , E[{u_2^{T}YY^T u_2}]=1$ for uniqueness. The constraints simplify the optimization function to $$
+\arg\max_{u_1\in \mathbb{R}^s,u_2\in \mathbb{R}^s} {E[u_1^{T}XY^Tu_2]}.$$
 
-This is a section.  Here's a reference to a different section:
-\ref{sec:subsection}.
+If the projections are to a pair of $d$-dimensional linear subspaces, the additional pairs of projection vectors can be computed sequentially, with the constraints that the projections along the new directions are uncorrelated with  projections along previous directions. That is, $i^{th}$ pair of directions  that maximize correlation is computed by 
+$$
+{\hat{(u)}_{1(i)},\hat{(u)}_{2(i)}}=\arg\max_{u_{1(i)},u_{2(i)}\in\mathbb{R}^s} {E[u_{1(i)}^{T}XY^Tu_{2(i)}]}.$$ subject to constraints $E[{u_{1(i)}^{T}XX^T u_{1(i)}}]=1$ , $E[{u_{2(i)}^{T}YY^T u_{2(i)}}]=1$, $E[{u_{1(i)}^{T}XX^T u_{1(j)}}]=0$,  
+   $ E[{u_{2(i)}^{T}YY^T u_{2(j)}}]=\nolinebreak0$ $\forall \quad  j=1,\ldots,i-1$. For sample CCA, $E[XX^T]$,$E[YY^T]$ and $E[XY^T]$ are replaced with their sample estimates. The direction vectors ${\hat{(u)}_{1(i)},\hat{(u)}_{2(i)}}, i=1,\ldots,d $ form the rows of projection matrices which represent the mappings $\mathcal{U}_1$ and $\mathcal{U}_2$. 
 
-\subsection{Subsection}
-\label{sec:subsection}
 
-This is a subsection.
+Note that $s$, the dimension of $X$ and $Y$, is the embedding dimension $d'$  in the CCA approach. 
 
-% \begin{figure}[t]
-% \centering
-% \includegraphics[width=\textwidth]{figure}
-% \caption{Caption.}
-% \label{fig:figure}
-% \end{figure}
-% 
-% \begin{figure}[t]
-% \centering
-% \begin{tabular}{c c}
-% \includegraphics[height=2.5in]{figureA} &
-% \includegraphics[width=3in]{figureB}\\
-% (A) & (B)
-% \end{tabular}
-% \caption{Two figures.}
-% \label{fig:twofigures}
-% \end{figure}
 
-\section[Optional table of contents heading]{Kerne Canonical Correlation Analyis}
+As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to a commensurate  space by maps provided by CCA. The test statistic   can now be computed and  the null hypothesis is rejected for ``large'' values of the test statistic $\tau$  as in Section \ref{subsec:PoM}.
 
-This is another section.
 
-\subsection{Another subsection}
-
-\subsubsection{Subsubsection}
-
-\paragraph{Heading level below subsubsection}
-\label{sec:paragraph}
-
-And I quote: 
-%
-\begin{quote}
-La la la.
-\end{quote}
-%
-\noindent No ident after end of quote.  
-
-Another paragraph with a list:
-%
-\begin{itemize}
-%  
-\item Item 1
-%
-\item Item 2
-%
-\end{itemize}
-%
-\noindent Again, we don't indent here.
 
 \section{Geometric Interpretation of CCA}
+
+
+
+
+\subsection{Relation of CCA and Commensurability} 
+
+\begin{thm}
+Let $ \mathcal{U}$ be the set of all orthogonal d-frames 
+(ordered set of d linearly independent vectors) of $R^{d'}$. 
+Let $X_1$ and $X_2$  be two $n\times d'$ (configuration) matrices that are perfectly ``matched"
+ (there exists a transformation matrix $\mathbf{Q}$ such that $\|   X_1\mathbf{Q}  -X_2 \|=0$).
+If commensurability is  defined as
+in equation~\eqref{comm-error},
+ where  the embedded configurations are $\tilde{X_1}=X_1U_1$ and $\tilde{X_2}=X_2U_2$ for some  $U_1\in \mathcal{U}$ and $U_2\in  \mathcal{U}$,
+and   the original dissimilarities are $D(X_1)$ and $D(X_2) $,
+ CCA on $X_1$ and $X_2$ gives $\mathbf{U}_1\in\mathcal{U}$ and  $\mathbf{U}_2\in\mathcal{U}$, 
+ the two elements of $\mathcal{U}$ that maximize commensurability, subject to $U_1^{T}X_1^{T}X_1U_1=I_d$ and $U_2^{T}X_2^{T}X_2U_2=I_d$ ($I_d$ is the $d \times d$ identity matrix).
+\end{thm}
+

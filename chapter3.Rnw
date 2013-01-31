@@ -16,31 +16,43 @@ Multidimensional Scaling finds a configuration of points consistent with given d
 \subsection{Metric MDS}
  For metric MDS, transformations of the form  $f(x)=ax+b$ are allowed.
  \subsubsection{Stress Criterion}
- Setting $f(x)=x$ and choosing  the discrepancy measure between the dissimilarities and distances of embedded points to be \ell_2, the resulting criterion is called the raw stress criterion. Additionally weights($w_st$) can be introduced for each discrepancy term. Denote the matrix composed of the weight by $W$.
+ Setting $f(x)=x$ and choosing  the discrepancy measure between the dissimilarities and distances of embedded points to be $\ell_2$, the resulting criterion is called the raw stress criterion. Additionally weights($w_{st}$) can be introduced for each discrepancy term. Denote the matrix composed of the weight by $W$.
  \begin{equation}
 \sigma_{W}(X)=\sum_{1\leq s\leq n;1\leq t\leq n} {w_{st}(d_{st}(X)-\delta_{st})^2  }\label{raw-stress}
 \end{equation}
-Subtypes of Stress criterion is identified by different choices for $w_st$ which depend on the original dissimilarities $\delta_st$ .For example, choosing $w_st={\sum{\delta_{st}^2}}^{-1}$ normalizes the stress so that the stress value is always between 0 and 1. One can compare different configurations by this standardized stress value and conclude whether a configuration is a good fit or not based on this value. A slightly different weighting scheme is $w_st=\{\sum_{st}{\delta_{st}-\bar{\delta}\}^{-1}$ where $\bar{\delta}=\frac{1}{(n)(n-1)} \sum{\delta_{st}}$ (average of dissimilarities). Another related criterion is SSTRESS criterion which involves squares of dissimilarities and distances:
+Subtypes of Stress criterion is identified by different choices for $w_st$ which depend on the original dissimilarities $\delta_{st}$ .
+For example, choosing $w_{st}={\sum{\delta_{st}^2}}^{-1}$ normalizes the stress so that the stress value is always between 0 and 1. One can compare different configurations by this standardized stress value and conclude whether a configuration is a good fit or not based on this value.
+A slightly different weighting scheme is $w_{st}=\{ \sum_{st}{\delta_{st}-\bar{\delta} } \}^{-1}$ 
+where $\bar{\delta}=\frac{1}{(n)(n-1)} \sum{\delta_{st}}$ (average of dissimilarities). 
+Another related criterion is SSTRESS criterion which involves squares of dissimilarities and distances:
 \[
 =\sum_{1\leq s\leq n;1\leq t\leq n} {(d_{st}^2(X)-\delta_{st}^2)^2  }
 \]
 
 
 \subsubsection{Sammon Mapping Criterion}
-This is a specific case of the Stress criterion where the weights $w_st$ are set to be $\delta_{st}^{-1}\{\sum_{k<l}\delta_{kl} \}^{-1}$. These set of weights normalizes the squared discrepancies in the stress criterion by the magnitude of the original dissimilarities, so that discrepancy terms for the larger dissimilarities do not dominate the optimization of the criterion function. As a result, small $\delta_st$ are preserved.
+This is a specific case of the Stress criterion where the weights $w_{st}$ are set to be $\delta_{st}^{-1} \{\sum_{k<l}\delta_{kl} \}^{-1}$. These set of weights normalizes the squared discrepancies in the stress criterion by the magnitude of the original dissimilarities, so that discrepancy terms for the larger dissimilarities do not dominate the optimization of the criterion function. As a result, small $\delta_{st}$ are preserved.
 
 \subsection{Ordinal (Nonmetric) MDS}
- For Nonmetric MDS, $f(x)$    is allowed to be  any monotonic transformation. Specifically in psychometric applications of MDS, the assumption that the dissimilarities are a scaled-shifted version of the ``true"  dissimilarity is an unwarranted assumption. It is possible the existence of a ``true" dissimilarity is in question. Even if the dissimilarities are physical distances, humans tend to have biased estimates of those distances (long distances are usually underestimated ). \cite{Trosset1998}. This variant of MDS is also called ordinal, because what is preserved is the rank of dissimilarities, not their magnitude.
+ For Nonmetric MDS, $f(\cdot)$    is allowed to be  any monotonic transformation. Specifically in psychometric applications of MDS, the assumption that the dissimilarities are a scaled-shifted version of the ``true"  dissimilarity is an unwarranted assumption. It is possible the existence of a ``true" dissimilarity is in question. Even if the dissimilarities are physical distances, humans tend to have biased estimates of those distances (long distances are usually underestimated ). \cite{Trosset1998}. This variant of MDS is also called ordinal, because what is preserved is the rank of dissimilarities, not their magnitude.
 
 \section{Classical MDS and the Strain Criterion}
 
-Consider the case where $\Delta$ is Euclidean. So there exist $\bm{x}_{s}$ and $\bm{x}_{t}$ such that $\delta_st=d(\bm{x}_{s}-\bm{x}_{t})$. 
+Consider the case where $\Delta$ is Euclidean. So there exist $\bm{x}_{s}$ and $\bm{x}_{t}$ such that $\delta_{st}=d(\bm{x}_{s}-\bm{x}_{t})$. 
 \[
-\delta_{st}^2= d(\bm{x}_{s}-\bm{x}_{t})^2= \|\bm{x}_{s}   \|^2 +\|\bm{x}_{t}   \| -2\|\bm{x}_{s}   \|\|\bm{x}_{t}   \|^2
-
+\delta_{st}^2= d(\bm{x}_{s},\bm{x}_{t})^2= \|\bm{x}_{s}   \|^2 +\|\bm{x}_{t}   \|^2 -2\|\bm{x}_{s}   \|\|\bm{x}_{t}   \|
+\]
 Reorganizing terms,
--\frac{1}{2}\delta_{st}^2 -\|\bm{x}_{s}   \|^2 -\|\bm{x}_{t}   \|^2= \|\bm{x}_{s}   \|\|\bm{x}_{t}   \|
+\[
+-\frac{1}{2}\{ \delta_{st}^2 -\|\bm{x}_{s}   \|^2 -\|\bm{x}_{t} \}   \|^2= \|\bm{x}_{s}   \cdot\bm{x}_{t}   \|
+\]
 Summing over $s$, over $t$ and then over $s$ and $t$, we get the following identities
+\begin{align*}
+\sum_s{ \delta_{st}^2} + \|\bm{x}_{s}   \|^2 + n \|\bm{x}_{t}   \|^2 &= &\sum_s{\|\bm{x}_{s}   \cdot\bm{x}_{t}   \|} \\
+&= &0\\
+\sum_t{ \delta_{st}^2} +  +  \|\bm{x}_{t}   \|^2 + n\|\bm{x}_{s}   \|^2&= \sum_t{\|\bm{x}_{s}   \cdot\bm{x}_{t}   \|} 
+&= &0\\
+\end{align*}
 
 
 \section{Effect of Noise}
