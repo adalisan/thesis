@@ -252,18 +252,72 @@ This is a specific case of the Stress criterion where the weights $w_{st}$ are s
 
 \section{Classical MDS and the Strain Criterion}
 
-Consider the case where $\Delta$ is Euclidean. So there exist $\bm{x}_{s}$ and $\bm{x}_{t}$ such that $\delta_{st}=d(\bm{x}_{s}-\bm{x}_{t})$. 
+Consider the case where $\Delta$ is Euclidean. So there exist $\bm{x}_{i}$ such that $\forall \quad s,t$ $\bm{x}_{s}$ and $\bm{x}_{t}$ such that $\delta_{st}=d(\bm{x}_{s}-\bm{x}_{t})$. If $\bm{x}_{i}$ satisfy $\delta_{st}=d(\bm{x}_{s}-\bm{x}_{t})$,  $\bm{x}_{i}+\bm{u}$ for a constant vector $\bm{u}$. To remove this ambiguity   $\sum{\bm{x}_{i}}$ is set to $\bm{0}$.
 \[
-\delta_{st}^2= d(\bm{x}_{s}-\bm{x}_{t})^2= \|\bm{x}_{s}   \|^2 +\|\bm{x}_{t}   \| -2\|\bm{x}_{s}   \|\|\bm{x}_{t}   \|^2
+\delta_{st}^2= d(\bm{x}_{s},\bm{x}_{t})^2 = \|\bm{x}_{s}   \|^2 +   \|\bm{x}_{t}   \|^2   -   2  \bm{x}_{s} \cdot  \bm{x}_{t}   
 \]
 Reorganizing terms,
-\[
--\frac{1}{2}\delta_{st}^2 -\|\bm{x}_{s}   \|^2 -\|\bm{x}_{t}   \|^2= \|\bm{x}_{s}   \|\|\bm{x}_{t}   \|
-\]
+\begin{align}
+-\frac{1}{2} \{ \delta_{st}^2 +\|\bm{x}_{s}   \|^2 +\| \bm{x}_{t} \|^2 \}   = \bm{x}_{s}   \cdot\bm{x}_{t}
+\label{delta_{st}}
+\end{align}
 Summing over $s$, over $t$ and then over $s$ and $t$, we get the following identities
-\begin{align*}
 
+\begin{align*}
+\sum_s{ \delta_{st}^2} &= \sum_s{\| \bm{x}_{s}   \|^2} + n \|\bm{x}_{t}   \|^2 -2 \sum_s{ \bm{x}_{s}   \cdot\bm{x}_{t}    } \quad s=1,\ldots,n\\
+\sum_t{ \delta_{st}^2} &= \sum_t{\| \bm{x}_{t}   \|^2} + n\|\bm{x}_{s}   \|^2  -2 \sum_t{ \bm{x}_{s}   \cdot\bm{x}_{t}   } \quad t=1,\ldots,n \\
+\sum_{st}{ \delta_{st}^2} &= 2n\sum_{t}{\| \bm{x}_{t}   \|^2}  -2\sum_{s}{ \bm{x}_{s} } \cdot \sum_t{   \bm{x}_{t} }\\
 \end{align*}
+
+Dividing each equality by $\frac{1}{n}$ , $\frac{1}{n}$ and $\frac{1}{n^2}$ respectively and using the fact that $\sum{\bm{x}_{i}}=\bm{0}$
+
+\begin{align*}
+\frac{1}{n}\sum_s{ \delta_{st}^2} &= \frac{1}{n}\sum_s{\|\bm{x}_{s}   \|^2 } +  \|\bm{x}_{t}   \|^2 \quad   t=1,\ldots,n\\
+\frac{1}{n}\sum_t{ \delta_{st}^2} &= \frac{1}{n}\sum_t{\|\bm{x}_{t}   \|^2 }+  \|\bm{x}_{s}   \|^2 \quad   s=1,\ldots,n\\
+\frac{1}{n^2}\sum_{st}{ \delta_{st}^2} &= \frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} \\
+\end{align*}
+
+Reorganizing terms,
+\begin{align*}
+\|\bm{x}_{t}   \|^2  &= \frac{1}{n}\sum_s{ \delta_{st}^2} + \frac{1}{n}\sum_s{\|\bm{x}_{s}   \|^2   } \\
+\|\bm{x}_{s}   \|^2  &= \frac{1}{n}\sum_t{ \delta_{st}^2} + \frac{1}{n}\sum_t{\|\bm{x}_{t}   \|^2  }\\
+0 &= -\frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2} \\
+\end{align*}
+
+
+Summing the three equations and replacing with  $\|\bm{x}_{s}   \|^2 +\|\bm{x}_{t}\|^2$ in original equation
+
+\[
+\delta_{st}^2= \frac{1}{n}\sum_s{ \delta_{st}^2} + \frac{1}{n}\sum_s{\|\bm{x}_{s}}   \|^2 + \frac{1}{n}\sum_t{ \delta_{st}^2} + \frac{1}{n}\sum_t{\|\bm{x}_{t}}  \|^2  -\frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2}   -2\bm{x}_{s}   \bm{x}_{t}   \|
+\]
+
+\[
+\delta_{st}^2= \frac{1}{n}\sum_s{ \delta_{st}^2} +  \frac{1}{n}\sum_t{ \delta_{st}^2}  +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2}  -2\bm{x}_{s}   \bm{x}_{t}   \|
+\]
+
+
+\[
+\bm{x}_{s}   \bm{x}_{t} = \frac{-1}{2} \{\delta_{st}^2 - \frac{1}{n}\sum_s{ \delta_{st}^2} -  \frac{1}{n}\sum_t{ \delta_{st}^2}  +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2 }     \| \}
+\]
+
+
+
+
+
+
+
+Some of the sums in the above expression can be written in matrix notation,
+\begin{align*}
+\bm{1}^{T}\Delta^2= \frac{1}{n}\sum_s{ \delta_{st}^2}
+\Delta^2 \bm{1} = \frac{1}{n}\sum_t{ \delta_{st}^2}
+\end{align*}
+So 
+\begin{align*}
+XX^T = \frac{-1}{2} \{\Delta^2 -  \frac{1}{n} \bm{1}\bm{1}^{T}\Delta^2  -  \frac{1}{n} \Delta^2 \bm{1}\bm{1}^{T} +   \frac{1}{n^2} \bm{1}\bm{1}^{T}\Delta^2 \bm{1}\bm{1}^{T}      \}
+\end{align*}
+
+
+
 
 
 \section{Effect of Noise}

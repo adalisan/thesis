@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2012.12.2)  31 JAN 2013 01:01
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2012.12.2)  14 FEB 2013 18:55
 entering extended mode
 **thesis.tex
 (F:\Users\Sancar\Documents\projects\thesisdoc\thesis.tex
@@ -589,281 +589,185 @@ LaTeX Warning: Reference `sec:JOFC' on page 10 undefined on input line 207.
 Chapter 3.
 [12
 
-] [13] [14] [15]
-Runaway argument?
- 
-! Paragraph ended before \align* was complete.
-<to be read again> 
-                   \par 
-l.265 
-      
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.265 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
-l.265 
-      
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Display math should end with $$.
-<to be read again> 
-                   \par 
-l.265 
-      
-The `$' that I just saw supposedly matches a previous `$$'.
-So I shall assume that you typed `$$' both times.
-
-! Misplaced \cr.
-\math@cr@@@ ->\cr 
-                  
-l.266 \end{align*}
-                  
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Misplaced \noalign.
-\math@cr@@ ... \iffalse }\fi \math@cr@@@ \noalign 
-                                                  {\vskip #1\relax }
-l.266 \end{align*}
-                  
-I expect to see \noalign only after the \cr of
-an alignment. Proceed, and I'll ignore this case.
-
-! Misplaced \noalign.
-\black@ #1->\noalign 
-                     {\ifdim #1>\displaywidth \dimen@ \prevdepth \nointerlin...
-l.266 \end{align*}
-                  
-I expect to see \noalign only after the \cr of
-an alignment. Proceed, and I'll ignore this case.
-
-! Extra }, or forgotten \endgroup.
-\endalign ->\math@cr \black@ \totwidth@ \egroup 
-                                                \ifingather@ \restorealignst...
-l.266 \end{align*}
-                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.266 \end{align*}
-                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Display math should end with $$.
-<to be read again> 
-                   \endgroup 
-l.266 \end{align*}
-                  
-The `$' that I just saw supposedly matches a previous `$$'.
-So I shall assume that you typed `$$' both times.
-
-
-Overfull \hbox (1.9142pt too wide) in paragraph at lines 271--271
+] [13] [14] [15] [16] [17]
+Overfull \hbox (1.9142pt too wide) in paragraph at lines 325--325
 []\T1/aer/bx/n/20.74 Maximum Like-li-hood MDS and MUL-
  []
 
-[16] [17]
+[18]
 Chapter 4.
-[18
+[19
 
 ]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 291.
+(amsmath)                 on input line 345.
 
 
-LaTeX Warning: Reference `omnibus' on page 19 undefined on input line 302.
+LaTeX Warning: Reference `omnibus' on page 20 undefined on input line 356.
 
 
-Overfull \hbox (5.62944pt too wide) in paragraph at lines 302--303
+Overfull \hbox (5.62944pt too wide) in paragraph at lines 356--357
 []\T1/aer/m/it/12 Although the between-condition dis-sim-i-lar-i-ties of the sa
 me ob-ject, $[]\OT1/cmr/m/n/12 )$\T1/aer/m/it/12 ,
  []
 
-[19] [20]
-Overfull \hbox (48.31865pt too wide) in paragraph at lines 324--324
+[20] [21]
+Overfull \hbox (48.31865pt too wide) in paragraph at lines 378--378
 [] 
  []
 
 
-LaTeX Warning: Reference `omnibus' on page 21 undefined on input line 338.
+LaTeX Warning: Reference `omnibus' on page 22 undefined on input line 392.
 
-[21]
-Overfull \hbox (4.25897pt too wide) in paragraph at lines 362--362
+[22]
+Overfull \hbox (4.25897pt too wide) in paragraph at lines 416--416
 []\T1/aer/bx/n/20.74 Fidelity and Com-men-su-ra-bil-ity Trade-
  []
 
-[22] [23]
+[23] [24]
 Chapter 5.
 
-Overfull \hbox (2.26064pt too wide) in paragraph at lines 379--380
+Overfull \hbox (2.26064pt too wide) in paragraph at lines 433--434
 \T1/aer/m/n/12 to em-bed each con-di-tional dis-sim-i-lar-ity ma-trix, $\OT1/cm
 r/m/n/12 []$ \T1/aer/m/n/12 and $\OT1/cmr/m/n/12 []$\T1/aer/m/n/12 , sep-a-ra
 tely in $\OML/cmm/m/it/12 d$\T1/aer/m/n/12 -dimensional
  []
 
-[24
+[25
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 388.
+(hyperref)                removing `math shift' on input line 442.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\circ' on input line 388.
+(hyperref)                removing `\circ' on input line 442.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 388.
-
-[25]
-
-LaTeX Warning: Reference `omnibus' on page 26 undefined on input line 394.
+(hyperref)                removing `math shift' on input line 442.
 
 [26]
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 417.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 417.
+LaTeX Warning: Reference `omnibus' on page 27 undefined on input line 448.
 
 [27]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 471.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 471.
+
+[28]
 Chapter 6.
-[28
+[29
 
 ]
-Overfull \hbox (4.09077pt too wide) in paragraph at lines 435--437
+Overfull \hbox (4.09077pt too wide) in paragraph at lines 489--491
 \T1/aer/m/n/12 subject to con-straints $\OML/cmm/m/it/12 E\OT1/cmr/m/n/12 [[]] 
 = 1$ \T1/aer/m/n/12 , $\OML/cmm/m/it/12 E\OT1/cmr/m/n/12 [[]] = 1$\T1/aer/m/n/1
 2 , $\OML/cmm/m/it/12 E\OT1/cmr/m/n/12 [[]] =$
  []
 
 
-Overfull \hbox (16.84674pt too wide) in paragraph at lines 435--437
+Overfull \hbox (16.84674pt too wide) in paragraph at lines 489--491
 $\OML/cmm/m/it/12 E\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 XY[]\OT1/cmr/m/n/12 ]$ \T1
 /aer/m/n/12 are re-placed with their sam-ple es-ti-mates. The di-rec-tion vec-t
 ors $[]\OML/cmm/m/it/12 ; i \OT1/cmr/m/n/12 =$
  []
 
-[29]
-
-LaTeX Warning: Reference `subsec:PoM' on page 30 undefined on input line 442.
-
 [30]
+
+LaTeX Warning: Reference `subsec:PoM' on page 31 undefined on input line 496.
+
+[31]
 Chapter 7.
 
-LaTeX Warning: Reference `fig-stats-p' on page 31 undefined on input line 473.
+LaTeX Warning: Reference `fig-stats-p' on page 32 undefined on input line 527.
 
-[31
+[32
 
 ]
 
-LaTeX Warning: Reference `noise' on page 32 undefined on input line 479.
+LaTeX Warning: Reference `noise' on page 33 undefined on input line 533.
 
 
-LaTeX Warning: Reference `eq:noise-expr' on page 32 undefined on input line 479
+LaTeX Warning: Reference `eq:noise-expr' on page 33 undefined on input line 533
 .
 
 
-LaTeX Warning: Reference `eq:noise-expr' on page 32 undefined on input line 480
+LaTeX Warning: Reference `eq:noise-expr' on page 33 undefined on input line 534
 .
 
-[32] [33]
-<./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0_01.pdf, id=574, 505.89pt x 504.8
+[33] [34]
+<./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0_01.pdf, id=579, 505.89pt x 504.8
 8625pt>
 File: ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0_01.pdf Graphic file (type p
 df)
  <use ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0_01.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0_01.pdf u
-sed on input line 512.
+sed on input line 566.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-<./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0.pdf, id=575, 505.89pt x 504.8862
+<./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0.pdf, id=580, 505.89pt x 504.8862
 5pt>
 File: ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0.pdf Graphic file (type pdf)
 
  <use ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/MVN-FC-Tradeoff-OOS-c0.pdf used
- on input line 518.
+ on input line 572.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-<./../DataFusion/graphs/OOSMVN-power-w-c0_01.pdf, id=576, 505.89pt x 504.88625p
+<./../DataFusion/graphs/OOSMVN-power-w-c0_01.pdf, id=581, 505.89pt x 504.88625p
 t>
 File: ./../DataFusion/graphs/OOSMVN-power-w-c0_01.pdf Graphic file (type pdf)
  <use ./../DataFusion/graphs/OOSMVN-power-w-c0_01.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/OOSMVN-power-w-c0_01.pdf used o
-n input line 524.
+n input line 578.
 (pdftex.def)             Requested size: 480.59276pt x 479.63919pt.
 
-<./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf, id=577, 504.88
+<./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf, id=582, 504.88
 625pt x 504.88625pt>
 File: ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf Graphic fi
 le (type pdf)
 
 <use ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-01-
-n150.pdf used on input line 531.
+n150.pdf used on input line 585.
 (pdftex.def)             Requested size: 176.71283pt x 176.71283pt.
 
-<./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n150.pdf, id=578, 490.83376
+<./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n150.pdf, id=583, 490.83376
 pt x 490.83376pt>
 File: ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n150.pdf Graphic file 
 (type pdf)
 
 <use ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n150.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n15
-0.pdf used on input line 537.
+0.pdf used on input line 591.
 (pdftex.def)             Requested size: 171.79439pt x 171.79439pt.
 
-<./../DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf, id=579, 490.83376pt x 4
+<./../DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf, id=584, 490.83376pt x 4
 90.83376pt>
 File: ./../DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf Graphic file (type 
 pdf)
  <use ./../DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf 
-used on input line 543.
+used on input line 597.
 (pdftex.def)             Requested size: 466.28941pt x 466.28941pt.
 
-[34 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/MVN-FC-Tradeoff-OOS-c
-0_01.pdf>] [35 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/MVN-FC-Tra
-deoff-OOS-c0.pdf>] [36 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/OO
-SMVN-power-w-c0_01.pdf>] [37 <F:/Users/Sancar/Documents/projects/DataFusion/gra
-phs/Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf>] [38 <F:/Users/Sancar/Documents/pr
-ojects/DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n150.pdf>] [39 <F:/Users/S
+[35 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/MVN-FC-Tradeoff-OOS-c
+0_01.pdf>] [36 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/MVN-FC-Tra
+deoff-OOS-c0.pdf>] [37 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/OO
+SMVN-power-w-c0_01.pdf>] [38 <F:/Users/Sancar/Documents/projects/DataFusion/gra
+phs/Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf>] [39 <F:/Users/Sancar/Documents/pr
+ojects/DataFusion/graphs/Dirichlet-FC-Tradeoff-OOSc0-n150.pdf>] [40 <F:/Users/S
 ancar/Documents/projects/DataFusion/graphs/OOSDirichlet-power-w-c0-01.pdf>]
-Overfull \hbox (0.33844pt too wide) in paragraph at lines 595--597
+Overfull \hbox (0.33844pt too wide) in paragraph at lines 649--651
 []\T1/aer/m/n/12 For a fixed $\OML/cmm/m/it/12 $ \T1/aer/m/n/12 value, one can
  com-pute two crit-i-cal val-ues $\OML/cmm/m/it/12 c\OT1/cmr/m/n/12 (0\OML/cmm/
 m/it/12 :\OT1/cmr/m/n/12 5) = \OML/cmm/m/it/12 max[]\OMS/cmsy/m/n/12 f\OML/cmm/
@@ -871,311 +775,311 @@ m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 T[]\OT1/cmr/m/n/12 (0\OML/cmm/m/it/1
 2 :\OT1/cmr/m/n/12 5) \OML/cmm/m/it/12 >$
  []
 
-[40] [41]
-<./../DataFusion/graphs/MVN_JOFC_q_90_c_0_001.pdf, id=642, 506.89375pt x 502.87
+[41] [42]
+<./../DataFusion/graphs/MVN_JOFC_q_90_c_0_001.pdf, id=647, 506.89375pt x 502.87
 875pt>
 File: ./../DataFusion/graphs/MVN_JOFC_q_90_c_0_001.pdf Graphic file (type pdf)
  <use ./../DataFusion/graphs/MVN_JOFC_q_90_c_0_001.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/MVN_JOFC_q_90_c_0_001.pdf used 
-on input line 631.
+on input line 685.
 (pdftex.def)             Requested size: 346.89731pt x 344.15526pt.
- [42] [43 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/MVN_JOFC_q_90_c
+ [43] [44 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/MVN_JOFC_q_90_c
 _0_001.pdf>]
-<./../DataFusion/graphs/FidCommPaperwiki-two-cond-plot.pdf, id=662, 505.89pt x 
+<./../DataFusion/graphs/FidCommPaperwiki-two-cond-plot.pdf, id=667, 505.89pt x 
 505.89pt>
 File: ./../DataFusion/graphs/FidCommPaperwiki-two-cond-plot.pdf Graphic file (t
 ype pdf)
  <use ./../DataFusion/graphs/FidCommPaperwiki-two-cond-plot.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/FidCommPaperwiki-two-cond-plot.
-pdf used on input line 712.
+pdf used on input line 766.
 (pdftex.def)             Requested size: 346.89731pt x 346.90308pt.
 
-[44] <./../DataFusion/graphs/ROC-d-2.pdf, id=673, 505.89pt x 504.88625pt>
+[45] <./../DataFusion/graphs/ROC-d-2.pdf, id=679, 505.89pt x 504.88625pt>
 File: ./../DataFusion/graphs/ROC-d-2.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/ROC-d-2.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/ROC-d-2.pdf used on input line 
-724.
+778.
 (pdftex.def)             Requested size: 216.81pt x 216.38037pt.
 
-<./../DataFusion/graphs/ROC-d-5.pdf, id=674, 505.89pt x 504.88625pt>
+<./../DataFusion/graphs/ROC-d-5.pdf, id=680, 505.89pt x 504.88625pt>
 File: ./../DataFusion/graphs/ROC-d-5.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/ROC-d-5.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/ROC-d-5.pdf used on input line 
-731.
+785.
 (pdftex.def)             Requested size: 216.81pt x 216.38037pt.
 
-<./../DataFusion/graphs/ROC-d-7.pdf, id=675, 446.66875pt x 445.665pt>
+<./../DataFusion/graphs/ROC-d-7.pdf, id=681, 446.66875pt x 445.665pt>
 File: ./../DataFusion/graphs/ROC-d-7.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/ROC-d-7.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/ROC-d-7.pdf used on input line 
-737.
+791.
 (pdftex.def)             Requested size: 203.80193pt x 203.3491pt.
 
-<./../DataFusion/graphs/ROC-d-10.pdf, id=676, 505.89pt x 504.88625pt>
+<./../DataFusion/graphs/ROC-d-10.pdf, id=682, 505.89pt x 504.88625pt>
 File: ./../DataFusion/graphs/ROC-d-10.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/ROC-d-10.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/ROC-d-10.pdf used on input line
- 743.
+ 797.
 (pdftex.def)             Requested size: 203.80193pt x 203.39925pt.
- [45 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/FidCommPaperwiki-two
+ [46 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/FidCommPaperwiki-two
 -cond-plot.pdf>]
-<./../DataFusion/graphs/ROC-d-15.pdf, id=688, 505.89pt x 504.88625pt>
+<./../DataFusion/graphs/ROC-d-15.pdf, id=693, 505.89pt x 504.88625pt>
 File: ./../DataFusion/graphs/ROC-d-15.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/ROC-d-15.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/ROC-d-15.pdf used on input line
- 756.
+ 810.
 (pdftex.def)             Requested size: 151.76816pt x 151.46703pt.
 
 
-LaTeX Warning: Reference `sec:RelatedWork' on page 46 undefined on input line 7
-72.
+LaTeX Warning: Reference `sec:RelatedWork' on page 47 undefined on input line 8
+26.
 
-[46] [47 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/ROC-d-2.pdf> <F:
+[47] [48 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/ROC-d-2.pdf> <F:
 /Users/Sancar/Documents/projects/DataFusion/graphs/ROC-d-5.pdf> <F:/Users/Sanca
 r/Documents/projects/DataFusion/graphs/ROC-d-7.pdf> <F:/Users/Sancar/Documents/
-projects/DataFusion/graphs/ROC-d-10.pdf>] [48 <F:/Users/Sancar/Documents/projec
-ts/DataFusion/graphs/ROC-d-15.pdf>] [49]
+projects/DataFusion/graphs/ROC-d-10.pdf>] [49 <F:/Users/Sancar/Documents/projec
+ts/DataFusion/graphs/ROC-d-15.pdf>] [50]
 
-LaTeX Warning: Reference `omnibus' on page 50 undefined on input line 818.
+LaTeX Warning: Reference `omnibus' on page 51 undefined on input line 872.
 
 
-<./../DataFusion/graphs/FidCommPapergraph-plot-1.pdf, id=732, 505.89pt x 505.89
+<./../DataFusion/graphs/FidCommPapergraph-plot-1.pdf, id=737, 505.89pt x 505.89
 pt>
 File: ./../DataFusion/graphs/FidCommPapergraph-plot-1.pdf Graphic file (type pd
 f)
  <use ./../DataFusion/graphs/FidCommPapergraph-plot-1.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/FidCommPapergraph-plot-1.pdf us
-ed on input line 833.
+ed on input line 887.
 (pdftex.def)             Requested size: 328.82458pt x 328.82458pt.
- [50] [51 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/FidCommPapergra
+ [51] [52 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/FidCommPapergra
 ph-plot-1.pdf>]
-<./../DataFusion/FidCommPaper-graph-plot-4.pdf, id=749, 433.62pt x 433.62pt>
+<./../DataFusion/FidCommPaper-graph-plot-4.pdf, id=754, 433.62pt x 433.62pt>
 File: ./../DataFusion/FidCommPaper-graph-plot-4.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/FidCommPaper-graph-plot-4.pdf>
 Package pdftex.def Info: ./../DataFusion/FidCommPaper-graph-plot-4.pdf used on 
-input line 852.
+input line 906.
 (pdftex.def)             Requested size: 346.89731pt x 346.91632pt.
 
-<./../DataFusion/graphs/bitflip_JOFC.pdf, id=752, 597.23125pt x 845.1575pt>
+<./../DataFusion/graphs/bitflip_JOFC.pdf, id=757, 597.23125pt x 845.1575pt>
 File: ./../DataFusion/graphs/bitflip_JOFC.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/bitflip_JOFC.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/bitflip_JOFC.pdf used on input 
-line 856.
+line 910.
 (pdftex.def)             Requested size: 346.89731pt x 490.90099pt.
- [52 <F:/Users/Sancar/Documents/projects/DataFusion/FidCommPaper-graph-plot-4.p
-df>] [53] [54 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/bitflip_JOF
+ [53 <F:/Users/Sancar/Documents/projects/DataFusion/FidCommPaper-graph-plot-4.p
+df>] [54] [55 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/bitflip_JOF
 C.pdf>]
 Chapter 8.
 
 Package hyperref Warning: Difference (3) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 868.
+(hyperref)                than one, level fixed on input line 922.
 
-<./../DataFusion/graphs/multmin-diag.pdf, id=777, 318.05324pt x 289.16531pt>
+<./../DataFusion/graphs/multmin-diag.pdf, id=782, 318.05324pt x 289.16531pt>
 File: ./../DataFusion/graphs/multmin-diag.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/multmin-diag.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/multmin-diag.pdf used on input 
-line 878.
+line 932.
 (pdftex.def)             Requested size: 111.32028pt x 101.20937pt.
- [55
+ [56
 
-] [56 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/multmin-diag.pdf>] 
-[57]
+] [57 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/multmin-diag.pdf>] 
+[58]
 
-Package caption Warning: \label without proper \caption on input line 1055.
+Package caption Warning: \label without proper \caption on input line 1109.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `stress-val-table' on page 58 undefined on input line 
-899.
+LaTeX Warning: Reference `stress-val-table' on page 59 undefined on input line 
+953.
 
-[58]
-<./../DataFusion/graphs/true-min-w-0_1.pdf, id=822, 505.89pt x 504.88625pt>
+[59]
+<./../DataFusion/graphs/true-min-w-0_1.pdf, id=827, 505.89pt x 504.88625pt>
 File: ./../DataFusion/graphs/true-min-w-0_1.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/true-min-w-0_1.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/true-min-w-0_1.pdf used on inpu
-t line 906.
+t line 960.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-<./../DataFusion/graphs/other-min-w-0_1.pdf, id=823, 505.89pt x 504.88625pt>
+<./../DataFusion/graphs/other-min-w-0_1.pdf, id=828, 505.89pt x 504.88625pt>
 File: ./../DataFusion/graphs/other-min-w-0_1.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/other-min-w-0_1.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/other-min-w-0_1.pdf used on inp
-ut line 913.
+ut line 967.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-Overfull \hbox (19.45854pt too wide) in paragraph at lines 904--917
+Overfull \hbox (19.45854pt too wide) in paragraph at lines 958--971
 [][]   [] 
  []
 
-<./../DataFusion/true-min-w0_5.pdf, id=824, 505.89pt x 504.88625pt>
+<./../DataFusion/true-min-w0_5.pdf, id=829, 505.89pt x 504.88625pt>
 File: ./../DataFusion/true-min-w0_5.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/true-min-w0_5.pdf>
 Package pdftex.def Info: ./../DataFusion/true-min-w0_5.pdf used on input line 9
-30.
+84.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-<./../DataFusion/other-min-w0_5.pdf, id=825, 505.89pt x 504.88625pt>
+<./../DataFusion/other-min-w0_5.pdf, id=830, 505.89pt x 504.88625pt>
 File: ./../DataFusion/other-min-w0_5.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/other-min-w0_5.pdf>
 Package pdftex.def Info: ./../DataFusion/other-min-w0_5.pdf used on input line 
-938.
+992.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-Overfull \hbox (19.45854pt too wide) in paragraph at lines 928--943
+Overfull \hbox (19.45854pt too wide) in paragraph at lines 982--997
 [][]   [] 
  []
 
-<./../DataFusion/true-min-w0_8.pdf, id=826, 505.89pt x 504.88625pt>
+<./../DataFusion/true-min-w0_8.pdf, id=831, 505.89pt x 504.88625pt>
 File: ./../DataFusion/true-min-w0_8.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/true-min-w0_8.pdf>
-Package pdftex.def Info: ./../DataFusion/true-min-w0_8.pdf used on input line 9
-52.
+Package pdftex.def Info: ./../DataFusion/true-min-w0_8.pdf used on input line 1
+006.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-<./../DataFusion/other-min-w0_8.pdf, id=827, 505.89pt x 504.88625pt>
+<./../DataFusion/other-min-w0_8.pdf, id=832, 505.89pt x 504.88625pt>
 File: ./../DataFusion/other-min-w0_8.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/other-min-w0_8.pdf>
 Package pdftex.def Info: ./../DataFusion/other-min-w0_8.pdf used on input line 
-960.
+1014.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-Overfull \hbox (19.45854pt too wide) in paragraph at lines 950--965
+Overfull \hbox (19.45854pt too wide) in paragraph at lines 1004--1019
 [][]   [] 
  []
 
-<./../DataFusion/graphs/true-min-w0_81.pdf, id=828, 505.89pt x 504.88625pt>
+<./../DataFusion/graphs/true-min-w0_81.pdf, id=833, 505.89pt x 504.88625pt>
 File: ./../DataFusion/graphs/true-min-w0_81.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/true-min-w0_81.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/true-min-w0_81.pdf used on inpu
-t line 976.
+t line 1030.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-<./../DataFusion/graphs/other-min-w0_81.pdf, id=829, 505.89pt x 504.88625pt>
+<./../DataFusion/graphs/other-min-w0_81.pdf, id=834, 505.89pt x 504.88625pt>
 File: ./../DataFusion/graphs/other-min-w0_81.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/other-min-w0_81.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/other-min-w0_81.pdf used on inp
-ut line 983.
+ut line 1037.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-Overfull \hbox (19.45854pt too wide) in paragraph at lines 974--987
+Overfull \hbox (19.45854pt too wide) in paragraph at lines 1028--1041
 [][]   [] 
  []
 
-<./../DataFusion/graphs/true-min-w0_84.pdf, id=830, 505.89pt x 504.88625pt>
+<./../DataFusion/graphs/true-min-w0_84.pdf, id=835, 505.89pt x 504.88625pt>
 File: ./../DataFusion/graphs/true-min-w0_84.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/true-min-w0_84.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/true-min-w0_84.pdf used on inpu
-t line 999.
+t line 1053.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-<./../DataFusion/graphs/other-min-w0_84.pdf, id=831, 505.89pt x 504.88625pt>
+<./../DataFusion/graphs/other-min-w0_84.pdf, id=836, 505.89pt x 504.88625pt>
 File: ./../DataFusion/graphs/other-min-w0_84.pdf Graphic file (type pdf)
 
 <use ./../DataFusion/graphs/other-min-w0_84.pdf>
 Package pdftex.def Info: ./../DataFusion/graphs/other-min-w0_84.pdf used on inp
-ut line 1006.
+ut line 1060.
 (pdftex.def)             Requested size: 177.06415pt x 176.71283pt.
 
-Overfull \hbox (19.45854pt too wide) in paragraph at lines 997--1010
+Overfull \hbox (19.45854pt too wide) in paragraph at lines 1051--1064
 [][]   [] 
  []
 
 
-Overfull \hbox (69.40771pt too wide) in paragraph at lines 1023--1031
+Overfull \hbox (69.40771pt too wide) in paragraph at lines 1077--1085
  [] 
  []
 
 
-Overfull \hbox (69.40771pt too wide) in paragraph at lines 1033--1041
+Overfull \hbox (69.40771pt too wide) in paragraph at lines 1087--1095
  [][] 
  []
 
 
-Overfull \hbox (69.40771pt too wide) in paragraph at lines 1044--1052
+Overfull \hbox (69.40771pt too wide) in paragraph at lines 1098--1106
  [][] 
  []
 
-[59 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/true-min-w-0_1.pdf> <
+[60 <F:/Users/Sancar/Documents/projects/DataFusion/graphs/true-min-w-0_1.pdf> <
 F:/Users/Sancar/Documents/projects/DataFusion/graphs/other-min-w-0_1.pdf>]
-[60 <F:/Users/Sancar/Documents/projects/DataFusion/true-min-w0_5.pdf> <F:/Users
+[61 <F:/Users/Sancar/Documents/projects/DataFusion/true-min-w0_5.pdf> <F:/Users
 /Sancar/Documents/projects/DataFusion/other-min-w0_5.pdf> <F:/Users/Sancar/Docu
 ments/projects/DataFusion/true-min-w0_8.pdf> <F:/Users/Sancar/Documents/project
-s/DataFusion/other-min-w0_8.pdf>] [61 <F:/Users/Sancar/Documents/projects/DataF
+s/DataFusion/other-min-w0_8.pdf>] [62 <F:/Users/Sancar/Documents/projects/DataF
 usion/graphs/true-min-w0_81.pdf> <F:/Users/Sancar/Documents/projects/DataFusion
 /graphs/other-min-w0_81.pdf> <F:/Users/Sancar/Documents/projects/DataFusion/gra
 phs/true-min-w0_84.pdf> <F:/Users/Sancar/Documents/projects/DataFusion/graphs/o
-ther-min-w0_84.pdf>] [62]
+ther-min-w0_84.pdf>] [63]
 Chapter 9.
 
-LaTeX Warning: Citation `A' on page 63 undefined on input line 1131.
+LaTeX Warning: Citation `A' on page 64 undefined on input line 1185.
 
 
-LaTeX Warning: Citation `B' on page 63 undefined on input line 1132.
+LaTeX Warning: Citation `B' on page 64 undefined on input line 1186.
 
 
-LaTeX Warning: Citation `A' on page 63 undefined on input line 1133.
+LaTeX Warning: Citation `A' on page 64 undefined on input line 1187.
 
 
-LaTeX Warning: Citation `B' on page 63 undefined on input line 1133.
+LaTeX Warning: Citation `B' on page 64 undefined on input line 1187.
 
 
-LaTeX Warning: Citation `C' on page 63 undefined on input line 1133.
+LaTeX Warning: Citation `C' on page 64 undefined on input line 1187.
 
-[63
-
-]
-Chapter 10.
 [64
 
 ]
-Chapter 11.
+Chapter 10.
 [65
 
 ]
+Chapter 11.
+[66
+
+]
 No file appendix.tex.
-(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.bbl [66
+(F:\Users\Sancar\Documents\projects\thesisdoc\thesis.bbl [67
 
 
 
-] [67] [68]
+] [68] [69]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
-[69]) [70] <rjvheadshot.jpg, id=969, 69.3792pt x 85.7604pt>
+[70]) [71] <rjvheadshot.jpg, id=974, 69.3792pt x 85.7604pt>
 File: rjvheadshot.jpg Graphic file (type jpg)
 
 <use rjvheadshot.jpg>
-Package pdftex.def Info: rjvheadshot.jpg used on input line 1159.
+Package pdftex.def Info: rjvheadshot.jpg used on input line 1213.
 (pdftex.def)             Requested size: 144.54771pt x 178.67706pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1165.
- [71
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1219.
+ [72
 
  <F:/Users/Sancar/Documents/projects/thesisdoc/rjvheadshot.jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1165.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1219.
  (F:\Users\Sancar\Documents\projects\thesisdoc\thesis.aux
 (F:\Users\Sancar\Documents\projects\thesisdoc\appendix.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1165.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1165.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1219.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1219.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 0D48142A52C0CBA32152EB0DA8BB57A2;3745.
@@ -1186,13 +1090,13 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1165.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1219.
  ) 
 Here is how much of TeX's memory you used:
- 8850 strings out of 493921
- 134221 string characters out of 3144873
- 217409 words of memory out of 3000000
- 11717 multiletter control sequences out of 15000+200000
+ 8853 strings out of 493921
+ 134254 string characters out of 3144873
+ 217479 words of memory out of 3000000
+ 11718 multiletter control sequences out of 15000+200000
  52822 words of font info for 126 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,17n,48p,1834b,473s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1217,9 +1121,9 @@ s/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
 public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (81 pages, 614264 bytes).
+Output written on thesis.pdf (82 pages, 618406 bytes).
 PDF statistics:
- 1080 PDF objects out of 1200 (max. 8388607)
- 185 named destinations out of 1000 (max. 500000)
+ 1086 PDF objects out of 1200 (max. 8388607)
+ 187 named destinations out of 1000 (max. 500000)
  616 words of extra memory for PDF output out of 10000 (max. 10000000)
 
