@@ -1,0 +1,118 @@
+\chapter{Multidimensional Scaling and Its Variants}
+\label{sec:MDS}
+\chaptermark{Optional running chapter heading}
+
+Introduction to MDS and dissimilarity representation to MDS
+
+\section{Multidimensional Scaling in the general setting}
+Multidimensional Scaling is  a method to  (MDS)~\cite{CMDS,borg+groenen:1997,duin2005dissimilarity}  embed dissimilarities between examples  in the Euclidean space  with a chosen dimension $d$ such that the distances between the embeddings are as close as possible (in various senses) to the original dissimilarities. Different criterion functions can be used to measure how close the distances are  to the given dissimilarities, leading to different embedded configurations. These different variants of MDS can be described using a single formulation.
+\label{sec:section}
+Consider a  set of n objects. For each pair of objects, the dissimilarity value, denoted by $d_{ij}$ is a non-negative real number which quantifies how dissimilar those two objects are. The collection of these values form the matrix $\Delta$ , which is  a $nxn$ dissimilarity matrix. While ,generally, dissimilarities between finite set of objects are being considered; for a dissimilarity matrix, we can consider the objects as points in a space, whose neighborhood relationship is defined by the dissimilarity measure  . The dissimilarities have to satisfy $\delta_{ij}\geq 0$ and $\delta_{ii}=0$ and $d_{ij}=d_{ij}$. Therefore  $\Delta$ is non-negative, hollow and symmetric. If, in addition, each triplet of dissimilarities $\delta_{ij}$, $\delta_{ik}$ and $\delta_{ik}$  satisfy the triangle inequality, then D is called  an Euclidean distance matrix.
+
+\section{Different criterion for MDS?}
+Multidimensional Scaling finds a configuration of points consistent with given dissimilarities in a finite dimensional Euclidean space. There are various variants of MDS that use different measure of consistency.  In general, the criteria minimize discrepancy between $f(\delta_ij)$ and  $d(\bm{x_i},\bm{x_j})$ where d is the Euclidean distance function and $f(\cdot)$ is monotonically increasing function. Depending on whether ``metric" or ``non-metric" MDS is being considered, $f(\cdot)$ is either a linear transformation or a non-linear one.
+
+
+\subsection{Metric MDS}
+ For metric MDS, transformations of the form  $f(x)=ax+b$ are allowed.
+ \subsubsection{Stress Criterion}
+ Setting $f(x)=x$ and choosing  the discrepancy measure between the dissimilarities and distances of embedded points to be $\ell_2$, the resulting criterion is called the raw stress criterion. Additionally weights($w_{st}$) can be introduced for each discrepancy term. Denote the matrix composed of the weight by $W$.
+ \begin{equation}
+\sigma_{W}(X)=\sum_{1\leq s\leq n;1\leq t\leq n} {w_{st}(d_{st}(X)-\delta_{st})^2  }\label{raw-stress}
+\end{equation}
+Subtypes of Stress criterion is identified by different choices for $w_st$ which depend on the original dissimilarities $\delta_{st}$ .
+For example, choosing $w_{st}={\sum{\delta_{st}^2}}^{-1}$ normalizes the stress so that the stress value is always between 0 and 1. One can compare different configurations by this standardized stress value and conclude whether a configuration is a good fit or not based on this value.
+A slightly different weighting scheme is $w_{st}=\{ \sum_{st}{\delta_{st}-\bar{\delta} } \}^{-1}$ 
+where $\bar{\delta}=\frac{1}{(n)(n-1)} \sum{\delta_{st}}$ (average of dissimilarities). 
+Another related criterion is SSTRESS criterion which involves squares of dissimilarities and distances:
+\[
+=\sum_{1\leq s\leq n;1\leq t\leq n} {(d_{st}^2(X)-\delta_{st}^2)^2  }
+\]
+
+
+\subsubsection{Sammon Mapping Criterion}
+This is a specific case of the Stress criterion where the weights $w_{st}$ are set to be $\delta_{st}^{-1} \{\sum_{k<l}\delta_{kl} \}^{-1}$. These set of weights normalizes the squared discrepancies in the stress criterion by the magnitude of the original dissimilarities, so that discrepancy terms for the larger dissimilarities do not dominate the optimization of the criterion function. As a result, small $\delta_{st}$ are preserved.
+
+\subsection{Ordinal (Nonmetric) MDS}
+ For Nonmetric MDS, $f(\cdot)$    is allowed to be  any monotonic transformation. Specifically in psychometric applications of MDS, the assumption that the dissimilarities are a scaled-shifted version of the ``true"  dissimilarity is an unwarranted assumption. It is possible the existence of a ``true" dissimilarity is in question. Even if the dissimilarities are physical distances, humans tend to have biased estimates of those distances (long distances are usually underestimated ). \cite{Trosset1998}. This variant of MDS is also called ordinal, because what is preserved is the rank of dissimilarities, not their magnitude.
+
+\section{Classical MDS and the Strain Criterion}
+
+Consider the case where $\Delta$ is Euclidean. So there exist $\bm{x}_{i} \in \mathbf{R}^d$ such that $\forall \quad s,t$ $\bm{x}_{s}$ and $\bm{x}_{t}$ such that $\delta_{st}=d(\bm{x}_{s}-\bm{x}_{t})$. If $\bm{x}_{i}$ satisfy $\delta_{st}=d(\bm{x}_{s}-\bm{x}_{t})$,  $\bm{x}_{i}+\bm{u}$ for a constant vector $\bm{u}$. To remove this ambiguity   $\sum{\bm{x}_{i}}$ is set to $\bm{0}$.
+\[
+\delta_{st}^2= d(\bm{x}_{s},\bm{x}_{t})^2 = \|\bm{x}_{s}   \|^2 +   \|\bm{x}_{t}   \|^2   -   2  \bm{x}_{s} \cdot  \bm{x}_{t}   
+\]
+Summing over $s$, over $t$ and then over $s$ and $t$, we get the following identities
+
+\begin{align*}
+\sum_s{ \delta_{st}^2} &= \sum_s{\| \bm{x}_{s}   \|^2} + n \|\bm{x}_{t}   \|^2 -2 \sum_s{ \bm{x}_{s}   \cdot\bm{x}_{t}    } \quad s=1,\ldots,n\\
+\sum_t{ \delta_{st}^2} &= \sum_t{\| \bm{x}_{t}   \|^2} + n\|\bm{x}_{s}   \|^2  -2 \sum_t{ \bm{x}_{s}   \cdot\bm{x}_{t}   } \quad t=1,\ldots,n \\
+\sum_{st}{ \delta_{st}^2} &= 2n\sum_{t}{\| \bm{x}_{t}   \|^2}  -2\sum_{s}{ \bm{x}_{s} } \cdot \sum_t{   \bm{x}_{t} }\\
+\end{align*}
+
+Dividing each equality by $\frac{1}{n}$ , $\frac{1}{n}$ and $\frac{1}{n^2}$ respectively and using the fact that $\sum{\bm{x}_{i}}=\bm{0}$
+
+\begin{align*}
+\frac{1}{n}\sum_s{ \delta_{st}^2} &= \frac{1}{n}\sum_s{\|\bm{x}_{s}   \|^2 } +  \|\bm{x}_{t}   \|^2 \quad   t=1,\ldots,n\\
+\frac{1}{n}\sum_t{ \delta_{st}^2} &= \frac{1}{n}\sum_t{\|\bm{x}_{t}   \|^2 }+  \|\bm{x}_{s}   \|^2 \quad   s=1,\ldots,n\\
+\frac{1}{n^2}\sum_{st}{ \delta_{st}^2} &= \frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} \\
+\end{align*}
+
+Reorganizing terms,
+\begin{align*}
+\|\bm{x}_{t}   \|^2  &= \frac{1}{n}\sum_s{ \delta_{st}^2} + \frac{1}{n}\sum_s{\|\bm{x}_{s}   \|^2   } \\
+\|\bm{x}_{s}   \|^2  &= \frac{1}{n}\sum_t{ \delta_{st}^2} + \frac{1}{n}\sum_t{\|\bm{x}_{t}   \|^2  }\\
+0 &= -\frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2} \\
+\end{align*}
+
+
+Summing the three equations and replacing with  $\|\bm{x}_{s}   \|^2 +\|\bm{x}_{t}\|^2$ in original equation
+
+\[
+\delta_{st}^2= \frac{1}{n}\sum_s{ \delta_{st}^2} + \frac{1}{n}\sum_s{\|\bm{x}_{s}}   \|^2 + \frac{1}{n}\sum_t{ \delta_{st}^2} + \frac{1}{n}\sum_t{\|\bm{x}_{t}}  \|^2  -\frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2}   -2\bm{x}_{s}   \bm{x}_{t}  
+\]
+
+\[
+\delta_{st}^2= \frac{1}{n}\sum_s{ \delta_{st}^2} +  \frac{1}{n}\sum_t{ \delta_{st}^2}  +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2}  -2\bm{x}_{s}   \bm{x}_{t}   
+\]
+
+
+\[
+\bm{x}_{s}   \bm{x}_{t} = \frac{-1}{2} \{\delta_{st}^2 - \frac{1}{n}\sum_s{ \delta_{st}^2} -  \frac{1}{n}\sum_t{ \delta_{st}^2}  +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2 }     \| \}
+\]
+
+
+
+
+
+
+
+Some of the sums in the above expression can be written in matrix notation,
+\begin{align*}
+\bm{1}^{T}\Delta^2= \frac{1}{n}\sum_s{ \delta_{st}^2}\\
+\Delta^2 \bm{1} = \frac{1}{n}\sum_t{ \delta_{st}^2}
+\end{align*}
+So 
+\begin{align*}
+XX^T = \frac{-1}{2} \{\Delta^2 -  \frac{1}{n} \bm{1}\bm{1}^{T}\Delta^2  -  \frac{1}{n} \Delta^2 \bm{1}\bm{1}^{T} +   \frac{1}{n^2} \bm{1}\bm{1}^{T}\Delta^2 \bm{1}\bm{1}^{T}      \}
+\end{align*}
+
+The final expression is 
+
+\begin{align*}
+XX^T = \frac{-1}{2} \{(I- \frac{1}{n}\bm{1}\bm{1}^{T})\Delta^2 (I- \frac{1}{n}\bm{1}\bm{1}^{T} \} 
+\end{align*}
+where $X$ is $n \times d$
+
+
+
+
+
+
+
+
+\section{Effect of Noise}
+
+\section{Maximum Likelihood MDS and MULTISCALE}
+\section{3-way MDS}
+

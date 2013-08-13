@@ -1,0 +1,16 @@
+\chapter{Grassmannian Manifold and  Metrics}
+\label{sec:Grassmann}
+\chaptermark{Optional running chapter heading}
+
+Introduction.
+
+A citation \cite{A}. 
+A citation without brackets \citen{B}. 
+Multiple citations \cite{A, B, C}.
+
+\section{Grassmannian Manifold}
+
+
+\section[Optional table of contents heading]{Metrics in Grassmannian Manifold}
+
+\section{Relationship with Commensurability}

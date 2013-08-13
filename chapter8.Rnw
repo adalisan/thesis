@@ -1,0 +1,262 @@
+\chapter{Multiple Minima in  Multidimensional Scaling }
+\label{sec:MultMinima}
+\chaptermark{Optional running chapter heading}
+
+
+\subsubsection{ A short detour : Discontinuity in weighted raw stress OOS configurations\label{subsubsec:Discontinuity}}
+
+Note that it is possible to have multiple local minima in the embedding step(see example in \cite{TrossetLocalMin}). It is also possible to construct an example  where the weight parameter $w$ controls which of the local minima is the global minimum among the configurations of $\hat{X}_{.}$.
+
+%Global Minimum Configuration determined by $w$ .
+
+Consider five in-sample points in $\mathbb{R}^2$ with locations $X_1=(0,0)$, $X_2=(1,0)$, $X_3=(1,1)$
+ and $X_4=(1,0)$, $X_5=(.5,.5)$ and two out-of-sample  points with coordinates $X_6=(1,0)$ and $X_7=(0,1)$.
+ \begin{figure}
+ \centering
+ \includegraphics[scale=0.35]{multmin-diag}
+ \caption{True configuration of $X_{i}$, $i \in {1,\ldots,7}$}
+\label{original-config}
+ \end{figure} 
+  Suppose $X_6$ is matched with $X_2$ and $X_7$ is matched with $X_4$. 
+  Denote the Euclidean distance matrix by $D$. 
+  Suppose, due to noise, or due to dissimilarities not being Euclidean distances, 
+  the dissimilarity matrix is $$D'_{ij}=\begin{cases}
+  D_{ij}-1.4 & \textrm{if  $(i,j) \in \{(4,6),(6,4),(2,7),(7,2)   \}$ }\\
+  D_{ij}  & \textrm{ otherwise}\\
+  \end{cases}.$$ 
+Qualitatively, the three points $X_1$, $X_5$ and $X_3$ form a barrier which the OOS points need to cross  to reach their matched counterparts. 
+
+The MDS criterion function is optimized starting with different initial configurations.   Depending on the initial configuration, the final embedding coordinates of $\hat{X}_6$ might be closer
+    to $X_4$ compared to $X_2$. This is due to a local minimum in the configuration space. Consider the fact that, at the start of optimization, if  the initial coordinates of $\hat{X}_6$ is on the $X_4$ side of the $y=x$ line  in  $\mathbb{R}^2$ , 
+    it has to cross paths with the embeddings of  ${X}_1,{X}_3,{X}_5$ and it has   nonzero dissimilarities with those points. The same argument can be made for $X_7$. This is  the ``barrier" mentioned that is encountered in the optimization. It is possible to distinguish two kinds of local minima, one where the embedded OOS points $X_6$ and $X_7$ end up in the same side as their respective matched points $X_2$ and $X_4$ (named ``true'' or real config.) and the other where they end up in sides  opposite their matched points (named ``alternative" local min.). The latter corresponds to the case where the OOS points are unable to cross the ``barrier"'. Other configurations such as the ones where $X_6$ and $X_7$  end up in the same side are not local minima, since the original dissimilarity between them is large ($\sqrt{2}$) compared to dissimilarities between other pairs of points and embedding them close would increase raw stress significantly.
+    Based on value of $w$, it might be easier to get out of the  ``alternative" local minimum. 
+    In addition, depending on $w$ , this  local minimum can be a global minimum. 
+    That is, if $w$ is small enough, the configuration where $X_6$ stays on the side of $X_4$ instead of $X_2$ might have a lower stress than the configuration where $X_6$ is near its matched point $X_2$, due to the fact that  contribution of $ D_{ij}-d(X_i,X_j)$ to the raw stress where $(i,j)=(4,6)$  is  multiplied by $1-w$ while every other dissimilarity is multiplied by $w$. 
+		
+		Starting from a small enough $w$ and increasing it until $w$ is arbitrarily close to $1$, there are two $w$ values where important changes in embedding configurations and final stress values occur.
+    The plots in Figures \ref{fig:Finalconfig-MultMin-w-0_1}, \ref{fig:Finalconfig-MultMin-w-0_5}, \ref{fig:Finalconfig-MultMin-w-0_8}, \ref{fig:Finalconfig-MultMin-w-0_81} , \ref{fig:Finalconfig-MultMin-w-0_84} show the local minimum configurations ${X}_6$(in red circles) and ${X}_7$(in blue plusses) end up in starting from different initial configuration(One red and one blue point for each  initial configuration) The point pairs plotted in the left box are those configurations  where the  ${X}_6$ and ${X}_7$ end up in the side of their matched points (``true'' final configuration). The configurations in the right are those where the points end up in the opposite side of their matched points. The final stress values of the final configurations listed in  \ref{stress-val-table} (the minimum stress value among each kind of local minima) show that around $w=0.5$ the  ``true''-kind local minima   starts having a lower stress value compared to ``alternative''-kind. This is the first $w$ value that corresponds to an important change. Also note that starting around $w=0.8$ in Figure \ref{fig:Finalconfig-MultMin-w-0_8}, all of the $X_5$ and $X_6$  pairs are on the verge of passing throught the barrier and start ending up in the side of their matched points, due to the fact that the barrier starts to become negligible and there are no separate local minima. When $w>0.8$ all of the point pairs end up in  the``real'' configuration \ref{fig:Finalconfig-MultMin-w-0_81}. This is the $w$ value where the other important changes in configurations and stress values occur. Further increasing $w$ changes the final stress value, and  the final embedding configuration moves closer to the original locations of $X_{i}$ in \ref{original-config} \ref{fig:Finalconfig-MultMin-w-0_84}.
+    
+
+
+\begin{figure}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.35]{true-min-w-0_1.pdf}
+
+\label{fig:Finalconfig-MultMin-w-0_1_a}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.35]{other-min-w-0_1.pdf}
+
+\label{fig:Finalconfig-MultMin-w-0_1_b}
+\end{minipage}
+
+\caption{Final configurations for for different $w=0.1$ }
+\label{fig:Finalconfig-MultMin-w-0_1}
+
+
+\end{figure}
+
+
+
+
+\begin{figure}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.35]{true-min-w0_5}
+
+\label{fig:Finalconfig-MultMin-w-0_5_a}
+
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.35]{other-min-w0_5.pdf}
+
+\label{fig:Finalconfig-MultMin-w-0_5_b}
+
+\end{minipage}
+
+\caption{Final configurations for for different $w=0.5$ }
+\label{fig:Finalconfig-MultMin-w-0_5}
+
+\end{figure}
+
+\begin{figure}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.35]{true-min-w0_8.pdf}
+\label{fig:Finalconfig-MultMin-w-0_8_a}
+
+
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.35]{other-min-w0_8.pdf}
+\label{fig:Finalconfig-MultMin-w-0_8_a}
+
+
+\end{minipage}
+
+\caption{Final configurations for for different $w=0.8$ }
+\label{fig:Finalconfig-MultMin-w-0_8}
+
+\end{figure}
+
+
+
+\begin{figure}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.35]{true-min-w0_81.pdf}
+
+
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.35]{other-min-w0_81.pdf}
+
+
+\end{minipage}
+
+\caption{Final configurations for for different $w=0.81$ }
+\label{fig:Finalconfig-MultMin-w-0_81}
+
+\end{figure}
+
+
+
+
+\begin{figure}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.35]{true-min-w0_84.pdf}
+
+\label{fig:figure2-1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\includegraphics[scale=0.35]{other-min-w0_84.pdf}
+
+
+\end{minipage}
+
+\caption{Final configurations for for different $w=0.84$ }
+\label{fig:Finalconfig-MultMin-w-0_84}
+
+\end{figure}
+
+
+% latex table generated in R 2.15.1 by xtable 1.7-0 package
+% Sat Jan 05 00:54:38 2013
+
+\begin{table}[ht]
+\begin{center}
+
+\begin{tabular}{r|rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+  \hline
+ $w$ & 0.1 & 0.2 & 0.3 & 0.4 & 0.41 & 0.42 & 0.43 & 0.44 & 0.45 & 0.46 & 0.47  \\ 
+  \hline
+Local min for real config. & 2.80 & 2.51 & 2.22 & 1.92 & 1.89 & 1.86 & 1.83 & 1.80 & 1.77 & 1.74 & 1.71 \\ 
+  Alternative local min & 0.39 & 0.76 & 1.10 & 1.40 & 1.43 & 1.46 & 1.48 & 1.51 & 1.53 & 1.56 & 1.58 \\ 
+   \hline
+\end{tabular}
+
+
+\begin{tabular}{r|rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+  \hline
+  $w$ & 0.48 & 0.49 & 0.5 & 0.51 & 0.52 & 0.53 & 0.54 & 0.55 & 0.6 & 0.65 & 0.7 \\ 
+  \hline
+Local min for real config. &  1.68 & 1.65 & 1.62 & 1.59 & 1.56 & 1.53 & 1.50 & 1.47 & 1.32 & 1.17 & 1.01   \\ 
+  Alternative local min &  1.60 & 1.63 & 1.65 & 1.67 & 1.69 & 1.71 & 1.73 & 1.74 & 1.81 & 1.82 & 1.81  \\ 
+   \hline
+\end{tabular}
+
+
+
+\begin{tabular}{r|rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+  \hline
+ $w$ & 0.75 & 0.76 & 0.77 & 0.78 & 0.79 & 0.8 & 0.81 & 0.82 & 0.83 & 0.84 & 0.85  \\ 
+  \hline
+Local min for real config. &  0.86 & 0.82 & 0.79 & 0.76 & 0.73 & 0.70 & 0.66 & 0.63 & 0.60 & 0.57 & 0.53  \\ 
+  Alternative local min &   1.79 & 1.77 & 1.75 & 1.72 & 1.69 & 1.66 & 1.64 & NA & NA & NA & NA \\ 
+   \hline
+\end{tabular}
+
+\end{center}
+
+\label{stress-val-table}
+\end{table}
+
+
+
+\begin{comment}
+%old results
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{rrrrrr}
+  \hline
+ $w$ value & 0.1 & 0.45 & 0.5 & 0.55 & 0.99 \\ 
+  \hline
+Local min for real config. & 2.80 & 1.77 & 1.62 & 1.47 & 0.04 \\ 
+  Alternative local min & 0.39 & 1.53 & 1.65 & 1.74 & NA \\ 
+   \hline
+\end{tabular}
+\end{center}
+\label{stress-val-table}
+\end{table}
+\end{comment}
+
+Other than such carefully constructed examples, it is  unexpected that slight changes in $w$  will change the ordering of the ``distinct''  local minima according to their stress values.
+Therefore,  the argmin among the local minima configurations is independent of $w$. The minimum configuration is then a continuous function of $w$. 
+By the continuity of the distance function with respect to configurations, the test statistic is continuous with respect to $w$. One can conclude  that stochastic continuity  is a valid assumption and $\beta(w) $ is a continuous function of $w$. 
+%It is possible this is not the global minimum in $\mathbb{R}^d$  
+
+%Does the discontinuity in configurations mean discontinuity  in the $\beta(w)$ function
+%It is possible this is not the global minimum in $\mathbb{R}^d$  
+ 
+\begin{comment}
+
+\includegraphics{FidCommPaper-fig-stats-p}
+
+
+
+ , so any $w$ value that takes advantage of this situation and captures fidelity will limit the growth of the test statistic under alternative. So such $w$ values that are small enough to preserve fidelity, yet large enough to not lose significantly from commensurability will have increases in power to become $w^*$. 
+
+
+
+
+Consider  an increase in $r$, this will cause the test statistic under null to be stochastically smaller,
+ leading to a smaller critical value. So , a increase in priority of fidelity,
+  which corresponds to smaller $w$ might lead to the increase in the test statistic under alternative, and therefore an increase in power.\ref{fig-stats-r}  
+
+
+
+\includegraphics{FidCommPaper-fig-stats-r}
+
+Consider increases in $c$, which will increase the dissimilarity  both between matched and between unmatched vectors. 
+
+
+
+\includegraphics{FidCommPaper-fig-stats-c}
+
+
+
+
+Consider increases in $q$,  the test statistic under both null and alternative is inflated\ref{fig-stats-q}. 
+
+
+\includegraphics{FidCommPaper-fig-stats-q}
+ If commensurability can be preserved in the face of the increase in $q$, the power of the test may be preserved. However a very large increase in $w$ is not guarenteed to increase the preservation of commensurability, since the extra dimensions are noise, trying to   make the differences between coordinates  small in those dimensions will not  help in power, in fact may be disruptive since,
+  more fidelity may be lost in the effort to bring the pair of points together.
+
+\end{comment}
+
+
+\section[Optional table of contents heading]{Dependence of globality of local minima on $w$}
