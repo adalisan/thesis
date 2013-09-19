@@ -5,7 +5,7 @@
 Introduction to MDS and dissimilarity representation to MDS
 
 \section{Multidimensional Scaling in the general setting}
-Multidimensional Scaling is  a method to  (MDS)~\cite{CMDS,borg+groenen:1997,duin2005dissimilarity}  embed dissimilarities between examples  in the Euclidean space  with a chosen dimension $d$ such that the distances between the embeddings are as close as possible (in various senses) to the original dissimilarities. Different criterion functions can be used to measure how close the distances are  to the given dissimilarities, leading to different embedded configurations. These different variants of MDS can be described using a single formulation.
+Multidimensional Scaling is the general term used to describe methods to  (MDS)~\cite{CMDS,borg+groenen:1997,duin2005dissimilarity}  embed dissimilarities in the Euclidean space  with a chosen dimension $d$ such that the distances between the embeddings are as close as possible (in various senses) to the original dissimilarities. Different criterion functions can be used to measure how close the distances are  to the given dissimilarities, leading to different embedded configurations. These different variants of MDS can be described using a single formulation.
 \label{sec:section}
 Consider a  set of n objects. For each pair of objects, the dissimilarity value, denoted by $d_{ij}$ is a non-negative real number which quantifies how dissimilar those two objects are. The collection of these values form the matrix $\Delta$ , which is  a $nxn$ dissimilarity matrix. While ,generally, dissimilarities between finite set of objects are being considered; for a dissimilarity matrix, we can consider the objects as points in a space, whose neighborhood relationship is defined by the dissimilarity measure  . The dissimilarities have to satisfy $\delta_{ij}\geq 0$ and $\delta_{ii}=0$ and $d_{ij}=d_{ij}$. Therefore  $\Delta$ is non-negative, hollow and symmetric. If, in addition, each triplet of dissimilarities $\delta_{ij}$, $\delta_{ik}$ and $\delta_{ik}$  satisfy the triangle inequality, then D is called  an Euclidean distance matrix.
 
@@ -31,7 +31,7 @@ Another related criterion is SSTRESS criterion which involves squares of dissimi
 
 
 \subsubsection{Sammon Mapping Criterion}
-This is a specific case of the Stress criterion where the weights $w_{st}$ are set to be $\delta_{st}^{-1} \{\sum_{k<l}\delta_{kl} \}^{-1}$. These set of weights normalizes the squared discrepancies in the stress criterion by the magnitude of the original dissimilarities, so that discrepancy terms for the larger dissimilarities do not dominate the optimization of the criterion function. As a result, small $\delta_{st}$ are preserved.
+This is a specific case of the Stress criterion where the weights $w_{st}$ are set to be $\delta_{st}^{-1} \{\sum_{k<l}\delta_{kl} \}^{-1}$. These set of weights normalizes the squared discrepancies in the stress criterion by the magnitude of the original dissimilarities, so that discrepancy terms for the larger dissimilarities do not dominate the optimization of the criterion function. As a result, small $\delta_{st}$ are preserved as well as large $\delta_{st}$.
 
 \subsection{Ordinal (Nonmetric) MDS}
  For Nonmetric MDS, $f(\cdot)$    is allowed to be  any monotonic transformation. Specifically in psychometric applications of MDS, the assumption that the dissimilarities are a scaled-shifted version of the ``true"  dissimilarity is an unwarranted assumption. It is possible the existence of a ``true" dissimilarity is in question. Even if the dissimilarities are physical distances, humans tend to have biased estimates of those distances (long distances are usually underestimated ). \cite{Trosset1998}. This variant of MDS is also called ordinal, because what is preserved is the rank of dissimilarities, not their magnitude.
@@ -83,10 +83,6 @@ Summing the three equations and replacing with  $\|\bm{x}_{s}   \|^2 +\|\bm{x}_{
 
 
 
-
-
-
-
 Some of the sums in the above expression can be written in matrix notation,
 \begin{align*}
 \bm{1}^{T}\Delta^2= \frac{1}{n}\sum_s{ \delta_{st}^2}\\
@@ -104,15 +100,10 @@ XX^T = \frac{-1}{2} \{(I- \frac{1}{n}\bm{1}\bm{1}^{T})\Delta^2 (I- \frac{1}{n}\b
 \end{align*}
 where $X$ is $n \times d$
 
-
-
-
-
-
-
-
-\section{Effect of Noise}
-
+\section{Effect of Perturbations}
+  To determine how robust the embeddings are to error in dissimilarity measurements, it is necessary to carry out perturbation analysis. Two papers by Sibson \cite{Sibson_perturbational1979} investigate how small changes in the dissimilarity matrix change the configuration matrix obtained by classical MDS embedding.
 \section{Maximum Likelihood MDS and MULTISCALE}
+Various probabilistic MDS methods have been proposed, with specific error assumptions. In \cite{MacKay1989}, Mackay assumes the ``original'' coordinates have normally distributed errors independent in each dimension in the embedded space (The correlated error case can be simplified to the independent error case). As a result, the individiual dissimilarities has the same distribution as a weighted sum of independent chi-square distributed  random variables. Estimation of the embedding coordinates can be carried out using maximum likelihood.
 \section{3-way MDS}
+
 

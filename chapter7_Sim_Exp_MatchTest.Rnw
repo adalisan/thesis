@@ -175,13 +175,13 @@ For the noisy version of the Gaussian setting at allowable type I error 0.05 for
 
 The same pair of plots are included for various values of parameters $p$,$q$ ,$r$ and $c$.
 
-Speculation on the effects of parameters in Gaussian/ Dirichlet settings
+Exploratory analysis on the effects of parameters in Gaussian/ Dirichlet settings
 
  Another avenue for investigation is  how $w^{*}$ depends on the parameters of the distributions of $\mathbf{F}_m$ and  $\mathbf{F}_u$ . 
  Let us first investigate the effect of parameters on the empirical distribution of the test statistic, under null and alternative.
  For our Multivariate Normal and Dirichlet models, consider the signal and noise dimensions $p$ and $q$ respectively.
   An increase in $p$ leads to the inflation of the test statistic under alternative  \ref{fig-stats-p},
-<<null-alt,  echo=FALSE,fig=FALSE,results=hide,cache=TRUE,eval=FALSE >>=
+<<null-alt,  echo=FALSE,fig=FALSE,results='hide',cache=TRUE,eval=FALSE>>=
 source("./src/Null.Alt.Stat.for.JOFC.R")
 oos.stats<-compute.stats.for.params(params.list,"p_r")
 
@@ -197,7 +197,7 @@ it also effects the distribution of the test statistic under null. As $p$ increa
  in which the matched pairs are highly correlated increases.  
 
 
-<<fig-stats-p, echo=FALSE,fig=TRUE,results=hide,cache=FALSE>>=
+<<fig-stats-p, echo=FALSE,fig=TRUE,results='hide',cache=FALSE>>=
   fix.i <-1
 
    par(lty=1)
@@ -229,7 +229,7 @@ Consider  an increase in $r$, this will cause the test statistic under null to b
 
 
 
-<<fig-stats-r, echo=FALSE,fig=TRUE, results=hide, cache=FALSE >>=
+<<fig-stats-r, echo=FALSE,fig=TRUE, results='hide', cache=FALSE >>=
 	
 par(lty=1)
 first.est<- density(oos.diss.all.params.0[1,fix.i,])
@@ -253,7 +253,7 @@ first.est<- density(oos.diss.all.params.0[1,fix.i,])
 Consider increases in $c$, which will increase the dissimilarity  both between matched and between unmatched vectors. 
 
 
-<<stats-c-sim, echo=FALSE,fig=FALSE,results=hide,cache=TRUE >>=
+<<stats-c-sim, echo=FALSE,fig=FALSE,results='hide',cache=TRUE >>=
 source("./src/Null.Alt.Stat.for.JOFC.R")
 
 debug.mode<-FALSE
@@ -290,7 +290,7 @@ oos.diss.all.params.c.A <- oos.stats.c$stats.A
 sfStop()
 @
 
-<<fig-stats-c, echo=FALSE,fig=TRUE,results=hide,cache=FALSE >>=
+<<fig-stats-c, echo=FALSE,fig=TRUE,results='hide',cache=FALSE >>=
 
 fix.i<-1
 first.est<- density(oos.diss.all.params.c.0[1,fix.i,])
@@ -318,7 +318,7 @@ first.est<- density(oos.diss.all.params.c.0[1,fix.i,])
 
 Consider increases in $q$,  the test statistic under both null and alternative is inflated\ref{fig-stats-q}. 
 
-<<stats-q-sim, echo=FALSE,fig=FALSE,results=hide,cache=TRUE >>=
+<<stats-q-sim, echo=FALSE,fig=FALSE,results='hide',cache=TRUE >>=
 source("./src/Null.Alt.Stat.for.JOFC.R")
 
 debug.mode<-FALSE
@@ -352,7 +352,7 @@ oos.diss.all.params.q.A <- oos.stats.q$stats.A
 sfStop()
 @
 
-<<fig-stats-q, echo=FALSE,fig=TRUE,results=hide,cache=FALSE >>=
+<<fig-stats-q, echo=FALSE,fig=TRUE,results='hide',cache=FALSE>>=
 
 fix.i<-1
 first.est<- density(oos.diss.all.params.q.0[1,fix.i,])
@@ -557,7 +557,3 @@ There are a lot  of interesting questions to ponder about the number of known co
 \includegraphics{bitflip_JOFC}
 \caption{Bitflip Simulations for JOFC \label{bitflipJOFC}}
 \end{figure}
-
-
-
-

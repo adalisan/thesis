@@ -1,0 +1,26 @@
+Dividing each equality by $\frac{1}{n}$ , $\frac{1}{n}$ and $\frac{1}{n^2}$ respectively and using the fact that $\sum{\bm{x}_{i}}=\bm{0}$
+\begin{align*}
+\frac{1}{n}\sum_s{ \delta_{st}^2} &= \frac{1}{n}\sum_s{\|\bm{x}_{s}   \|^2 } +  \|\bm{x}_{t}   \|^2 \quad   t=1,\ldots,n\\
+\frac{1}{n}\sum_t{ \delta_{st}^2} &= \frac{1}{n}\sum_t{\|\bm{x}_{t}   \|^2 }+  \|\bm{x}_{s}   \|^2 \quad   s=1,\ldots,n\\
+\frac{1}{n^2}\sum_{st}{ \delta_{st}^2} &= \frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} \\
+\end{align*}
+Reorganizing terms,
+\begin{align*}
+\|\bm{x}_{t}   \|^2 } &= \frac{1}{n}\sum_s{ \delta_{st}^2} + \frac{1}{n}\sum_s{\|\bm{x}_{s}   \|^2   } \\
+\|\bm{x}_{s}   \|^2 } &= \frac{1}{n}\sum_t{ \delta_{st}^2} + \frac{1}{n}\sum_t{\|\bm{x}_{t}   \|^2  }\\
+0 &= -\frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2} \\
+\end{align*}
+
+Summing the three equations and replacing with  $\|\bm{x}_{s}   \|^2 +\|\bm{x}_{t}\|^2$ in original equation
+
+\[
+\delta_{st}^2= \frac{1}{n}\sum_s{ \delta_{st}^2} + \frac{1}{n}\sum_s{\|\bm{x}_{s}}   \|^2 + \frac{1}{n}\sum_t{ \delta_{st}^2} + \frac{1}{n}\sum_t{\|\bm{x}_{t}}  \|^2  -\frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2}   -2\bm{x}_{s}   \bm{x}_{t}   \|
+\]
+
+\[
+\delta_{st}^2= \frac{1}{n}\sum_s{ \delta_{st}^2} +  \frac{1}{n}\sum_t{ \delta_{st}^2}  +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2}  -2\bm{x}_{s}   \bm{x}_{t}   \|
+\]
+
+\[
+\bm{x}_{s}   \bm{x}_{t} = \frac{-1}{2} \{\delta_{st}^2 - \frac{1}{n}\sum_s{ \delta_{st}^2} -  \frac{1}{n}\sum_t{ \delta_{st}^2}  +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2 }     \| \}
+\]

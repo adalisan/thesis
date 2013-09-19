@@ -1,0 +1,103 @@
+% This template was originally by R. Jacob Vogelstein
+% Updated on March 1, 2010 by Noah J. Cowan
+
+
+\documentclass[12pt,oneside,final]{thesis}
+\usepackage{Sweave}
+\usepackage{cite}
+
+\usepackage{amssymb,amsmath,amsthm,amscd}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\graphicspath{{./figs/}}
+\usepackage{hyperref, mathrsfs, bm}
+
+\usepackage{url}
+\renewcommand{\thesubfigure}{}
+% justifying
+\usepackage{ragged2e}
+
+
+
+
+\graphicspath{{./}{./../DataFusion/}{./../DataFusion/graphs/}{./../DataFusion-graphmatch/graphs/}{./../VertexCorrespondence/graphs/}}
+
+\usepackage{fixltx2e}
+\usepackage{array}
+% wrapfig is fragile: use sparingly
+\usepackage{wrapfig} 
+%\usepackage{times}  % Use this for ugly fonts
+\usepackage{verbatim}
+
+\usepackage{fancyhdr}    % Use nice looking headers along with the required footer page numbers   
+%\usepackage[hypertex]{hyperref}
+
+%Define the header/footer style
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{15pt}
+\lhead{\leftmark}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{% Redefine ``plain'' style for chapter boundaries
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[C]{\thepage} % except the center
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{lem}{Lemma}
+
+\input{common.tex}
+
+%\tolerance=10000
+
+%\makeglossary % enable the glossary
+
+\begin{document}
+\SweaveOpts{concordance=TRUE,eval=FALSE}
+
+\title{JHU THESIS TEMPLATE}
+\author{Sancar Adali}
+\degreemonth{May}
+\degreeyear{2013} 
+\dissertation
+\doctorphilosophy
+\copyrightnotice
+
+
+% add your chapters, best way is to have separate TeX files for each chapter
+
+\SweaveInput{chapter0.Rnw}
+\SweaveInput{chapter1.Rnw}
+\SweaveInput{chapter2_related_work.Rnw}
+\SweaveInput{chapter3_MDS.Rnw}
+\SweaveInput{chapter9_Match_test.Rnw}
+\SweaveInput{chapter4_FidComm.Rnw}
+\SweaveInput{chapter8_MDS_multmin.Rnw}
+\SweaveInput{chapter5_PCA_Procrustes.Rnw}
+\SweaveInput{chapter6_CCA.Rnw}
+\SweaveInput{chapter8_MDS_multmin.Rnw}
+\SweaveInput{chapter7_Sim_Exp_MatchTest.Rnw}
+\SweaveInput{chapter10_Graph_Match.Rnw}
+\SweaveInput{chapter12_Grassmannian.Rnw}
+
+\include{appendix}
+
+%% REFERENCES
+
+% if you use BIBTEX
+\bibliographystyle{IEEEtran}
+\bibliography{priebe-thesis-JOFC}
+
+\begin{vita}
+
+\begin{wrapfigure}{l}{0pt}
+\includegraphics[width=2in,height=2.5in,clip,keepaspectratio]{rjvheadshot}
+\end{wrapfigure}
+
+
+
+\end{vita}
+\end{document}

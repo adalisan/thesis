@@ -78,9 +78,10 @@ Another feature of the plot is the U-shape of the curve for diffusion-distance b
 
   
 
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics{graphs/FidCommPapergraph-plot-3} 
-\end{knitrout}
+\begin{figure}
+\centering
+\includegraphics{graphs/FidCommPapergraph-plot-3} 
+\end{figure}
 
 
 
