@@ -10,9 +10,35 @@
   timestamp = {2013.01.04}
 }
 
+@ARTICLE{Amini2009,
+  author = {Amini, Massih-Reza and Goutte, Cyril},
+  title = {{A co-classification approach to learning from multilingual corpora}},
+  journal = {Machine Learning},
+  year = {2009},
+  volume = {79},
+  pages = {105--121},
+  number = {1-2},
+  month = may,
+  abstract = {Abstract  We address the problem of learning text categorization from
+	a corpus of multilingual documents. We propose a multiview learning,
+	co-regularization approach, in which we consider each language as
+	a separate source, and minimize a joint loss that combines monolingual
+	classification losses in each language while ensuring consistency
+	of the categorization across languages. We derive training algorithms
+	for logistic regression and boosting, and show that the resulting
+	categorizers outperform models trained independently on each language,
+	and even, most of the times, models trained on the joint bilingual
+	data. Experiments are carried out on a multilingual extension of
+	the RCV2 corpus, which is available for benchmarking.},
+  doi = {10.1007/s10994-009-5151-5},
+  issn = {0885-6125},
+  mendeley-groups = {Data Fusion and Transfer Learning},
+  url = {http://www.springerlink.com/content/j8l1445j04x20703}
+}
+
 @ARTICLE{weightedDICE,
-  author = {Angelelli, Jean-Baptiste and Baudot, AnaÃ¯s and Brun, Christine
-	and GuÃ©noche, Alain},
+  author = {Angelelli, Jean-Baptiste and Baudot, AnaÃƒÂ¯s and Brun, Christine
+	and GuÃƒÂ©noche, Alain},
   title = {Two local dissimilarity measures for weighted graphs with application
 	to protein interaction networks},
   journal = {Advances in Data Analysis and Classification},
@@ -27,6 +53,19 @@
   language = {English},
   publisher = {Springer-Verlag},
   url = {http://dx.doi.org/10.1007/s11634-008-0018-3}
+}
+
+@ARTICLE{Ben-David_Dom_Adapt2007,
+  author = {Ben-David, Shai and Blitzer, J and Crammer, K and Pereira, F},
+  title = {{Analysis of representations for domain adaptation}},
+  journal = {Advances in Neural Information Processing Systems},
+  year = {2007},
+  volume = {19},
+  pages = {137},
+  file = {:F$\backslash$:/Users/Sancar/Documents/Articles/Ben-David et al. - 2007 - Analysis of representations for domain adaptation.pdf:pdf},
+  mendeley-groups = {Data Fusion and Transfer Learning},
+  publisher = {Citeseer},
+  url = {http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.71.7478\&amp;rep=rep1\&amp;type=pdf}
 }
 
 @BOOK{borg+groenen:1997,
@@ -87,6 +126,21 @@
 	algorithm is analyzed theoretically and empirically to show that
 	our iterative algorithm can converge well to an accurate model.},
   url = {http://portal.acm.org/citation.cfm?id=1273521}
+}
+
+@ARTICLE{DaumeIII2006,
+  author = {{Daum\'{e} III}, H. and Marcu, Daniel},
+  title = {{Domain adaptation for statistical classifiers}},
+  journal = {Journal of Artificial Intelligence Research},
+  year = {2006},
+  volume = {26},
+  pages = {101--126},
+  number = {1},
+  file = {:F$\backslash$:/Users/Sancar/Documents/Articles//Daum\'{e} III, Marcu - 2006 - Domain adaptation for statistical classifiers.pdf:pdf},
+  issn = {1076-9757},
+  mendeley-groups = {Data Fusion and Transfer Learning},
+  publisher = {AI Access Foundation},
+  url = {http://scholar.google.com/scholar?hl=en\&btnG=Search\&q=intitle:Domain+Adaptation+for+Statistical+Classifiers\#0}
 }
 
 @MANUAL{procOPAref,
@@ -298,7 +352,7 @@
 	developed for finding the canonical variables associated with the
 	different approaches. Some practical considerations and an example
 	are also included.},
-  copyright = {Copyright © 1971 Biometrika Trust},
+  copyright = {Copyright Â© 1971 Biometrika Trust},
   issn = {00063444},
   jstor_articletype = {research-article},
   jstor_formatteddate = {Dec., 1971},
@@ -408,6 +462,21 @@
   url = {http://dx.doi.org/10.1002/sam.11142}
 }
 
+@ARTICLE{MacKay1989,
+  author = {MacKay, D.B.},
+  title = {{Probabilistic multidimensional scaling: An anisotropic model for
+	distance judgments• 1}},
+  journal = {Journal of Mathematical Psychology},
+  year = {1989},
+  volume = {33},
+  pages = {187--205},
+  number = {2},
+  file = {:F$\backslash$:/Users/Sancar/Documents/Articles/MacKay - 1989 - Probabilistic multidimensional scaling An anisotropic model for distance judgments• 1.pdf:pdf},
+  mendeley-groups = {probabilistic mds},
+  publisher = {Elsevier},
+  url = {http://www.sciencedirect.com/science/article/pii/0022249689900308}
+}
+
 @BOOK{Mardia1980,
   title = {{Multivariate Analysis (Probability and Mathematical Statistics)}},
   publisher = {Academic Press},
@@ -468,6 +537,61 @@
   year = {2010},
   note = {R package version 1.17-3},
   url = {http://CRAN.R-project.org/package=vegan}
+}
+
+@ARTICLE{Pan2008a,
+  author = {Pan, Sinno Jialin and Kwok, James T. and Yang, Qiang},
+  title = {{Transfer learning via dimensionality reduction}},
+  journal = {Aaai Conference On Artificial Intelligence},
+  year = {2008},
+  abstract = {Transfer learning addresses the problem of how to utilize plenty of
+	labeled data in a source domain to solve related but different problems
+	in a target domain, even when the training and testing problems have
+	different distributions or features. In this paper, we consider transfer
+	learning via dimensionality reduction. To solve this problem, we
+	learn a low-dimensional latent feature space where the distributions
+	between the source domain data and the target domain data are the
+	same or close to each other. Onto this latent feature space, we project
+	the data in related domains where we can apply standard learning
+	algorithms to train classification or regression models. Thus, the
+	latent feature space can be treated as a bridge of transferring knowledge
+	from the source domain to the target domain. The main contribution
+	of our work is that we propose a new dimensionality reduction method
+	to find a latent space, which minimizes the distance between distributions
+	of the data in different domains in a latent space. The effectiveness
+	of our approach to transfer learning is verified by experiments in
+	two real world applications: indoor WiFi localization and binary
+	text classification.},
+  annote = { From Duplicate 1 ( Transfer learning via dimensionality reduction
+	- Pan, Sinno Jialin; Kwok, James T.; Yang, Qiang ) From Duplicate
+	3 ( Transfer Learning via Dimensionality Reduction - ) undefined
+	From Duplicate 2 ( Transfer Learning via Dimensionality Reduction
+	- Pan, Sinno Jialin; Kwok, James T.; Yang, Qiang ) From Duplicate
+	1 ( Transfer learning via dimensionality reduction - Pan, Sinno Jialin;
+	Kwok, James T.; Yang, Qiang ) From Duplicate 3 ( Transfer Learning
+	via Dimensionality Reduction - ) undefined From Duplicate 2 ( Transfer
+	Learning via Dimensionality Reduction - ) undefined },
+  file = {:F$\backslash$:/Users/Sancar/Documents/Articles//Pan, Kwok, Yang - 2008 - Transfer learning via dimensionality reduction.pdf:pdf},
+  mendeley-groups = {Data Fusion and Transfer Learning,could be important},
+  url = {http://portal.acm.org/citation.cfm?id=1620163.1620177 http://portal.acm.org/citation.cfm?id=1620177 https://www.aaai.org/Papers/AAAI/2008/AAAI08-108.pdf}
+}
+
+@ARTICLE{TransLearnSurvey,
+  author = {Sinno Jialin Pan and Qiang Yang},
+  title = {A Survey on Transfer Learning},
+  journal = {Knowledge and Data Engineering, IEEE Transactions on},
+  year = {2010},
+  volume = {22},
+  pages = {1345-1359},
+  number = {10},
+  doi = {10.1109/TKDE.2009.191},
+  issn = {1041-4347},
+  keywords = {knowledge engineering;learning by example;optimisation;unsupervised
+	learning;data mining;inductive transfer learning;knowledge transfer;machine
+	learning;transductive transfer learning;unsupervised transfer learning;Data
+	mining;Knowledge engineering;Knowledge transfer;Labeling;Learning
+	systems;Machine learning;Machine learning algorithms;Space technology;Testing;Training
+	data;Transfer learning;data mining.;machine learning;survey}
 }
 
 @INPROCEEDINGS{PantelLin,
@@ -592,6 +716,37 @@
   url = {http://portal.acm.org/citation.cfm?id=1820776.1820795}
 }
 
+@ARTICLE{Sibson_perturbational1979,
+  author = {Sibson, Robin},
+  title = {Studies in the Robustness of Multidimensional Scaling: Perturbational
+	Analysis of Classical Scaling},
+  journal = {Journal of the Royal Statistical Society. Series B (Methodological)},
+  year = {1979},
+  volume = {41},
+  pages = {pp. 217-229},
+  number = {2},
+  abstract = {This series of papers is devoted to the investigation of the extent
+	to which the accuracy of operation of multidimensional scaling methods
+	can be put onto a quantitative footing. This second paper investigates
+	the response of the classical scaling method to small errors by making
+	expansions in powers of the error term, and retaining the lowest
+	non-cancelling power. Effects on individual eigenvalues and eigenvectors
+	are considered, and shown to lead to useful auxiliary techniques
+	for choice of dimensionality or for correction of bias. Procrustes
+	statistics, as developed in the first paper of this series, are used
+	to provide an overall picture of the error response; a perturbation
+	theory for these is worked out, and is shown to lead to an approximate
+	distribution theory. The details are worked out illustratively for
+	a simple type of error structure.},
+  copyright = {Copyright © 1979 Royal Statistical Society},
+  issn = {00359246},
+  jstor_articletype = {research-article},
+  jstor_formatteddate = {1979},
+  language = {English},
+  publisher = {Wiley for the Royal Statistical Society},
+  url = {http://www.jstor.org/stable/2985036}
+}
+
 @ARTICLE{Sibson,
   author = {Sibson, Robin},
   title = {{Studies in the Robustness of Multidimensional Scaling: Procrustes
@@ -681,7 +836,7 @@
   journal = {Computing Science and Statistics},
   year = {1998},
   volume = {29},
-  pages = {148�152,},
+  pages = {148–152,},
   owner = {Sancar},
   timestamp = {2013.01.16}
 }
@@ -827,10 +982,5 @@
   number = {2},
   bibsource = {DBLP, http://dblp.uni-trier.de},
   ee = {http://dx.doi.org/10.1016/j.csda.2005.09.010}
-}
-
-@MISC{,
-  owner = {Sancar},
-  timestamp = {2013.01.16}
 }
 

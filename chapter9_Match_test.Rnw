@@ -18,7 +18,7 @@
 structure of  Wikipedia  articles, photographs take under different illumination conditions. In each case, we have an intuitive notion of ``matchedness'': for photographs take under different illumination conditions, ``matched'' means they are of the same person. For a collection of linked Wikipedia articles, the different ``conditions''  are  the textual content and hyperlink graph structure, ``matched'' means a text document and  a vertex  corresponds to the same Wikipedia article. 
 
  
-The problem can be formally described
+The problem can be formally described as follows:
 
 
 Let $(\Xi,\mF,\mP)$ be a probability space,
@@ -65,10 +65,9 @@ in the common representation space $\mX$.
 
  This setting is visualized in  Figure ~\ref{fig:multisensor}.
 
-
-\begin{figure}[h]
+\begin{figure}
   \begin{center}
-    \includegraphics[ scale=4.25]{gen-model-orig-proj.pdf}
+\includegraphics[scale=0.75]{gen-model-orig-proj.pdf}
     \caption{Maps $\pi_k$ induce disparate data spaces $\Xi_k$ from ``object space'' $\Xi$.
     Manifold matching involves using matched data $\{\bm{x}_{ik}\}$
     to simultaneously learn maps $\rho_1,\ldots,\rho_K$
@@ -130,4 +129,157 @@ We will use $x_{ik}$ to denote the --possibly notional--  observation  for the $
 \tau=d\left(\hat{y}_{1},\hat{y}_{2}\right)\label{teststat}
 \] for the two ``objects'' represented by  $\mathcal{D}_1$ and $\mathcal{D}_2$.  For large values of $\tau$, the null hypothesis will be rejected. 
    If  dissimilarities between matched objects are smaller than dissimilarities between unmatched objects with large probability, and the embeddings preserve this stochastic ordering,  we could reasonably expect the test statistic to yield large  power. 
+   
+   
+
+\section{Definition of  $w^{*}$}
+
+\begin{remark}
+In our notation, $(.)$  denotes  either $(m)$  or   $(u)$. In the former case, an expression refers to values under  ``matched'' hypothesis, in the latter, the expression refers to values under  ``unmatched''   hypothesis.
+\end{remark}
+Let us denote the test dissimilarities ($\mathcal{D}_1$, $\mathcal{D}_2$)  by  ($\mathcal{D}_1^{(m)}$, $\mathcal{D}_2^{(m)}$)  under the  ``matched'' hypothesis, and  by ($\mathcal{D}_1^{(u)}$, $\mathcal{D}_2^{(u)}$)  under the alternative. The out-of-sample embedding of ($\mathcal{D}_1^{(m)}$, $\mathcal{D}_2^{(m)}$) involves the  augmentation of  the omnibus matrix $M$, which consists of $n$ matched  pairs of dissimilarities,  with ($\mathcal{D}_1^{(m)}$, $\mathcal{D}_2^{(m)}$). The resulting augmented  $(2n+2)\times (2n+2)$ matrix  has the form:
+
+ \begin{equation}
+\Delta^{(m)}=  \left[ \begin{array}{cccc}
+          \multicolumn{2}{c}{\multirow{2}{*}{\Huge{$M$}}} &  \mathcal{D}_1^{(m)} &\vec{\mathcal{D}}_{NA}\\
+        & &  \vec{\mathcal{D}}_{NA}   & \mathcal{D}_2^{(m)} \\
+  			\mathcal{D}_1^{(m)T} & \vec{\mathcal{D}}_{NA}^T  &  0 & \mathcal{D}_{NA} \\
+         \vec{\mathcal{D}}_{NA}^T & \mathcal{D}_2^{(m)T} & \mathcal{D}_{NA} &0\\
+     \end{array}  \right].     \label{aug_omnibus} 
+\end{equation}  where
+the scalar $\mathcal{D}_{NA}$ and    $\vec{\mathcal{D}}_{NA}$ (a vector of NAs that has length $n$)   represent dissimilarities that are not available. 
+In our JOFC procedure, these unavailable entries in $\Delta^{(m)}$ are either imputed using other dissimilarities that are available, in the way described before equation \eqref{raw-stress}, or ignored in the embedding optimization. For a simpler  notation, let us assume it is the former case. Also note that $\Delta^{(u)}$  has the same form as $\Delta^{(m)}$ where $\mathcal{D}_k^{(m)}$ is replaced by $\mathcal{D}_k^{(u)}$.
+
+We define the dissimilarity matrices \{$\Delta^{(m)},\Delta^{(u)}$\} to be  two matrix-valued random variables: $\Delta^{(m)}:\Omega \rightarrow \mathbf{M}_{(2n+2)\times (2n+2)} $ and  $\Delta^{(u)}:\Omega \rightarrow \mathbf{M}_{(2n+2)\times (2n+2)} $) for the appropriate sample  space $(\Omega)$.
+\begin{remark}
+Suppose the objects in $k^{th}$  condition  can be represented as points in a measurable space $\Xi_k$, and the dissimilarities in $k^{th}$ condition are given by  a dissimilarity measure $\delta_k$ acting on pairs of points in $\Xi_k$. Assume $\mathcal{P}_{(m)}$ is the joint probability distribution over matched objects, while the joint distribution of unmatched objects \{$k=1,\ldots,K$\}  is $\mathcal{P}_{(u)}$. Assuming the data are i.i.d., under the two hypotheses (``matched'' and ``unmatched'', respectively), the $n+1$ pairs of objects are governed  by the product distributions $\{\mathcal{P}_{(m)}\}^n \times \mathcal{P}_{(m)} $ and $\{\mathcal{P}_{(m)}\}^n \times \mathcal{P}_{(u)} $.  The distributions of $\Delta^{(m)}$ and $\Delta^{(u)}$ are the induced probability distributions of  these product distributions (induced by the  dissimilarity measure $\delta_k$ applied to  objects in $k^{th}$ condition \{$k=1,\ldots,K$\}).
+\end{remark}
+
+
+%is embedded in $d$-dimensional space with the constraint that the embedding of the first $2n$ points is the same as the embedding of $M$:
+
+
+ We now consider the embedding of $\Delta^{(m)}$ and $\Delta^{(u)}$ with the criterion function  $\sigma_W(\widetilde{X}; \Delta^{(.)})$. The arguments of the function are  $\widetilde{X}= \left[
+\begin{array}{c}
+{\widetilde{\mathcal{T}}} \\
+\widetilde{y}_{1}^{(.)} \\
+\widetilde{y}_{2}^{(.)}
+\end {array}
+\right]$ where ${\widetilde{\mathcal{T}}}$ is the argument for the in-sample embedding of the first $n$ pairs of matched points, and
+ $\{\widetilde{y}_{1}^{(.)} \}$ and $\{\widetilde{y}_{2}^{(.)} \}$ are the arguments for the embedding coordinates of the matched  or unmatched pair,
+and the omnibus dissimilarity matrix $\Delta^{(.)}$ is equal to  $\Delta^{(m)}$  (or $\Delta^{(u)}$) for the embedding of the  matched (unmatched) pair. Note that we use the simple weighting scheme, so with a slight abuse of notation, we rewrite the criterion function as  $\sigma_w(\widetilde{X}; \Delta^{(.)})$ where $w$ is a scalar parameter.
+The embedding coordinates for the matched or unmatched pair  ${\hat{y}_{1}^{(.)},\hat{y}_{2}^{(.)}}$ are given by
+ \[
+{\hat{y}_{1}^{(.)},\hat{y}_{2}^{(.)}}
+=\argmin_{\widetilde{y}_{1}^{(.)}, \widetilde{y}_{2}^{(.)}}\left[\min_{\widetilde{\mathcal{T}}}
+{\sigma_w\left(
+\left[
+\begin{array}{c}
+{\widetilde{\mathcal{T}}} \\
+\widetilde{y}_{1}^{(.)} \\
+\widetilde{y}_{2}^{(.)}
+\end {array}
+\right]
+,
+\Delta^{(.)}
+\right)
+}
+\right].
+\]
+
+\begin{remark}
+ Note that the in-sample embedding of $\widetilde{\mathcal{T}}$ is necessary but irrelevant for the inference task, hence the minimization with respect to $\widetilde{\mathcal{T}}$ is denoted by  $\min$ instead $\argmin$. It can be considered as a nuisance paramater for our hypothesis testing.
+\end{remark}
+\begin{remark}
+ Note also that  all of the random variables following the embedding, such as $\{\hat{y}_{k}^{(.)}\}\!$,  are dependent on $w$; for the sake of simplicity, this will  be suppressed in the notation. 
+\end{remark}
+
+ Under reasonable assumptions, the embeddings $\Delta^{(m)} \rightarrow  \{\hat{y}_{1}^{(m)},\hat{y}_{2}^{(m)}\!\}$  and $\Delta^{(u)}\rightarrow \{\hat{y}_{1}^{(u)} , \hat{y}_{2}^{(u)}\}$ are measurable maps for all $w \in (0,1)$ \cite{measurable_Niemiro1992}. Then, the distances between the embedded points are random variables and we can define the test statistic $\tau$ as $d(\hat{y}_{1}^{(m)},\hat{y}_{2}^{(m)})$ under the null hypothesis  and $d(\hat{y}_{1}^{(u)},\hat{y}_{2}^{(u)})$ under the alternative. Under the null hypothesis, the distribution of the statistic is governed by the distribution of $\hat{y}_{1}^{(m)}$ and $\hat{y}_{2}^{(m)}$; under the alternative it is governed by  the distribution of $\hat{y}_{1}^{(u)}$ and $\hat{y}_{2}^{(u)}$.
+
+ Then, the statistical power as a function of $w$ is given by  \[\beta\left( w,\alpha\right)=1-F_{d \left(\hat{y}_{1}^{(u)},\hat{y}_{2}^{(u)}\right)} \left(F_{d\left(\hat{y}_{1}^{(m)},\hat{y}_{2}^{(m)}\right)}^{-1}(1-\alpha) \right)\] where $F_Y$ denotes  the   cumulative distribution function of  $Y$. The area under curve (AUC) measure  as a function of $w$ is defined as  
+\begin{equation} 
+AUC(w)=\int_{0}^{1}\! \beta\left( w,\alpha\right)\,\mathrm{d}\alpha \; . \label{AUC_def}
+\end{equation} 
+%\footnote{
+Although we might care about optimal $w$ with respect to  $\beta\left( w,\alpha\right)$ (with a fixed Type I error rate $\alpha$),  it will be more convenient to define $w^*$ in terms of the AUC function.
+%}
+
+ Finally, define $$w^{*}=\arg\max_w{AUC\left( w\right)}. $$
+
+ Some important questions about $w^*$ are  related to the nature of the AUC function.
+While finding an analytical expression for the value of $w^*$ is intractable, an estimate $\hat{w}^*$  based on  estimates of $AUC(w)$ %$\beta_{\alpha}(w^*)$
+ can be computed.  For the Gaussian setting described in  section \ref{subsec:GaussianSet}, a Monte Carlo simulation is performed  to find the estimate of $AUC(w)$ for different values of $w$.
+% $\beta_{\alpha}\left( w\right)$  at various values of $\alpha$ , 
+%which can be used to compute  values .
+
+\subsection{Continuity of $AUC(\cdot)$} 
+ Let $T_0(w)=d(\hat{y}_{1}^{{(m)}},\hat{y}_{2}^{{(m)}})$ and $T_a(w)=d(\hat{y}_{1}^{(u)},\hat{y}_{2}^{(u)})$ denote the value of the test statistic under null and alternative distributions  for the embedding with the simple weighting $w$.  %stochastic process whose sample path is  a function of $w$ where the randomness comes from $\Delta^{(m)}$, $\Delta^{(u)}$ and %$\mathcal{T}$ . 
+%Consider $\beta_{\alpha}(\cdot)$ as a function of $w$, which can be written as $P\left[T_a(\cdot)>c_{\alpha}(\cdot)\right]$ where $c_{\alpha}(\cdot)$ is the critical value for level $\alpha$. Instead of  $\beta_{\alpha}(\cdot)$  
+The AUC function can be written as $$AUC(w)=P\left[T_a(w)>T_0(w)\right]$$ where $T_a(\cdot)$ and $T_0(\cdot)$  can be regarded as  stochastic processes whose sample paths are functions  of $w$.  We will prove that $AUC(w)$ is continuous with respect to $w$.
+% except at a finite number of points in $(0,1)$.
+We start with this lemma from \cite{Raik1972}.
+
+\begin{lem}
+Let $z$ be a random variable. The functional $g(z;\gamma) = P\left[z \geq \gamma \right]$ is upper semi-continuous in probability with respect to $z$. Furthermore, if $P\left[z = \gamma \right]=0$, $g(z;\gamma)$ is continuous in probability with respect to $z$. \label{lemma_1}
+\end{lem}
+
+\begin{proof}
+Suppose $z_n$ converges to $z$ in probability. Then by definition, for any  $\delta>0$ and  $\epsilon>0$, $\exists	N\in\mathbb{Z^+}$ such that for all   $n \geq N$ 
+$$ Pr\left[\left|z_n-z\right| \geq \delta \right] \leq \epsilon.$$
+
+ The functional  $g(z;\gamma)$ is  non-increasing with respect to $\gamma$. Therefore, for $\delta>0$, 
+$g(z_n;\gamma) -g(z;\gamma) \geq g(z_n;\gamma) -g(z;\gamma-\delta) $. Furthermore, $g(z;\gamma)$ is left-continuous with respect to $\gamma$, so the difference between the two sides of the inequality can be made as small as desired.
+
+\begin{eqnarray}
+g(z_n;\gamma) - g(z;\gamma-\delta) & = &Pr\left[z_n\geq \gamma \right] -Pr\left[z \geq  \gamma - \delta \right] \label{prob_defn}\\
+& \leq &  Pr\left[\{z_n \geq \gamma \} \backslash \{z \geq \gamma - \delta \} \right] \label{set_diff}\\
+& \leq & Pr\left[\{\{z_n \geq \gamma \} \backslash \{z \geq \gamma - \delta \} \} \cap \{z_n \geq  z\} \right] \label{conjunct_with_set} \\
+& =  & Pr\left[\{z_n - z \geq \delta \} \right] \leq \epsilon. \label{upper_semicont}
+\end{eqnarray}
+ 
+Since $\epsilon$ and $\delta$ are arbitrary,
+ $ \limsup_{n \rightarrow \infty} ( {g(z_n;\gamma)}- g(z;\gamma) ) =  0$ for any $\delta>0, $ i.e. $g(z;\gamma)$ is upper semi-continuous.
+
+By arguments  symmetric to  \eqref{prob_defn}-\eqref{upper_semicont}, we can show that
+
+\begin{equation}
+g_(z;\gamma+\delta) - g(z_n;\gamma) \leq \epsilon. \label{lower_semicont}
+\end{equation}
+
+
+In addition, assume that  $P\left[z = \gamma \right]=0$. Then, $g(z;\gamma)$ is also right-continuous with respect to $\gamma$. Therefore, 
+$g(z_n;\gamma) -g(z;\gamma) \leq g(z_n;\gamma) -g(z;\gamma+\delta)$ and the difference between the two sides of the inequality can be made as small as possible. 
+Along with \eqref{lower_semicont}, this means that
+
+ \[ 
+\liminf_{n \rightarrow \infty} ( {g(z_n;\gamma)}- g(z;\gamma) ) = 0. 
+\] Therefore, $\lim_{n\rightarrow \infty}g(z_n;\gamma) = g(z;\gamma)$, i.e. $g(z;\gamma)$ is continuous in probability with respect to $z$.
+\end{proof}
+
+\begin{thm} \label{main_thm}
+Let $T(w)$ be  a stochastic process indexed by $w$ in the interval (0,1). Assume  the process is continuous in probability  (stochastic continuity)   at $w=w_0$,  i.e.
+\begin{equation} \forall a>0 \quad  \lim_{s \rightarrow w_0} Pr\left[\left|T(s)-T(w_0) \right| \geq a \right] = 0 
+\end{equation}
+for $ w_0\in (0,1)$. Furthermore, assume that $Pr\left[T(w_0)=0\right]=0$.
+
+Then, $Pr \left[ T(w) \geq 0\right]$ is continuous at $w_0$.
+\end{thm}
+
+\begin{proof}
+Consider any sequence $w_n \rightarrow w_0$. Let $z_n = T(w_n)$ and  $z=T(w_0)$ and choose $\gamma=0$. Since $T(w)$ is continuous in probability at $w_0$ and $Pr\left[T(w_0)=0\right]=0$, conditions for Lemma \ref{lemma_1} hold, i.e.\hspace{-.5em} as $w_n\rightarrow w_0$, $z_n$ converges in probability to $z=T(w_0)$. By  Lemma \ref{lemma_1}, we conclude  $g(T(w_n); 0 ) = Pr \left[ T(w_n) \geq 0\right]$ converges to $g(T(w_0);0)$. Therefore $g(T(w);0)$ is continuous with respect to $w$.
+\end{proof}
+
+
+\begin{cor}{
+ If $Pr[T_a(w)-T_0(w)=0]=0$ and $T_a(w)$, $T_0(w)$ are continuous in probability for all $w \in (0,1)$, then $AUC(w)=Pr\left[T_a(w)-T_0(w) >0 \right]$ is continuous with respect to $w$  in the interval $(0,1)$.}
+\end{cor}
+\begin{proof}
+
+Let $T(w)=T_a(w)-T_0(w).$ Then Theorem \ref{main_thm} applies everywhere in the interval (0,1).
+\end{proof}
+
+In any closed interval that is a subset of $(0,1)$, the AUC function is continuous and therefore attains its global maximum in that closed interval.
+
+ We do not have closed-form expressions for the null and alternative distributions of the test statistic $\tau$ (as a function of  $w$), so we cannot provide a rigorous proof of the uniqueness of $w^*$. However, for various data settings, simulations always resulted in \emph{unimodal}  estimates for the AUC function which indicates a unique $w^*$ value.
+
 

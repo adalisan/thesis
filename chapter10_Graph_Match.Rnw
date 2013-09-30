@@ -8,8 +8,8 @@
 An application of  the JOFC approach is   the graph matching problem. This inference task is similar to  the same semi-supervised setting as mentioned in \ref{sec:RelatedWork}, where matchings between some vertices in different graphs are known 
   and the task is to infer the correspondences between the remaining collection of vertices in the graphs.
  
-Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$ such that $\| V_1 \|=\| V_2 \|=$. Suppose there exists a bijection $f$   such that $f(v_1)=v_2$ and $\forall v' \in \mathbf{N}(v_1) f(v') \in \mathbf{N}(v_2)$. Then the graph matching problem  is to find this bijection. Even determining the existence  of such an isomorphism is also NP-hard.  Even if the bijection does not exist, an interesting problem is to find a bijection between the
-graphs which minimizes the degree  of mismatch  between the two graphs. For unweighted graphs, the degree of mismatch is characterized by the number of adjacency disagreements.  
+Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$ such that $\| V_1 \|=\| V_2 \|=$. Suppose there exists a bijection $f$   such that $f(v_1)=v_2$ and $\forall v' \in \mathbf{N}(v_1) f(v') \in \mathbf{N}(v_2)$. Then the graph matching problem  is to find this bijection. Even determining the existence  of such an isomorphism is also NP-hard.  Although the bijection might not exist,  the task of  finding a bijection between the
+graphs which minimizes the degree  of mismatch  between the two graphs is an interesting problem that has practical applications\cite{}. For unweighted graphs, the degree of mismatch is characterized by the number of adjacency disagreements.  For weighted graphs, it could be any monotonic transformation of the difference between the weights of matching edges.
 
 Suppose $A,B \in \mathcal{R}^{(r+s)\times (r+s)}$ are adjacency matrices for graphs $G_1$ and $G_2$
  partitioned as ($r$ rows then $s$ rows, $r$ columns then $s$ columns)
@@ -41,7 +41,7 @@ That is, we seek a permutation matrix $P \in \{0,1\}^{s \times s}$ such that $A=
 
 
 
-The  task of finding vertex correspondences is similar to  detecting matched pairs. It makes sense to use JOFC to embed the vertices in a commensurate space and make the matching decision  based on pairwise distances of embedded points. 
+The  task of finding vertex correspondences is similar to  detecting matched pairs in that it requires the quantification of distance between pairs (of vertices). It makes sense to use JOFC to embed the vertices in a commensurate space and make the matching decision  based on pairwise distances of embedded points. 
 JOFC approach can be used  for determining the pairwise distances between  the vertices of $A$ and $B$.
 The next step is to use the pairwise distances to find the optimal 1-1 matchings by the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total  cost which is the sum of the pairwise distances of matched nodes is minimized.
  
@@ -107,7 +107,7 @@ Wikipedia is our real-life dataset. It is possible to utilize both textual conte
  The dissimilarities based on the hyperlink graph of the collection of the articles are 
  for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$.  Further details about this dataset is available in \cite{Zhiliang_disparate}     
  
-
+\subsection{Charitynet graph}
 
 
 
