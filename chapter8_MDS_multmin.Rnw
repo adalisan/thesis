@@ -1,6 +1,6 @@
 \chapter{Multiple Minima in  Multidimensional Scaling }
 \label{sec:MultMinima}
-\chaptermark{Optional running chapter heading}
+\chaptermark{Multiple Minima in  Multidimensional Scaling}
 
 
 \subsubsection{ A short detour : Discontinuity in weighted raw stress OOS configurations\label{subsubsec:Discontinuity}}
@@ -13,7 +13,7 @@ Consider five in-sample points in $\mathbb{R}^2$ with locations $X_1=(0,0)$, $X_
  and $X_4=(1,0)$, $X_5=(.5,.5)$ and two out-of-sample  points with coordinates $X_6=(1,0)$ and $X_7=(0,1)$.
  \begin{figure}
  \centering
- \includegraphics[scale=0.35]{multmin-diag}
+\includegraphics[scale=0.85]{multmin-diag}
  \caption{True configuration of $X_{i}$, $i \in {1,\ldots,7}$}
 \label{original-config}
  \end{figure} 
@@ -41,14 +41,14 @@ The MDS criterion function is optimized starting with different initial configur
 \begin{figure}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[scale=0.35]{true-min-w-0_1.pdf}
+\includegraphics[scale=0.45]{true-min-w-0_1.pdf}
 
 \label{fig:Finalconfig-MultMin-w-0_1_a}
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[scale=0.35]{other-min-w-0_1.pdf}
+\includegraphics[scale=0.45]{other-min-w-0_1.pdf}
 
 \label{fig:Finalconfig-MultMin-w-0_1_b}
 \end{minipage}
@@ -65,7 +65,7 @@ The MDS criterion function is optimized starting with different initial configur
 \begin{figure}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[scale=0.35]{true-min-w0_5}
+\includegraphics[scale=0.45]{true-min-w0_5}
 
 \label{fig:Finalconfig-MultMin-w-0_5_a}
 
@@ -73,7 +73,7 @@ The MDS criterion function is optimized starting with different initial configur
 \hspace{0.5cm}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[scale=0.35]{other-min-w0_5.pdf}
+\includegraphics[scale=0.45]{other-min-w0_5.pdf}
 
 \label{fig:Finalconfig-MultMin-w-0_5_b}
 
@@ -87,7 +87,7 @@ The MDS criterion function is optimized starting with different initial configur
 \begin{figure}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[scale=0.35]{true-min-w0_8.pdf}
+\includegraphics[scale=0.45]{true-min-w0_8.pdf}
 \label{fig:Finalconfig-MultMin-w-0_8_a}
 
 
@@ -95,7 +95,7 @@ The MDS criterion function is optimized starting with different initial configur
 \hspace{0.5cm}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[scale=0.35]{other-min-w0_8.pdf}
+\includegraphics[scale=0.45]{other-min-w0_8.pdf}
 \label{fig:Finalconfig-MultMin-w-0_8_a}
 
 
@@ -111,14 +111,14 @@ The MDS criterion function is optimized starting with different initial configur
 \begin{figure}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[scale=0.35]{true-min-w0_81.pdf}
+\includegraphics[scale=0.45]{true-min-w0_81.pdf}
 
 
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[scale=0.35]{other-min-w0_81.pdf}
+\includegraphics[scale=0.45]{other-min-w0_81.pdf}
 
 
 \end{minipage}
@@ -134,14 +134,14 @@ The MDS criterion function is optimized starting with different initial configur
 \begin{figure}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[scale=0.35]{true-min-w0_84.pdf}
+\includegraphics[scale=0.45]{true-min-w0_84.pdf}
 
 \label{fig:figure2-1}
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[b]{0.5\linewidth}
 \centering
-\includegraphics[scale=0.35]{other-min-w0_84.pdf}
+\includegraphics[scale=0.45]{other-min-w0_84.pdf}
 
 
 \end{minipage}
@@ -154,8 +154,9 @@ The MDS criterion function is optimized starting with different initial configur
 
 % latex table generated in R 2.15.1 by xtable 1.7-0 package
 % Sat Jan 05 00:54:38 2013
-
+\begin{landscape}
 \begin{table}[ht]
+\def\h#1{\multicolumn{1}{p{3em}}{\mbox{}\hskip0pt #1}}
 \begin{center}
 
 \begin{tabular}{r|rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
@@ -192,7 +193,7 @@ Local min for real config. &  0.86 & 0.82 & 0.79 & 0.76 & 0.73 & 0.70 & 0.66 & 0
 
 \label{stress-val-table}
 \end{table}
-
+\end{landscape}
 
 
 \begin{comment}
@@ -259,4 +260,4 @@ Consider increases in $q$,  the test statistic under both null and alternative i
 \end{comment}
 
 
-\section[Optional table of contents heading]{Dependence of globality of local minima on $w$}
+%\section[Optional table of contents heading]{Dependence of globality of local minima on $w$}

@@ -1,6 +1,6 @@
-\chapter{Related work}
+\chapter{Related Work}
 \label{sec:Related}
-\chaptermark{Optional running chapter heading}
+\chaptermark{Related Work}
 
 
 

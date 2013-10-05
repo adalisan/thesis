@@ -1,4 +1,6 @@
 \chapter{Simulations and Experiments}
+\label{sec:simexp_results}
+\chaptermark{Simulations and Experiments}
 
 
 \section{Two data settings for Match Detection}
@@ -48,10 +50,10 @@ Measurements $X_{ik}$ carry the signal that is relevant to the exploitation task
 
 
 
-Let us first investigate the effect of parameters on the empirical distribution of the test statistic, under null and alternative.
- For our Multivariate Normal and Dirichlet models, consider the signal and noise dimensions $p$ and $q$ respectively.
-  An increase in $p$ leads to the inflation of the test statistic under alternative
-  \ref{fig-stats-p}.
+%Let us first investigate the effect of parameters on the empirical distribution of the test statistic, under null and alternative.
+% For our Multivariate Normal and Dirichlet models, consider the signal and noise dimensions $p$ and $q$ respectively.
+%  An increase in $p$ leads to the inflation of the test statistic under alternative
+%  \ref{fig-stats-p}.
 
 
 \section{Simulation Results\label{sec:Simulation Results}}
@@ -90,13 +92,13 @@ $
 
 
 \begin{figure}
-\includegraphics[scale=0.35]{MVN-FC-Tradeoff-OOS-c0_01.pdf}
+\includegraphics[scale=0.75]{MVN-FC-Tradeoff-OOS-c0_01.pdf}
 \caption{Power ($\beta$) vs Type I error ($\alpha$) plot for different $w$ values for the Gaussian setting (noisy case)}
 \label{fig:MVN-c001-power-alpha}
 \end{figure}
 
 \begin{figure}
-\includegraphics[scale=0.35]{MVN-FC-Tradeoff-OOS-c0.pdf}
+\includegraphics[scale=0.75]{MVN-FC-Tradeoff-OOS-c0.pdf}
 \caption{Power ($\beta$) vs Type I error ($\alpha$) plot for different $w$ values for the Gaussian setting (noiseless case)}
 \label{fig:MVN-c0-power-alpha}
 \end{figure}
@@ -109,13 +111,13 @@ $
 
 
 \begin{figure}
-\includegraphics[scale=0.35]{Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf}
+\includegraphics[scale=0.75]{Dirichlet-FC-Tradeoff-OOSc0-01-n150.pdf}
 \caption{Power ($\beta$) vs Type I error ($\alpha$) plot for different $w$ values for the Dirichlet setting (noisy case)}
 \label{fig:Dir-c001-power-alpha}
 \end{figure}
 
 \begin{figure}
-\includegraphics[scale=0.35]{Dirichlet-FC-Tradeoff-OOSc0-n150.pdf}
+\includegraphics[scale=0.75]{Dirichlet-FC-Tradeoff-OOSc0-n150.pdf}
 \caption{Power ($\beta$) vs Type I error ($\alpha$) plot for different $w$ values for the Dirichlet setting (noiseless case)}
 \label{fig:Dir-c0-power-alpha}
 \end{figure}
@@ -134,7 +136,7 @@ Setting p and q to 5 and 10, respectively, for $n=150$ and $m=150$, the average 
 
 \begin{comment}
 \begin{figure}
-\includegraphics[scale=0.35]{OOS-MVN-power-w-c0.pdf}
+\includegraphics[scale=0.75]{OOS-MVN-power-w-c0.pdf}
 \caption{$\beta$ vs $w$ plot for fixed $\alpha$ values for the Gaussian setting (noiseless case)}
 \label{fig:MVN-c0-beta-w}
 \end{figure}
@@ -148,12 +150,12 @@ Setting p and q to 5 and 10, respectively, for $n=150$ and $m=150$, the average 
 
 \end{comment}
 
-Note that in Figure \ref{fig:MVN-c001-power-w} for $\alpha=0.05$, $\beta_{\alpha=0.05}(w=0.99)\geq\beta_{\alpha=0.05}(w=0.5)$. However, for $\alpha=0.3$, $\beta_{\alpha=0.3}(w=0.99)\leq\beta_{\alpha=0.3}(w=0.5)$. This justifies our comment that  $w^{*}$  must be defined with respect to $\alpha$.
+Note that in Figure \ref{fig:MVN-c001-power-w} for $\alpha=0.05$, $\beta_{\alpha=0.05}(w=0.99)\geq\beta_{\alpha=0.05}(w=0.5)$. However, for $\alpha=0.3$, $\beta_{\alpha=0.3}(w=0.99)\leq\beta_{\alpha=0.3}(w=0.5)$. This justifies our comment that  $w^{*}$  must be defined with respect to  the AUC measure or a specific $\alpha$ value.
 
 
 \begin{comment}
 \begin{figure}
-\includegraphics[scale=0.35]{OOS-Dirichlet-power-w-c0.pdf}
+\includegraphics[scale=0.75]{OOS-Dirichlet-power-w-c0.pdf}
 \caption{$\beta$ vs $w$ plot for fixed $\alpha$ values for the Dirichlet setting(noiseless case)}
 \label{fig:fig7}
 \end{figure}
@@ -209,224 +211,10 @@ For the noisy version of the Gaussian setting at allowable type I error 0.05 for
  Another avenue for investigation is  how the parameters of the distribution of  data such as $p$ ,$q$, $r$, $c$ and $d$ affect the results. For example, it was  speculated that as $q$, the number of   ``noise" dimensions increases, the performance of  CCA approach would suffer, due to spurious correlations. This hypothesis was tested using simulated data with q=90. The  bundle of ROC curves in the Figure \ref{fig:largeq}.  Both CCA and  regularized CCA is not competitive with JOFC approach with the appropriate $w$ values. In fact, the ROC curve for CCA is not very distinct from  random guess line.
 
 \begin{figure}
-\includegraphics{MVN_JOFC_q_90_c_0_001}
-\caption{}
+\includegraphics[scale=0.8]{MVN_JOFC_q_90_c_0_001}
+\caption{Large Noise Dimension Behaviour of JOFC,P$\circ$ M and CCA approaches}
 \label{fig:largeq}
 \end{figure}
-
-
-\begin{comment}
-
-
-
-The same pair of plots are included for various values of parameters $p$,$q$ ,$r$ and $c$.
-
-Exploratory analysis on the effects of parameters in Gaussian/ Dirichlet settings
-
- Another avenue for investigation is  how $w^{*}$ depends on the parameters of the distributions of $\mathbf{F}_m$ and  $\mathbf{F}_u$ . 
- Let us first investigate the effect of parameters on the empirical distribution of the test statistic, under null and alternative.
- For our Multivariate Normal and Dirichlet models, consider the signal and noise dimensions $p$ and $q$ respectively.
-  An increase in $p$ leads to the inflation of the test statistic under alternative  \ref{fig-stats-p},
-<<null-alt,  echo=FALSE,fig=FALSE,results='hide',cache=TRUE,eval=FALSE>>=
-source("./src/Null.Alt.Stat.for.JOFC.R")
-oos.stats<-compute.stats.for.params(params.list,"p_r")
-
-oos.diss.all.params.0 <- oos.stats$stats.0
-oos.diss.all.params.A <- oos.stats$stats.A
-
-colors.vec<-c("red","blue","green","black","gold4",
-		"azure","darkgrey","purple")
-
-par(lwd=2)
-@
-it also effects the distribution of the test statistic under null. As $p$ increases, the probability of getting a new dimension in the matched vectors
- in which the matched pairs are highly correlated increases.  
-
-
-<<fig-stats-p, echo=FALSE,fig=TRUE,results='hide',cache=FALSE>>=
-  fix.i <-1
-
-   par(lty=1)
-   first.est<- density(oos.diss.all.params.0[1,fix.i,])
-  plot(first.est, col= colors.vec[1],
-		  lty=1,type='l',ylim=c(0,0.2),main="")
-  for (j in 2:5){
-    lines(density(oos.diss.all.params.0[1+(j-1)*4,fix.i,],bw=first.est$bw), col= colors.vec[j])
-  }
-
-  par(lty=3)
-  first.est.a<-density(oos.diss.all.params.A[1,fix.i,])
-  lines(first.est.a, col= colors.vec[1],lty=3,ylim=c(0,0.2))
-  for (j in 2:5){
-    lines(density(oos.diss.all.params.A[1+(j-1)*4,fix.i,],bw=first.est.a$bw), col= colors.vec[j])
-  }
-  legend.txt<- p.vals[1+(0:4)*5]
-  title("Null and alternative test statistics for different p values ")
-  legend("bottomright",legend=legend.txt,col=colors.vec[1:5],lty=rep(1,5))
-@
-
-
-
-
-Consider  an increase in $r$, this will cause the test statistic under null to be stochastically smaller,
- leading to a smaller critical value. So , a increase in priority of fidelity,
-  which corresponds to smaller $w$ might lead to the inflation of the test statistic under alternative, and therefore an increase in power.\ref{fig-stats-r}  
-
-
-
-<<fig-stats-r, echo=FALSE,fig=TRUE, results='hide', cache=FALSE >>=
-	
-par(lty=1)
-first.est<- density(oos.diss.all.params.0[1,fix.i,])
-	plot(first.est, col= colors.vec[1],
-		  lty=1,type='l', ylim=c(0,0.4),main="")
- 	for (j in 2:4){
-		lines(density(oos.diss.all.params.0[j,fix.i,],bw=first.est$bw), col= colors.vec[j])
-  	}
-	
-	par(lty=3)
-	first.est.a<-density(oos.diss.all.params.A[1,fix.i,])
-	lines(first.est.a, col= colors.vec[1])
-	for (j in 2:4){
-		lines(density(oos.diss.all.params.A[j,fix.i,],bw=first.est.a$bw), col= colors.vec[j])
-  	}
-	title("Null and alternative test statistics for different r values ")
-	legend.txt<- r.vals[1:4]
-	legend("bottomright",legend=legend.txt,col=colors.vec[1:4],lty=rep(1,4))
-@
-
-Consider increases in $c$, which will increase the dissimilarity  both between matched and between unmatched vectors. 
-
-
-<<stats-c-sim, echo=FALSE,fig=FALSE,results='hide',cache=TRUE >>=
-source("./src/Null.Alt.Stat.for.JOFC.R")
-
-debug.mode<-FALSE
-if(debug.mode){
-	n.vals<-c(50)
-	nmc<-3
-	s<-1
-}
-
-
-params$w.vals<-c(0.75)	
-p.vals<-rep(5,5)
-r.vals<-rep(50,5)
-q.vals<-rep(5,5)
-c.vals<- c(0,0.01,0.1,0.2,0.5)
-vary.param<-"c"
-
-param.index.count<-length(c.vals)
-params.list <- rep(list(params),param.index.count)
-
-
-
-for (i in (1:length(c.vals))){
-	params.list[[i]]$r <- r.vals[i]
-	params.list[[i]]$p <- p.vals[i]
-	params.list[[i]]$q <- q.vals[i]
-	params.list[[i]]$c <- c.vals[i]
-}
-
-debug.mode <- FALSE
-oos.stats.c<-compute.stats.for.params(params.list,"c")
-oos.diss.all.params.c.0 <- oos.stats.c$stats.0
-oos.diss.all.params.c.A <- oos.stats.c$stats.A
-sfStop()
-@
-
-<<fig-stats-c, echo=FALSE,fig=TRUE,results='hide',cache=FALSE >>=
-
-fix.i<-1
-first.est<- density(oos.diss.all.params.c.0[1,fix.i,])
-	par(lty=1)
-  plot(first.est, col= colors.vec[1],
-		  lty=1,type='l',ylim=c(0,0.4),main="")
- for (j in 2:length(c.vals)) {
-  lines(density(oos.diss.all.params.c.0[j,fix.i,],bw=first.est$bw), col= colors.vec[j])
-	}
-   par(lty=3)
-   first.est.a<-density(oos.diss.all.params.c.A[1,fix.i,])
-  lines(first.est.a, col= colors.vec[1])
-  for (j in 2:length(c.vals)) {
-  lines(density(oos.diss.all.params.c.A[j,fix.i,],bw=first.est.a$bw), col= colors.vec[j])
-  }
-  
-  
-  title("Null and alternative test statistics for different c values ")
-  legend.txt<- c.vals
-  legend("bottomright",legend=legend.txt,col=colors.vec[1:5],lty=rep(1,5))
-@
-
-
-
-
-Consider increases in $q$,  the test statistic under both null and alternative is inflated\ref{fig-stats-q}. 
-
-<<stats-q-sim, echo=FALSE,fig=FALSE,results='hide',cache=TRUE >>=
-source("./src/Null.Alt.Stat.for.JOFC.R")
-
-debug.mode<-FALSE
-if(debug.mode){
-	n.vals<-c(50)
-	nmc<-3
-	s<-1
-}
-
-
-params$w.vals<-c(0.75)	
-param.index.count<-4
-params.list <- rep(list(params),param.index.count)
-p.vals<-rep(5,4)
-r.vals<-rep(50,4)
-q.vals<-c(5,10,25,40)
-vary.param<-"q"
-
-
-
-for (i in (1:length(q.vals))){
-	params.list[[i]]$r <- r.vals[i]
-	params.list[[i]]$p <- p.vals[i]
-	params.list[[i]]$q <- q.vals[i]
-}
-
-debug.mode <- FALSE
-oos.stats.q<-compute.stats.for.params(params.list,"q")
-oos.diss.all.params.q.0 <- oos.stats.q$stats.0
-oos.diss.all.params.q.A <- oos.stats.q$stats.A
-sfStop()
-@
-
-<<fig-stats-q, echo=FALSE,fig=TRUE,results='hide',cache=FALSE>>=
-
-fix.i<-1
-first.est<- density(oos.diss.all.params.q.0[1,fix.i,])
-	par(lty=1)
-  plot(first.est, col= colors.vec[1],
-		  lty=1,type='l',ylim=c(0,0.4),main="")
- for (j in 2:length(q.vals)) {
-  lines(density(oos.diss.all.params.q.0[j,fix.i,],bw=first.est$bw), col= colors.vec[j])
-	}
-   par(lty=3)
-   first.est.a<-density(oos.diss.all.params.q.A[1,fix.i,])
-  lines(first.est.a, col= colors.vec[1])
-  for (j in 2:length(q.vals)) {
-  lines(density(oos.diss.all.params.q.A[j,fix.i,],bw=first.est.a$bw), col= colors.vec[j])
-  }
-  
-  
-  title("Null and alternative test statistics for different q values ")
-  legend.txt<- q.vals
-  legend("bottomright",legend=legend.txt,col=colors.vec[1:4],lty=rep(1,4))
-@
- If commensurability can be preserved in the face of the increase in $q$, the power of the test may be preserved. However a very large increase in $w$ is not guarenteed to increase the preservation of commensurability, since the extra dimensions are noise, trying to   make the differences between coordinates  small in those dimensions will not  help in power, in fact may be disruptive since,
-  more fidelity may be lost in the effort to bring the pair of points together.
-
-
-
-
-
-\end{comment}
 
 
 
@@ -455,7 +243,10 @@ Target dimensionality d is determined by the Zhu and Ghodsi  automatic dimension
 method \cite{ZhuGhodsi}, resulting in d = 6 for this data set.
 
 
-\includegraphics{graphs/FidCommPaperwiki-two-cond-plot} 
+\begin{figure}
+ \centering
+\includegraphics[scale=0.8]{graphs/FidCommPaperwiki-two-cond-plot} 
+\end{figure}
 
 
 
@@ -467,14 +258,14 @@ The following plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} 
  \centering
   \captionsetup[subfigure]{labelformat=empty}
         \begin{subfigure}[b]{0.5\textwidth}        
-               \includegraphics[width=\textwidth]{ROC-d-2.pdf}
+               \centerline{\includegraphics[width=\textwidth]{ROC-d-2.pdf}}
                 \caption{d=2}
                 \label{fig:ROC-d-2}
         \end{subfigure}%
          %add desired spacing between images, e. g. ~, \quad, \qquad etc. 
           %(or a blank line to force the subfigure onto a new line)
         \begin{subfigure}[b]{0.5\textwidth}           
-                  \includegraphics[width=\textwidth]{ROC-d-5.pdf}
+                  \centerline{\includegraphics[width=\textwidth]{ROC-d-5.pdf}}
                 \caption{d=5}
                 \label{fig:ROC-d-5}
         \end{subfigure}      
@@ -499,7 +290,7 @@ The following plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} 
 \begin{figure}
 
                 \centering
-               \includegraphics[scale=0.3]{ROC-d-15.pdf}
+               \includegraphics[scale=0.75]{ROC-d-15.pdf}
                 \caption{d=15}
                 \label{fig:ROC-d-15}
        
@@ -511,94 +302,3 @@ The following plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} 
 
 
 
-
-
-\section{Experiments on Graph Data}
-
-Another application of  the JOFC approach to  the vertex matching problem in multiple graphs. These simulations will be for the same semi-supervised setting as mentioned in \ref{sec:RelatedWork}, where matchings between some vertices in different graphs are known 
-  and the task is to infer the correspondences between the remaining collection of vertices in the graphs. The pairs of vertices whose correspondences are known will be referred to as ``seeds''.
-
-Suppose $A,B \in \mathcal{R}^{(r+s)\times (r+s)}$ are adjacency matrices for graphs 
- partitioned as ($r$ rows then $s$ rows, $r$ columns then $s$ columns)
-\[  A =\left [
-\begin{array}{cc} A_{11} & A_{12} \\ A_{21} & A_{22} \end{array} \right ]
-\ \ \ \ \ \ \ \ \ B =\left [
-\begin{array}{cc} B_{11} & B_{12} \\ B_{21} & B_{22} \end{array} \right ]
-\]
-To simplify  suppose that $A_{11}=B_{11}$ , ie the first $r$ vertices
-of $A$'s graph correspond respectively to the first $r$ vertices of $B$'s graph,
-and we wish to complete the isomorphism by determining the correspondences between the pairs of $s$ vertices. 
-That is, we seek a permutation matrix $P \in \{0,1\}^{s \times s}$ such that $A=(I_{r \times r}
-\oplus P)B(I_{r \times r} \oplus P)^T$, ie
- \[
- \left [
-\begin{array}{cc} A_{11} & A_{12} \\ A_{21} & A_{22} \end{array}
-\right ]
-\left [
-\begin{array}{cc} I_{r \times r} & 0_{r \times s} \\ 0_{s \times r} & P \end{array}
-\right ]
-=
-\left [
-\begin{array}{cc} I_{r \times r} & 0_{r \times s} \\ 0_{s \times r} & P \end{array}
-\right ]
-\left [
-\begin{array}{cc} B_{11} & B_{12} \\ B_{21} & B_{22} \end{array}
-\right ] .
-\]
-
-Using omnibus  embedding, it is possible to embed the vertices of two graphs in a commensurate space.
-Therefore, the JOFC approach can be used here for determining the pairwise distances between  the vertices of $A$ and $B$.
-The next step is to use the pairwise distances to find the optimal 1-1 matchings by the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total  cost which is the sum of the pairwise distances of matched nodes is minimized.
- 
-One useful property of dissimilarity representation is that the structure of data is irrelevant once an appropriate dissimilarity function  for the data is available. 
-There are many distances that can be defined between vertices in graphs. We assume that an appropriate distance measure is available to us.
-In our experiments we will use three different dissimilarities between vertices in a graph:
-\begin{itemize}
- \item the shortest path on the  unweighted graph whose adjacency matrix is available
- \item the shortest path on a weighted version of the graph whose adjacency matrix is available
- \item diffusion distance between vertices on the (unweighted) graph.
- \item weighted extension of Czekanowski-Dice dissimilarity\cite{DICE,weightedDICE} which simplifies to the original Czekanowski-Dice dissimilarity (C-D dissimilarity  quantifies local similarity of two vertices in a graph).
- \end{itemize}
- We will omit the results for weighted graph dissimilarities, since they seem to have the same performance as the weighted dissimilarities.
- 
- Note that these dissimilarities can only be defined between vertices of the same graph. We impute the inter-condition dissimilarities   as described before in section \ref{omnibus}.
- 
-  To test JOFC approach, consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
-  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
-   and the adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
-   In the following simulation, $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
-  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
-   and the adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
-   $\left[B\right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$. Suppose $p_{10}=p_{11}=p$.
-  
-  The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. 
-  The performance measure is the proportion of true matches to the number of matches. Note that 
-  under chance, the expected number of true matches is 1, as shown with the dashed line. In the simulation, $r=20$ and $s=5$. $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
-	
-\begin{figure}
-  \includegraphics[scale=0.65]{FidCommPapergraph-plot-1.pdf}
-\end{figure}
-
-
-In the plot above, JOFC approach is used to find  matched pairs of vertices using  dissimilarities based on weighted and unweighted graphs and  compared with classical MDS embedding of dissimilarities of weighted graphs.
-
-Note that JOFC for unweighted and weighted graphs  have better performance compared to CMDS. As the perturbation parameter gets larger, the performance degrades until it is indistinguishable from random chance at $pert=0.5$.
-
-\begin{comment}
-Another feature of the plot is the U-shape of the curve for diffusion-distance based dissimilarities. This invariancy with respect to complement of the graph should be investigated further.
-
-\includegraphics{graphs/FidCommPapergraph-plot-3}An interesting trend in the graph is that shortest-path based dissimilarities are an improvement over diffusion-path dissimilarities for perturbation parameter less than 0.5 , but as perturbation parameter increases past 0.5, fraction of correct matches for diffusion distance based dissimilarity recovers, while for other dissimilarities the fraction continues to fall. 
-\end{comment}
-
-
-
-
-This graph shows the effect of the weight parameter of stress $w$ on the probability of true matches.
-
-\includegraphics{FidCommPaper-graph-plot-4}
-
-There are a lot  of interesting questions to ponder about the number of known correspondences, such as , how many known correspondences are necessary for satisfactory performance for graphs of some fixed size and whether , in the ``match ratio'' vs number of known correspondences curve,  there are any ``elbows'' , after which the cost of more correspondences are not justified by the accompanying increase in ``match ratio''. Figure \ref{bitflipJOFC} shows ``match ratio'' plotted against number of ``seeds'' for the same bitflip experiments using  Czekanowski-Dice dissimilarities . These results suggest that even with the perturbation, when a portion of the correspondences are known, it is possible to recover most of the remaining correspondences. This application of JOFC is  investigated further in \cite{SGMviaJOFC} with real datasets.
-\begin{figure}
-\includegraphics{bitflip_JOFC}
-\caption{Bitflip Simulations for JOFC \label{bitflipJOFC}}
-\end{figure}

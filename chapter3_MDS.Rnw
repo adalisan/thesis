@@ -1,6 +1,6 @@
 \chapter{Multidimensional Scaling and Its Variants}
 \label{sec:MDS}
-\chaptermark{Optional running chapter heading}
+\chaptermark{Multidimensional Scaling and Its Variants}
 
 Introduction to MDS and dissimilarity representation to MDS
 
@@ -102,8 +102,11 @@ where $X$ is $n \times d$
 
 \section{Effect of Perturbations}
   To determine how robust the embeddings are to error in dissimilarity measurements, it is necessary to carry out perturbation analysis. Two papers by Sibson \cite{Sibson_perturbational1979} investigate how small changes in the dissimilarity matrix change the configuration matrix obtained by classical MDS embedding.
+  
 \section{Maximum Likelihood MDS and MULTISCALE}
-Various probabilistic MDS methods have been proposed, with specific error assumptions. In \cite{MacKay1989}, Mackay assumes the ``original'' coordinates have normally distributed errors independent in each dimension in the embedded space (The correlated error case can be simplified to the independent error case). As a result, the individiual dissimilarities has the same distribution as a weighted sum of independent chi-square distributed  random variables. Estimation of the embedding coordinates can be carried out using maximum likelihood.
+Various probabilistic MDS methods have been proposed, with specific error assumptions.  In \cite{MacKay1989}, Mackay assumes the ``original'' coordinates have normally distributed errors independent in each dimension in the embedded space (The correlated error case can be simplified to the independent error case). As a result, the individiual dissimilarities has the same distribution as a weighted sum of independent chi-square distributed  random variables. Estimation of the embedding coordinates can be carried out using maximum likelihood. This method is implemented in a MDS program named MULTISCALE.
+
 \section{3-way MDS}
+Threeway MDS refers to  a variant of MDS that is used for analyzing many different dissimilarity matrices on the same collection of $n$ objects. These can be dissimilarities judged by different people or different dissimilarity measures applied to the same group of observations. We will refer to these different dissimilarities as different conditions, as we have mentioned in \ref{sec:intro}. Two ways of dealing with such data is computing a separate MDS solution for  each condition and matching the configuration matrices by transformations. This approach will be discussed in \label{sec:PoM}. Another approach mentioned in \cite{borg+groenen:1997} is  mapping the dissimilarities(or proximities) into one distance (which is very similar to Multiple Kernel Learning).
 
 

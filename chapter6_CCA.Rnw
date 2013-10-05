@@ -1,9 +1,9 @@
-\chapter{Canonical Correlation Analysis}
+\chapter{Canonical Correlation Analysis for Data Fusion}
 \label{sec:CCA}
-\chaptermark{Optional running chapter heading}
+\chaptermark{Canonical Correlation Analysis for Data Fusion}
 
-Again MDS is used  to compute embedding configurations, $ X_1$ and $X_2$. It is desirable to  embed into the highest dimensional space  possible ($\mathbb{R}^{d'}$ where $d'=p+q$ for the Gaussian and Dirichlet settings)  to  preserve as many of the signal dimensions as possible (at the risk of possibly including  some noise dimensions). CCA~\cite{Hardoon2004}, then,  yields two mappings $\mathcal{U}_1$ and $\mathcal{U}_2$ that map these embeddings in $\mathbb{R}^{d'}$ to  the low-dimensional commensurate space ($\mathbb{R}^d$). 
-While embedding the dissimilarities in the the highest dimension possible is a good idea for preserving the signal dimensions, in the presence of noise dimensions, the embeddings will incorporate the noise. Even if the dissimilarities are errorless representation of measurements of a particular dimension, for  the  sake of inference, it is preferable  embed at a lower  dimension due to bias-variance tradeoff. This variant of CCA approach, which is called regularized CCA, with the  embedding dimension choice $d'< (p+q)$ is expected to have performance better than CCA approach.
+For the CCA approach, MDS is used  to compute embedding configurations, $ X_1$ and $X_2$. It is desirable to  embed into the highest dimensional space  possible ($\mathbb{R}^{d'}$ where $d'=p+q$ for the Gaussian and Dirichlet settings)  to  preserve as many of the signal dimensions as possible (at the risk of possibly including  some noise dimensions). CCA~\cite{Hardoon2004}, then,  yields two mappings $\mathcal{U}_1$ and $\mathcal{U}_2$ that map these embeddings in $\mathbb{R}^{d'}$ to  the low-dimensional commensurate space ($\mathbb{R}^d$). 
+While embedding the dissimilarities in the the highest dimension possible is a good idea for preserving the signal dimensions, in the presence of noise dimensions, the noise will be incorporated into the embeddings. Even if the dissimilarities are errorless representations of measurements of a particular dimension; for  the  sake of inference, it is preferable to embed at a lower  dimension due to the bias-variance tradeoff. This variant of CCA approach, which is called regularized CCA, with the  embedding dimension choice $d'< (p+q)$ is expected to have performance better than CCA approach.
 
 \subsubsection*{Canonical Correlational Analysis}
 
@@ -11,12 +11,12 @@ While embedding the dissimilarities in the the highest dimension possible is a g
 $$
 {\hat{(u)}_1 ,\hat{(u)}_2}=\arg\max_{u_1\in\mathbb{R}^s,u_2\in\mathbb{R}^s} {\frac{E[u_1^{T}XY^Tu_2]}{{E[u_1^{T}XX^T u_1]}{E[u_2^{T}YY^T u_2]}}}$$
 with the constraints $E[{u_1^{T}XX^T u_1}]=1 , E[{u_2^{T}YY^T u_2}]=1$ for uniqueness. The constraints simplify the optimization function to $$
-\arg\max_{u_1\in \mathbb{R}^s,u_2\in \mathbb{R}^s} {E[u_1^{T}XY^Tu_2]}.$$
+\max_{u_1\in \mathbb{R}^s,u_2\in \mathbb{R}^s} {E[u_1^{T}XY^Tu_2]}$$. Then the projection operators are $U_1(x)=(\hat{(u)}_1)^{T} x$ and $U_1(y)=(\hat{(u)}_2)^{T} y$
 
-If the projections are to a pair of $d$-dimensional linear subspaces, the additional pairs of projection vectors can be computed sequentially, with the constraints that the projections along the new directions are uncorrelated with  projections along previous directions. That is, $i^{th}$ pair of directions  that maximize correlation is computed by 
+In general, the projection mappings are to a pair of $d$-dimensional linear subspaces, that is $U_1:\mathbb{R}^s \rightarrow  \mathbb{R}^{d}$, $U_2 :\mathbb{R}^s \rightarrow  \mathbb{R}^{d}$. The projection matrices which represent the mappings are $\mathcal{U}_1$ and $\mathcal{U}_2$  whose rows are the direction vectors ${{(u)}_{1(i)},{(u)}_{2(i)}}, i=1,\ldots,d $. These additional pairs of projection vectors can be computed sequentially, with the constraints that the projections along the new directions are uncorrelated with  projections along previous directions. That is, $i^{th}$ pair of directions  that maximize correlation is computed by 
 $$
 {\hat{(u)}_{1(i)},\hat{(u)}_{2(i)}}=\arg\max_{u_{1(i)},u_{2(i)}\in\mathbb{R}^s} {E[u_{1(i)}^{T}XY^Tu_{2(i)}]}.$$ subject to constraints $E[{u_{1(i)}^{T}XX^T u_{1(i)}}]=1$ , $E[{u_{2(i)}^{T}YY^T u_{2(i)}}]=1$, $E[{u_{1(i)}^{T}XX^T u_{1(j)}}]=0$,  
-   $ E[{u_{2(i)}^{T}YY^T u_{2(j)}}]=\nolinebreak0$ $\forall \quad  j=1,\ldots,i-1$. For sample CCA, $E[XX^T]$,$E[YY^T]$ and $E[XY^T]$ are replaced with their sample estimates. The direction vectors ${\hat{(u)}_{1(i)},\hat{(u)}_{2(i)}}, i=1,\ldots,d $ form the rows of projection matrices which represent the mappings $\mathcal{U}_1$ and $\mathcal{U}_2$. 
+   $ E[{u_{2(i)}^{T}YY^T u_{2(j)}}]=\nolinebreak0$ $\forall \quad  j=1,\ldots,i-1$. For sample CCA, $E[XX^T]$,$E[YY^T]$ and $E[XY^T]$ are replaced with their sample estimates.
 
 
 Note that $s$, the dimension of $X$ and $Y$, is the embedding dimension $d'$  in the CCA approach. 
@@ -46,3 +46,27 @@ and   the original dissimilarities are $D(X_1)$ and $D(X_2) $,
  the two elements of $\mathcal{U}$ that maximize commensurability, subject to $U_1^{T}X_1^{T}X_1U_1=I_d$ and $U_2^{T}X_2^{T}X_2U_2=I_d$ ($I_d$ is the $d \times d$ identity matrix).
 \end{thm}
 
+
+Another way to see the connection between CCA and JOFC embedding (using classical MDS) is by connections to spectral embedding. \cite{CCAviaSpectralEmbed} shows that CCA is a special case of Spectral Embedding with the restriction that the joint embedding coordinates are linear projections of the original multiview data, $X_1$ and $X_2$. First, let us define ``spectral embedding'':
+Given  a $k \times k$ weight matrix $W$, Spectral Embedding embeds $k$ points in $d$-dimensional Euclidean space by  minimizing the cost function $\sum_{i,j \in \{1,\ldots,k\}}W_{ij}\left(u_i-u_j\right)^2$, where $u_i, u_j \in \mathbb{R}^d$ are the embedded coordinates.
+
+Assume CCA is applied to $X_1$ and $X_2$ which yields two  $n \times d$ matrices, $\tilde{X_1}$ and $\tilde{X_2}$,  which are the embedded configuration matrices . 
+
+For the same multi-view data, $X_1$ and $X_2$,
+let \[ Z= \left[
+\begin{array}{cc}
+                  X_1 & \vec{0} \\
+                \vec{0}   & X_2 
+                \end{array}
+                \right]
+                \].
+                Let $W=\left[
+                \begin{array}{cc}
+                \vec{0} & I_n \\
+                I_n   & \vec{0}
+                \end{array}
+                \right]$ be a $2n \times 2n$ weight matrix. We can assume $W$ is an adjacency matrix which represents a graph which is bipartite and the only  edges are between $i^{th}$ and $(n+i)^{th}$ vertices (which correspond to matched pairs in earlier chapters) for $i \in \{1,\ldots,n\}$. The degree matrix for this graph is then  $D=I_{2n}$. The graph laplacian is $L=D-W$. Assume the constraint that the embedding coordinate of $i^{th}$ point are $\widetilde{Z_i}=p^{T}Z_i$ is introduced for some $p \in \mathbb{R}^d$, ie $p$ is a projection vector. Let us call this constraint the linearity condition. Then, the embedding of $i^{th}$ point of the $2n$ points  via Spectral Embedding where the weighted adjacency matrix is $L$,is $\widetilde{Z_i}$, where $\widetilde{Z_i}= \left[] \tilde{X_{1i}} \vec{0} \right]$ or  $\tilde{Z_i}=\left[ \vec{0} \tilde{X_{2i}} \right]$ and $\tilde{X_{1i}}$ and $\tilde{X_{2i}}$ are  the $i^{th}$ rows of $\tilde{X_1}$ and $\tilde{X_2}$ yielded by CCA.  As the authors note in \cite{CCAviaSpectralEmbed} by looking at $W$, one can take intra-view similarities into account (which means preserving more fidelity) and choose the diagonal block matrices in $W$ to be nonzero.
+                %(e.g. \exp(-d(X_1i,X_1j) for $(i,j)^{th} entry in the first diagonal block of  $W$. 
+                This would be akin to a JOFC-type embedding, as the commensurability criterion is taken into account by using  an identity matrix as the  off-diagonal block matrix in $W$ and the fidelity criterion by non-zero diagonal block matrices in $W$.
+                
+                Note that Tang et al.\cite{MinhTrosset_SpectralEmbed} elucidate another connection between embedding methods by showing that the spectral embedding for  an unnormalized Laplacian matrix, $L$ (subject to  an appropriate scaling) is equivalent to the classical MDS solution with the inner product matrix $L^{+}$ where $L^{+}$ is the psuedo-inverse of $L$ \cite{MinhTrosset_SpectralEmbed}. Therefore for any d-dimensional spectral embedding of the Laplacian $L$  with Laplacian Eigenmaps, there exists an omnibus dissimilarity matrix $M$, the ($d$-dimensional) cMDS embedding of which   would give the same configuration. Connecting the dots, we conclude the classical MDS embedding with an omnibus dissimilarity matrix $M$ that corresponds the psuedo-inverse of  $L=D-W$ , along with the linearity condition is equivalent to CCA.

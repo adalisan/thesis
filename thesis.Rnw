@@ -4,6 +4,7 @@
 
 \documentclass[12pt,oneside,final]{thesis}
 
+%\usepackage[utf8]{inputenc}
 \usepackage{cite}
 
 \usepackage{amssymb,amsmath,amsthm,amscd}
@@ -20,18 +21,24 @@
 
 
 
-\graphicspath{{./}{./../DataFusion/}{./../DataFusion/graphs/}{./../DataFusion-graphmatch/graphs/}{./../VertexCorrespondence/graphs/}}
+\graphicspath{{./}{./graphs/}{./figures/}{./../JOFC-GraphMatch/graphs/}{./../JOFC_MatchDetect/graphs/}{./../SeededGraphMatch/graphs/}{./../DataFusion/}{./../DataFusion/graphs/}{./../DataFusion-graphmatch/graphs/}{./../VertexCorrespondence/graphs/}}
 
 \usepackage{fixltx2e}
 \usepackage{array}
 % wrapfig is fragile: use sparingly
 \usepackage{wrapfig} 
+\usepackage{cmbright} %clean look
 %\usepackage{times}  % Use this for ugly fonts
+%\usepackage{ccfonts,eulervm} %Not bad looks nice for serif
+%\usepackage[T1]{fontenc}
+%\usepackage[garamond]{mathdesign}
+
 \usepackage{verbatim}
 
+\usepackage{multirow}
 \usepackage{fancyhdr}    % Use nice looking headers along with the required footer page numbers   
 %\usepackage[hypertex]{hyperref}
-
+\usepackage{lscape} 
 %Define the header/footer style
 \pagestyle{fancy}
 \fancyhf{}
@@ -62,7 +69,7 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 @
 
 
-\title{JHU THESIS TEMPLATE}
+\title{Joint Optimization of Fidelity and Commensurability for Manifold Alignment and Graph Matching}
 \author{Sancar Adali}
 \degreemonth{May}
 \degreeyear{2013} 
@@ -122,8 +129,8 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 @
 
 
-<<'child-chapter12_Grassmannian.Rnw', child='chapter12_Grassmannian.Rnw',eval=TRUE>>=
-@
+%<<'child-chapter12_Grassmannian.Rnw', child='chapter12_Grassmannian.Rnw',eval=TRUE>>=
+%@
 
 
 \include{appendix}

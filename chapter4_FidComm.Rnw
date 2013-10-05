@@ -1,6 +1,6 @@
 \chapter{Fidelity and Commensurability}
 \label{sec:FidComm}
-\chaptermark{Optional running chapter heading}
+\chaptermark{Fidelity and Commensurability}
 
 \section{The concepts of  Fidelity and Commensurability\label{sec:FidComm}}
 
@@ -37,7 +37,7 @@ By imputing the between-condition dissimilarities of the same object as 0, the c
   \[
 \epsilon_{c_{k_1k_2}} = \frac{1}{n} \sum_{1 \leq i \leq n;k_1< k_2} (d(\widetilde{\bm{x}}_{ik_1},\widetilde{\bm{x}}_{ik_2})))^2
 \]
-\end{itemize}
+
 
 
 While  the above expressions for  \emph{fidelity} and  \emph{commensurability} errors  are specific to the joint embedding of disparate dissimilarities, the concepts of fidelity and commensurability are  general enough to be applicable to other dimensionality reduction methods for data from disparate sources. 
@@ -108,18 +108,6 @@ will be geometrically incommensurate (see Figure \ref{fig:incomm}).
 Thus the null distribution of the test statistic will be inflated by these incommensurate cases.
 If the allowable Type I error level $\alpha$ is smaller than the probability of inflation,
 then the power of the {\it p}$\circ${\it m} method will be negatively affected.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 \subsection{ A symmetric example}

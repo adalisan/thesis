@@ -1,7 +1,7 @@
 
 \chapter{Principal Components Analysis and Procrustes Analysis}
 \label{sec:PoM}
-\chaptermark{Optional running chapter heading}
+\chaptermark{Principal Components Analysis and Procrustes Analysis}
 
 
 \section{Procrustes Analysis}
@@ -45,3 +45,6 @@ $ f(\mcY, M) =(1-w)\left({\sigma{(\mcY_1)}}+{\sigma{(\mcY_2)}}\right)+w||{\mcY_1
 \end{thm}
  
 \section{Generalized Procrustes Analysis ($K>2$)}
+Generalized Procrustes analysis is the extension of Procrustes analysis to more than two configuration of points. This extension has been studied in \cite{GPCA}.
+
+

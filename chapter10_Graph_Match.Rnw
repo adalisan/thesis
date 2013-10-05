@@ -1,15 +1,21 @@
-\chapter{Application to Vertex Matching in Graphs Problem}
+\chapter{Application to Graph Matching Problem}
 \label{sec:graph-prob}
-\chaptermark{Optional running chapter heading}
+\chaptermark{Graph Matching}
+
+
+
+
+\section{Experiments on Graph Data}
 
 
 \section{1-1 matching}
 
-An application of  the JOFC approach is   the graph matching problem. This inference task is similar to  the same semi-supervised setting as mentioned in \ref{sec:RelatedWork}, where matchings between some vertices in different graphs are known 
-  and the task is to infer the correspondences between the remaining collection of vertices in the graphs.
+Another application of  the JOFC approach is  the graph matching problem. For a specific version of this problem, the  inference task is similar to  the same semi-supervised setting as mentioned in \ref{sec:RelatedWork}, where matchings between some vertices in different graphs are known 
+  and the task is to infer the correspondences between the remaining collection of vertices in the graphs.  The pairs of vertices whose correspondences are known will be referred to as ``seeds''. We will refer to this variant of the graph matching problem as the ``seeded graph matching'' (SGM) problem.
  
-Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$ such that $\| V_1 \|=\| V_2 \|=$. Suppose there exists a bijection $f$   such that $f(v_1)=v_2$ and $\forall v' \in \mathbf{N}(v_1) f(v') \in \mathbf{N}(v_2)$. Then the graph matching problem  is to find this bijection. Even determining the existence  of such an isomorphism is also NP-hard.  Although the bijection might not exist,  the task of  finding a bijection between the
-graphs which minimizes the degree  of mismatch  between the two graphs is an interesting problem that has practical applications\cite{}. For unweighted graphs, the degree of mismatch is characterized by the number of adjacency disagreements.  For weighted graphs, it could be any monotonic transformation of the difference between the weights of matching edges.
+
+Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$ such that $\| V_1 \|=\| V_2 \|=$. Suppose there exists a bijection $f$   such that $f(v_1)=v_2$ and $\forall v' \in \mathbf{N}(v_1) f(v') \in \mathbf{N}(v_2)$. Then the \emph{exact} graph matching problem  is to find this bijection. Even determining the existence  of such an isomorphism is NP-hard.  Although the bijection might not exist,  the task of  finding a bijection between the
+graphs which minimizes the degree  of mismatch   between the two graphs is another interesting problem that has practical applications\cite{}. For unweighted graphs, the degree of mismatch is characterized by the number of adjacency disagreements.  For weighted graphs, it could be any monotonic transformation of the difference between the weights of matching edges. Then, the approximate graph matching problem is to minimize this measure of mismatch over all bijective functions $f$: $V_1 \rightarrow V_2$ .
 
 Suppose $A,B \in \mathcal{R}^{(r+s)\times (r+s)}$ are adjacency matrices for graphs $G_1$ and $G_2$
  partitioned as ($r$ rows then $s$ rows, $r$ columns then $s$ columns)
@@ -39,23 +45,61 @@ That is, we seek a permutation matrix $P \in \{0,1\}^{s \times s}$ such that $A=
 \right ] .
 \]
 
+We have mentioned that an efficient algorithm  for the approximate graph matching is not known. The adaptation   to the seeded graph matching  is straightforward, as part of the permutation matrix is known (and assumed to be identity matrix, without loss of generality)
+   
+
+A relaxation of the general   approximate graph matching problem by letting the  domain of $P$ be doubly stochastic matrices can be solved efficiently by successively solving linearizations of the objective function, the Frank-Wolfe Method. We proposed the seeded case version of this relaxation (named as fast approximate quadratic programming)  as the solution to the seeded graph matching problem. We perform simulations with graphs, and experiments on real-life graphs. The performance measure we consider is the true match ratio: the number of true matchings of vertices  divided by the number of pairs of vertices.
 
 
-The  task of finding vertex correspondences is similar to  detecting matched pairs in that it requires the quantification of distance between pairs (of vertices). It makes sense to use JOFC to embed the vertices in a commensurate space and make the matching decision  based on pairwise distances of embedded points. 
-JOFC approach can be used  for determining the pairwise distances between  the vertices of $A$ and $B$.
-The next step is to use the pairwise distances to find the optimal 1-1 matchings by the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total  cost which is the sum of the pairwise distances of matched nodes is minimized.
+
+Let us now explain the relevance of JOFC to the graph matching problem. The  task of finding vertex correspondences is similar to  detecting matched pairs in that both of the tasks require the quantification of distance between vertex pairs  in the two graphs.
+Using omnibus  embedding, it is possible to embed the vertices of two graphs in a commensurate space.
+Therefore, the JOFC approach can be used here for determining the pairwise distances in the commensurate space between  the vertices of $A$ and $B$.
+The next step is to use the pairwise distances as costs to find the optimal 1-1 matchings by the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total  cost which is the sum of the pairwise distances of matched nodes is minimized.
+
  
 One useful property of dissimilarity representation is that the structure of data is irrelevant once an appropriate dissimilarity function  for the data is available. 
 There are many distances that can be defined between vertices in graphs. We assume that an appropriate distance measure is available to us.
-In our experiments we will use three different dissimilarities between vertices in a graph:
+In our experiments we will use four different dissimilarities between vertices in a graph:
 \begin{itemize}
  \item the shortest path on the  unweighted graph whose adjacency matrix is available
  \item the shortest path on a weighted version of the graph whose adjacency matrix is available
  \item diffusion distance between vertices on the (unweighted) graph.
- \item DICE distance \cite{DICE,weightedDICE,} "????"
+ \item weighted extension of Czekanowski-Dice dissimilarity\cite{DICE,weightedDICE} which simplifies to the original Czekanowski-Dice dissimilarity (C-D dissimilarity  quantifies local similarity of two vertices in a graph).
  \end{itemize}
+ We will omit the results for weighted graph dissimilarities, since they seem to have the same performance as the weighted dissimilarities.
  
- Note that these dissimilarities can only be defined between vertices of the same graph. We impute the inter-condition dissimilarities   as described before\ref{omnibus}.
+ Note that these dissimilarities can only be defined between vertices of the same graph. We impute the inter-condition dissimilarities   as described before in section \ref{omnibus}.
+ 
+\section{Demonstrations}
+\subsection{Simulations}
+  To test graph matching approaches, consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
+  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
+   and the adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
+   In the following simulation, $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
+  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
+   and the adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
+   $\left[B\right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$. Suppose $p_{10}=p_{11}=p$.
+  
+  The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. 
+  The performance measure is the proportion of true matches to the number of matches. Note that 
+  under chance, the expected number of true matches is 1, as shown with the dashed line. In this particular simulation, we consider the JOFC approach with classical and raw stress variants and compare the performance of each in small graphs. $r=20$ and $s=5$. $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
+	
+\begin{figure}
+  \includegraphics[scale=0.65]{FidCommPapergraph-plot-1.pdf}
+\end{figure}
+
+
+In the plot above, JOFC approach is used to find  matched pairs of vertices using  dissimilarities based on weighted and unweighted graphs and  compared with classical MDS embedding of dissimilarities of weighted graphs.
+
+Note that JOFC for unweighted and weighted graphs  have better performance compared to CMDS. As the perturbation parameter gets larger, the performance degrades until it is indistinguishable from random chance at $pert=0.5$.
+
+\begin{comment}
+Another feature of the plot is the U-shape of the curve for diffusion-distance based dissimilarities. This invariancy with respect to complement of the graph should be investigated further.
+
+\includegraphics{graphs/FidCommPapergraph-plot-3}An interesting trend in the graph is that shortest-path based dissimilarities are an improvement over diffusion-path dissimilarities for perturbation parameter less than 0.5 , but as perturbation parameter increases past 0.5, fraction of correct matches for diffusion distance based dissimilarity recovers, while for other dissimilarities the fraction continues to fall. 
+\end{comment}
+ 
  
   To test JOFC approach, consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
   $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
@@ -87,17 +131,44 @@ Another feature of the plot is the U-shape of the curve for diffusion-distance b
 
 An interesting trend in the graph is that shortest-path based dissimilarities are an improvement over diffusion-path dissimilarities for perturbation parameter less than 0.5 , but as perturbation parameter increases past 0.5, fraction of correct matches for diffusion distance based dissimilarity recovers, while for other dissimilarities the fraction continues to fall. 
 
-The dissimilarity type that has the best improvement in performance is JOFC with shortest path distances in weighted graphs(unweighted graphs have similar performance)
+The dissimilarity type that has the best improvement in performance is JOFC with shortest path distances in weighted graphs(unweighted graphs have similar performance).
 
 
-\section{Experiments on Real data}
 
-\subsection{C. elegans connectome}
+This graph shows the effect of the weight parameter of stress $w$ on the probability of true matches.
+\begin{figure}
+\includegraphics{FidCommPaper-graph-plot-4}
+\end{figure}
+There are a lot  of interesting questions to ponder about the number of known correspondences, such as , how many known correspondences are necessary for satisfactory performance for graphs of some fixed size and whether , in the ``match ratio'' vs number of known correspondences curve,  there are any ``elbows'' , after which the cost of more correspondences are not justified by the accompanying increase in ``match ratio''. Figure \ref{bitflipJOFC} shows ``match ratio'' plotted against number of ``seeds'' for the same bitflip experiments using  Czekanowski-Dice dissimilarities . These results suggest that even with the perturbation, when a portion of the correspondences are known, it is possible to recover most of the remaining correspondences. This application of JOFC is  investigated further in \cite{SGMviaJOFC} with real datasets.
+\begin{figure}
+\includegraphics[scale=0.75]{bitflip_JOFC}
+\caption{Bitflip Simulations for JOFC \label{bitflipJOFC}}
+\end{figure}
+
+
+\subsection{Experiments on Real data}
+
+\subsubsection{C. elegans connectome}
 For experimental data, we consider two connectivity graphs of 279 neurons in the  worm C. elegans. The two conditions are two ways of measuring connectivity among neurons. The  weight matrix for the first connectivity type is Ac which is not symmetric, has values between 0 and 37 and is relatively sparse (has 2194 non-zero entries). The second connectivity type forms a unweighted graph. It is even sparser(1031 non-zero entries) than Ac. For each MC replicate, we leave out 10 pairs of vertices from each graph and use JOFC to out-of-sample embed these left out vertices. The embedded vertices are matched using Hungarian algorithm and number of true matches are counted. The MC replicate is repeated many times, to get an estimate of performance. 
+\begin{figure}
+\includegraphics[scale=0.75]{worm_jofc_vs_faq_wt_unwt-crop}
+\caption{Graph Matching experiments on the C. elegans connectomes using JOFC and FAQ algorithms \label{worm_graphmatch}}
+\end{figure}
 
-\subsection{Enron communication graph}
+\subsubsection{Enron communication graph}
+The Enron communication graph is extracted from the  Enron  email corpus, which was made public during criminal investigations by the  Federal Energy Regulatory Commission. Though the number of actual users is about 150,  each email alias is considered as a vertex in the communication graph. The original number of email aliases is 184. The whole time interval is divided into 187 sub-intervals. The emails are grouped according to which time interval their timestamps are in. We then construct a time series of graphs $\mathfrak{G}=\{G^{(t)} = (V,E^{(t)})\}$ where $E^{(t)}$ correspond to emails that were sent at $t^{th}$ interval. We are interested in the intervals $t=130$  and $t=131$. When isolated vertices (and their corresponding vertices in the other graph) are removed in these two graphs  , the number of vertices is reduced to 146. It is these two pruned graphs we match.
 
-\subsection{Wikipedia hyperlink subgraph}
+\begin{figure}
+\includegraphics[scale=0.75]{JOFC-enron_dim_20}
+\caption{Experiments on the Enron communication graphs for JOFC \label{enron_graphmatch}}
+\end{figure}
+
+\begin{figure}
+\includegraphics[scale=0.75]{enron-JOFC-FAQ-paper.pdf}
+\caption{Experiments on the Enron communication graphs for FAQ and JOFC \label{enron_graphmatch_faq_jofc}}
+\end{figure}
+
+\subsubsection{Wikipedia hyperlink subgraph}
 
 To test the JOFC approach with real data, a collection of articles are collected from the English Wikipedia, consisting of the
  directed 2-neighborhood of the document "Algebraic Geometry". 
@@ -105,16 +176,32 @@ To test the JOFC approach with real data, a collection of articles are collected
 Wikipedia is our real-life dataset. It is possible to utilize both textual content of the documents and the hyperlink graph structure. The textual content of the documents is summarized by the bag-of-words model. Dissimilarities between documents  in the same language are computed by the Lin-Pantel discounted mutual information \cite{LinPantel,PantelLin}
  and cosine dissimilarity $k(x_{ik}; x_{jk}) = 1 - (x_{ik} x_{jk})/(\|x_{ik}\|_2\|x_{ik}\|_2)$. 
  The dissimilarities based on the hyperlink graph of the collection of the articles are 
- for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$.  Further details about this dataset is available in \cite{Zhiliang_disparate}     
- 
-\subsection{Charitynet graph}
+ for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$.  Further details about this dataset is available in \cite{Zhiliang_disparate}.
 
+\begin{figure}
+\includegraphics[scale=0.75]{wiki-all-with-unseeded.pdf}
+\caption{Graph Matching Experiments on the English and French Wikipedia subgraph for FAQ \label{wiki_graphmatch}}
+\end{figure}
 
+\subsubsection{Charitynet graph}
 
+The charitynet dataset consists  of timestamped donation relationships between 8052 donors and 756 charities. The donations are divided into two time intervals according to whether they are before the midpoint of the earliest and latest timestamps.
+Let $tmid = \frac{(tmax - tmin)}{2}$.
+We build two bipartite graphs represented by $B_1$ and $B_2$ for $\left[tmin,tmid\right)$ and $\left(tmid,tmax\right]$, respectively --
+each $B^{(t)}$ is $n \times m$, where $n$ is total number of donors in all of charitynet and $m$ is total number of charities in all of charitynet.
+so $B_{ij}^{(t)}$ is a 1 if donor $i$ gives to charity $j$ during time interval $t$.
 
-\section{1-to-k matching of vertices}
+For charities $i$ and $j$,
+let $A_{ij}^{(t)}= \sum_{k}{(B_{ik}^{(t)}B_{jk}^{(t)}}$, i.e. the number of donors that both $i$ and $j$ receive from during time interval $t$.
+We match the two graphs represented by  $A^{\left[tmin,tmid\right)}$, $A^{\left(tmid,tmax\right]}$.
+\begin{figure}
+\includegraphics[scale=0.4]{charitynet_SGM_JOFCvsFAQ}
+\caption{Graph Matching experiments on the two Charitynet graphs for JOFC \label{charitynet_graphmatch}}
+\end{figure}
 
-Consider the case where the correspondences between vertices in $A$ and $B$ are not one-to-one. We consider the case where 
+\subsection{1-to-k matching of vertices} 
+
+Consider the case where the correspondences between vertices in $A$ and $B$ are not one-to-one. We consider a very simple case where 
 the $i^{th}$ vertex in $B$ corresponds to $k_i$ vertices in $A$ where $1\leq k_i \leq k_{max}$ where $k_{max}$ is the maximum number of corresponding vertices a $B$ vertex can have.  Denote by $g$ the correspondence function from vertices in $G_1$ to vertices in $G_2$. Given $r$ vertices in $B$, and the corresponding vertices in $V_1$ for each of the $r$ vertices ($u \in V_1$ such that $g(u)=v_2$), the task is  to find at most $k_max$ closest matches to each vertex of of $B$. 
 The three information retrieval performance measures are used: Precision, Recall and F-measure.
 
@@ -124,5 +211,10 @@ $$\mathrm{Recall}    =\frac{\textrm{Number of correct matches found}}{\textrm{Nu
 $$F-measure  =\frac{2 \times \textrm{Precision} \times \textrm{Recall}}{\textrm{Precision} + \textrm{Recall}}$$
 
 For each vertex of $B$, the number of true matches is $k_i$. The three performance measure is calculated for each vertex of $B$ and then the three averages over all vertices $B$ is the performance measures computed for the  matching.
+
+\begin{figure}
+\includegraphics[scale=0.65]{Total_precision_JOFC_1_to_k_match_paper.pdf}
+\caption{Graph Matching experiments on simulated graphs for JOFC \label{1_k_graphmatch_sim}}
+\end{figure}
 
 
