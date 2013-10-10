@@ -12,7 +12,7 @@
 \usepackage{subcaption}
 \graphicspath{{./figs/}}
 \usepackage{hyperref, mathrsfs, bm}
-
+\usepackage{algorithm2e}
 \usepackage{url}
 \renewcommand{\thesubfigure}{}
 % justifying
@@ -104,9 +104,6 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 <<'child-chapter4_FidComm.Rnw', child='chapter4_FidComm.Rnw',eval=TRUE>>=
 @
 
-
-<<'child-chapter8_MDS_multmin.Rnw', child='chapter8_MDS_multmin.Rnw',eval=TRUE>>=
-@
 
 
 <<'child-chapter5_PCA_Procrustes.Rnw', child='chapter5_PCA_Procrustes.Rnw',eval=TRUE>>=

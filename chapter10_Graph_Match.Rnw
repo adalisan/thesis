@@ -8,14 +8,20 @@
 \section{Experiments on Graph Data}
 
 
-\section{1-1 matching}
+\section{1-1 matching of vertices}
 
 Another application of  the JOFC approach is  the graph matching problem. For a specific version of this problem, the  inference task is similar to  the same semi-supervised setting as mentioned in \ref{sec:RelatedWork}, where matchings between some vertices in different graphs are known 
   and the task is to infer the correspondences between the remaining collection of vertices in the graphs.  The pairs of vertices whose correspondences are known will be referred to as ``seeds''. We will refer to this variant of the graph matching problem as the ``seeded graph matching'' (SGM) problem.
  
+\subsection{Graph Matching }
+Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$ such that $\| V_1 \|=\| V_2 \|=$. Suppose there exists a bijection $f$   such that $f(v_1)=v_2$ and $\forall v' \in \mathbf{N}(v_1) f(v') \in \mathbf{N}(v_2)$. Then the \emph{exact} graph matching problem  is to find this bijection. Even determining the existence  of such an isomorphism is NP-hard.  Although the bijection might not exist,  the \emph{approximate} graph matching problem, which is the task of  finding a bijection between the
+graphs which minimizes the degree  of mismatch   between the two graphs, is an interesting problem that has practical applications\cite{}.
 
-Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$ such that $\| V_1 \|=\| V_2 \|=$. Suppose there exists a bijection $f$   such that $f(v_1)=v_2$ and $\forall v' \in \mathbf{N}(v_1) f(v') \in \mathbf{N}(v_2)$. Then the \emph{exact} graph matching problem  is to find this bijection. Even determining the existence  of such an isomorphism is NP-hard.  Although the bijection might not exist,  the task of  finding a bijection between the
-graphs which minimizes the degree  of mismatch   between the two graphs is another interesting problem that has practical applications\cite{}. For unweighted graphs, the degree of mismatch is characterized by the number of adjacency disagreements.  For weighted graphs, it could be any monotonic transformation of the difference between the weights of matching edges. Then, the approximate graph matching problem is to minimize this measure of mismatch over all bijective functions $f$: $V_1 \rightarrow V_2$ .
+
+
+For the seeded graph matching variant of the problem, additional constraints on $f$ are provided: it must be consitent with the given correspondences, i.e.  $f(v_1)=v_2 for v_1 \in V_1^{*} \subset V_1$ and $v_2 \in V_2$. 
+
+Assume $G_1$ and $G_2$ are unweighted graphs.\footnote{We should note that most of the notation and methods carry over to the weighted case;} It will be convenient to state this problem in terms of adjacency matrices:
 
 Suppose $A,B \in \mathcal{R}^{(r+s)\times (r+s)}$ are adjacency matrices for graphs $G_1$ and $G_2$
  partitioned as ($r$ rows then $s$ rows, $r$ columns then $s$ columns)
@@ -42,13 +48,255 @@ That is, we seek a permutation matrix $P \in \{0,1\}^{s \times s}$ such that $A=
 \right ]
 \left [
 \begin{array}{cc} B_{11} & B_{12} \\ B_{21} & B_{22} \end{array}
-\right ] .
-\]
+\right ] 
+\].  It is obvious that $P$ defines $f$: $V_1 \rightarrow V_2$, the bijection  between the two graphs we are interested in.
 
-We have mentioned that an efficient algorithm  for the approximate graph matching is not known. The adaptation   to the seeded graph matching  is straightforward, as part of the permutation matrix is known (and assumed to be identity matrix, without loss of generality)
+
+
+For the approximate graph matching problem, we seek $P$ that minimizes $h(P)$, which measures mismatch, as measured by, say $h(.)$, over all bijective functions
+For unweighted graphs, the degree of mismatch is characterized by the number of adjacency disagreements, i.e
+$h(P)=\|(I_{r \times r}\oplus P)^{T}A(I_{r \times r}\oplus P)-B\|_1$ subject to $P$ being a permutation matrix.
+For weighted graphs, it could be any monotonic transformation of the difference between the weights of matching edges.
+%Although an efficient algorithm  for the general  graph matching problem is not known, there are various principled heuristic algorithms for  approximate solutions of the graph matching problem  in the literature\cite{GraphMatchingReview}.
+   
+   
+ Note this optimization problem is equivalent to minimizing various functions, e.g.
+ 
+$\|A(I_{r \times r}\oplus P)-(I_{r \times r}\oplus P)B\|_1$ (since $I_{r \times r}\oplus P$ is a permutation matrix ) or
+
+$\|A-(I_{r \times r}\oplus P)B(I_{r \times r}\oplus P)^T\|_2$ (monotonic function of \ell_1 norm) or
+
+$\|A(I_{r \times r}\oplus P)-(I_{r \times r}\oplus P)B\|_2$ ( $I_{r \times r}\oplus P$ is unitary),
+over all
+permutation matrices $P$,
+where $\| \cdot \|_2$ is the $\ell_2$ vector norm on matrices. Althought these different formulations  are equivalent, their relaxations result in different methods for solving the approximate graph matching problem\ref{subsec:rqap2}.
+
+
+
+\subsection{Fast approximate quadratic programming for Seeded Graph Matching}
+
+
+A relaxation of the general   approximate graph matching problem by letting the  domain of $P$ be doubly stochastic matrices can be solved efficiently by successively solving linearizations of the objective function, the Frank-Wolfe Method. We propose the seeded case version of this relaxation (named as fast approximate quadratic programming)  as the solution to the seeded graph matching problem.
+
+A brief review of the Frank-Wolfe method is necessary before we go into FAQ method for Seeded Graph Matching. The FW algorithm solves the following optimization problem: the minimization of a convex and differentiable function, denoted by $h(x)$ 
+over a bounded and convex domain $\mathbf{S}$. 
+
+\begin{algorithm}[H]
+ \SetAlgoLined
+ %\KwData{this text}
+ \KwResult{$x^*$}
+ $i=1$\;
+ 
+ $\alpha=1$\;
+ 
+ $x^1$ = Random element of   $\mathbf{S}$  or initial estimate of $\mathit{x^*}$ \;
+ 
+ \While{$\hat{\alpha}>\epsilon $ or $\|\nabla{h(x^{i})}\| > \epsilon$ }{
+  Solve $\hat{\vec{x}}= \argmin_{\vec{x}}\nabla{h(x^{i})}^{T}\vec{x}$  with respect to  $\vec{x}$. 
+  
+ Solve  $\hat{\alpha}= \argmin_{\hat{\alpha}}{h(x^{i}+\alpha*(\vec{x}-x^{i}))}$  with $\alpha \in (0,1)$.
+ 
+  Let $x^{i+1}= x^{i}+\hat{\alpha}*\vec{x}$. 
+  
+  $\mathit{x^*}=x^{i+1}$ 
+  
+ }
+ \caption{Frank-Wolfe algorithm}
+\end{algorithm}
+
+The first step in the loop solves a linear approximation of the problem $h(x)=h(x^i)+\nabla{h(x^i)}(x-x^i)$. The second step minimizes the original function with the domain restricted to the line between $\hat{\vec{x}}$ and $x^{i}$ In the case, where $h(x)$ is quadratic, a unique  $\hat{\alpha}$ can be found analytically.
+
+The objective function is
+\begin{eqnarray*}  f(P)  & =  &   \tr \left (
+\left [  \begin{array}{cc}  A^T_{11} & A^T_{21} \\ A^T_{12} & A^T_{22}  \end{array} \right ]
+\left [  \begin{array}{cc}  I_{r \times r} & 0_{r \times s}
+\\ 0_{s \times r} & P  \end{array} \right ]
+\left [  \begin{array}{cc}  B_{11} & B_{12} \\ B_{21} & B_{22}  \end{array} \right ]
+\left [  \begin{array}{cc}  I_{r \times r} & 0_{r \times s}
+\\ 0_{s \times r} & P^T  \end{array} \right ]
+\right ) \\
+& = & \tr \left (
+\left [  \begin{array}{cc}  A^T_{11} & A^T_{21} \\ A^T_{12} & A^T_{22}  \end{array} \right ]
+\left [  \begin{array}{cc}  B_{11} & B_{12}P^T \\ PB_{21} & PB_{22}P^T  \end{array} \right ]
+\right )\\
+& = & \tr A_{11}^TB_{11}+ \tr A_{21}^TPB_{21}+\tr A_{12}^TB_{12}P^T
++ \tr A_{22}^TPB_{22}P^T \\
+& = &  \tr A_{11}^TB_{11}+ \tr P^T A_{21}B_{21}^T+\tr P^TA_{12}^TB_{12}
++ \tr A_{22}^TPB_{22}P^T
+\end{eqnarray*}
+which has gradient
+\begin{eqnarray*}
+G(P):=A_{21}B_{21}^T+A_{12}^TB_{12}+A_{22}PB_{22}^T+A_{22}^TPB_{22} .
+\end{eqnarray*}
+
+We start the Frank-Wolfe Algorithm at the doubly stochastic matrix
+$\tilde{P}=\frac{1}{s}\vec{1}_{s} \vec{1}_n^T$. (This is only for
+simplicity, and any other choice of doubly stochastic $\tilde{P}$ might
+be as effective). In the next paragraph we describe a single step in the
+Frank-Wolfe algorithm. Such steps are repeated iteratively until
+the iterates start empirically converging.
+
+
+Given any particular doubly stochastic matrix $\tilde{P} \in \R^{s \times s}$
+the Frank-Wolfe-step linearization involves maximizing $\tr Q^TG(\tilde{P})$ over all of the doubly stochastic matrices $Q \in \R ^{s \times s}$.
+This is precisely the linear assignment problem (since it is not hard to show that 
+the optimal doubly stochastic $Q$ can in fact be selected to be 
+a permutation matrix) and so
+the Hungarian Algorithm
+will in fact find the optimal $Q$, call it
+$\tilde{Q}$.
+The next task in the Frank-Wolfe algorithm step
+will be maximizing the objective function over the line
+segment from $\tilde{P}$ to $\tilde{Q}$;  ie maximizing $g(\alpha):=f(\alpha \tilde{P}
++(1-\alpha ) \tilde{Q})$ over $\alpha \in [0,1]$. Denote
+$c:=\tr A^T_{22} \tilde{P} B_{22} \tilde{P}^T$ and
+$d:=\tr (A^T_{22} \tilde{P} B_{22} \tilde{Q}^T +
+    A^T_{22} \tilde{Q} B_{22} \tilde{P}^T)$ and
+$e:=\tr A^T_{22} \tilde{Q} B_{22} \tilde{Q}^T$ and
+$u:=\tr ( \tilde{P}^TA_{21}B_{21}^T   + \tilde{P}^TA_{12}^TB_{12} )$ and
+$v:=\tr ( \tilde{Q}^TA_{21}B_{21}^T   + \tilde{Q}^TA_{12}^TB_{12} )$. Then
+(ignoring the additive constant $\tr A_{11}^TB_{11}$ without loss of
+generality, since it won't affect the maximization)
+we have $g(\alpha)=c \alpha^2+d \alpha (1-\alpha)
++e(1-\alpha)^2+u \alpha + v(1-\alpha)$  which simplifies to
+$g(\alpha)=(c-d+e)\alpha^2+(d-2e+u-v)\alpha + (e+v)$. Setting the
+derivative of $g$ to zero yields potential critical point
+$\tilde{\alpha}:=\frac{-(d-2e+u-v)}{2(c-d+e)}$ (if indeed
+$0 \leq \tilde{\alpha}\leq 1$); thus the next Frank-Wolfe algorithm
+iterate will either be $\tilde{P}$ (in which case algorithm would halt)
+or $\tilde{Q}$ or $\tilde{\alpha}\tilde{P}+(1-\tilde{\alpha})\tilde{Q}$, and
+the objective functions can be compared to decide which of these three matrices
+will be the $\tilde{P}$ of the next Frank-Wolfe step.
+
+At the termination of the Frank-Wolfe Algorithm, we need to deal with
+the possibility that the final iterate $\tilde{P}$ is not integer-valued.
+As in last section, we maximize $\tr R^T\tilde{P}$ over permutation
+matrices $R \in \{ 0,1 \}^{s \times s}$
+---using the Hungarian Algorithm---and the optimal permutation matrix $\tilde{R}$
+gives us our approximate seeded graphmatch solution $\phi_{\tilde{R}}$. (As mentioned
+in last section, $\tilde{R}$ is the closest permutation matrix to $\tilde{P}$
+in an $\ell_1$ sense.)
+
+
+
+\subsection{Relaxations of alternate formulations of the approximate seeded graph matching problem \label{subsec:rqap2}}
+
+There is another formulation of  the previous approximate seeded graph matching problem, where the objective function is  minimized instead of maximized.
+The objective function for rQAP2 is
+$\|A(I_{m \times m}\oplus P)-(I_{m \times m}\oplus P)B\|$. If one applies the constraint $\|PX\|=\|X\|$ for any permutation matrix $P$, this function simplifies to minimum of -2 times the objective function of  rQAP.
+
+\begin{align*}
+f(P) & = & \lVert AP^{*}-P^{*}B\rVert _{F}\\
+ & = & \left\Vert A_{21}-PB_{21}\right\Vert _{F} & + & \left\Vert A_{12}P-B_{12}\right\Vert _{F} & +\left\Vert A_{22}P-PB_{22}\right\Vert _{F} & \textrm{Terms (1), (2) and (3)}
+\end{align*}
+
+
+where $P^{*}$ is the omnibus permutation matrix $\left[\begin{array}{cc}
+I & \mathbf{0}\\
+\mathbf{0} & P
+\end{array}\right]$ .
+
+\begin{note}
+Consider term (1)
+
+\begin{align*}
+\left\Vert A_{21}-PB_{21}\right\Vert _{F} & = & \tr\left[\left(A_{21}-PB_{21}\right)^{T}\left(A_{21}-PB_{21}\right)\right]\\
+ & = & \tr\left[A_{21}^{T}A_{21}-B_{21}^{T}P^{T}A_{21}-A_{21}^{T}PB_{21}+B_{21}^{T}P^{T}PB_{21}\right]\\
+ & = & \tr\left[A_{21}^{T}A_{21}-B_{21}^{T}P^{T}A_{21}-A_{21}^{T}PB_{21}+P^{T}PB_{21}B_{21}^{T}\right]\\
+ & = & \tr\left[A_{21}^{T}A_{21}-2*B_{21}^{T}P^{T}A_{21}+P^{T}PB_{21}B_{21}^{T}\right]
+\end{align*}
+
+
+where the simplification in the last line is due to the fact that
+the matrices with minus signs in front are transposes of each other.
+The three terms inside the brackets in the last line are referred
+as (1.1),(1.2) and (1.3), respectively.
+
+Similarly for term (2)
+
+\begin{align*}
+\left\Vert A_{12}P-B_{12}\right\Vert _{F} & = & \tr\left[\left(A_{12}P-B_{12}\right)^{T}\left(A_{12}P-B_{12}\right)\right]\\
+ & = & \tr\left[P^{T}A_{12}^{T}A_{12}P-B_{12}^{T}A_{12}P-P^{T}A_{12}^{T}B_{12}+B_{12}^{T}B_{12}\right]\\
+ & = & \tr\left[PP^{T}A_{12}^{T}A_{12}-B_{12}^{T}A_{12}P-P^{T}A_{12}^{T}B_{12}+B_{12}^{T}B_{12}\right]\\
+ &  & \tr\left[PP^{T}A_{12}^{T}A_{12}-2P^{T}A_{12}^{T}B_{12}+B_{12}^{T}B_{12}\right]
+\end{align*}
+
+
+The three terms inside the brackets are referred as (2.1),(2.2) and
+(2.3), respectively.
+
+and finally term (3)
+
+\begin{align*}
+\left\Vert A_{22}P-PB_{22}\right\Vert _{F} & = & \tr\left[\left(A_{22}P-PB_{22}\right)^{T}\left(A_{22}P-PB_{22}\right)\right]\\
+ & = & \tr\left[P^{T}A_{22}^{T}A_{22}P-B_{22}^{T}P^{T}A_{22}P-P^{T}A_{22}^{T}PB_{22}+B_{22}^{T}P^{T}PB_{22}\right]\\
+ & = & \tr\left[PP^{T}A_{22}^{T}A_{22}-B_{22}^{T}P^{T}A_{22}P-P^{T}A_{22}^{T}PB_{22}+PB_{22}B_{22}^{T}P^{T}\right]
+\end{align*}
+
+
+The three terms inside the brackets are referred as (3.1),(3.2) ,(3.3)
+and (3.4), respectively.
+
+Note that $\tr\left[PP^{T}A_{22}^{T}A_{22}-B_{22}^{T}P^{T}A_{22}P-P^{T}A_{22}^{T}PB_{22}+PB_{22}B_{22}^{T}P^{T}\right]$
+can be further simplified to 
+
+\[
+\tr\left[PP^{T}A_{22}^{T}A_{22}-2*P^{T}A_{22}^{T}PB_{22}+PB_{22}B_{22}^{T}P^{T}\right]
+\]
+.
+\end{note}
+The gradient for rQAP2 with hard seeds (minimization problem) is
+
+$\nabla_{P}f(P)=-2A_{21}B_{21}^{T}+2PB_{21}B_{21}^{T}-2A_{12}^{T}B_{12}+2A_{12}^{T}A_{12}P+2(A_{22}^{T}A_{22}P+PB_{22}B_{22}^{T}-A_{22}^{T}PB_{22}-A_{22}PB_{22}^{T}$)
+
+\begin{flushleft}
+The corresponding line search function in terms of $\alpha$ is
+\par\end{flushleft}
+
+\begin{flushleft}
+\begin{align*}
+g(\alpha) & = & \alpha^{2} & \tr\biggl[\hat{P}^{T}\hat{P}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{P}\hat{P}^{T} & (1.3+3.4)+(2.1+3.1)\\
+ &  &  & -\hat{P}^{T}A_{22}^{T}\hat{P}B_{22}-\hat{P}^{T}A_{22}\hat{P}B_{22}^{T}\biggr] & -(3.2)-(3.3)\\
+ & + & \left(1-\alpha\right)^{2} & \tr\biggl[\hat{Q}^{T}\hat{Q}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{Q}\hat{Q}^{T} & (1.3+3.4)+(2.1+3.1)\\
+ &  &  & -\hat{Q}^{T}A_{22}^{T}\hat{Q}B_{22}-\hat{Q}^{T}A_{22}\hat{Q}B_{22}^{T}\biggr] & -(3.2)-(3.3)\\
+ & + & \alpha\left(1-\alpha\right) & \tr[\left(\hat{Q}^{T}\hat{P}+\hat{P}^{T}\hat{Q}\right)\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\left(\hat{Q}\hat{P}^{T}+\hat{P}\hat{Q}^{T}\right) & (1.3)+(3.4)+(2.1)+(3.1)\\
+ &  &  & -\hat{P}^{T}\left[A_{22}^{T}\hat{Q}B_{22}+A_{22}\hat{Q}B_{22}^{T}\right]-\hat{Q}^{T}\left[A_{22}^{T}\hat{P}B_{22}+A_{22}\hat{P}B_{22}^{T}\right]] & -[(3.3)+(3.2)]-[(3.3)+(3.2)]\\
+ & + & \alpha & \tr\left[-2\hat{P}B_{12}^{T}A_{12}-2\hat{P}^{T}A_{21}B_{21}^{T}\right] & [-(2.2)-(1.2)]\\
+ & + & \left(1-\alpha\right) & \tr\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right] & [-(2.2)-(1.2)]
+\end{align*}
+
+\par\end{flushleft}
+
+where the decimal numbers in the right end of the line refer to the
+terms for corresponding to $\left\Vert A_{21}-PB_{21}\right\Vert _{F}$
+,$\left\Vert A_{12}P-B_{12}\right\Vert _{F}$ and $\left\Vert A_{22}P-PB_{22}\right\Vert _{F}$
+in the objective function. Writing $g\left(\alpha\right)$ in terms
+of $\alpha$ and (1-$\alpha$),
+
+$g\left(\alpha\right)=c\alpha^{2}+e(1-\alpha)^{2}+d\alpha(1-\alpha)+u\alpha+v(1-\alpha)$
+
+So $c=\tr\left[\hat{P}^{T}\hat{P}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{P}\hat{P}^{T}-\hat{P}^{T}A_{22}^{T}\hat{P}B_{22}-\hat{P}^{T}A_{22}\hat{P}B_{22}^{T}\right]$
+
+\noindent 
+\begin{eqnarray*}
+d & = & \tr\biggl[\left(\hat{Q}^{T}\hat{P}+\hat{P}^{T}\hat{Q}\right)\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\left(\hat{Q}\hat{P}^{T}+\hat{P}\hat{Q}^{T}\right)\\
+ &  & -\hat{P}^{T}\left[A_{22}^{T}\hat{Q}B_{22}+A_{22}\hat{Q}B_{22}^{T}\right]-\hat{Q}^{T}\left[A_{22}^{T}\hat{P}B_{22}+A_{22}\hat{P}B_{22}^{T}\right]\biggr]
+\end{eqnarray*}
+
+
+$e=\tr\left[\hat{Q}^{T}\hat{Q}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{Q}\hat{Q}^{T}-\hat{Q}^{T}A_{22}^{T}\hat{Q}B_{22}-\hat{Q}^{T}A_{22}\hat{Q}B_{22}^{T}\right]$
+
+$u=\tr\left[-2\hat{P}B_{12}^{T}A_{12}-2\hat{P}^{T}A_{21}B_{21}^{T}\right]$
+
+$v=\tr\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right]$
+
+Putting this polynomial of $\alpha$ in standard form, we get $a=c+e-d$,
+$b=d-2e+u-v$ and $c=e+v$ .
+
+Note that if this rQAP2 formulation is further simplified  by the unitary property of permutation  matrix, we get the first rQAP formulation. The stronger condition of minimization over the set of permutation matrices is incorporated in the Hungarian Algorithm step.
+An interesting question is how does this extra constraint effect the convergence properties of Frank-Wolfe algorithm.  This question is investigated in the comparison of rQAP and rQAP2 formulations.  
    
 
-A relaxation of the general   approximate graph matching problem by letting the  domain of $P$ be doubly stochastic matrices can be solved efficiently by successively solving linearizations of the objective function, the Frank-Wolfe Method. We proposed the seeded case version of this relaxation (named as fast approximate quadratic programming)  as the solution to the seeded graph matching problem. We perform simulations with graphs, and experiments on real-life graphs. The performance measure we consider is the true match ratio: the number of true matchings of vertices  divided by the number of pairs of vertices.
 
 
 
@@ -72,6 +320,9 @@ In our experiments we will use four different dissimilarities between vertices i
  Note that these dissimilarities can only be defined between vertices of the same graph. We impute the inter-condition dissimilarities   as described before in section \ref{omnibus}.
  
 \section{Demonstrations}
+
+We perform simulations with graphs, and experiments on real-life graphs. The performance measure we consider is the true match ratio: the number of true matchings of vertices  divided by the number of pairs of vertices.
+
 \subsection{Simulations}
   To test graph matching approaches, consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
   $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
