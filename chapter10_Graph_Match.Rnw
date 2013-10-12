@@ -1,6 +1,6 @@
-\chapter{Application to Graph Matching Problem}
-\label{sec:graph-prob}
-\chaptermark{Graph Matching}
+\chapter{Seeded Graph Matching and Fast Approximate Quadratic Programming}
+\label{sec:sgm-faq}
+\chaptermark{Seeded Graph Matching and Fast Approximate Quadratic Programming }
 
 
 
@@ -64,12 +64,17 @@ For weighted graphs, it could be any monotonic transformation of the difference 
  
 $\|A(I_{r \times r}\oplus P)-(I_{r \times r}\oplus P)B\|_1$ (since $I_{r \times r}\oplus P$ is a permutation matrix ) or
 
-$\|A-(I_{r \times r}\oplus P)B(I_{r \times r}\oplus P)^T\|_2$ (monotonic function of \ell_1 norm) or
+$\|A-(I_{r \times r}\oplus P)B(I_{r \times r}\oplus P)^T\|_2$ (monotonic function of $\ell_1$ norm) or
 
-$\|A(I_{r \times r}\oplus P)-(I_{r \times r}\oplus P)B\|_2$ ( $I_{r \times r}\oplus P$ is unitary),
-over all
-permutation matrices $P$,
-where $\| \cdot \|_2$ is the $\ell_2$ vector norm on matrices. Althought these different formulations  are equivalent, their relaxations result in different methods for solving the approximate graph matching problem\ref{subsec:rqap2}.
+$\|A(I_{r \times r}\oplus P)-(I_{r \times r}\oplus P)B\|_2$ ( $I_{r \times r}\oplus P$ is unitary), or 
+maximizing 
+$\tr {A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$ (expanding out $\|A-(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P)^T\|_2^2=
+\|A\|_2^2 + \|B\|_2^2
+- 2 \cdot \tr{A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$  and removing the constant terms)
+
+over all permutation matrices $P$,
+where $\| \cdot \|_2$ is the $\ell_2$ vector norm on matrices.   Althought these different formulations  are equivalent, their relaxations result in different methods for solving the approximate graph matching problem\ref{subsec:rqap2}. Specfically the $\ell_1$ formulation is the  linear assignment problem. $\ell_2$ formulations are examples of the quadratic assignment problem.
+
 
 
 
@@ -106,8 +111,9 @@ over a bounded and convex domain $\mathbf{S}$.
 
 The first step in the loop solves a linear approximation of the problem $h(x)=h(x^i)+\nabla{h(x^i)}(x-x^i)$. The second step minimizes the original function with the domain restricted to the line between $\hat{\vec{x}}$ and $x^{i}$ In the case, where $h(x)$ is quadratic, a unique  $\hat{\alpha}$ can be found analytically.
 
+Let us now present the derivation of the steps of  FAQ algorithm.  The relaxation we choose for FAQ is $\tr {A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$. This is a simplified expression for $\ell_2$ distance of $A$ and $(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P)^T$. Therefore we call this formulation relaxed quadratic assignment problem (rQAP1).
 The objective function is
-\begin{eqnarray*}  f(P)  & =  &   \tr \left (
+\begin{eqnarray*}  h(P)  & =  &   \tr \left (
 \left [  \begin{array}{cc}  A^T_{11} & A^T_{21} \\ A^T_{12} & A^T_{22}  \end{array} \right ]
 \left [  \begin{array}{cc}  I_{r \times r} & 0_{r \times s}
 \\ 0_{s \times r} & P  \end{array} \right ]
@@ -124,31 +130,23 @@ The objective function is
 & = &  \tr A_{11}^TB_{11}+ \tr P^T A_{21}B_{21}^T+\tr P^TA_{12}^TB_{12}
 + \tr A_{22}^TPB_{22}P^T
 \end{eqnarray*}
-which has gradient
+which has gradient which is presented in matrix form as 
 \begin{eqnarray*}
-G(P):=A_{21}B_{21}^T+A_{12}^TB_{12}+A_{22}PB_{22}^T+A_{22}^TPB_{22} .
-\end{eqnarray*}
-
-We start the Frank-Wolfe Algorithm at the doubly stochastic matrix
-$\tilde{P}=\frac{1}{s}\vec{1}_{s} \vec{1}_n^T$. (This is only for
-simplicity, and any other choice of doubly stochastic $\tilde{P}$ might
-be as effective). In the next paragraph we describe a single step in the
-Frank-Wolfe algorithm. Such steps are repeated iteratively until
-the iterates start empirically converging.
+Grad(P):=A_{21}B_{21}^T+A_{12}^TB_{12}+A_{22}PB_{22}^T+A_{22}^TPB_{22} .
+\end{eqnarray*}. Note that $h(P)$ has a quadratic form with respect to $P$ which will help us in the second step of F-W iterations.
 
 
-Given any particular doubly stochastic matrix $\tilde{P} \in \R^{s \times s}$
-the Frank-Wolfe-step linearization involves maximizing $\tr Q^TG(\tilde{P})$ over all of the doubly stochastic matrices $Q \in \R ^{s \times s}$.
-This is precisely the linear assignment problem (since it is not hard to show that 
-the optimal doubly stochastic $Q$ can in fact be selected to be 
-a permutation matrix) and so
-the Hungarian Algorithm
-will in fact find the optimal $Q$, call it
-$\tilde{Q}$.
+In our experiments,  the Frank-Wolfe Algorithm was initialized with
+$\tilde{P}=\frac{1}{s}\vec{1}_{s} \vec{1}_{s}^T$. (This initialization is arbitrary , a random $\tilde{P}$ can be chosen). 
+
+Now we adapt F-W algorithm to the minimization of $h(P)$.  For each iteration $i$, in the first step let $\tilde{P}^{i}$ the current estimate of $P$. We are supposed to compute  $Q$ which would minimize  $-\tr Q^{T}Grad(\tilde{P}^{i})$ over all $s \times s$ doubly stochastic matrices $Q \in \M ^{s \times s}$. Equivalently $\tr Q^{T}Grad(\tilde{P}^{i})$ is maximized with respect to $Q$. We will use  $\nabla$ in place of $Grad(\tilde{P}^{i})$.
+Note that $\hat{Q}$ can be assumed to be a permutation matrix.  To see this, assume $\hat{Q}$ is not a permutation matrix and there exist a row ,say $i^{th}$ of $\hat{Q}$, $q_i$ that is not a canonical basis. Note that the contribution of $q_{i}$ to trace of $Q^{T}G(\tilde{P}^{i})$ is $\sum_{k}{q_{ik}\nabla{}_{ki}}$. Subject to $\sum_{k}{q_{ik}=1$. Note that $Q^{*}$ such that $Q_{io}^{*}=1$,  $Q_{ik}^{*}=1$ for $k \neq o$ for $o=\argmax_k{\nabla{}_{ki}}$  $Q_{mn}^{*}=\hat{Q}_{mn}$ for $m=$
+Therefore , the  Hungarian Algorithm will in fact find the optimal $Q$, call it
+$\hat{Q}$.
 The next task in the Frank-Wolfe algorithm step
 will be maximizing the objective function over the line
-segment from $\tilde{P}$ to $\tilde{Q}$;  ie maximizing $g(\alpha):=f(\alpha \tilde{P}
-+(1-\alpha ) \tilde{Q})$ over $\alpha \in [0,1]$. Denote
+segment from $\tilde{P}^{i}$ to $\hat{Q}$;  ie maximizing $z(\alpha):=h(\alpha \tilde{P}
++(1-\alpha ) \hat{Q})$ over $\alpha \in [0,1]$. Denote
 $c:=\tr A^T_{22} \tilde{P} B_{22} \tilde{P}^T$ and
 $d:=\tr (A^T_{22} \tilde{P} B_{22} \tilde{Q}^T +
     A^T_{22} \tilde{Q} B_{22} \tilde{P}^T)$ and
@@ -156,32 +154,22 @@ $e:=\tr A^T_{22} \tilde{Q} B_{22} \tilde{Q}^T$ and
 $u:=\tr ( \tilde{P}^TA_{21}B_{21}^T   + \tilde{P}^TA_{12}^TB_{12} )$ and
 $v:=\tr ( \tilde{Q}^TA_{21}B_{21}^T   + \tilde{Q}^TA_{12}^TB_{12} )$. Then
 (ignoring the additive constant $\tr A_{11}^TB_{11}$ without loss of
-generality, since it won't affect the maximization)
-we have $g(\alpha)=c \alpha^2+d \alpha (1-\alpha)
+generality)
+we have $z(\alpha)=c \alpha^2+d \alpha (1-\alpha)
 +e(1-\alpha)^2+u \alpha + v(1-\alpha)$  which simplifies to
-$g(\alpha)=(c-d+e)\alpha^2+(d-2e+u-v)\alpha + (e+v)$. Setting the
-derivative of $g$ to zero yields potential critical point
-$\tilde{\alpha}:=\frac{-(d-2e+u-v)}{2(c-d+e)}$ (if indeed
-$0 \leq \tilde{\alpha}\leq 1$); thus the next Frank-Wolfe algorithm
-iterate will either be $\tilde{P}$ (in which case algorithm would halt)
-or $\tilde{Q}$ or $\tilde{\alpha}\tilde{P}+(1-\tilde{\alpha})\tilde{Q}$, and
-the objective functions can be compared to decide which of these three matrices
-will be the $\tilde{P}$ of the next Frank-Wolfe step.
-
-At the termination of the Frank-Wolfe Algorithm, we need to deal with
-the possibility that the final iterate $\tilde{P}$ is not integer-valued.
-As in last section, we maximize $\tr R^T\tilde{P}$ over permutation
-matrices $R \in \{ 0,1 \}^{s \times s}$
----using the Hungarian Algorithm---and the optimal permutation matrix $\tilde{R}$
-gives us our approximate seeded graphmatch solution $\phi_{\tilde{R}}$. (As mentioned
-in last section, $\tilde{R}$ is the closest permutation matrix to $\tilde{P}$
-in an $\ell_1$ sense.)
+$z(\alpha)=(c-d+e)\alpha^2+(d-2e+u-v)\alpha + (e+v)$. Setting the
+derivative of $z$ to zero yields potential critical point
+$\hat{\alpha}:=\frac{-(d-2e+u-v)}{2(c-d+e)}$ (if indeed
+$0 \leq \hat{\alpha}\leq 1$). 
+If $\hat{\alpha}>\epsilon$, the algorithm terminates that is $\hat{P}=\tilde{P}^{i}$ as it has reached a local minimum. Otherwise, we set $\tilde{P}^{i+1}= \hat{\alpha} \tilde{P}^{i}
++(1- \hat{\alpha} ) \hat{Q}$ if $\hat{\alpha}>\epsilon$   and repeat the steps for the next iteration.
+At the termination of the Frank-Wolfe Algorithm, it is quite possible that   ${P}^{*}$ is not a permutation matrix. One way to get a permutation matrix solution is to find  ${\tilde{P}}^{*}$ that is as close as possible to  ${P}^{*}$ (in some sense).  Note that in discussion of the different formulations of the  original optimization problem, we showed that maximizing $2*\tr {ST}$ with respect to $S$ was equivalent to minimizing $\ell_2$ distance between $S$ and $T$, and we have shown, in the discussion of the FAQ algorithm, minimization of  $2*\tr {ST}$ is solved by the Hungarian algorithm when $S$ is constrained to be permutation matrix. Therefore we can use the Hungarian algorithm one last time to get a permutation matrix result by  minimizing ${\tilde{P}}^{*}{P}^{*}$ with respect to ${\tilde{P}}^{*}$  which is the closest permutation matrix to  ${{P}}^{*}$ in $\ell_2$ sense.
 
 
 
 \subsection{Relaxations of alternate formulations of the approximate seeded graph matching problem \label{subsec:rqap2}}
 
-There is another formulation of  the previous approximate seeded graph matching problem, where the objective function is  minimized instead of maximized.
+There is another quadratic assignment problem formulation of  the approximate seeded graph matching problem, where the objective function is  minimized. We call this formulation rQAP2.
 The objective function for rQAP2 is
 $\|A(I_{m \times m}\oplus P)-(I_{m \times m}\oplus P)B\|$. If one applies the constraint $\|PX\|=\|X\|$ for any permutation matrix $P$, this function simplifies to minimum of -2 times the objective function of  rQAP.
 
@@ -293,179 +281,45 @@ $v=\tr\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right]$
 Putting this polynomial of $\alpha$ in standard form, we get $a=c+e-d$,
 $b=d-2e+u-v$ and $c=e+v$ .
 
-Note that if this rQAP2 formulation is further simplified  by the unitary property of permutation  matrix, we get the first rQAP formulation. The stronger condition of minimization over the set of permutation matrices is incorporated in the Hungarian Algorithm step.
+Note that if this rQAP2 formulation is further simplified  by the unitary property of permutation  matrix, we get the first rQAP formulation. When we use the constraints $P^TP=PP^T=I_{s}$, specific terms in $\nabla_{P}f(P)$ vanish,
+$\nabla_{P}f(P)=-2A_{21}B_{21}^{T}+2PB_{21}B_{21}^{T}-2A_{12}^{T}B_{12}+2A_{12}^{T}A_{12}P+2(A_{22}^{T}A_{22}P+PB_{22}B_{22}^{T}-A_{22}^{T}PB_{22}-A_{22}PB_{22}^{T}$
+becomes $-2*(A_{21}B_{21}^T+A_{12}^TB_{12}+A_{22}PB_{22}^T+A_{22}^TPB_{22})$
+The stronger condition of minimization over the set of permutation matrices is incorporated in the Hungarian Algorithm step.
 An interesting question is how does this extra constraint effect the convergence properties of Frank-Wolfe algorithm.  This question is investigated in the comparison of rQAP and rQAP2 formulations.  
    
-
-
-
-
-Let us now explain the relevance of JOFC to the graph matching problem. The  task of finding vertex correspondences is similar to  detecting matched pairs in that both of the tasks require the quantification of distance between vertex pairs  in the two graphs.
-Using omnibus  embedding, it is possible to embed the vertices of two graphs in a commensurate space.
-Therefore, the JOFC approach can be used here for determining the pairwise distances in the commensurate space between  the vertices of $A$ and $B$.
-The next step is to use the pairwise distances as costs to find the optimal 1-1 matchings by the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total  cost which is the sum of the pairwise distances of matched nodes is minimized.
-
- 
-One useful property of dissimilarity representation is that the structure of data is irrelevant once an appropriate dissimilarity function  for the data is available. 
-There are many distances that can be defined between vertices in graphs. We assume that an appropriate distance measure is available to us.
-In our experiments we will use four different dissimilarities between vertices in a graph:
-\begin{itemize}
- \item the shortest path on the  unweighted graph whose adjacency matrix is available
- \item the shortest path on a weighted version of the graph whose adjacency matrix is available
- \item diffusion distance between vertices on the (unweighted) graph.
- \item weighted extension of Czekanowski-Dice dissimilarity\cite{DICE,weightedDICE} which simplifies to the original Czekanowski-Dice dissimilarity (C-D dissimilarity  quantifies local similarity of two vertices in a graph).
- \end{itemize}
- We will omit the results for weighted graph dissimilarities, since they seem to have the same performance as the weighted dissimilarities.
- 
- Note that these dissimilarities can only be defined between vertices of the same graph. We impute the inter-condition dissimilarities   as described before in section \ref{omnibus}.
- 
-\section{Demonstrations}
-
-We perform simulations with graphs, and experiments on real-life graphs. The performance measure we consider is the true match ratio: the number of true matchings of vertices  divided by the number of pairs of vertices.
-
-\subsection{Simulations}
-  To test graph matching approaches, consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
-  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
-   and the adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
-   In the following simulation, $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
-  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
-   and the adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
-   $\left[B\right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$. Suppose $p_{10}=p_{11}=p$.
-  
-  The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. 
-  The performance measure is the proportion of true matches to the number of matches. Note that 
-  under chance, the expected number of true matches is 1, as shown with the dashed line. In this particular simulation, we consider the JOFC approach with classical and raw stress variants and compare the performance of each in small graphs. $r=20$ and $s=5$. $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
-	
-\begin{figure}
-  \includegraphics[scale=0.65]{FidCommPapergraph-plot-1.pdf}
-\end{figure}
-
-
-In the plot above, JOFC approach is used to find  matched pairs of vertices using  dissimilarities based on weighted and unweighted graphs and  compared with classical MDS embedding of dissimilarities of weighted graphs.
-
-Note that JOFC for unweighted and weighted graphs  have better performance compared to CMDS. As the perturbation parameter gets larger, the performance degrades until it is indistinguishable from random chance at $pert=0.5$.
-
-\begin{comment}
-Another feature of the plot is the U-shape of the curve for diffusion-distance based dissimilarities. This invariancy with respect to complement of the graph should be investigated further.
-
-\includegraphics{graphs/FidCommPapergraph-plot-3}An interesting trend in the graph is that shortest-path based dissimilarities are an improvement over diffusion-path dissimilarities for perturbation parameter less than 0.5 , but as perturbation parameter increases past 0.5, fraction of correct matches for diffusion distance based dissimilarity recovers, while for other dissimilarities the fraction continues to fall. 
-\end{comment}
- 
- 
-  To test JOFC approach, consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
-  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
-   and the adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
-    $\left[B\right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$. Suppose $p_{10}=p_{11}=p_{pert}$.
-  
-  The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. 
-  The performance measure is the proportion of true matches to the number of matches. Note that 
-  under chance, the expected number of true matches is 1, as shown with the dashed line. In the simulation, $r=20$ and $s=5$. $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
-\begin{figure}
-  \includegraphics[scale=0.65]{FidCommPapergraph-plot-1.pdf}
-\end{figure}
-
-
-In the plot above, JOFC approach applied to  dissimilarities based on weighted and unweighted graphs is compared with classical MDS on dissimilarities of weighted graphs.
-
-As the perturbation parameter gets larger, the performance degrades until it is indistinguishable from random chance at $pert=0.5$.
-
-Another feature of the plot is the U-shape of the curve for diffusion-distance based dissimilarities. This invariancy with respect to complement of the graph should be investigated further.
-
-  
+\section{The comparison of rQAP against the alternative formulation rQAP2}
+Although the two formulations are equivalent and the global extrema of the two functions are the same, we expect different convergence  properties. In particular the extra terms in the gradient of rQAP2 which vanishes for unitary matrices should act as a random noise. The conclusion of the literature of stochastic optimization  is that, under some conditions, such noise speeds up convergence, by overcoming local extrema. The problem is that, such noise needs to vanish to negligible levels in order for the iterative algorithm to converge. 
+The experiment in the last  section was repeated with both rQAP and rQAP2 and the fraction of nonseed vertices correctly matched and the average number of iterations to satisfy a stopping criteria was compared between the two formulations. 
 
 \begin{figure}
 \centering
-\includegraphics{graphs/FidCommPapergraph-plot-3} 
+  \caption{Fraction of the $n=70$ nonseeds correctly matched using our $\ell_2$-based algorithm for rQAP and rQAP2 formulations
+ \label{figell2}}
+ \includegraphics[width=1.2\textwidth]{rQAP_vs_rQAP2-alotmore.pdf}
 \end{figure}
+Note that for small number of hard seeds $rQAP2$ is slighly better, while for larger number of hard seeds $rQAP$ is clearly better. The average number of iterations of Frank-Wolfe algorithm until termination for the two formulation is as follows,
+
+Our conclusion is that our expectations for the two formulations is warranted, rQAP2   converges slower(or doesn't converge, but stays within the neighborhood of the extrema), whiler rQAP converges in very few steps. When the number of hard seeds is small (which corresponds to lower number of constraints for P and higher incidence of local minima near the true solution. ), rQAP2 is slightly better than rQAP.
 
 
-
-An interesting trend in the graph is that shortest-path based dissimilarities are an improvement over diffusion-path dissimilarities for perturbation parameter less than 0.5 , but as perturbation parameter increases past 0.5, fraction of correct matches for diffusion distance based dissimilarity recovers, while for other dissimilarities the fraction continues to fall. 
-
-The dissimilarity type that has the best improvement in performance is JOFC with shortest path distances in weighted graphs(unweighted graphs have similar performance).
+A natural follow-up to the previous inquiry is whether one can get the best of both world by making a hybrid of the two formulations: First start with minimizing rQAP2 function, until the current iterate of solution is relatively close to the true solution, and follow with maximizing rQAP function. 
 
 
+\subsection{Fast approximate quadratic programming with smooth transition from rQAP2 to rQAP}
 
-This graph shows the effect of the weight parameter of stress $w$ on the probability of true matches.
-\begin{figure}
-\includegraphics{FidCommPaper-graph-plot-4}
-\end{figure}
-There are a lot  of interesting questions to ponder about the number of known correspondences, such as , how many known correspondences are necessary for satisfactory performance for graphs of some fixed size and whether , in the ``match ratio'' vs number of known correspondences curve,  there are any ``elbows'' , after which the cost of more correspondences are not justified by the accompanying increase in ``match ratio''. Figure \ref{bitflipJOFC} shows ``match ratio'' plotted against number of ``seeds'' for the same bitflip experiments using  Czekanowski-Dice dissimilarities . These results suggest that even with the perturbation, when a portion of the correspondences are known, it is possible to recover most of the remaining correspondences. This application of JOFC is  investigated further in \cite{SGMviaJOFC} with real datasets.
-\begin{figure}
-\includegraphics[scale=0.75]{bitflip_JOFC}
-\caption{Bitflip Simulations for JOFC \label{bitflipJOFC}}
-\end{figure}
+For this hybrid form of the FAQ algorithm, we weight the terms that differ between rQAP2 and rQAP by a decreasing weight $r$. $\nabla_{P}f(P)=
+r*\{2PB_{21}B_{21}^{T}
++2A_{12}^{T}A_{12}P
++A_{22}^{T}A_{22}P
++PB_{22}B_{22}^{T}\}
+-2A_{21}B_{21}^{T}-2A_{12}^{T}B_{12}
+-2A_{22}^{T}PB_{22}-2A_{22}PB_{22}^{T}$. As $r \rightarrow 0 $, the gradient expression at each step of F-W algorithm approaches
+$-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -2 times the gradient in rQAP. We let $r= 0.5- \frac{atan((iter-(maxiter/2)))}{\pi}$, so as the iteration counter, iter goes from $1 to $maxiter$, r goes from 1 to 0. This hybrid formulation will behave like rQAP2 for initial iterations and will start to behave like rQAP as $iter$ approaches $maxiter$.
 
-
-\subsection{Experiments on Real data}
-
-\subsubsection{C. elegans connectome}
-For experimental data, we consider two connectivity graphs of 279 neurons in the  worm C. elegans. The two conditions are two ways of measuring connectivity among neurons. The  weight matrix for the first connectivity type is Ac which is not symmetric, has values between 0 and 37 and is relatively sparse (has 2194 non-zero entries). The second connectivity type forms a unweighted graph. It is even sparser(1031 non-zero entries) than Ac. For each MC replicate, we leave out 10 pairs of vertices from each graph and use JOFC to out-of-sample embed these left out vertices. The embedded vertices are matched using Hungarian algorithm and number of true matches are counted. The MC replicate is repeated many times, to get an estimate of performance. 
-\begin{figure}
-\includegraphics[scale=0.75]{worm_jofc_vs_faq_wt_unwt-crop}
-\caption{Graph Matching experiments on the C. elegans connectomes using JOFC and FAQ algorithms \label{worm_graphmatch}}
-\end{figure}
-
-\subsubsection{Enron communication graph}
-The Enron communication graph is extracted from the  Enron  email corpus, which was made public during criminal investigations by the  Federal Energy Regulatory Commission. Though the number of actual users is about 150,  each email alias is considered as a vertex in the communication graph. The original number of email aliases is 184. The whole time interval is divided into 187 sub-intervals. The emails are grouped according to which time interval their timestamps are in. We then construct a time series of graphs $\mathfrak{G}=\{G^{(t)} = (V,E^{(t)})\}$ where $E^{(t)}$ correspond to emails that were sent at $t^{th}$ interval. We are interested in the intervals $t=130$  and $t=131$. When isolated vertices (and their corresponding vertices in the other graph) are removed in these two graphs  , the number of vertices is reduced to 146. It is these two pruned graphs we match.
 
 \begin{figure}
-\includegraphics[scale=0.75]{JOFC-enron_dim_20}
-\caption{Experiments on the Enron communication graphs for JOFC \label{enron_graphmatch}}
+ \centering
+  \caption{
+ \label{figell2}}
+ \includegraphics[width=1.2\textwidth]{sim_bitflip_hybrid_cluster_300_hsv.pdf}
 \end{figure}
-
-\begin{figure}
-\includegraphics[scale=0.75]{enron-JOFC-FAQ-paper.pdf}
-\caption{Experiments on the Enron communication graphs for FAQ and JOFC \label{enron_graphmatch_faq_jofc}}
-\end{figure}
-
-\subsubsection{Wikipedia hyperlink subgraph}
-
-To test the JOFC approach with real data, a collection of articles are collected from the English Wikipedia, consisting of the
- directed 2-neighborhood of the document "Algebraic Geometry". 
-   This  collection of 1382 articles and the correspondence of each article in French 
-Wikipedia is our real-life dataset. It is possible to utilize both textual content of the documents and the hyperlink graph structure. The textual content of the documents is summarized by the bag-of-words model. Dissimilarities between documents  in the same language are computed by the Lin-Pantel discounted mutual information \cite{LinPantel,PantelLin}
- and cosine dissimilarity $k(x_{ik}; x_{jk}) = 1 - (x_{ik} x_{jk})/(\|x_{ik}\|_2\|x_{ik}\|_2)$. 
- The dissimilarities based on the hyperlink graph of the collection of the articles are 
- for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$.  Further details about this dataset is available in \cite{Zhiliang_disparate}.
-
-\begin{figure}
-\includegraphics[scale=0.75]{wiki-all-with-unseeded.pdf}
-\caption{Graph Matching Experiments on the English and French Wikipedia subgraph for FAQ \label{wiki_graphmatch}}
-\end{figure}
-
-\subsubsection{Charitynet graph}
-
-The charitynet dataset consists  of timestamped donation relationships between 8052 donors and 756 charities. The donations are divided into two time intervals according to whether they are before the midpoint of the earliest and latest timestamps.
-Let $tmid = \frac{(tmax - tmin)}{2}$.
-We build two bipartite graphs represented by $B_1$ and $B_2$ for $\left[tmin,tmid\right)$ and $\left(tmid,tmax\right]$, respectively --
-each $B^{(t)}$ is $n \times m$, where $n$ is total number of donors in all of charitynet and $m$ is total number of charities in all of charitynet.
-so $B_{ij}^{(t)}$ is a 1 if donor $i$ gives to charity $j$ during time interval $t$.
-
-For charities $i$ and $j$,
-let $A_{ij}^{(t)}= \sum_{k}{(B_{ik}^{(t)}B_{jk}^{(t)}}$, i.e. the number of donors that both $i$ and $j$ receive from during time interval $t$.
-We match the two graphs represented by  $A^{\left[tmin,tmid\right)}$, $A^{\left(tmid,tmax\right]}$.
-\begin{figure}
-\includegraphics[scale=0.4]{charitynet_SGM_JOFCvsFAQ}
-\caption{Graph Matching experiments on the two Charitynet graphs for JOFC \label{charitynet_graphmatch}}
-\end{figure}
-
-\subsection{1-to-k matching of vertices} 
-
-Consider the case where the correspondences between vertices in $A$ and $B$ are not one-to-one. We consider a very simple case where 
-the $i^{th}$ vertex in $B$ corresponds to $k_i$ vertices in $A$ where $1\leq k_i \leq k_{max}$ where $k_{max}$ is the maximum number of corresponding vertices a $B$ vertex can have.  Denote by $g$ the correspondence function from vertices in $G_1$ to vertices in $G_2$. Given $r$ vertices in $B$, and the corresponding vertices in $V_1$ for each of the $r$ vertices ($u \in V_1$ such that $g(u)=v_2$), the task is  to find at most $k_max$ closest matches to each vertex of of $B$. 
-The three information retrieval performance measures are used: Precision, Recall and F-measure.
-
-$$\mathrm{Precision} =\frac{\textrm{Number of correct matches found}}{\textrm{Number of found matches}}$$
-$$\mathrm{Recall}    =\frac{\textrm{Number of correct matches found}}{\textrm{Number of true matches}}$$
-
-$$F-measure  =\frac{2 \times \textrm{Precision} \times \textrm{Recall}}{\textrm{Precision} + \textrm{Recall}}$$
-
-For each vertex of $B$, the number of true matches is $k_i$. The three performance measure is calculated for each vertex of $B$ and then the three averages over all vertices $B$ is the performance measures computed for the  matching.
-
-\begin{figure}
-\includegraphics[scale=0.65]{Total_precision_JOFC_1_to_k_match_paper.pdf}
-\caption{Graph Matching experiments on simulated graphs for JOFC \label{1_k_graphmatch_sim}}
-\end{figure}
-
-

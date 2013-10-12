@@ -9,8 +9,8 @@
 
 \usepackage{amssymb,amsmath,amsthm,amscd}
 \usepackage{graphicx}
-\usepackage{subcaption}
-\graphicspath{{./figs/}}
+\usepackage[caption=false]{subcaption}
+
 \usepackage{hyperref, mathrsfs, bm}
 \usepackage{algorithm2e}
 \usepackage{url}
@@ -30,7 +30,9 @@
 \usepackage{cmbright} %clean look
 %\usepackage{times}  % Use this for ugly fonts
 %\usepackage{ccfonts,eulervm} %Not bad looks nice for serif
-%\usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
 %\usepackage[garamond]{mathdesign}
 
 \usepackage{verbatim}
@@ -125,6 +127,8 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 <<'child-chapter10_Graph_Match.Rnw', child='chapter10_Graph_Match.Rnw',eval=TRUE>>=
 @
 
+<<'child-chapter11_Graph_Match.Rnw', child='chapter11-Graph_Match_JOFC_Exp.Rnw',eval=TRUE>>=
+@
 
 %<<'child-chapter12_Grassmannian.Rnw', child='chapter12_Grassmannian.Rnw',eval=TRUE>>=
 %@
