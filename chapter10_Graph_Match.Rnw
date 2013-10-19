@@ -15,7 +15,7 @@ Another application of  the JOFC approach is  the graph matching problem. For a 
  
 \subsection{Graph Matching }
 Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$ such that $\| V_1 \|=\| V_2 \|=$. Suppose there exists a bijection $f$   such that $f(v_1)=v_2$ and $\forall v' \in \mathbf{N}(v_1) f(v') \in \mathbf{N}(v_2)$. Then the \emph{exact} graph matching problem  is to find this bijection. Even determining the existence  of such an isomorphism is NP-hard.  Although the bijection might not exist,  the \emph{approximate} graph matching problem, which is the task of  finding a bijection between the
-graphs which minimizes the degree  of mismatch   between the two graphs, is an interesting problem that has practical applications\cite{}.
+graphs which minimizes the degree  of mismatch   between the two graphs, is an interesting problem that has practical applications\cite{GraphMatchReview,Bengoetxea2002,recentdevGraphMatching2000,VogConGraphMatchFAQ,Zaslavskiy2009}.
 
 
 
@@ -57,12 +57,12 @@ For the approximate graph matching problem, we seek $P$ that minimizes $h(P)$, w
 For unweighted graphs, the degree of mismatch is characterized by the number of adjacency disagreements, i.e
 $h(P)=\|(I_{r \times r}\oplus P)^{T}A(I_{r \times r}\oplus P)-B\|_1$ subject to $P$ being a permutation matrix.
 For weighted graphs, it could be any monotonic transformation of the difference between the weights of matching edges.
-%Although an efficient algorithm  for the general  graph matching problem is not known, there are various principled heuristic algorithms for  approximate solutions of the graph matching problem  in the literature\cite{GraphMatchingReview}.
+%Although an efficient algorithm  for the general  graph matching problem is not known, there are various principled heuristic algorithms for  approximate solutions of the graph matching problem  in the literature\cite{GraphMatchReview}.
    
    
  Note this optimization problem is equivalent to minimizing various functions, e.g.
  
-$\|A(I_{r \times r}\oplus P)-(I_{r \times r}\oplus P)B\|_1$ (since $I_{r \times r}\oplus P$ is a permutation matrix ) or
+$\|A(I_{r \times r}\oplus P)-(I_{r \times r}\oplus P)B\|_1$ (since $I_{r \times r}\oplus P$ is a permutation matrix) or
 
 $\|A-(I_{r \times r}\oplus P)B(I_{r \times r}\oplus P)^T\|_2$ (monotonic function of $\ell_1$ norm) or
 
@@ -75,7 +75,7 @@ $\tr {A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$ (expanding out $\
 over all permutation matrices $P$,
 where $\| \cdot \|_2$ is the $\ell_2$ vector norm on matrices.   Althought these different formulations  are equivalent, their relaxations result in different methods for solving the approximate graph matching problem\ref{subsec:rqap2}. Specfically the $\ell_1$ formulation is the  linear assignment problem. $\ell_2$ formulations are examples of the quadratic assignment problem.
 
-
+ 
 
 
 \subsection{Fast approximate quadratic programming for Seeded Graph Matching}
@@ -286,13 +286,13 @@ $\nabla_{P}f(P)=-2A_{21}B_{21}^{T}+2PB_{21}B_{21}^{T}-2A_{12}^{T}B_{12}+2A_{12}^
 becomes $-2*(A_{21}B_{21}^T+A_{12}^TB_{12}+A_{22}PB_{22}^T+A_{22}^TPB_{22})$
 The stronger condition of minimization over the set of permutation matrices is incorporated in the Hungarian Algorithm step.
 An interesting question is how does this extra constraint effect the convergence properties of Frank-Wolfe algorithm.  This question is investigated in the comparison of rQAP and rQAP2 formulations.  
-   
-\section{The comparison of rQAP against the alternative formulation rQAP2}
+
+\subsection{The comparison of rQAP against the alternative formulation rQAP2}
 Although the two formulations are equivalent and the global extrema of the two functions are the same, we expect different convergence  properties. In particular the extra terms in the gradient of rQAP2 which vanishes for unitary matrices should act as a random noise. The conclusion of the literature of stochastic optimization  is that, under some conditions, such noise speeds up convergence, by overcoming local extrema. The problem is that, such noise needs to vanish to negligible levels in order for the iterative algorithm to converge. 
 The experiment in the last  section was repeated with both rQAP and rQAP2 and the fraction of nonseed vertices correctly matched and the average number of iterations to satisfy a stopping criteria was compared between the two formulations. 
 
 \begin{figure}
-\centering
+ \centering
   \caption{Fraction of the $n=70$ nonseeds correctly matched using our $\ell_2$-based algorithm for rQAP and rQAP2 formulations
  \label{figell2}}
  \includegraphics[width=1.2\textwidth]{rQAP_vs_rQAP2-alotmore.pdf}
@@ -305,7 +305,7 @@ Our conclusion is that our expectations for the two formulations is warranted, r
 A natural follow-up to the previous inquiry is whether one can get the best of both world by making a hybrid of the two formulations: First start with minimizing rQAP2 function, until the current iterate of solution is relatively close to the true solution, and follow with maximizing rQAP function. 
 
 
-\subsection{Fast approximate quadratic programming with smooth transition from rQAP2 to rQAP}
+\subsection{A hybrid formulation: Fast approximate quadratic programming with smooth transition from rQAP2 to rQAP \label{subsec:hybrid}}
 
 For this hybrid form of the FAQ algorithm, we weight the terms that differ between rQAP2 and rQAP by a decreasing weight $r$. $\nabla_{P}f(P)=
 r*\{2PB_{21}B_{21}^{T}
@@ -314,12 +314,12 @@ r*\{2PB_{21}B_{21}^{T}
 +PB_{22}B_{22}^{T}\}
 -2A_{21}B_{21}^{T}-2A_{12}^{T}B_{12}
 -2A_{22}^{T}PB_{22}-2A_{22}PB_{22}^{T}$. As $r \rightarrow 0 $, the gradient expression at each step of F-W algorithm approaches
-$-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -2 times the gradient in rQAP. We let $r= 0.5- \frac{atan((iter-(maxiter/2)))}{\pi}$, so as the iteration counter, iter goes from $1 to $maxiter$, r goes from 1 to 0. This hybrid formulation will behave like rQAP2 for initial iterations and will start to behave like rQAP as $iter$ approaches $maxiter$.
+$-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -2 times the gradient in rQAP. We let $r= 0.5- \frac{\tan((iter-(maxiter/2)))}{\pi}$, so as the iteration counter, iter goes from $1 to $maxiter$, r goes from 1 to 0. This hybrid formulation will behave like rQAP2 for the initial iterations of Frank-Wolfe algorithm and will start to behave like rQAP as $iter$ approaches $maxiter$.
 
 
 \begin{figure}
  \centering
   \caption{
- \label{figell2}}
+ \label{fig:hybrid}}
  \includegraphics[width=1.2\textwidth]{sim_bitflip_hybrid_cluster_300_hsv.pdf}
 \end{figure}

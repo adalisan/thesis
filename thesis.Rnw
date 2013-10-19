@@ -9,7 +9,7 @@
 
 \usepackage{amssymb,amsmath,amsthm,amscd}
 \usepackage{graphicx}
-\usepackage[caption=false]{subcaption}
+\usepackage{subcaption}
 
 \usepackage{hyperref, mathrsfs, bm}
 \usepackage{algorithm2e}
@@ -38,6 +38,7 @@
 \usepackage{verbatim}
 
 \usepackage{multirow}
+
 \usepackage{fancyhdr}    % Use nice looking headers along with the required footer page numbers   
 %\usepackage[hypertex]{hyperref}
 \usepackage{lscape} 

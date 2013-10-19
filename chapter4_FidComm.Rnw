@@ -1,8 +1,8 @@
 \chapter{Fidelity and Commensurability}
-\label{sec:FidComm}
+\label{chap:FidComm}
 \chaptermark{Fidelity and Commensurability}
 
-\section{The concepts of  Fidelity and Commensurability\label{sec:FidComm}}
+\section{The concepts of  Fidelity and Commensurability\label{chap:FidComm}}
 
 For the sake of argument, assume that the source of dissimilarities  are actually observations that are vectors in Euclidean space. MDS with raw stress will not result in a perfect reconstruction  of the original observations, unless the two conditions are satisfied:
 \begin{itemize}

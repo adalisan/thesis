@@ -68,7 +68,7 @@ in the common representation space $\mX$.
 \begin{figure}
   \begin{center}
 \includegraphics[scale=0.75]{gen-model-orig-proj.pdf}
-    \caption{Maps $\pi_k$ induce disparate data spaces $\Xi_k$ from ``object space'' $\Xi$.
+ \caption{Maps $\pi_k$ induce disparate data spaces $\Xi_k$ from ``object space'' $\Xi$.
     Manifold matching involves using matched data $\{\bm{x}_{ik}\}$
     to simultaneously learn maps $\rho_1,\ldots,\rho_K$
     from disparate spaces 
@@ -76,7 +76,7 @@ in the common representation space $\mX$.
   to a common ``representation space'' $\mX$, for subsequent inference.}\label{fig:mm}
   \end{center}
   \label{fig:multisensor}
-  \end{figure}
+\end{figure}
 
 
 
@@ -110,7 +110,7 @@ M=  \left[ \begin{array}{cc}
          \Delta_1 & L\\
         L^T  & \Delta_2 
      \end{array}  \right]     \label{omnibus} 
-\end{equation} where $L$ is a matrix of imputed entries. 
+\end{equation} where $L$ is a matrix of imputed entries.   
 
 \begin{remark}
 For clarity of exposition,we will consider $K=2$; the generalization to $K>2$ is straightforward. 
