@@ -21,21 +21,21 @@ structure of  Wikipedia  articles, photographs take under different illumination
 The problem can be formally described as follows:
 
 
-Let $(\Xi,\mF,\mP)$ be a probability space,
-i.e., $\Xi$ is a sample space, $\mF$ is a sigma-field,
-and $\mP$ is a probability measure.
+Let $(\Xi,\mcF,\mcP)$ be a probability space,
+i.e., $\Xi$ is a sample space, $\mcF$ is a sigma-field,
+and $\mcP$ is a probability measure.
 Consider $K$ measurable spaces $\Xi_1,\cdots,\Xi_K$ 
 and measurable maps $\pi_k:\Xi \to \Xi_k$.
-Each $\pi_k$ induces a probability measure $\mP_k$ on $\Xi_k$.
+Each $\pi_k$ induces a probability measure $\mcP_k$ on $\Xi_k$.
 We wish to identify a measurable metric space $\mX$
 (with distance function $d$)
 and measurable maps $\rho_k: \Xi_k \to \mX$,
-inducing probability measures $\widetilde{\mP}_k$ on $\mX$,
+inducing probability measures $\widetilde{\mcP}_k$ on $\mX$,
 so that for $[x_1,\cdots,x_K]' \in \Xi_1 \times \cdots \times \Xi_K$
 we may evaluate distances $d(\rho_{k_1}(x_{k_1}),\rho_{k_2}(x_{k_2}))$ in $\mX$.
 
 
-Given $\xi_1,\xi_2 \iid \mP$ in $\Xi$,
+Given $\xi_1,\xi_2 \iid \mcP$ in $\Xi$,
 %For any distinct $\xi_1,\xi_2 \in \Xi$,
 we may reasonably hope that the random variable
 $d(\rho_{k_1}\circ\pi_{k_1}(\xi_1),\rho_{k_2}\circ\pi_{k_2}(\xi_1))$

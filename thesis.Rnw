@@ -33,6 +33,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
 
+\usepackage{ogonek}
 %\usepackage[garamond]{mathdesign}
 
 \usepackage{verbatim}

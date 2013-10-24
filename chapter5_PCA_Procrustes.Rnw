@@ -1,17 +1,65 @@
 
-\chapter{Principal Components Analysis and Procrustes Analysis}
+\chapter{Procrustes Analysis on Low-dimensional Embeddings}
 \label{sec:PoM}
-\chaptermark{Principal Components Analysis and Procrustes Analysis}
+\chaptermark{Procrustes Analysis}
+
 
 
 \section{Procrustes Analysis}
+Given two configurations of $n$ points in $d$-dimensional that include the same number of points,  and Procrustean methods try to fit one configuration to the other so that the points align as well as possible. Let us denote the configurations by two $n \times d$ matrices: ${\X}_1$, ${\X}_2$. The most general version of this  method  seeks an affine transformation $\rho$ from the configuration ${\X}_2$  to the target configuration ${\X}_1$  transformed by $\rho$ such that the sum of squares of the distances from each point transformed with $\rho$ to its corresponding point is minimized.
+It is also possible to  enforce constraints on the affine transformation such as requiring the translation component to be a zero vector (if both of the point configurations are zero-centered), or setting the scaling component to 1 (if only rigid transformations are allowed). First let us consider the general case  $\rho({{\X}_2}) = s{\X}_2\mathbf{Q}+\1\mathbf{t}^T$ where $\mathbf{Q} \in \M_{d\times d}$, $s \in (0,\infty)$, $t\in \Real^{d}$. We will summarize the derivation of the components of the Procrustean transformation found in \cite{borg+groenen:1997}.
 
-Since separate  condition dissimilarities are available, a straightforward approach is to embed each conditional dissimilarity matrix, $\Delta_1$ and $\Delta_2$, separately  in  $d$-dimensional Euclidean space (call these embedded configurations $X_1$ and $X_2$, respectively) and then find a mapping function $\rho :\mathbb{R}^{d}\rightarrow\mathbb{R}^{d}$ that maps each point in $X_2$ to approximately its corresponding point in $X_1$. This approach can be seen as a specific example of the general setting where the commensurate space is d-dimensional  Euclidean space and $\rho_1$ in  ~\ref{fig:fig1} is the identity map. 
+We seek to  minimize 
+\begin{align*}
+\mcL(s,\mathbf{Q},\mathbf{t}) &= \|{\X}_1 - (s{\X}_2\mathbf{Q}+\1 \mathbf{t}^T)\|_F^2  
+\\ &= \tr {\left({\X}_1 - (s{\X}_2\mathbf{Q}+\1 \mathbf{t}^T) \right)^T \left({\X}_1 - (s{\X}_2\mathbf{Q}+\1 \mathbf{t}^T) \right)}.
+\end{align*}
 
-Estimation of $\rho$ is carried out using  Procrustes Analysis  on training data. Procrustes Analysis~\cite{Sibson} finds a orthonormal matrix $\mathbf{Q}^*$ that minimizes the sum of squared distances between the  target configuration $X_1$ and  the configuration $X_2$ transformed by $\mathbf{Q}^*$, i.e.,
- \[\mathbf{Q}^* = \argmin_{Q^TQ = I} \|X_1 - X_2Q\|_F\] 
- where $\|\cdot\|_F$ is the Frobenius norm on matrices. The map $\rho$ estimated by the linear map $\mathbf{Q}^*$   makes the separate MDS embeddings as commensurate as possible. Once such a mapping is computed, one can out-of-sample embed  new dissimilarities for each condition (separately)  and  use $\mathbf{Q}^*$ to make the embeddings commensurate.
-One can then compute the test statistic $\tau$ (the distance between commensurate embeddings) for  the hypothesis testing problem. This approach will be referred to  as P$\circ$M - Procrustes $\circ$MDS.
+Setting the gradient $\frac{\partial \mcL}{\partial \bm{t}}=2 \left({\X}_1^T \1 - (s\mathbf{Q}^T {\X}_2^T \1+ n\mathbf{t})\right)$ to $\mathbf{0}$ ,
+we solve for $\hat{\mathbf{t}}= n^{-1} \left({\X}_1^T \1  -s\mathbf{Q}^T {\X}_2^T \1 \right)$. 
+
+Putting $\hat{\mathbf{t}}$ into  $\mcL(s,\mathbf{Q},{\mathbf{t}})$, we get 
+\[\mcL(s,\mathbf{Q},\hat{\mathbf{t}}) = \tr \left((\bm{I}_n- \frac{\1 {\1} ^T}{n}){\X}_1 - (s{\X}_2\mathbf{Q} )\right)^T \left((\bm{I}_n- \frac{\1 {\1} ^T}{n}){\X}_1 - (s{\X}_2\mathbf{Q})\right).\]
+Let us denote the centering matrix $\left(\bm{I}_n- \frac{\1 {\1} ^T}{n}\right)$  with $\bm{J}$. 
+Setting  $\frac{\partial \mcL}{\partial s}=2 \tr {s{{\X}_2}^T  \bm{J} {{\X}_2}}-2 \tr {  {{\X}_1}^T \bm{J} {\X}_2\mathbf{Q}}=\bm{0}$,
+we get $\hat{s}=\frac{ \tr {  {{\X}_1}^T \bm{J} {\X}_2\mathbf{Q}}}{\tr {{{\X}_2}^T  \bm{J} {{\X}_2}}}$.
+Putting $\hat{s}$ into $\mcL(s,\mathbf{Q},\hat{\mathbf{t}})$, we get
+$\mcL(\hat{s},\mathbf{Q},\hat{\mathbf{t}}) = 
+\tr{{\X}_1^T \bm{J} {\X}_1}- 
+\frac{ \left({ \tr{  {\X}_1^T \bm{J} {\X}_2\mathbf{Q} }}\right)^2}
+{\tr{{\X}_2^T \bm{J} {\X}_2}} $.
+The final step is computing the $\mathbf{Q}$. 
+Note that the only term in $\mcL(\hat{s},\mathbf{Q},\hat{\mathbf{t}})$  that depends on $\mathbf{Q}$ is  $\tr \left( {\X}_1^T \bm{J} {\X}_2\mathbf{Q}\right)^2$. 
+Subject to $\mathbf{Q}\mathbf{Q}^T=\mathbf{Q}^T\mathbf{Q}=\bm{I}_n$, minimizing   $- \left( \tr \left( {\X}_1^T \bm{J} {\X}_2\mathbf{Q}\right)\right)^2$ is equivalent to minimizing  $-\tr \left( {\X}_1^T \bm{J} {\X}_2\mathbf{Q}\right)$ (Since $\hat{s}>0$, minimizing $-x$ is the same as minimizing $-x^2$ given a constraint on $x$). So  \[\hat{\mathbf{Q}}=\argmin_{Q^TQ = \bm{I}_n}{-\tr \left( {\X}_1^T \bm{J} {\X}_2\mathbf{Q}\right)} \label{q_procrustes}\]. The solution for $\mathbf{Q}$ is equivalent to the solution of the orthogonal Procrustes problem.
+
+For the orthogonal Procrustes problem, we seek  an orthonormal matrix $\mathbf{Q}^*$ that minimizes the sum of squared distances between the  target configuration ${\X}_1$ and  the configuration ${\X}_2$ transformed by $\mathbf{Q}^*$, i.e.,
+ $\left[\mathbf{Q}^* = \argmin_{\mathbf{Q}^T\mathbf{Q} = \bm{I}_n} \|{\X}_1 - {\X}_2\mathbf{Q}\|_F  \right] $
+ where $\|\cdot\|_F$ is the Frobenius norm on matrices.
+Simplifying the norm expression, we get $\|{\X}_1 - {\X}_2\mathbf{Q}\|_F^2 = \tr {({\X}_1 - {\X}_2\mathbf{Q})^T({\X}_1 - {\X}_2\mathbf{Q})}= \tr {({\X}_1^T{\X}_1 + {\X}_2^T{\X}_2)} - 2\tr{ ({\X}_1^T {\X}_2\mathbf{Q})}$. Since the first term is independent of $\mathbf{Q}$, we can ignore that term. The second term  is equivalent to \eqref{q_procrustes} when  ${\X}_1^T\1 =  {\X}_2^T\1=\bm{0}$. The solution for $\mathbf{Q}^*$ is then the  $d\times d$ orthogonal matrix that maximizes $\tr{ ({\X}_1^T {\X}_2\mathbf{Q})}$.
+
+ Consider the singular value decomposition $\mathbf{{\X}_1^T {\X}_2}=\bm{U} \bm{\Sigma} \bm{V}^T$. The expression to be minimized can be written as $\tr {\bm{U} \bm{\Sigma} \bm{V}^T \mathbf{Q}}$ which is equal to  $[\tr { \bm{V}^T \mathbf{Q} \bm{U} \bm{\Sigma}} $ due to circular invariancy of the trace operation.
+ 
+ Note that for an orthogonal matrix $T\in \M$ and a diagonal matrix $\Lambda \in \M$ with non-negative entries $\Lambda_{ii}\geq 0$
+ \[
+ \tr{ T \Lambda } \geq \tr{ \Lambda} \] with equality if $T=\bm{I}$.
+ 
+ Note $\bm{\Sigma}$ is diagonal with nonnegative entries  and $\bm{Z}=\bm{V}^T \mathbf{Q} \bm{U}$ is also orthogonal. To see why $\bm{Z}$ is orthogonal, consider 
+ \begin{align*}
+ \bm{Z}\bm{Z}^T &= \bm{V}^T \mathbf{Q} \bm{U} \bm{U}^T \mathbf{Q}^T  \bm{V} \\
+ &= \bm{V}^T \mathbf{Q} \bm{I}_n \mathbf{Q}^T  \bm{V}\\
+ &= \bm{V}^T \bm{I}_n  \bm{V} \\
+ &= \bm{I}_n
+ \end{align*} 
+ each step justified by the fact that the SVD of $\mathbf{{\X}_1^T {\X}_2}$ results in matrices  $U$ and $V$ with orthogonal columns and $R$ is already known to be orthogonal.
+ Therefore  $\tr { \bm{V}^T \mathbf{Q} \bm{U} \bm{\Sigma}}  \leq \tr \bm{\Sigma}$ 
+with equality if  $\bm{V}^T \mathbf{Q} \bm{U} = I$ . So the solution  that achieves the bound is $\hat{\mathbf{Q}}= \bm{V}^T  \bm{U}$
+
+\section{Procrustes Analysis for Manifold Matching}
+
+Since separate  condition dissimilarities are available, a straightforward approach is to embed each conditional dissimilarity matrix, $\Delta_1$ and $\Delta_2$, separately  in  $d$-dimensional Euclidean space (call these embedded configurations ${\X}_1$ and ${\X}_2$, respectively) and then find a mapping function $\rho :\mathbb{R}^{d}\rightarrow\mathbb{R}^{d}$ that maps each point in ${\X}_2$ to approximately its corresponding point in ${\X}_1$. This approach can be seen as a specific example of the general setting where the commensurate space is d-dimensional  Euclidean space and $\rho_1$ in  ~\ref{fig:fig1} is the identity map. 
+
+Estimation of $\rho$ is carried out using  Procrustes Analysis  on training data. Procrustes Analysis~The map $\rho$ estimated by the linear map $\mathbf{Q}^*$   makes the separate MDS embeddings as commensurate as possible. Once such a mapping is computed, one can out-of-sample embed  new dissimilarities for each condition (separately)  and  use $\mathbf{Q}^*$ to make the embeddings commensurate.
+One can then compute the test statistic $\tau$ (the distance between commensurate embeddings) for  the hypothesis testing problem. This approach will be referred to  as P$\circ$M - Procrustes $\circ$ MDS.
 
 Note that the Procrustes transformation $\mathbf{Q}^*$  is limited to  a linear transformation consisting of rotation and reflection and possibly also scaling components. The optimal mapping might  very well be   non-linear. If a larger class of mappings is considered, this would result in a smaller model bias but also larger variability for the mapping function. By only considering the class of linear transformations, it is possible to learn $\mathbf{Q}^{*}$ with the limited sample size.
 

@@ -140,7 +140,7 @@ In our experiments,  the Frank-Wolfe Algorithm was initialized with
 $\tilde{P}=\frac{1}{s}\vec{1}_{s} \vec{1}_{s}^T$. (This initialization is arbitrary , a random $\tilde{P}$ can be chosen). 
 
 Now we adapt F-W algorithm to the minimization of $h(P)$.  For each iteration $i$, in the first step let $\tilde{P}^{i}$ the current estimate of $P$. We are supposed to compute  $Q$ which would minimize  $-\tr Q^{T}Grad(\tilde{P}^{i})$ over all $s \times s$ doubly stochastic matrices $Q \in \M ^{s \times s}$. Equivalently $\tr Q^{T}Grad(\tilde{P}^{i})$ is maximized with respect to $Q$. We will use  $\nabla$ in place of $Grad(\tilde{P}^{i})$.
-Note that $\hat{Q}$ can be assumed to be a permutation matrix.  To see this, assume $\hat{Q}$ is not a permutation matrix and there exist a row ,say $i^{th}$ of $\hat{Q}$, $q_i$ that is not a canonical basis. Note that the contribution of $q_{i}$ to trace of $Q^{T}G(\tilde{P}^{i})$ is $\sum_{k}{q_{ik}\nabla{}_{ki}}$. Subject to $\sum_{k}{q_{ik}=1$. Note that $Q^{*}$ such that $Q_{io}^{*}=1$,  $Q_{ik}^{*}=1$ for $k \neq o$ for $o=\argmax_k{\nabla{}_{ki}}$  $Q_{mn}^{*}=\hat{Q}_{mn}$ for $m=$
+Note that $\hat{Q}$ can be assumed to be a permutation matrix.  To see this, assume $\hat{Q}$ is not a permutation matrix and there exist a row ,say $i^{th}$ of $\hat{Q}$, $q_i$ that is not a canonical basis. Note that the contribution of $q_{i}$ to trace of $Q^{T}G(\tilde{P}^{i})$ is $\sum_{k}{q_{ik}\nabla{}_{ki}}$. Subject to $\sum_{k}{q_{ik}}=1$. Note that $Q^{*}$ such that $Q_{io}^{*}=1$,  $Q_{ik}^{*}=1$ for $k \neq o$ for $o=\argmax_k{\nabla{}_{ki}}$  $Q_{mn}^{*}=\hat{Q}_{mn}$ for $m=$
 Therefore , the  Hungarian Algorithm will in fact find the optimal $Q$, call it
 $\hat{Q}$.
 The next task in the Frank-Wolfe algorithm step
@@ -184,7 +184,7 @@ I & \mathbf{0}\\
 \mathbf{0} & P
 \end{array}\right]$ .
 
-\begin{note}
+
 Consider term (1)
 
 \begin{align*}
@@ -232,7 +232,8 @@ can be further simplified to
 \tr\left[PP^{T}A_{22}^{T}A_{22}-2*P^{T}A_{22}^{T}PB_{22}+PB_{22}B_{22}^{T}P^{T}\right]
 \]
 .
-\end{note}
+
+
 The gradient for rQAP2 with hard seeds (minimization problem) is
 
 $\nabla_{P}f(P)=-2A_{21}B_{21}^{T}+2PB_{21}B_{21}^{T}-2A_{12}^{T}B_{12}+2A_{12}^{T}A_{12}P+2(A_{22}^{T}A_{22}P+PB_{22}B_{22}^{T}-A_{22}^{T}PB_{22}-A_{22}PB_{22}^{T}$)
@@ -314,7 +315,7 @@ r*\{2PB_{21}B_{21}^{T}
 +PB_{22}B_{22}^{T}\}
 -2A_{21}B_{21}^{T}-2A_{12}^{T}B_{12}
 -2A_{22}^{T}PB_{22}-2A_{22}PB_{22}^{T}$. As $r \rightarrow 0 $, the gradient expression at each step of F-W algorithm approaches
-$-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -2 times the gradient in rQAP. We let $r= 0.5- \frac{\tan((iter-(maxiter/2)))}{\pi}$, so as the iteration counter, iter goes from $1 to $maxiter$, r goes from 1 to 0. This hybrid formulation will behave like rQAP2 for the initial iterations of Frank-Wolfe algorithm and will start to behave like rQAP as $iter$ approaches $maxiter$.
+$-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -2 times the gradient in rQAP. We let $r= 0.5- \frac{\tan((i-(i_{end}/2)))}{\pi}$, so as the iteration counter, $i$ goes from $1$ to $i_{end}$, $r$ goes from $1$ to $0$. This hybrid formulation will behave like rQAP2 for the initial iterations of Frank-Wolfe algorithm and will start to behave like rQAP as $i$ approaches $i_{end}$.
 
 
 \begin{figure}

@@ -37,7 +37,7 @@ As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to 
 Let $ \mathcal{U}$ be the set of all orthogonal d-frames 
 (ordered set of d linearly independent vectors) of $R^{d'}$. 
 Let $X_1$ and $X_2$  be two $n\times d'$ (configuration) matrices that are perfectly ``matched"
- (there exists a transformation matrix $\mathbf{Q}$ such that $\|   X_1\mathbf{Q}  -X_2 \|=0$).
+ (there exists a  matrix $\mathbf{Q}$ such that $\|   X_1\mathbf{Q}  -X_2 \|=0$).
 If commensurability is  defined as
 in equation~\eqref{comm-error},
  where  the embedded configurations are $\tilde{X_1}=X_1U_1$ and $\tilde{X_2}=X_2U_2$ for some  $U_1\in \mathcal{U}$ and $U_2\in  \mathcal{U}$,
@@ -45,6 +45,34 @@ and   the original dissimilarities are $D(X_1)$ and $D(X_2) $,
  CCA on $X_1$ and $X_2$ gives $\mathbf{U}_1\in\mathcal{U}$ and  $\mathbf{U}_2\in\mathcal{U}$, 
  the two elements of $\mathcal{U}$ that maximize commensurability, subject to $U_1^{T}X_1^{T}X_1U_1=I_d$ and $U_2^{T}X_2^{T}X_2U_2=I_d$ ($I_d$ is the $d \times d$ identity matrix).
 \end{thm}
+
+\begin{proof}
+Let $\rho=u_x^T \Sigma_{12} u_y$. Commensurability error subject to the linearity constraint is  \[
+\epsilon_{c_{(k_1=1,k_2=2)}} = \frac{1}{n} \sum_{1 \leq i \leq n;k_1=1,k_2=2} (d(U_x\widetilde{\bm{x}}_{ik_1},U_y \widetilde{\bm{x}}_{ik_2}))^2
+\label{eq:cca_commens_proof_1}\]
+which is the simplified form of \ref{comm-error} when $\delta_{ij}=0$ as we assumed there exists a perfect matching. \ref{eq:cca_commens_proof_1} can be written as
+\begin{align*}
+\epsilon_c &= \sum_{1 \leq i \leq n} \sum_{j=1}^d ((u_{xj}\widetilde{\bm{x}}_{i1}-u_{yj} \widetilde{\bm{x}}_{i2}))^2 \\
+&= \sum_{1 \leq i \leq n} \sum_{j=1}^d {(u_{xj}\widetilde{\bm{x}}_{i1}})^2+ ( u_{yj} \widetilde{\bm{x}}_{i2})^2 - 2 (u_{xj} \widetilde{\bm{x}}_{i1} u_{yj} \widetilde{\bm{x}}_{i2}).
+\end{align*}
+
+Note that since $U_1^{T}X_1^{T}X_1U_1=I_d$ ($U_2^{T}X_2^{T}X_2U_2=I_d$) , the first (second) terms, ${(u_{xj}\widetilde{\bm{x}}_{i1}})^2  $ , 
+(${(u_{yj}\widetilde{\bm{x}}_{i2}})^2 $ )
+in the sum are equal to  $1$. The third terms can be written in the form of  ($ -2 \times \xi$) where $\xi$ is the sum of the products of dot products  $u_{xj} \widetilde{\bm{x}}_{i1}$ and  $u_{yj} \widetilde{\bm{x}}_{i2}$  . So maximizing $\xi$ under the linearity constraints,  is maximizing  commensurability.
+Note that 
+\begin{align*}
+\xi &= U_1^{T}X_1^{T}X_2U_2 - \sum_{1 \leq j_1 \leq d, 1 \leq j_2 \leq d, j_1 \neq j_2} u_{xj_1}^T X_1^{T}X_2u_{yj_2}  -   \sum_{1 \leq j_1 \leq d, 1 \leq j_2 \leq d, j_1 \neq j_2} u_{xj_1}^T X_1^{T}X_2u_{yj_2}  \\
+&=  U_1^{T}X_1^{T}X_2U_2 -\sum_{1 \leq i \leq n} \sum_{1 \leq j_1 \leq d, 1 \leq j_2 \leq d, j_1 \neq j_2} {(u_{xj_1} \widetilde{\bm{x}}_{i1}) (u_{yj_2} \widetilde{\bm{x}}_{i2})}
+\end{align*}
+.
+
+Note that in the formulation of CCA the succesive
+
+
+
+\end{proof}
+
+
 
 
 Another way to see the connection between CCA and JOFC embedding (using classical MDS) is by connections to spectral embedding. \cite{CCAviaSpectralEmbed} shows that CCA is a special case of Spectral Embedding with the restriction that the joint embedding coordinates are linear projections of the original multiview data, $X_1$ and $X_2$. First, let us define ``spectral embedding'':
