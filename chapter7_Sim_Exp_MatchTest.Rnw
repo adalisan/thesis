@@ -19,8 +19,7 @@ $X_{i1}$ and $X_{i2}$ to be stochastically smaller than $X_{i1}$ and $X_{i'2}$ f
     \begin{figure}
 	\begin{center}
     \includegraphics[scale=0.75]{MVN_alpha_r_multiple_sancar.pdf}
-    \caption{For the  Gaussian setting (Section \ref{subsec:GaussianSet}), the $\alpha_i$ are denoted by black points and the $X_{ik}$ are denoted by red and blue points respectively.}
-\label{fig:Fig1}
+    \caption{For the  Gaussian setting (Section \ref{subsec:GaussianSet}), the $\alpha_i$ are denoted by black points and the $X_{ik}$ are denoted by red and blue points respectively.\label{fig:Fig1}}
 	\end{center}
   \end{figure}
 
@@ -219,7 +218,7 @@ For the noisy version of the Gaussian setting at allowable type I error 0.05 for
 
 
 
-\section{Match Testing when the number of conditions $K$ is larger than 2\label{k_more_than_two_experiment}}
+\section{Match Testing when the number of conditions, $K$, is larger than 2\label{k_more_than_two_experiment}}
 
 
 As it was mentioned, all of the approaches are generalizable to $K>2$ conditions, though an ambiguity need to be resolved. The alternative hypothesis could be  defined as the event that at least one of the K new dissimilarities are pairwise unmatched ($ H_{A1}: \exists i, j , 1\leq i < j \leq K :\bm{y}_{i} \nsim \bm{y}_{j} $ ) or it could be defined as the case that absolutely none of the K dissimilarities are pairwise matched   ($H_{A2}: \forall i, j , 1\leq i < j \leq K :\bm{y}_{i} \nsim \bm{y}_{j}$ )  .

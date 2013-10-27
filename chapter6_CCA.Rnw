@@ -22,7 +22,7 @@ $$
 Note that $s$, the dimension of $X$ and $Y$, is the embedding dimension $d'$  in the CCA approach. 
 
 
-As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to a commensurate  space by maps provided by CCA. The test statistic   can now be computed and  the null hypothesis is rejected for ``large'' values of the test statistic $\tau$  as in Section \ref{subsec:PoM}.
+As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to a commensurate  space by maps provided by CCA. The test statistic   can now be computed and  the null hypothesis is rejected for ``large'' values of the test statistic $\tau$  as in Section \ref{chap:PoM}.
 
 
 

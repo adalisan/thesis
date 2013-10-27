@@ -12,7 +12,7 @@
 	We will use a finite-dimensional Euclidean space for  this commensurate representation, where standard  statistical inference tools can be used.
   %It should also be parsimonius, so that it can be learned from data of limited  size.
 	
-     ``Disparate data''  means that  the observations are from  different ``conditions'', for example, the data might come from different type of sensors. Formally, the original data  reside in a heteregenous collection of  spaces.  In addition, the data might be structured and/or might reside in  infinite dimensional spaces. Therefore, it is possible that a feature representation of the data is not available or inference with such a representation is fraught with complications (e.g. feature selection, non-i.i.d. data, infinite-dimensional spaces). This motivates our  dissimilarity-centric approach. For an excellent resource on the usage of dissimilarities in pattern recognition, we refer the reader to the Pekalska and Duin book \cite{duin2005dissimilarity}.
+     ``Disparate data''  means that  the observations are from  different ``conditions'', for example, the data might come from different type of sensors. Formally, the original data  reside in a heteregenous collection of  spaces.  In addition, the data might be structured and/or might reside in  infinite dimensional spaces. Therefore, it is possible that a feature representation of the data is not available or inference with such a representation is fraught with complications (e.g. feature selection, non-i.i.d. data, infinite-dimensional spaces). This motivates our  dissimilarity-centric approach. For an excellent resource on the usage of dissimilarities in pattern recognition, we refer the reader to the P\k{e}kalska and Duin book \cite{duin2005dissimilarity}.
 		
 		Since we proceed to inference starting from a dissimilarity representation of the data, our methodology may be applicable to any scenario in which multiple dissimilarity measures are available.  Some illustrative examples include:  pairs of images and their descriptive captions,  textual content  and  hyperlink graph
 structure of  Wikipedia  articles, photographs take under different illumination conditions. In each case, we have an intuitive notion of ``matchedness'': for photographs take under different illumination conditions, ``matched'' means they are of the same person. For a collection of linked Wikipedia articles, the different ``conditions''  are  the textual content and hyperlink graph structure, ``matched'' means a text document and  a vertex  corresponds to the same Wikipedia article. 
@@ -73,9 +73,9 @@ in the common representation space $\mX$.
     to simultaneously learn maps $\rho_1,\ldots,\rho_K$
     from disparate spaces 
     $\Xi_1,\ldots,\Xi_K$
-  to a common ``representation space'' $\mX$, for subsequent inference.}\label{fig:mm}
+  to a common ``representation space'' $\mX$, for subsequent inference.\label{fig:multisensor}}
   \end{center}
-  \label{fig:multisensor}
+  
 \end{figure}
 
 

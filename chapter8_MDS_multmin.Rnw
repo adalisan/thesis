@@ -699,6 +699,7 @@ if (create.ani){
 
 % latex table generated in R 2.15.1 by xtable 1.7-0 package
 % Sat Jan 05 00:54:38 2013
+
 \begin{landscape}
 \begin{table}[ht]
 \def\h#1{\multicolumn{1}{p{3em}}{\mbox{}\hskip0pt #1}}
@@ -736,9 +737,13 @@ Alternative local min &   1.79 & 1.77 & 1.75 & 1.72 & 1.69 & 1.66 & 1.64 & NA & 
 
 \end{center}
 
-\label{stress-val-table}
+\caption{Final stress values for the two local minima configurations\label{stress-val-table}}
 \end{table}
+
 \end{landscape}
+
+
+
 
 
 \begin{comment}
