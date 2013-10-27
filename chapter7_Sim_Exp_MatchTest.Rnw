@@ -218,6 +218,11 @@ For the noisy version of the Gaussian setting at allowable type I error 0.05 for
 
 
 
+
+\section{Match Testing when the number of conditions $K$ is larger than 2\label{k_more_than_two_experiment}}
+
+
+
 \section{Experiments on Wiki Data}
 To test the JOFC approach with real data, a collection of articles are collected from the English Wikipedia, consisting of the
  directed 2-neighborhood of the document "Algebraic Geometry". 
@@ -253,7 +258,8 @@ method \cite{ZhuGhodsi}, resulting in d = 6 for this data set.
 \section{Model Selection}
 For the simulations presented up to now, the embedding dimension $d$ was set to 2. This was a convenient choice which allowed us to investigate various aspects of JOFC and competing approaches.
 However,  more care is required in selection of this parameter, since it plays such a big role in performance in general learning settings. The signal dimension was set to $p=10$ and different $d=2,5,7,10,15$ values were used to test the JOFC approach.
-The following plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} shows the effect of $d$ parameter on the performance of different methods for the Gaussian setting for the noisy case. 
+The following plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} shows the effect of $d$ parameter on the performance of different methods for the Gaussian setting for the noisy case.
+
 \begin{figure}
  \centering
   \captionsetup[subfigure]{labelformat=empty}
@@ -286,6 +292,7 @@ The following plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} 
         \label{fig:ROC-d}
 
 \end{figure}
+
 \begin{center}
 \begin{figure}
 

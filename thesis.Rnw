@@ -97,7 +97,7 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 @
 
 
-<<'child-chapter3_MDS.Rnw', child='chapter3_MDS.Rnw,eval=TRUE'>>=
+<<'child-chapter3_MDS.Rnw',child='chapter3_MDS.Rnw',eval=TRUE>>=
 @
 
 

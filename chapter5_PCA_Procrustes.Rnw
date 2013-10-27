@@ -6,7 +6,7 @@
 
 
 \section{Procrustes Analysis}
-Given two configurations of $n$ points in $d$-dimensional that include the same number of points,  and Procrustean methods try to fit one configuration to the other so that the points align as well as possible. Let us denote the configurations by two $n \times d$ matrices: ${\X}_1$, ${\X}_2$. The most general version of this  method  seeks an affine transformation $\rho$ from the configuration ${\X}_2$  to the target configuration ${\X}_1$  transformed by $\rho$ such that the sum of squares of the distances from each point transformed with $\rho$ to its corresponding point is minimized.
+Given two configurations of $n$ points in $d$-dimensional Euclidean space, Procrustean methods try to fit one configuration to the other so that the points align as well as possible. Let us denote the configurations by two $n \times d$ matrices: ${\X}_1$, ${\X}_2$. The most general version of this  method  seeks an affine transformation $\rho$ from the configuration ${\X}_2$  to the target configuration ${\X}_1$  transformed by $\rho$ such that the sum of squares of the distances from each point transformed with $\rho$ to its corresponding point is minimized.
 It is also possible to  enforce constraints on the affine transformation such as requiring the translation component to be a zero vector (if both of the point configurations are zero-centered), or setting the scaling component to 1 (if only rigid transformations are allowed). First let us consider the general case  $\rho({{\X}_2}) = s{\X}_2\mathbf{Q}+\1\mathbf{t}^T$ where $\mathbf{Q} \in \M_{d\times d}$, $s \in (0,\infty)$, $t\in \Real^{d}$. We will summarize the derivation of the components of the Procrustean transformation found in \cite{borg+groenen:1997}.
 
 We seek to  minimize 
@@ -93,6 +93,10 @@ $ f(\mcY, M) =(1-w)\left({\sigma{(\mcY_1)}}+{\sigma{(\mcY_2)}}\right)+w||{\mcY_1
 \end{thm}
  
 \section{Generalized Procrustes Analysis ($K>2$)}
-Generalized Procrustes analysis is the extension of Procrustes analysis to more than two configuration of points. This extension has been studied in \cite{GPCA}.
+Generalized Procrustes analysis is the extension of Procrustes analysis to more than two configuration of points. This extension has been studied in \cite{GPCA}. Suppose we have $K$ configurations : $\X_1,\X_2,\ldots \X_K$. We wish to find $K$ Procrustean transformations  $\tau_k(\X_k)= s_k\X_k\bm{Q}_k+\bm{t}_{k}$ such that 
+
+\[\sum_{kl}\|\tau_k(\X_k)-\tau_k(\X_k)\|^2_F\] is minimized. This problem doesn't have a single-step analytical solution like the Procrustes analysis problem for all of the components. \bm{t}_{k} components of the transformations can be solved by subtracting the column sums  ($\1\X_k$). The rotation/reflection components $\bm{Q}_k$ can be solved iteratively, by minimizing the error function with respect to $\X_k$ and keeping all other $\X_l, l \neq k$ constant for each $k$ in turn. After convergence of iterative  $\bm{Q}_k$, $s_k$ can be solved for analytically.
+
+Using Generalized Procrustes Analysis (GPA), we can have estimates for $K$ mapping functions $\rho_k$ mentioned in \ref{fig:multisensor} when $K>2$. Given $K$  dissimilarity matrices $\Delta_k,k=1,\ldots,K$,  we would compute separate  MDS embeddings of  $\{\Delta_k \}$  followed by GPA of all the embeddings. The separate embeddings mapped via $\{\tau_k \}$ of the embeddings would give us a single commensurate representation where the disparate dissimilarities can be compared. New dissimilarities $\{ \bm{D}_k \}$ can be out-of-sample embedded  and mapped by the same Procrustean transformations  $\{\tau_k \}$ to the commensurate space. We will use this approach  for the match testing test presented in \label{sec:match detection}, when $K>2$. Simulation results are available in \ref{k_more_than_two_experiment}.
 
 

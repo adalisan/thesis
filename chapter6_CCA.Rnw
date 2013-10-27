@@ -34,46 +34,55 @@ As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to 
 \subsection{Relation of CCA and Commensurability} 
 
 \begin{thm}
-Let $ \mathcal{U}$ be the set of all orthogonal d-frames 
-(ordered set of d linearly independent vectors) of $R^{d'}$. 
-Let $X_1$ and $X_2$  be two $n\times d'$ (configuration) matrices that are perfectly ``matched"
+Let $ \mathcal{U}$ be the set of all orthogonal $d$-frames 
+(ordered set of $d$ linearly independent vectors) of $R^{d'}$. These correspond to all unique projection operators to $d$ dimensional linear subspaces of  $R^{d'}$.
+Let $X_1$ and $X_2$ be two $n\times d'$ (configuration) matrices that represent pair of points that are perfectly ``matched"
  (there exists a  matrix $\mathbf{Q}$ such that $\|   X_1\mathbf{Q}  -X_2 \|=0$).
-If commensurability is  defined as
-in equation~\eqref{comm-error},
- where  the embedded configurations are $\tilde{X_1}=X_1U_1$ and $\tilde{X_2}=X_2U_2$ for some  $U_1\in \mathcal{U}$ and $U_2\in  \mathcal{U}$,
-and   the original dissimilarities are $D(X_1)$ and $D(X_2) $,
- CCA on $X_1$ and $X_2$ gives $\mathbf{U}_1\in\mathcal{U}$ and  $\mathbf{U}_2\in\mathcal{U}$, 
+ Suppose, for the joint embedding procedure, the embedded configurations are constrained to be of the form $\tilde{X_1}=X_1U_1$ and $\tilde{X_2}=X_2U_2$ for some  $U_1\in \mathcal{U}$ and $U_2\in  \mathcal{U}$,
+%and   the original dissimilarities are $D(X_1)$ and $D(X_2) $,
+The commensurability error is  defined as
+in equation~\eqref{comm-error}.
+ 
+ Canonical Correlational Analysis on the  \emph{i.i.d.} sample of points represented by  $X_1$ and $X_2$ gives $\mathbf{U}_1\in\mathcal{U}$ and  $\mathbf{U}_2\in\mathcal{U}$, 
  the two elements of $\mathcal{U}$ that maximize commensurability, subject to $U_1^{T}X_1^{T}X_1U_1=I_d$ and $U_2^{T}X_2^{T}X_2U_2=I_d$ ($I_d$ is the $d \times d$ identity matrix).
 \end{thm}
 
 \begin{proof}
-Let $\rho=u_x^T \Sigma_{12} u_y$. Commensurability error subject to the linearity constraint is  \[
-\epsilon_{c_{(k_1=1,k_2=2)}} = \frac{1}{n} \sum_{1 \leq i \leq n;k_1=1,k_2=2} (d(U_x\widetilde{\bm{x}}_{ik_1},U_y \widetilde{\bm{x}}_{ik_2}))^2
+ Consider \ref{comm-error} and its simplified form when $\delta_{ij}=0$ as we assumed there exists a perfect matching. 
+ %For defining commensurability error, let us use expectation of the squared error term instead of the average squared error from $n$ pairs of points. Then, commensurability error subject to the linearity constraint is  
+ %\[
+%\epsilon_{c_{(k_1=1,k_2=2)}} = E \left[d(U_x\ {\bm{x}}_{k_1},U_y \ {\bm{x}}_{k_2})\right]^2
+%\label{eq:cca_commens_proof_1}.\]
+ \[\epsilon_{c_{(k_1=1,k_2=2)}} = \frac{1}{n} \sum_{1 \leq i \leq n;k_1=1,k_2=2} (d(U_x\widetilde{\bm{x}}_{ik_1},U_y \widetilde{\bm{x}}_{ik_2}))^2
 \label{eq:cca_commens_proof_1}\]
-which is the simplified form of \ref{comm-error} when $\delta_{ij}=0$ as we assumed there exists a perfect matching. \ref{eq:cca_commens_proof_1} can be written as
+. \ref{eq:cca_commens_proof_1} can be written as
+%\begin{align*}
+%\epsilon_{c12} &=  \sum_{j=1}^d E \left[((u_{xj}{\bm{x}}_{1}-u_{yj} {\bm{x}}_{2}))\right]^2 \\
+%&=  \sum_{j=1}^d {(u_{xj}\ {\bm{x}}_{i1}})^2+ ( u_{yj} \ {\bm{x}}_{i2})^2 - 2 (u_{xj}  {\bm{x}}_{i1} u_{yj}  {\bm{x}}_{i2}).
+%\end{align*}
+
 \begin{align*}
-\epsilon_c &= \sum_{1 \leq i \leq n} \sum_{j=1}^d ((u_{xj}\widetilde{\bm{x}}_{i1}-u_{yj} \widetilde{\bm{x}}_{i2}))^2 \\
-&= \sum_{1 \leq i \leq n} \sum_{j=1}^d {(u_{xj}\widetilde{\bm{x}}_{i1}})^2+ ( u_{yj} \widetilde{\bm{x}}_{i2})^2 - 2 (u_{xj} \widetilde{\bm{x}}_{i1} u_{yj} \widetilde{\bm{x}}_{i2}).
+\epsilon_{c12} &=  \frac{1}{n}  \sum_{j=1}^d \sum_{i=1}^n \left[((u_{xj}{\bm{x}}_{i1}-u_{yj} {\bm{x}}_{i2}))\right]^2 \\
+&=  \sum_{j=1}^d {(u_{xj}\ {\bm{x}}_{i1}})^2+ ( u_{yj} \ {\bm{x}}_{i2})^2 - 2 (u_{xj}  {\bm{x}}_{i1} u_{yj}  {\bm{x}}_{i2}).
 \end{align*}
 
-Note that since $U_1^{T}X_1^{T}X_1U_1=I_d$ ($U_2^{T}X_2^{T}X_2U_2=I_d$) , the first (second) terms, ${(u_{xj}\widetilde{\bm{x}}_{i1}})^2  $ , 
-(${(u_{yj}\widetilde{\bm{x}}_{i2}})^2 $ )
-in the sum are equal to  $1$. The third terms can be written in the form of  ($ -2 \times \xi$) where $\xi$ is the sum of the products of dot products  $u_{xj} \widetilde{\bm{x}}_{i1}$ and  $u_{yj} \widetilde{\bm{x}}_{i2}$  . So maximizing $\xi$ under the linearity constraints,  is maximizing  commensurability.
+
+Note that since $U_1^{T}X_1^{T}X_1U_1=I_d$ ($U_2^{T}X_2^{T}X_2U_2=I_d$) , the first (second) terms, ${(u_{xj} {\bm{x}}_{i1}})^2  $ , 
+(${(u_{yj} {\bm{x}}_{i2}})^2 $ )
+in the sum are equal to  $1$. The third terms can be written in the form of  ($ -2 \times \xi$) where $\xi$ is the sum of the products of dot products  $u_{xj}  {\bm{x}}_{i1}$ and  $u_{yj}  {\bm{x}}_{i2}$  . So maximizing $\xi$ under the linearity constraints,  is maximizing  commensurability.
+
+
 Note that 
 \begin{align*}
-\xi &= U_1^{T}X_1^{T}X_2U_2 - \sum_{1 \leq j_1 \leq d, 1 \leq j_2 \leq d, j_1 \neq j_2} u_{xj_1}^T X_1^{T}X_2u_{yj_2}  -   \sum_{1 \leq j_1 \leq d, 1 \leq j_2 \leq d, j_1 \neq j_2} u_{xj_1}^T X_1^{T}X_2u_{yj_2}  \\
-&=  U_1^{T}X_1^{T}X_2U_2 -\sum_{1 \leq i \leq n} \sum_{1 \leq j_1 \leq d, 1 \leq j_2 \leq d, j_1 \neq j_2} {(u_{xj_1} \widetilde{\bm{x}}_{i1}) (u_{yj_2} \widetilde{\bm{x}}_{i2})}
+\xi &=  \frac{1}{n} \left[ \tr{U_1^{T}X_1^{T}X_2U_2} - \sum_{1 \leq j \leq d} \sum_{1 \leq i < l \leq d} u_{xj_1}^T  {\bm{x}}_{i1}  {\bm{x}}_{l2}^T u_{yj_2} \right]
 \end{align*}
-.
-
-Note that in the formulation of CCA the succesive
-
-
+where the dot products $u_{xj_1}^T  {\bm{x}}_{i1}$ and  $ {\bm{x}}_{l2}^T u_{yj_2}$  are uncorrelated because ${\bm{x}}_{i1},{\bm{x}}_{l2}, i \neq l$  are independent samples. Therefore as $n \rightarrow \infty$ the second sum vanishes and only the trace term remains.  
+So $\xi= \frac{1}{n}\tr{U_1^{T}X_1^{T}X_2U_2}$ which is the objective function optimized with respect to $U_1$ and $U_2$ in the canonical correlational analysis. Therefore subject to constraints, CCA maximizes commensurability  with respect to $U_1$ and $U_2$.
 
 \end{proof}
 
 
-
+\subsection{Spectral Embedding Generalization of CCA}
 
 Another way to see the connection between CCA and JOFC embedding (using classical MDS) is by connections to spectral embedding. \cite{CCAviaSpectralEmbed} shows that CCA is a special case of Spectral Embedding with the restriction that the joint embedding coordinates are linear projections of the original multiview data, $X_1$ and $X_2$. First, let us define ``spectral embedding'':
 Given  a $k \times k$ weight matrix $W$, Spectral Embedding embeds $k$ points in $d$-dimensional Euclidean space by  minimizing the cost function $\sum_{i,j \in \{1,\ldots,k\}}W_{ij}\left(u_i-u_j\right)^2$, where $u_i, u_j \in \mathbb{R}^d$ are the embedded coordinates.
@@ -97,4 +106,5 @@ let \[ Z= \left[
                 %(e.g. \exp(-d(X_1i,X_1j) for $(i,j)^{th} entry in the first diagonal block of  $W$. 
                 This would be akin to a JOFC-type embedding, as the commensurability criterion is taken into account by using  an identity matrix as the  off-diagonal block matrix in $W$ and the fidelity criterion by non-zero diagonal block matrices in $W$.
                 
-                Note that Tang et al.\cite{MinhTrosset_SpectralEmbed} elucidate another connection between embedding methods by showing that the spectral embedding for  an unnormalized Laplacian matrix, $L$ (subject to  an appropriate scaling) is equivalent to the classical MDS solution with the inner product matrix $L^{+}$ where $L^{+}$ is the psuedo-inverse of $L$ \cite{MinhTrosset_SpectralEmbed}. Therefore for any d-dimensional spectral embedding of the Laplacian $L$  with Laplacian Eigenmaps, there exists an omnibus dissimilarity matrix $M$, the ($d$-dimensional) cMDS embedding of which   would give the same configuration. Connecting the dots, we conclude the classical MDS embedding with an omnibus dissimilarity matrix $M$ that corresponds the psuedo-inverse of  $L=D-W$ , along with the linearity condition is equivalent to CCA.
+             As we have mentioned in \ref{MDS_SpectralEmbed}, the joint embedding of a dissimilarity matrix  via cMDS  is equivalent to spectral embedding under certain conditions.
+So just like the spectral embedding generalization of CCA  we have just presented with the multiview data $Z$ and weight matrix $W$ there is an equivalent classical MDS embedding with an omnibus dissimilarity matrix $M$ for which $\tau(M)=-\frac{1}{2}JMJ^T$  corresponds  to the  psuedo-inverse of  $L=D-W$, along with the linearity condition.
