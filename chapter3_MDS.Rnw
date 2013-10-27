@@ -117,7 +117,7 @@ Threeway MDS refers to  a variant of MDS that is used for analyzing many differe
 
 
 \section{Principal Components Analysis}
-Let $X$ be a random $d$-dimensional vector and $\mu$ and $\Sigma$ be its covariance matrix. Then, for a given dimension $d'$, the successive maximization of  $Var[u_{i}^T (X-\mu)]= E[u_{i}^T (X-\mu)(X-\mu)^T u_i]=u_{i}^T\Sigma u_{i}$, where $u_{i}$ is a  $d$-dimensional unit vector ($u_i^Tu_i=1$)  and E[u_{i}^T X X^T u_j]=0 , 1\leq j<i), gives the \emph{principal} components of $X$. These principal components are the directions that has the maximum variance subject to the uncorrelatedness constraint  and the $d \times d'$-matrix $U$ whose columns are  $u_i, i=1,\ldots,d'$ is the projection matrix that captures the maximum variance from $X$. That is the coordinates of $UX$ are uncorrelated and have highest amount of variance for any linear subspace.
+Let $X$ be a random $d$-dimensional vector and $\mu$ and $\Sigma$ be its covariance matrix. Then, for a given dimension $d'$, the successive maximization of  $Var[u_{i}^T (X-\mu)]= E[u_{i}^T (X-\mu)(X-\mu)^T u_i]=u_{i}^T\Sigma u_{i}$, where $u_{i}$ is a  $d$-dimensional unit vector ($u_i^Tu_i=1$)  and $E[u_{i}^T X X^T u_j]=0 , 1\leq j<i$), gives the \emph{principal} components of $X$. These principal components are the directions that has the maximum variance subject to the uncorrelatedness constraint  and the $d \times d'$-matrix $U$ whose columns are  $u_i, i=1,\ldots,d'$ is the projection matrix that captures the maximum variance from $X$. That is the coordinates of $UX$ are uncorrelated and have highest amount of variance for any linear subspace.
 
 For a sample of size $n$ drawn from the same distribution as $X$, consider the sample estimates $\hat{\mu}$ ,  $\hat{\Sigma}$. Then, sample principal components  is computed by replacing the distribution parameters with the sample estimates:
  \[\hat{u_i}=\argmax_{u_i^Tu_i=1} u_{i}^T \hat{\Sigma}u_i. \]
@@ -126,5 +126,5 @@ for the $i^{th}$ principal component.
 Suppose $\X$ is a $n \times d$ configuration matrix, representing the sample of $X$. The PCA solution is  
 given by the eigenvalue decomposition of $\X^T \X=U\Lambda U^T$. The columns of $U$ are the principal directions and $U \Lambda^{\frac{1}{2}}$ gives  the principal coordinates.
 This dimensionality reduction method gives the same solution as classical Multidimensional Scaling when the dissimilarity matrix is $\Delta =d(\X)$. In that case, $\Delta^2=  \1 \bm{y} +\bm{y}\1 -2 \X \X^T$ where $\bm{y}= \left(\X\X^T \right)_{(d)}$ is an n-dimensional vector that consists of  the diagonal of $\X\X^T$.
-In classical MDS,  we would compute  $Z=  - \frac{1}{2} J\Delta^2 J$  which gives $ Z= \X\X^T\]$. So for the same embedding dimension, the two methods would give the same answer.
+In classical MDS,  we would compute  $Z=  - \frac{1}{2} J\Delta^2 J$  which gives $ Z= \X\X^T$. So for the same embedding dimension, the two methods would give the same answer.
 
