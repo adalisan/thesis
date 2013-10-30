@@ -23,7 +23,7 @@ Thanks!
 
 \begin{dedication}
  
-This thesis is dedicated to \ldots
+This thesis is dedicated to myself who did all the hard work,
 
 \end{dedication}
 

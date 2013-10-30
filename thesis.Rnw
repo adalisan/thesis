@@ -132,8 +132,8 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 <<'child-chapter11_Graph_Match.Rnw', child='chapter11-Graph_Match_JOFC_Exp.Rnw',eval=TRUE>>=
 @
 
-%<<'child-chapter12_Grassmannian.Rnw', child='chapter12_Grassmannian.Rnw',eval=TRUE>>=
-%@
+<<'child-chapter12_conclusion.Rnw', child='chapter12_conclusion.Rnw',eval=TRUE>>=
+@
 
 
 \include{appendix}

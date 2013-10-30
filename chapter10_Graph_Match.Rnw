@@ -5,12 +5,9 @@
 
 
 
-\section{Experiments on Graph Data}
-
-
 \section{1-1 matching of vertices}
 
-Another application of  the JOFC approach is  the graph matching problem. For a specific version of this problem, the  inference task is similar to  the same semi-supervised setting as mentioned in \ref{sec:RelatedWork}, where matchings between some vertices in different graphs are known 
+Another application of  the JOFC approach is  the graph matching problem. For a specific version of this problem, the  inference task is similar to  the same semi-supervised setting as mentioned in \ref{chap:RelatedWork}, where matchings between some vertices in different graphs are known 
   and the task is to infer the correspondences between the remaining collection of vertices in the graphs.  The pairs of vertices whose correspondences are known will be referred to as ``seeds''. We will refer to this variant of the graph matching problem as the ``seeded graph matching'' (SGM) problem.
  
 \subsection{Graph Matching }
@@ -165,6 +162,39 @@ If $\hat{\alpha}>\epsilon$, the algorithm terminates that is $\hat{P}=\tilde{P}^
 +(1- \hat{\alpha} ) \hat{Q}$ if $\hat{\alpha}>\epsilon$   and repeat the steps for the next iteration.
 At the termination of the Frank-Wolfe Algorithm, it is quite possible that   ${P}^{*}$ is not a permutation matrix. One way to get a permutation matrix solution is to find  ${\tilde{P}}^{*}$ that is as close as possible to  ${P}^{*}$ (in some sense).  Note that in discussion of the different formulations of the  original optimization problem, we showed that maximizing $2*\tr {ST}$ with respect to $S$ was equivalent to minimizing $\ell_2$ distance between $S$ and $T$, and we have shown, in the discussion of the FAQ algorithm, minimization of  $2*\tr {ST}$ is solved by the Hungarian algorithm when $S$ is constrained to be permutation matrix. Therefore we can use the Hungarian algorithm one last time to get a permutation matrix result by  minimizing ${\tilde{P}}^{*}{P}^{*}$ with respect to ${\tilde{P}}^{*}$  which is the closest permutation matrix to  ${{P}}^{*}$ in $\ell_2$ sense.
 
+\subsubsection{Demonstration of FAQ on simulated data\label{subsubsec:sgm_sim_results}}
+
+We will demonstrate that  FAQ for SGM works with the following data model:
+Let $\G_1=(V_1,E_1)$ be an Erdos-Renyi graph that consist of $n$ vertices and $A$ be its adjacency matrix of  ,  that is
+  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$. Another adjacency matrix  ,$B'$, is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
+    $\left[B' \right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B'\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$  . Suppose $p_{10}=p_{11}=p_{pert}$.
+    
+    Let the isomorphism from  of $V_1$ to vertices of the second graph , $V_2$, be denoted by $\psi$. Thus we define the second graph $\G_2=(V_2,E_2)$ with the adjacency matrix $B=P_{\psi}B'P_{\psi}$ where $P_{\psi}$ is the permutation matrix that corresponds to the bijection $\psi$. m ($0\leq m<n$) seeds randomly selected from $n$ pairs of vertices, $\sigma_m \subset V_1 , {\psi(i), i \in \sigma_m}\subset V_2 $. The assignment problem for remaining $n-m$ pairs of vertices is solved via FAQ. The quality of the solution to the assignment problem, $\hat{f}_m$ which is a bijection from  $V_1$ to  $V_2$ is evaluated  by  $\delta_m = \frac{|\{i\in V_1-\sigma_m: \hat{f}_m(i)=\psi(i)\}|}{n-m}$.
+    
+  The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. 
+  The performance measure is the proportion of true matches to the number of matches. Note that 
+  under chance, the expected number of true matches is 1, as shown with the dashed line. In the simulation, $r=20$ and $s=5$. $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
+
+\begin{figure}
+ \centering
+  \caption{
+ \label{sim_bitflip_rqap}}
+ \includegraphics[width=1.2\textwidth]{sim_bitflip-paper600.pdf}
+\end{figure}
+
+\begin{figure}
+ \centering
+  \caption{
+ \label{sim_bitflip_rqap}}
+ \includegraphics[width=1.2\textwidth]{sim_bitflip_cluster_300_paper_2.pdf}
+\end{figure}
+
+\begin{figure}
+ \centering
+  \caption{
+ \label{sim_bitflip_rqap}}
+ \includegraphics[width=1.2\textwidth]{sim_bitflip_cluster_300_s_paper_2.pdf}
+\end{figure}
 
 
 \subsection{Relaxations of alternate formulations of the approximate seeded graph matching problem \label{subsec:rqap2}}
@@ -289,12 +319,20 @@ The stronger condition of minimization over the set of permutation matrices is i
 An interesting question is how does this extra constraint effect the convergence properties of Frank-Wolfe algorithm.  This question is investigated in the comparison of rQAP and rQAP2 formulations.  
 
 \subsection{The comparison of rQAP against the alternative formulation rQAP2}
-Although the two formulations are equivalent and the global extrema of the two functions are the same, we expect different convergence  properties. In particular the extra terms in the gradient of rQAP2 which vanishes for unitary matrices should act as a random noise. The conclusion of the literature of stochastic optimization  is that, under some conditions, such noise speeds up convergence, by overcoming local extrema. The problem is that, such noise needs to vanish to negligible levels in order for the iterative algorithm to converge. 
+Although the two formulations are equivalent and the global extrema of the two functions are the same, we expect different convergence  properties. In particular the extra terms in the gradient of rQAP2 which vanishes for unitary matrices should act as a random noise. The conclusion of the literature of stochastic optimization  is that, under some conditions, such noise speeds up convergence, by overcoming local extrema. The problem is that, the noise needs to vanish to negligible levels in order for the iterative algorithm to converge. 
 The experiment in the last  section was repeated with both rQAP and rQAP2 and the fraction of nonseed vertices correctly matched and the average number of iterations to satisfy a stopping criteria was compared between the two formulations. 
+
 
 \begin{figure}
  \centering
-  \caption{Fraction of the $n=70$ nonseeds correctly matched using our $\ell_2$-based algorithm for rQAP and rQAP2 formulations
+  \caption{ Fraction of correctly matched non-seed vertices for $m$ seeds (x-axis). Different colors correspond to different  $p_{pert}$. Solid and dashed lines corresponds to rQAP and rQAP2 solutions, respectively, for the matching problem.
+ \label{rqap2}}
+ \includegraphics[width=1.2\textwidth]{sim_bitflip_rqap2_300_hsv.pdf}
+\end{figure}
+
+\begin{figure}
+ \centering
+  \caption{Fraction of the $n-m=70$ nonseeds correctly matched using our $\ell_2$-based algorithm for rQAP and rQAP2 formulations
  \label{figell2}}
  \includegraphics[width=1.2\textwidth]{rQAP_vs_rQAP2-alotmore.pdf}
 \end{figure}

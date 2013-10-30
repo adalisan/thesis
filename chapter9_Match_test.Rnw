@@ -95,7 +95,7 @@ MDS with raw stress will not result in a perfect reconstruction  of the original
 \end{comment}
 
 
-\section{Problem Description}
+\section{Problem Description \label{sec:jointembed}}
 In the problem setting considered here,  $n$ different objects are measured under $K$ different conditions (corresponding  to, for example, $K$ different sensors). We assume we begin with dissimilarity measures. These will be represented in matrix form as $K$ $n \times n$ matrices $\{\Delta_k,k=1 ,\ldots,K\}$.  In addition, for each condition, dissimilarities between  a new object  and the previous 
 $n$ objects $\{\mathcal{D}_k,k=1 ,\ldots,K\}$ are available. Under  the null hypothesis, ``these new dissimilarities represent a single \emph{new} object  compared to the previous $n$ objects'', measured under $K$ different conditions (the dissimilarities are matched). Under the alternative hypothesis, ``the dissimilarities $\{\mathcal{D}_k\}$ represent separate \emph{new} objects compared to the the previous $n$ objects''  measured under $K$ different conditions (the dissimilarities are unmatched)~\cite{JOFC}. %The test dissimilarities are referred to as  out-of-sample (OOS) dissimilarities. 
 
@@ -184,7 +184,7 @@ The embedding coordinates for the matched or unmatched pair  ${\hat{y}_{1}^{(.)}
 \Delta^{(.)}
 \right)
 }
-\right].
+\right]. \label{oos-embedding}
 \]
 
 \begin{remark}

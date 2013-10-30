@@ -1,6 +1,6 @@
 
 \chapter{Procrustes Analysis on Low-dimensional Embeddings}
-\label{sec:PoM}
+\label{chap:PoM}
 \chaptermark{Procrustes Analysis}
 
 

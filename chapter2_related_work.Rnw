@@ -1,5 +1,5 @@
 \chapter{Related Work}
-\label{sec:Related}
+\label{chap:RelatedWork}
 \chaptermark{Related Work}
 
 
@@ -22,6 +22,8 @@ In the case of missing data, observations of features in the same view could  be
 
 In  \cite{Amini2009}, the authors  discuss  an example of multiview learning problems, classification of a multi-lingual document corpus. They  co-train  classifiers for single-language data that jointly minimize  loss in each single language along with disagreement between classifiers on training examples. Their findings support the intuition that  classifiers which are based on multiview learning preform than those classifiers who have been trained with only data from a single view.
 
+In \cite{Sun2005}, features
+are fused via CCA to have better classification performance compared to the original set of features in a typical classification problem.
 
 A popular approach to multiview learning is learning a  kernel matrix for each modality and combining these kernels in an optimal way (with respect to the inference task). For $K$ views, let $i^{th}$ datum for $k^{th}$ be represented $X_{ik},\quad i \in {1,\ldots n}, k \in \{ 1,\ldots, K \}$ . For the datum in the same view, let ${\mcK}_{k} = \left[ \mck_{k} (X_{ik},X_{jk}) \right] $ be the kernel matrix defined for that view.  Since any convex combination of the kernels $\sum{\alpha_k \mck_{k} } $ is also a kernel, it is possible to compute a joint kernel $\mck$ that use all of the multiview data by convexly combining this data. Assuming that a kernel can be defined for each view, the learning problem is  finding the optimal (for the inference task) coefficients $\alpha_k$ for each view. These parameters are usually estimated using training data. Denoting the optimal  $\alpha_k$ by  $\hat{\alpha}_k$,  $\hat{\mcK} = \sum_k{\hat{\alpha}_k \mcK_{k} }  =  \left[ \sum_k{\hat{\alpha}_k {\mck_k} (X_{ik},X_{jk})} \right] $.  Given a new datum $x$, the kernel function for each view, $\mck_{k}$ ,  along with $\hat{\alpha}_k$ is used to compute the inner product for the joint kernel. 
 \[
@@ -33,9 +35,11 @@ Choi et al.\ \cite{Choi:2008:MIM:1619995.1620064} use the Markov random walk int
 
 \section[Transfer Learning and Domain Adaptation]{Transfer Learning \label{sec:translearn}}
 
-Methods which utilize training data in one domain  as auxiliary information for  learning  in another domain fall under the term ``transfer learning'' \cite{TransLearnSurvey}. Sometimes the source domain and the target domain are actually the same, but the distribution of the data is different , e.g. inherent difference between training and test data due to collection conditions. We call this phenomenon sample selection bias or covariance shift \cite{Zadrozny2004a,TransLearnSurvey}.
+Methods which utilize training data in one domain  as auxiliary information for  learning  in another domain fall under the term ``transfer learning'' \cite{TransLearnSurvey}. Sometimes the source domain and the target domain are actually the same, but the distribution of the data is different , e.g. inherent difference between training and test data due to collection conditions. We call this phenomenon sample selection bias or covariance shift (SSB/CS) \cite{Zadrozny2004a,TransLearnSurvey}.
 
-Let us clarify the differences between  these learning tasks.  Let $y$ denote the random variable for the class label  for classification or the dependent variable for regression and $X$ denote the random variates we will use for the learning task. We will  make use of  the common assumption that data is $\iid$.  
+According to \cite{Hand2006}, this SSB/CS phenomenon is common in real life data analysis problems, and is usually understated by practitioners. For evaluation of newly designed classifiers, the classifiers are trained on a portion of the available data and tested on the held out data, so when evaluating classifiers, the assumption that training and test data come from the same distribution is usually valid. However any performance improvements that a new classifier model has over baseline would be swamped  by the sample selection bias. Thus, one should be skeptic about improving accuracy scores for benchmark datasets in machine learning and seeing them as evidence of progress.
+
+Let us clarify the differences between transfer learning  and SSB/CS.  Let $y$ denote the random variable for the class label  for classification or the dependent variable for regression and $X$ denote the random variates we will use for the learning task. We will  make use of  the common assumption that data is $\iid$.  
 Suppose we have two domains  ${\mcD}_s$ and ${\mcD}_t$ where the training data and test data is collected from, respectively. These are called the source and target domains, respectively.
 The training data $\left(X_i,y_i\right) \in {\mcD}_s$ and are drawn from the joint distribution $\Pry(X,y)$. 
 The test data $\left({X'}_i,{y'}_i\right) \in {\mcD}_t$ and have the distribution $\Pry'(X,y)$.
@@ -47,8 +51,10 @@ In the classical supervised learning setting, the source and target domains are 
 
 
  In some learning problems, the source and target domains are different ${\mcD}_s \neq {\mcD}_t$ and all or a considerable portion of  the labels $\{{y'}_i\}$  in $\left({X'}_i,{y'}_i\right) \in {\mcD}_t$ are missing. In this case, domain adaptation methods allow the exploitation of both the  data in the source domain $\{\left({X}_i,{y}_i\right)\}$ and the data in the target domain  $\{\left({X'}_i,.\right)\}$ to construct a good predictor for the target domain\cite{DaumeIII2006,Ben-David_Dom_Adapt2007,Ling2008,Pan2008a}.
-Various ``domain adaptation'' approaches\cite{Pan2008a,LowRankSharedConceptChen2012a} assume existence of mappings to a common latent space ${\mcD}_{com}$,  $\Psi_s:{\mcD}_s \rightarrow {\mcD}_{com} $ and $\Psi_t:{\mcD}_t \rightarrow {\mcD}_{com}$ to a  such that the class conditional distributions $\Pry(\Psi_s(X) \|y) = \Pry(\Psi_t(X') \| y'=y)$. If these mappings can be inferred, then they can be used to predict $y'$ given $\Psi_t(X')$ even if no $\left({X'}_i,{y'}_i\right) \in {\mcD}_t$ pairs exist. 
+Various ``domain adaptation'' approaches\cite{Pan2008a,LowRankSharedConceptChen2012a} assume existence of mappings to a common latent space ${\mcD}_{com}$,  $\Psi_s:{\mcD}_s \rightarrow {\mcD}_{com} $ and $\Psi_t:{\mcD}_t \rightarrow {\mcD}_{com}$ to a  such that the class conditional distributions $\Pry(\Psi_s(X) \|y) \approx \Pry(\Psi_t(X') \| y'=y)$.  If these mappings to the commensurate space can be inferred, then they can be used to predict $y'$ given $\Psi_t(X')$ even if no $\left({X'}_i,{y'}_i\right) \in {\mcD}_t$ pairs exist. 
 %Other approaches infer a mapping from from the source domain to the target domain.
+In {Pan2008a}, for example, the distance between the conditional distributions $\Pry(\Psi_s(X) \|y) $ $\Pry(\Psi_t(X') \| y'=y)$ is computed via  Maximum Mean Discrepancy
+measure and  the mappings $\Psi_s$ and  $\Psi_t$  are inferred by the minimization of MMD measure.
 
 \section[Manifold Matching]{Manifold Alignment}
 There have many efforts toward solving ``manifold alignment", which is a problem related to both our data fusion problem, and the transfer learning problem\ref{sec:translearn}. ``Manifold alignment" seeks to find correspondences between observations from different ``conditions". The setting that is most similar to ours is the semi-supervised setting, where a set of correspondences are given and the task is to find correspondences between a new set of points in each condition. In contrast, our hypothesis testing task is to determine whether any given pair of points is ``matched" or not. The proposed solutions follow a common approach in that they look for a common commensurate space such that the representations (possibly projections or embeddings) of the observations in the commensurate space match.
