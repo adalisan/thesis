@@ -1,5 +1,5 @@
 \chapter{An expository problem for Multiview Learning : Match detection}
-\label{sec:match detection}
+\label{chap:match_detection}
 \chaptermark{Match detection Task}
 
  We are interested in problems where the data sources are disparate and the inference task requires that the observations from  the different data sources  can be judged to be similar or dissimilar.

@@ -3,43 +3,45 @@
 \chaptermark{Introduction:  Matched Data and Data Fusion}
 
 
-Different views of the data
+In this thesis, we will investigate how to carry out inference in  data  settings where the data consist of different modalities or views. Efficient use of the data require some sort of information fusion in order to avoid the curse of the dimensionality. We are interested in what kind of information is essential for the inference task and if there exist principles that one should keep to for acceptable performancein the task. We are also interested in exploring how these  queries and their answers are  relevant to  particular data problems.
 
 \section{Data Settings}
 
 
  It is a challenge  to do a tractable analysis on data from disparate sources of data (such as multiple sensors). The increasing multitude  of sensors technology and large numbers of sensors both are  sources of difficulty and hold promise for efficient inference. One of our contributions is developing well-defined simple settings that provided intuition for the right approaches to data fusion and which led to practically useful inference methods.
  
- Our world-view for data fusion of multiple sensors is depicted in \ref{fig:gen-model}.
  
 \begin{figure}
 \centering
 \includegraphics[scale=0.75]{gen-model-orig-proj.pdf}
-\caption{Multiple Sensor setting}
-\label{fig:gen-model}
+\caption{Multiple Sensor setting \label{fig:gen-model}}
 \end{figure}
 
-It is assumed some objects lie in some "object`` space $\Xi$, and each sensor has another "view`` of the objects. The measurements recorded by the $i^{th}$ sensor lie in some "measurement space`` $\Xi_i$. The usual approach in pattern recognition is to use feature extractors on the spaces to get a feature representation in Euclidean space and use classical pattern recognition tools to carry out the exploitation task. The alternative approach is to acquire dissimilarities between the group of objects, and use the dissimilarities to either find an embedding in a low-dimensional Euclidean space where classic statistical tools are available for inference or use dissimilarity-based versions of pattern recognition tools~\cite{duin2005dissimilarity}. The embedding approach in a  low-dimensional Euclidean space will be used where the small number of embedding dimension allow us to avoid "curse of dimensionality``. Also, the embeddings of dissimilarities from  different conditions will be required to be "commensurate`` so that sensor measurements can be compared or jointly used in inference. This is accomplished by maps $\rho_k,k=1,\ldots,K$ from measurement spaces $\Xi_k$ to a low-dimensional commensurate space $\mathcal{X}$ visualized in~\ref{fig:gen-model}. Learning these maps from data is  an important portion of the proposed  approach.
+ Our world-view for data fusion of multiple sensors is depicted in \ref{fig:gen-model}.
+
+
+It is assumed some objects lie in some "object`` space $\Xi$, and each sensor has another "view`` of the objects. The measurements recorded by the $i^{th}$ sensor lie in some "measurement space`` $\Xi_i$. The usual approach in pattern recognition is to use feature extractors on the spaces to get a feature representation in Euclidean space and use classical pattern recognition tools to carry out the exploitation task. The alternative approach is to acquire dissimilarities between the group of objects, and use the dissimilarities to either find an embedding in a low-dimensional Euclidean space where classic statistical tools are available for inference or use dissimilarity-based versions of pattern recognition tools~\cite{duin2005dissimilarity}. The embedding approach in a  low-dimensional Euclidean space will be used where the small number of embedding dimension allow us to avoid "curse of dimensionality``. Also, the embeddings of dissimilarities from  different conditions will be required to be "commensurate`` so that sensor measurements can be compared or jointly used in inference. This is accomplished by maps $\rho_k,k=1,\ldots,K$ from measurement spaces $\Xi_k$ to a low-dimensional commensurate space $\mathcal{X}$ visualized in~\ref{fig:gen-model}. Learning these maps from data is  an important portion of our novel  approach.
 \label{sec:data}
 
 \subsection{Exploitation Task}
-Data fusion is a very general concept and the specific meaning of data fusion and the setting we have in mind should be clarified here. The exploitation task we are interested in might involve (perhaps notional) complex objects or abstract entities that are not practically representable. The objects are members of a (perhaps notional) space called ``object'' space, $\Xi$ in Figure \ref{gen-model} . We will have different ``views'', ``measurements'' or ``data modalities'' extracted from these objects (which we will refer to as ``conditions''), and these observations will be elements of the measurement space for those ``conditions'' ($\Xi_k$ for $k^{th}$ condition). Each example of the objects will have an observation in each of the different conditions and the corresponding observations across different ``conditions'' will be ``matched''. Given new observations from these different ``conditions'', is it possible to decide if they are "matched``? Or if a group of  observations from each condition are "matched`` to each other, but the specific correspondences are unknown, is it possible to find the true correspondences? Different approaches are proposed in this dissertation to address these questions.
+Data fusion is a very general concept and the specific meaning of data fusion and the setting we have in mind should be clarified here. The exploitation task we are interested in might involve (perhaps notional) complex objects or abstract entities that are not practically representable. The objects are members of a (perhaps notional) space called ``object'' space, $\Xi$ in Figure \ref{fig:gen-model} . We will have different ``views'', ``measurements'' or ``data modalities'' extracted from these objects (which we will refer to as ``conditions''), and these observations will be elements of the measurement space for those ``conditions'' ($\Xi_k$ for $k^{th}$ condition). Each example of the objects will have an observation in each of the different conditions and the corresponding observations across different ``conditions'' will be ``matched''. Given new observations from these different ``conditions'', is it possible to decide if they are "matched``? Or if a group of  observations from each condition are "matched`` to each other, but the specific correspondences are unknown, is it possible to find the true correspondences? Different approaches are proposed in this dissertation to address these questions.
 \label{subsec:task}
 
 
 
 \section{Dissimilarity representation}
- Great progress been made in the theory and applications of pattern recognition, particularly in problem settings where the data available or assumed to be available as vectors in metric spaces. There are still many problems where due to the nature of setting, one only has access to dissimilarities or  proximities or distances between measurements or subjective assessment  of similarities of objects. We thus have a superficial distinction between these two kinds of settings, even though the inference task doesn't distinguish between this representation issue. The gap between the two kinds of representation of data can be bridged using various  techniques, such as different kinds of embedding methods and computing dissimilarities between entities.
+ Great progress been made in the theory and applications of pattern recognition, particularly in problem settings where the data available or assumed to be available as vectors in metric spaces. There are still many problems where due to the nature of setting, one only has access to dissimilarities or  proximities or distances between measurements or subjective assessment  of similarities of objects. Thus, we have a superficial distinction between these two kinds of settings, even though the inference task is agnostic about this representation issue. The gap between the two kinds of representation of data can be bridged using various  techniques, such as different kinds of embedding methods and computing dissimilarities between entities.
 We will refer to the entities of interest for pattern recognition as objects. These might be real objects or abstract concepts. The data will be a collection of measurements for instances or examples of these objects.
- \cite{Duin} is an excellent resource that compiles the fruits of research in learning from  dissimilarity-based representation. In the introduction, the authors make clear the distinction between statistical and structural(syntactic) pattern recognition, which is previously discussed in \cite{NadlerSmith1993}. The first is concerned with the analysis of features which are lists of measured values for object attributes. The second uses a relational view of objects for representation. In both cases,  the task of discrimination  can rely on distances (however they are defined). P\k{e}kalska and Duin  suggest dissimilarity measures  are a natural bridge between these two types of information and this applicability to  multiple settings motivates our use of dissimilarity representation in information fusion. 
+ \cite{duin2005dissimilarity} is an excellent resource that compiles the fruits of research in learning from  dissimilarity-based representation. In the introduction, the authors make clear the distinction between statistical and structural(syntactic) pattern recognition, which is previously discussed in \cite{NadlerSmith1993}. The first is concerned with the analysis of features which are lists of measured values for object attributes. The second uses a relational view of objects for representation. In both cases,  the task of discrimination  can rely on distances (however they are defined). P\k{e}kalska and Duin  suggest dissimilarity measures  are a natural bridge between these two types of information and this applicability to  multiple settings motivates our use of dissimilarity representation in information fusion. 
 For feature-based representation, one first defines the features which are either raw or processed measurements from sensors observing the objects and  represention of each object is a single point in the representation space. Dissimilarity-based representation relies on a dissimilarity measure, a way of quantifying the dissimilarity, proximity or similarity between any two objects. It is quite possible, in fact preferable, that the dissimilarity is \emph{designed for} the inference task at hand. 
 %\cite{Duin} argue this is a reason dissimilarities can be superior, since similarities can encode concepts of class membership directly in class discrimination problems.
 There are naturally multiple ways (some more natural than others) of comparing entities and this fact will provide one of the arguments for our approach to information fusion from  data sources, even sources that collect  data of same modality. In  the latter case where the data comes from separate sensors that are of the same type, the same measurements might have different dissimilarity representation according to subjective judgments or different dissimilarity  measures. 
 
 \section{Match Detection}
 
+We will now provide a formal description of the problem that was the initial motivation for our investigations, along with a few general remarks. We will go into more detail in  \ref{chap:match_detection}.
 
-For a formal description of the problem, consider $n$  $n$ distinct objects, which are described with finite number of measurements. Each of the measurements $x_{ik}$ lies in  the corresponding space $\Xi_k$ and the  measurements $x_{ik}$ are matched for the same $k$ index
+Consider $n$  distinct objects, which are described with finite number of measurements. Each of the measurements $x_{ik}$ lies in  the corresponding space $\Xi_k$ and the  measurements $x_{ik}$ are matched for the same $k$ index
 \[  \begin{array}{cccc}
         & \Xi_1 & \cdots & \Xi_K\\
         Object ~ 1 & \bm{x}_{11} & \sim \cdots \sim & \bm{x}_{1K} \\
@@ -65,16 +67,20 @@ test the null hypothesis  that ``these measurements are from the same  object"  
 
 We represent the dissimilarities in the form  of $n \times n$  dissimilarity matrices $\{\Delta_k;k=1,\ldots,K\}$ with entries $\{\delta_{ijk} ;  i=1,\ldots,n;\quad j=1,\ldots,n\}$  and a  vector (of length $nK$) of dissimilarities  $\mathbf{\Delta}^{new}=\{ \delta_{ik}^{new}; i=1,\ldots, n;\quad k=1,\ldots,K\}  $  where $\delta_{ik}^{new} $ is the dissimilarity  between  $x_{ik}$ and $y_k$.
  
+ 
+For the hypothesis testing problem, we need to compute the test statistics for the objects represented by the given dissimilarities. So what is needed is to find a collection of mappings (one from each ``condition'') to a lower dimensional space where new observations from each condition can be mapped to be made commensurate. These mappings does not need to be  well-defined; they can be the results of embedding routines for a particular dataset. As long as the embedding of the dissimilarity results in a  unique mapping,  out-of-sample embeddings could be adjoined to the embedding of in-sample dissimilarities.
 
+A few points should be mentioned to distinguish our approach from related approaches and accentuate the specific challenges of the inference task.
+\begin{remark}
+Due to the fact that data sources are ``disparate", it is not immediately obvious how  a dissimilarity between an object in one condition and another object in another condition  can be computed, or even defined.  In general, these between-condition between-object  similarities are not available.
+\end{remark}
  
- 
-The inference task  is to find a collection of mappings (one from each ``condition'') to a lower dimensional space where new observations from each condition can be mapped to be made commensurate. These mappings does not need to be  well-defined; they can be the results of embedding routines for a particular dataset. As long as the embedding of the dissimilarity results in a  unique mapping,  out-of-sample embeddings could be adjoined to the embedding of in-sample dissimilarities.
-
-A few points should be mentioned to distinguish our approach from related approaches.
- Due to the fact that data sources are ``disparate", it is not immediately obvious how  a dissimilarity between an object in one condition and another object in another condition  can be computed, or even defined.  In general, these between-condition between-object  similarities are not available.
- 
+ \begin{remark}
  Whether the data is collected in dissimilarity representation for each condition, or whether dissimilarities are computed for the observations which are feature observations at each condition is not relevant to our exploitation task: it is assumed one way or another (perhaps from experts in the domain of the problem),  dissimilarities for each condition are available for inference purposes. 
+\end{remark}
 
+\begin{remark}
 The exploitation task  being considered is \emph{not} accurate reconstruction of these feature observations, even if they do exist. The quality of the  embeddings need to just be  good enough to be useful in the inference task. Therefore, the quality of our representation will be dependent on the bias-variance tradeoff, where by choosing a low-dimensional representation, we might be introducing more model bias, but the representation will be more  robust with respect to noise and might result in smaller error in the inference task.
+\end{remark}
 
-We will make use of this inference problem for elucidating two concepts that we introduce  in \ref{chap:FidComm}.
+We will make use of this inference problem for elucidating two concepts that we introduce  in \ref{chap:FidComm}. Our novel solution to this matching problem will use those concepts as two criteria for finding the mappings from each ''condition`` to the common low-dimensional space.

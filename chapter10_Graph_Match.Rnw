@@ -10,7 +10,7 @@
 Another application of  the JOFC approach is  the graph matching problem. For a specific version of this problem, the  inference task is similar to  the same semi-supervised setting as mentioned in \ref{chap:RelatedWork}, where matchings between some vertices in different graphs are known 
   and the task is to infer the correspondences between the remaining collection of vertices in the graphs.  The pairs of vertices whose correspondences are known will be referred to as ``seeds''. We will refer to this variant of the graph matching problem as the ``seeded graph matching'' (SGM) problem.
  
-\subsection{Graph Matching }
+\subsection{Graph Matching}
 Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$ such that $\| V_1 \|=\| V_2 \|=$. Suppose there exists a bijection $f$   such that $f(v_1)=v_2$ and $\forall v' \in \mathbf{N}(v_1) f(v') \in \mathbf{N}(v_2)$. Then the \emph{exact} graph matching problem  is to find this bijection. Even determining the existence  of such an isomorphism is NP-hard.  Although the bijection might not exist,  the \emph{approximate} graph matching problem, which is the task of  finding a bijection between the
 graphs which minimizes the degree  of mismatch   between the two graphs, is an interesting problem that has practical applications\cite{GraphMatchReview,Bengoetxea2002,recentdevGraphMatching2000,VogConGraphMatchFAQ,Zaslavskiy2009}.
 
