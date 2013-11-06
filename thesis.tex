@@ -160,7 +160,7 @@ Thanks!
 
 \begin{dedication}
  
-This thesis is dedicated to \ldots
+This thesis is dedicated to myself who did all the hard work,
 
 \end{dedication}
 
@@ -183,43 +183,45 @@ This thesis is dedicated to \ldots
 \chaptermark{Introduction:  Matched Data and Data Fusion}
 
 
-Different views of the data
+In this thesis, we will investigate how to carry out inference in  data  settings where the data consist of different modalities or views. Efficient use of the data require some sort of information fusion in order to avoid the curse of the dimensionality. We are interested in what kind of information is essential for the inference task and if there exist principles that one should keep to for acceptable performancein the task. We are also interested in exploring how these  queries and their answers are  relevant to  particular data problems.
 
 \section{Data Settings}
 
 
  It is a challenge  to do a tractable analysis on data from disparate sources of data (such as multiple sensors). The increasing multitude  of sensors technology and large numbers of sensors both are  sources of difficulty and hold promise for efficient inference. One of our contributions is developing well-defined simple settings that provided intuition for the right approaches to data fusion and which led to practically useful inference methods.
  
- Our world-view for data fusion of multiple sensors is depicted in \ref{fig:gen-model}.
  
 \begin{figure}
 \centering
 \includegraphics[scale=0.75]{gen-model-orig-proj.pdf}
-\caption{Multiple Sensor setting}
-\label{fig:gen-model}
+\caption{Multiple Sensor setting \label{fig:gen-model}}
 \end{figure}
 
-It is assumed some objects lie in some "object`` space $\Xi$, and each sensor has another "view`` of the objects. The measurements recorded by the $i^{th}$ sensor lie in some "measurement space`` $\Xi_i$. The usual approach in pattern recognition is to use feature extractors on the spaces to get a feature representation in Euclidean space and use classical pattern recognition tools to carry out the exploitation task. The alternative approach is to acquire dissimilarities between the group of objects, and use the dissimilarities to either find an embedding in a low-dimensional Euclidean space where classic statistical tools are available for inference or use dissimilarity-based versions of pattern recognition tools~\cite{duin2005dissimilarity}. The embedding approach in a  low-dimensional Euclidean space will be used where the small number of embedding dimension allow us to avoid "curse of dimensionality``. Also, the embeddings of dissimilarities from  different conditions will be required to be "commensurate`` so that sensor measurements can be compared or jointly used in inference. This is accomplished by maps $\rho_k,k=1,\ldots,K$ from measurement spaces $\Xi_k$ to a low-dimensional commensurate space $\mathcal{X}$ visualized in~\ref{fig:gen-model}. Learning these maps from data is  an important portion of the proposed  approach.
+ Our world-view for data fusion of multiple sensors is depicted in \ref{fig:gen-model}.
+
+
+It is assumed some objects lie in some "object`` space $\Xi$, and each sensor has another "view`` of the objects. The measurements recorded by the $i^{th}$ sensor lie in some "measurement space`` $\Xi_i$. The usual approach in pattern recognition is to use feature extractors on the spaces to get a feature representation in Euclidean space and use classical pattern recognition tools to carry out the exploitation task. The alternative approach is to acquire dissimilarities between the group of objects, and use the dissimilarities to either find an embedding in a low-dimensional Euclidean space where classic statistical tools are available for inference or use dissimilarity-based versions of pattern recognition tools~\cite{duin2005dissimilarity}. The embedding approach in a  low-dimensional Euclidean space will be used where the small number of embedding dimension allow us to avoid "curse of dimensionality``. Also, the embeddings of dissimilarities from  different conditions will be required to be "commensurate`` so that sensor measurements can be compared or jointly used in inference. This is accomplished by maps $\rho_k,k=1,\ldots,K$ from measurement spaces $\Xi_k$ to a low-dimensional commensurate space $\mathcal{X}$ visualized in~\ref{fig:gen-model}. Learning these maps from data is  an important portion of our novel  approach.
 \label{sec:data}
 
 \subsection{Exploitation Task}
-Data fusion is a very general concept and the specific meaning of data fusion and the setting we have in mind should be clarified here. The exploitation task we are interested in might involve (perhaps notional) complex objects or abstract entities that are not practically representable. The objects are members of a (perhaps notional) space called ``object'' space, $\Xi$ in Figure \ref{gen-model} . We will have different ``views'', ``measurements'' or ``data modalities'' extracted from these objects (which we will refer to as ``conditions''), and these observations will be elements of the measurement space for those ``conditions'' ($\Xi_k$ for $k^{th}$ condition). Each example of the objects will have an observation in each of the different conditions and the corresponding observations across different ``conditions'' will be ``matched''. Given new observations from these different ``conditions'', is it possible to decide if they are "matched``? Or if a group of  observations from each condition are "matched`` to each other, but the specific correspondences are unknown, is it possible to find the true correspondences? Different approaches are proposed in this dissertation to address these questions.
+Data fusion is a very general concept and the specific meaning of data fusion and the setting we have in mind should be clarified here. The exploitation task we are interested in might involve (perhaps notional) complex objects or abstract entities that are not practically representable. The objects are members of a (perhaps notional) space called ``object'' space, $\Xi$ in Figure \ref{fig:gen-model} . We will have different ``views'', ``measurements'' or ``data modalities'' extracted from these objects (which we will refer to as ``conditions''), and these observations will be elements of the measurement space for those ``conditions'' ($\Xi_k$ for $k^{th}$ condition). Each example of the objects will have an observation in each of the different conditions and the corresponding observations across different ``conditions'' will be ``matched''. Given new observations from these different ``conditions'', is it possible to decide if they are "matched``? Or if a group of  observations from each condition are "matched`` to each other, but the specific correspondences are unknown, is it possible to find the true correspondences? Different approaches are proposed in this dissertation to address these questions.
 \label{subsec:task}
 
 
 
 \section{Dissimilarity representation}
- Great progress been made in the theory and applications of pattern recognition, particularly in problem settings where the data available or assumed to be available as vectors in metric spaces. There are still many problems where due to the nature of setting, one only has access to dissimilarities or  proximities or distances between measurements or subjective assessment  of similarities of objects. We thus have a superficial distinction between these two kinds of settings, even though the inference task doesn't distinguish between this representation issue. The gap between the two kinds of representation of data can be bridged using various  techniques, such as different kinds of embedding methods and computing dissimilarities between entities.
+ Great progress been made in the theory and applications of pattern recognition, particularly in problem settings where the data available or assumed to be available as vectors in metric spaces. There are still many problems where due to the nature of setting, one only has access to dissimilarities or  proximities or distances between measurements or subjective assessment  of similarities of objects. Thus, we have a superficial distinction between these two kinds of settings, even though the inference task is agnostic about this representation issue. The gap between the two kinds of representation of data can be bridged using various  techniques, such as different kinds of embedding methods and computing dissimilarities between entities.
 We will refer to the entities of interest for pattern recognition as objects. These might be real objects or abstract concepts. The data will be a collection of measurements for instances or examples of these objects.
- \cite{Duin} is an excellent resource that compiles the fruits of research in learning from  dissimilarity-based representation. In the introduction, the authors make clear the distinction between statistical and structural(syntactic) pattern recognition, which is previously discussed in \cite{NadlerSmith1993}. The first is concerned with the analysis of features which are lists of measured values for object attributes. The second uses a relational view of objects for representation. In both cases,  the task of discrimination  can rely on distances (however they are defined). P\k{e}kalska and Duin  suggest dissimilarity measures  are a natural bridge between these two types of information and this applicability to  multiple settings motivates our use of dissimilarity representation in information fusion. 
+ \cite{duin2005dissimilarity} is an excellent resource that compiles the fruits of research in learning from  dissimilarity-based representation. In the introduction, the authors make clear the distinction between statistical and structural(syntactic) pattern recognition, which is previously discussed in \cite{NadlerSmith1993}. The first is concerned with the analysis of features which are lists of measured values for object attributes. The second uses a relational view of objects for representation. In both cases,  the task of discrimination  can rely on distances (however they are defined). P\k{e}kalska and Duin  suggest dissimilarity measures  are a natural bridge between these two types of information and this applicability to  multiple settings motivates our use of dissimilarity representation in information fusion. 
 For feature-based representation, one first defines the features which are either raw or processed measurements from sensors observing the objects and  represention of each object is a single point in the representation space. Dissimilarity-based representation relies on a dissimilarity measure, a way of quantifying the dissimilarity, proximity or similarity between any two objects. It is quite possible, in fact preferable, that the dissimilarity is \emph{designed for} the inference task at hand. 
 %\cite{Duin} argue this is a reason dissimilarities can be superior, since similarities can encode concepts of class membership directly in class discrimination problems.
 There are naturally multiple ways (some more natural than others) of comparing entities and this fact will provide one of the arguments for our approach to information fusion from  data sources, even sources that collect  data of same modality. In  the latter case where the data comes from separate sensors that are of the same type, the same measurements might have different dissimilarity representation according to subjective judgments or different dissimilarity  measures. 
 
 \section{Match Detection}
 
+We will now provide a formal description of the problem that was the initial motivation for our investigations, along with a few general remarks. We will go into more detail in  \ref{chap:match_detection}.
 
-For a formal description of the problem, consider $n$  $n$ distinct objects, which are described with finite number of measurements. Each of the measurements $x_{ik}$ lies in  the corresponding space $\Xi_k$ and the  measurements $x_{ik}$ are matched for the same $k$ index
+Consider $n$  distinct objects, which are described with finite number of measurements. Each of the measurements $x_{ik}$ lies in  the corresponding space $\Xi_k$ and the  measurements $x_{ik}$ are matched for the same $k$ index
 \[  \begin{array}{cccc}
         & \Xi_1 & \cdots & \Xi_K\\
         Object ~ 1 & \bm{x}_{11} & \sim \cdots \sim & \bm{x}_{1K} \\
@@ -245,31 +247,35 @@ test the null hypothesis  that ``these measurements are from the same  object"  
 
 We represent the dissimilarities in the form  of $n \times n$  dissimilarity matrices $\{\Delta_k;k=1,\ldots,K\}$ with entries $\{\delta_{ijk} ;  i=1,\ldots,n;\quad j=1,\ldots,n\}$  and a  vector (of length $nK$) of dissimilarities  $\mathbf{\Delta}^{new}=\{ \delta_{ik}^{new}; i=1,\ldots, n;\quad k=1,\ldots,K\}  $  where $\delta_{ik}^{new} $ is the dissimilarity  between  $x_{ik}$ and $y_k$.
  
+ 
+For the hypothesis testing problem, we need to compute the test statistics for the objects represented by the given dissimilarities. So what is needed is to find a collection of mappings (one from each ``condition'') to a lower dimensional space where new observations from each condition can be mapped to be made commensurate. These mappings does not need to be  well-defined; they can be the results of embedding routines for a particular dataset. As long as the embedding of the dissimilarity results in a  unique mapping,  out-of-sample embeddings could be adjoined to the embedding of in-sample dissimilarities.
 
+A few points should be mentioned to distinguish our approach from related approaches and accentuate the specific challenges of the inference task.
+\begin{remark}
+Due to the fact that data sources are ``disparate", it is not immediately obvious how  a dissimilarity between an object in one condition and another object in another condition  can be computed, or even defined.  In general, these between-condition between-object  similarities are not available.
+\end{remark}
  
- 
-The inference task  is to find a collection of mappings (one from each ``condition'') to a lower dimensional space where new observations from each condition can be mapped to be made commensurate. These mappings does not need to be  well-defined; they can be the results of embedding routines for a particular dataset. As long as the embedding of the dissimilarity results in a  unique mapping,  out-of-sample embeddings could be adjoined to the embedding of in-sample dissimilarities.
-
-A few points should be mentioned to distinguish our approach from related approaches.
- Due to the fact that data sources are ``disparate", it is not immediately obvious how  a dissimilarity between an object in one condition and another object in another condition  can be computed, or even defined.  In general, these between-condition between-object  similarities are not available.
- 
+ \begin{remark}
  Whether the data is collected in dissimilarity representation for each condition, or whether dissimilarities are computed for the observations which are feature observations at each condition is not relevant to our exploitation task: it is assumed one way or another (perhaps from experts in the domain of the problem),  dissimilarities for each condition are available for inference purposes. 
+\end{remark}
 
+\begin{remark}
 The exploitation task  being considered is \emph{not} accurate reconstruction of these feature observations, even if they do exist. The quality of the  embeddings need to just be  good enough to be useful in the inference task. Therefore, the quality of our representation will be dependent on the bias-variance tradeoff, where by choosing a low-dimensional representation, we might be introducing more model bias, but the representation will be more  robust with respect to noise and might result in smaller error in the inference task.
+\end{remark}
 
-We will make use of this inference problem for elucidating two concepts that we introduce  in \ref{chap:FidComm}.
+We will make use of this inference problem for elucidating two concepts that we introduce  in \ref{chap:FidComm}. Our novel solution to this matching problem will use those concepts as two criteria for finding the mappings from each ''condition`` to the common low-dimensional space.
 
 
 
 
 \chapter{Related Work}
-\label{sec:Related}
+\label{chap:RelatedWork}
 \chaptermark{Related Work}
 
 
 
 \section{Multiple View Learning}
-\label{sec:section}
+\label{sec:MultiViewLearn}
 When data are collected using a multitude of sensors or under significantly different environmental conditions, we refer to  the data setting as a multiple view setting where each ``view'' provide possibly complementary  information about the observed objects\footnote{We use the term ``object''  loosely, as the observed objects could be topics or concepts and the  collected data could be text, images, etc.}. Multiple view learning seeks to exploit these views simultaneously to be more successful in the learning task.
 
 In data settings for multiview learning, the data consist of observations from $K>1$ views, where both the relationship between the attributes from different views and the relationship between the features and the quantity to be predicted are unknown. The objective is to train the best predictor. While it is possible to use all the attributes in different views and carry out feature selection without regards from which view they come from, this ignores the fact that the modalities can be quite diverse and combining features from different modalities is not always meaningful. Consider features extracted from an image  and an audio segment as features from different modalities. A classifier that treats these features in the same way without taking into consideration their modalities is  unlikely to have good performance.
@@ -286,6 +292,8 @@ In the case of missing data, observations of features in the same view could  be
 
 In  \cite{Amini2009}, the authors  discuss  an example of multiview learning problems, classification of a multi-lingual document corpus. They  co-train  classifiers for single-language data that jointly minimize  loss in each single language along with disagreement between classifiers on training examples. Their findings support the intuition that  classifiers which are based on multiview learning preform than those classifiers who have been trained with only data from a single view.
 
+In \cite{Sun2005}, features
+are fused via CCA to have better classification performance compared to the original set of features in a typical classification problem.
 
 A popular approach to multiview learning is learning a  kernel matrix for each modality and combining these kernels in an optimal way (with respect to the inference task). For $K$ views, let $i^{th}$ datum for $k^{th}$ be represented $X_{ik},\quad i \in {1,\ldots n}, k \in \{ 1,\ldots, K \}$ . For the datum in the same view, let ${\mcK}_{k} = \left[ \mck_{k} (X_{ik},X_{jk}) \right] $ be the kernel matrix defined for that view.  Since any convex combination of the kernels $\sum{\alpha_k \mck_{k} } $ is also a kernel, it is possible to compute a joint kernel $\mck$ that use all of the multiview data by convexly combining this data. Assuming that a kernel can be defined for each view, the learning problem is  finding the optimal (for the inference task) coefficients $\alpha_k$ for each view. These parameters are usually estimated using training data. Denoting the optimal  $\alpha_k$ by  $\hat{\alpha}_k$,  $\hat{\mcK} = \sum_k{\hat{\alpha}_k \mcK_{k} }  =  \left[ \sum_k{\hat{\alpha}_k {\mck_k} (X_{ik},X_{jk})} \right] $.  Given a new datum $x$, the kernel function for each view, $\mck_{k}$ ,  along with $\hat{\alpha}_k$ is used to compute the inner product for the joint kernel. 
 \[
@@ -297,9 +305,11 @@ Choi et al.\ \cite{Choi:2008:MIM:1619995.1620064} use the Markov random walk int
 
 \section[Transfer Learning and Domain Adaptation]{Transfer Learning \label{sec:translearn}}
 
-Methods which utilize training data in one domain  as auxiliary information for  learning  in another domain fall under the term ``transfer learning'' \cite{TransLearnSurvey}. Sometimes the source domain and the target domain are actually the same, but the distribution of the data is different , e.g. inherent difference between training and test data due to collection conditions. We call this phenomenon sample selection bias or covariance shift \cite{Zadrozny2004a,TransLearnSurvey}.
+Methods which utilize training data in one domain  as auxiliary information for  learning  in another domain fall under the term ``transfer learning'' \cite{TransLearnSurvey}. Sometimes the source domain and the target domain are actually the same, but the distribution of the data is different , e.g. inherent difference between training and test data due to collection conditions. We call this phenomenon sample selection bias or covariance shift (SSB/CS) \cite{Zadrozny2004a,TransLearnSurvey}.
 
-Let us clarify the differences between  these learning tasks.  Let $y$ denote the random variable for the class label  for classification or the dependent variable for regression and $X$ denote the random variates we will use for the learning task. We will  make use of  the common assumption that data is $\iid$.  
+According to \cite{Hand2006}, this SSB/CS phenomenon is common in real life data analysis problems, and is usually understated by practitioners. For evaluation of newly designed classifiers, the classifiers are trained on a portion of the available data and tested on the held out data, so when evaluating classifiers, the assumption that training and test data come from the same distribution is usually valid. However any performance improvements that a new classifier model has over baseline would be swamped  by the sample selection bias. Thus, one should be skeptic about improving accuracy scores for benchmark datasets in machine learning and seeing them as evidence of progress.
+
+Let us clarify the differences between transfer learning  and SSB/CS.  Let $y$ denote the random variable for the class label  for classification or the dependent variable for regression and $X$ denote the random variates we will use for the learning task. We will  make use of  the common assumption that data is $\iid$.  
 Suppose we have two domains  ${\mcD}_s$ and ${\mcD}_t$ where the training data and test data is collected from, respectively. These are called the source and target domains, respectively.
 The training data $\left(X_i,y_i\right) \in {\mcD}_s$ and are drawn from the joint distribution $\Pry(X,y)$. 
 The test data $\left({X'}_i,{y'}_i\right) \in {\mcD}_t$ and have the distribution $\Pry'(X,y)$.
@@ -311,13 +321,15 @@ In the classical supervised learning setting, the source and target domains are 
 
 
  In some learning problems, the source and target domains are different ${\mcD}_s \neq {\mcD}_t$ and all or a considerable portion of  the labels $\{{y'}_i\}$  in $\left({X'}_i,{y'}_i\right) \in {\mcD}_t$ are missing. In this case, domain adaptation methods allow the exploitation of both the  data in the source domain $\{\left({X}_i,{y}_i\right)\}$ and the data in the target domain  $\{\left({X'}_i,.\right)\}$ to construct a good predictor for the target domain\cite{DaumeIII2006,Ben-David_Dom_Adapt2007,Ling2008,Pan2008a}.
-Various ``domain adaptation'' approaches\cite{Pan2008a,LowRankSharedConceptChen2012a} assume existence of mappings to a common latent space ${\mcD}_{com}$,  $\Psi_s:{\mcD}_s \rightarrow {\mcD}_{com} $ and $\Psi_t:{\mcD}_t \rightarrow {\mcD}_{com}$ to a  such that the class conditional distributions $\Pry(\Psi_s(X) \|y) = \Pry(\Psi_t(X') \| y'=y)$. If these mappings can be inferred, then they can be used to predict $y'$ given $\Psi_t(X')$ even if no $\left({X'}_i,{y'}_i\right) \in {\mcD}_t$ pairs exist. 
+Various ``domain adaptation'' approaches\cite{Pan2008a,LowRankSharedConceptChen2012a} assume existence of mappings to a common latent space ${\mcD}_{com}$,  $\Psi_s:{\mcD}_s \rightarrow {\mcD}_{com} $ and $\Psi_t:{\mcD}_t \rightarrow {\mcD}_{com}$ to a  such that the class conditional distributions $\Pry(\Psi_s(X) \|y) \approx \Pry(\Psi_t(X') \| y'=y)$.  If these mappings to the commensurate space can be inferred, then they can be used to predict $y'$ given $\Psi_t(X')$ even if no $\left({X'}_i,{y'}_i\right) \in {\mcD}_t$ pairs exist. 
 %Other approaches infer a mapping from from the source domain to the target domain.
+In {Pan2008a}, for example, the distance between the conditional distributions $\Pry(\Psi_s(X) \|y) $ $\Pry(\Psi_t(X') \| y'=y)$ is computed via  Maximum Mean Discrepancy
+measure and  the mappings $\Psi_s$ and  $\Psi_t$  are inferred by the minimization of MMD measure.
 
 \section[Manifold Matching]{Manifold Alignment}
 There have many efforts toward solving ``manifold alignment", which is a problem related to both our data fusion problem, and the transfer learning problem\ref{sec:translearn}. ``Manifold alignment" seeks to find correspondences between observations from different ``conditions". The setting that is most similar to ours is the semi-supervised setting, where a set of correspondences are given and the task is to find correspondences between a new set of points in each condition. In contrast, our hypothesis testing task is to determine whether any given pair of points is ``matched" or not. The proposed solutions follow a common approach in that they look for a common commensurate space such that the representations (possibly projections or embeddings) of the observations in the commensurate space match.
 
-Note the similarity of the description problem to the latent space approach for domain adaptation. For both domain adaptation and manifold alignment, the objective is to find mappings to a  common space  so that the data in  one domain can be used for inference in the other domain.
+Note the similarity of the  description of ``manifold alignment''   to the latent space approach for domain adaptation. For both domain adaptation and manifold alignment, the objective is to find mappings to a  common space  so that the data in  one domain can be used for inference in the other domain.
 
 Wang and Mahedavan~\cite{Wang2008} suggest an  approach that uses embedding followed by Procrustes Analysis to find a map to a commensurate space. Given a paired set of points, Procrustes Analysis~\cite{Sibson}, finds a transformation from one set of points to another in the same space that minimizes sum of squared distances, subject to some constraints on the transformation. In the case mentioned in \cite{Wang2008}, the paired set of points are corresponding low-dimensional embeddings of kernel matrices.   For the embedding step, they made the choice of using Laplacian Eigenmaps, though their algorithm allows for any appropriate embedding method.
 
@@ -328,17 +340,192 @@ In another paper  the simultaneous embedding is written  as a single function  t
 
 
 Another approach is Three-way Multidimensional scaling\cite{3wayNMDS,borg+groenen:1997}.
- This approach assumes the  different ``conditions" of the data are linear transformations of a single configuration and aims to find this single configuration. For our setting, one would first embed the in-sample dissimilarities via the three-way MDS, which would give as the linear transformations that map from group configuration to individual configurations under each condition. This is followed by out-of-embedding the OOS dissimilarities, and use the inverse of the transformation matrices to find the out-of-sample embeddings with respect to the group configuration. Since the out-of-sample embeddings are commensurate, the test statistic can be computed as the distance between the OOS embeddings. 
+ This approach assumes the  different ``conditions" of the data are linear transformations of a single configuration and aims to find this single configuration. With this approach, the mappings  $\{\rho_k \}$ that we define in \autoref{fig:gen-model} and \autoref{sec:data} are  assumed to be embeddings followed by linear transformations.
+ %For our setting, one would first embed the in-sample dissimilarities via the three-way MDS, which would give as the linear transformations that map from group configuration to individual configurations under each condition. This is followed by out-of-embedding the OOS dissimilarities, and use the inverse of the transformation matrices to find the out-of-sample embeddings with respect to the group configuration. Since the out-of-sample embeddings are commensurate, the test statistic can be computed as the distance between the OOS embeddings. 
 
 
 
+
+\chapter{Multidimensional Scaling,Its Variants and Principal Components Analysis}
+\label{sec:MDS}
+\chaptermark{Multidimensional Scaling and Its Variants}
+
+
+
+\section{Multidimensional Scaling}
+Multidimensional Scaling (MDS) is the general term used to describe methods to  ~\cite{CMDS,borg+groenen:1997,duin2005dissimilarity}  embed dissimilarities in the Euclidean space  with a chosen dimension $d$ such that the distances between the embeddings are as close as possible (in various senses) to the original dissimilarities. Different criterion functions can be used to measure how close the distances are  to the given dissimilarities, leading to different embedded configurations. These different variants of MDS can be described using a single formulation which will be introduced in \autoref{sec:MDSvariant}.
+
+Consider a  set of n objects. For each pair of objects, the dissimilarity value, denoted by $d_{ij}$ is a non-negative real number which quantifies how dissimilar those two objects are. The collection of these values form the matrix $\Delta$ , which is  a $nxn$ dissimilarity matrix. %While, in general, dissimilarities between finite set of objects are being considered; for a dissimilarity matrix, we can consider the objects as points in a space, whose neighborhood relationships are defined by the dissimilarity measure.
+The dissimilarities have to satisfy $\delta_{ij}\geq 0$ and $\delta_{ii}=0$ and $d_{ij}=d_{ij}$. Therefore  $\Delta$ is non-negative, hollow and symmetric. If, in addition, each triplet of dissimilarities $\delta_{ij}$, $\delta_{ik}$ and $\delta_{ik}$  satisfy the triangle inequality, then D is called  an Euclidean distance matrix.
+
+
+\section{Different criterion for MDS \label{sec:MDSvariant}}
+Multidimensional Scaling finds a configuration of points consistent with given dissimilarities in a finite dimensional Euclidean space. There are various variants of MDS that use different measures of consistency.  In general, the criteria minimize discrepancy between $f(\delta_ij)$ and  $d(\bm{x_i},\bm{x_j})$ where $d(\cdot,\cdot)$ is the Euclidean distance function and $f(\cdot)$ is monotonically increasing function. Depending on whether ``metric" or ``non-metric" MDS is being considered, $f(\cdot)$ is either a linear transformation or a non-linear one. Specific variants of MDS are defined by $f(\cdot)$ and the measure of discrepancy between  $f(\cdot)$ and $d(\cdot,\cdot)$. We call the latter \emph{the criterion function} which is optimized with respect to the embedding coordinates.
+
+
+\subsection{Metric MDS}
+ For metric MDS, transformations of the form  $f(x)=ax+b$ are allowed.
+ \subsubsection{Stress Criterion}
+ Setting $f(x)=x$ and choosing  the discrepancy measure between the dissimilarities and distances of embedded points to be $\ell_2$, the resulting criterion is called the raw stress criterion. Additionally weights ($w_{st}$) can be introduced for each discrepancy term. Denoting the matrix composed of the weights by $W$, we write
+ \begin{equation}
+\sigma_{W}(X)=\sum_{1\leq s\leq n;1\leq t\leq n} {w_{st}(d_{st}(X)-\delta_{st})^2  }\label{raw-stress}
+\end{equation}
+Subtypes of Stress criterion is identified by different choices for $w_st$ which depend on the original dissimilarities $\delta_{st}$ .
+For example, choosing $w_{st}=\left[{\sum{\delta_{st}^2}}\right]^{-1}$ normalizes the stress so that the stress value is always between 0 and 1. One can compare different configurations by this standardized stress value and conclude whether a configuration is a good fit or not based on this value.
+
+A slightly different weighting scheme is $w_{st}=\left[ \sum_{st}{\delta_{st}-\bar{\delta} } \right]^{-1}$ 
+where $\bar{\delta}=\frac{1}{(n)(n-1)} \sum_{st}{\delta_{st}}$ (average of dissimilarities).
+
+Another related criterion is SSTRESS criterion which involves squares of dissimilarities and distances:
+\[
+=\sum_{s,1\leq s\leq n}\sum_{t;1\leq t\leq n} { \left(d_{st}^2(X)-\delta_{st}^2\right)^2  }
+\]
+
+
+\subsubsection{Sammon Mapping Criterion}
+This is a specific case of the Stress criterion where the weights $w_{st}$ are set to be $\delta_{st}^{-1} \left[\sum_{k<l}\delta_{kl} \right]^{-1}$. These set of weights normalizes the squared discrepancies in the stress criterion by the magnitude of the original dissimilarities, so that discrepancy terms for the larger dissimilarities do not dominate the optimization of the criterion function. As a result, small $\delta_{st}$ are preserved just as well as large $\delta_{st}$.
+
+\subsection{Ordinal (Nonmetric) MDS}
+ For Nonmetric MDS, $f(\cdot)$    is allowed to be  any monotonic transformation. Specifically in psychometric applications of MDS, the assumption that the dissimilarities are a scaled-shifted version of the ``true"  dissimilarity is an unwarranted assumption. It is possible the existence of a ``true" dissimilarity is in question. Even if the dissimilarities are physical distances, humans tend to have biased estimates of those distances (long distances are usually underestimated ). \cite{Trosset1998}. This variant of MDS is also called ordinal, because what is preserved is the rank of dissimilarities, not their magnitude.
+
+\subsection{Classical MDS and the Strain Criterion}
+
+An $n \times n$ matrix $\Delta = \left[\delta_{st}\right]$ is a distance matrix iff it is symmetric and $\delta_{ii}=0$ $\delta_{st} \geq 0 \onespace \forall s,t$ and if it obeys the triangle inequality $\delta_{sr}+\delta_{rt} \geq \delta_{st}$ for any triple $s,r,t$.
+
+$\Delta$ is Euclidean if there exist a configuration of points $\bm{x}_{i} \in \mathbf{R}^d$ such that for any pair $s,t \in \{1,\ldots,n\}$,    $\delta_{st}=d(\bm{x}_{s},\bm{x}_{t})$.
+
+Consider the case where $\Delta$ is Euclidean. Note that if $\bm{x}_{i},i \in \{1,\ldots,n\} $ satisfy $\delta_{st}=d(\bm{x}_{s},\bm{x}_{t})$ for any pair $s,t$, for any constant vector $\bm{u}$ and any rotation/reflection matrix $R$, the same group  of points transformed by $R$ and   $\bm{u}$ $R\bm{x}_{i}+\bm{u}$ . To remove the translational ambiguity, set   $\sum{\bm{x}_{i}}$  to $\bm{0}$. How could we recover the original configuration   $\{\bm{x}_{i}\}$ from $\Delta$ (perhaps up to rotation/reflection)?
+The relation between the entries of $\Delta$ and $\bm{x}_{i}$ can be written as
+\[
+\delta_{st}^2= d(\bm{x}_{s},\bm{x}_{t})^2 = \|\bm{x}_{s}   \|^2 +   \|\bm{x}_{t}   \|^2   -   2  \bm{x}_{s} \cdot  \bm{x}_{t}   
+\label{eq:diss_wrt_embed_coords}
+\]
+Summing \eqref{eq:diss_wrt_embed_coords} over $s$, over $t$ and then over $s$ and $t$, we get the following identities
+\begin{align}
+\label{eq:diss_wrt_embed_coords_2_1}
+\sum_s{ \delta_{st}^2} &= \sum_s{\| \bm{x}_{s}   \|^2} + n \|\bm{x}_{t}   \|^2 -2 \sum_s{ \bm{x}_{s}   \cdot\bm{x}_{t}    } \quad s=1,\ldots,n\\
+\label{eq:diss_wrt_embed_coords_2_2}
+\sum_t{ \delta_{st}^2} &= \sum_t{\| \bm{x}_{t}   \|^2} + n\|\bm{x}_{s}   \|^2  -2 \sum_t{ \bm{x}_{s}   \cdot\bm{x}_{t}   } \quad t=1,\ldots,n \\
+\label{eq:diss_wrt_embed_coords_2_3}
+\sum_{st}{ \delta_{st}^2} &= 2n\sum_{t}{\| \bm{x}_{t}   \|^2}  -2\sum_{s}{ \bm{x}_{s} } \cdot \sum_t{   \bm{x}_{t} }
+\end{align}
+.
+
+Dividing each equality by $\frac{1}{n}$ , $\frac{1}{n}$ and $\frac{1}{n^2}$ respectively and using the fact that $\sum{\bm{x}_{i}}=\bm{0}$,
+\begin{align}
+\label{eq:diss_wrt_embed_coords_3_1}
+\frac{1}{n}\sum_s{ \delta_{st}^2} &= \frac{1}{n}\sum_s{\|\bm{x}_{s}   \|^2 } +  \|\bm{x}_{t}   \|^2 \quad   t=1,\ldots,n\\
+\label{eq:diss_wrt_embed_coords_3_2}
+\frac{1}{n}\sum_t{ \delta_{st}^2} &= \frac{1}{n}\sum_t{\|\bm{x}_{t}   \|^2 }+  \|\bm{x}_{s}   \|^2 \quad   s=1,\ldots,n\\
+\label{eq:diss_wrt_embed_coords_3_3}
+\frac{1}{n^2}\sum_{st}{ \delta_{st}^2} &= \frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} 
+\end{align}
+
+Reorganizing terms, we get
+\begin{align}
+\label{eq:diss_wrt_embed_coords_4_1}
+\|\bm{x}_{t}   \|^2  &= \frac{1}{n}\sum_s{ \delta_{st}^2} + \frac{1}{n}\sum_s{\|\bm{x}_{s}   \|^2   } \\
+\label{eq:diss_wrt_embed_coords_4_2}
+\|\bm{x}_{s}   \|^2  &= \frac{1}{n}\sum_t{ \delta_{st}^2} + \frac{1}{n}\sum_t{\|\bm{x}_{t}   \|^2  }\\
+\label{eq:diss_wrt_embed_coords_4_3}
+0 &= -\frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2} 
+\end{align} .
+
+
+Summing the three equations 
+\eqref{eq:diss_wrt_embed_coords_4_1}, \eqref{eq:diss_wrt_embed_coords_4_2}  and  \eqref{eq:diss_wrt_embed_coords_4_3} and replacing   $\|\bm{x}_{s}   \|^2 +\|\bm{x}_{t}\|^2$  in the original equation \eqref{eq:diss_wrt_embed_coords} with this sum, we get 
+
+\[
+\delta_{st}^2= \frac{1}{n}\sum_s{ \delta_{st}^2} + \frac{1}{n}\sum_s{\|\bm{x}_{s}}   \|^2 + \frac{1}{n}\sum_t{ \delta_{st}^2} + \frac{1}{n}\sum_t{\|\bm{x}_{t}}  \|^2  -\frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2}   -2\bm{x}_{s}   \bm{x}_{t}  
+\].
+
+After simplification, we get
+\[
+\delta_{st}^2= \frac{1}{n}\sum_s{ \delta_{st}^2} +  \frac{1}{n}\sum_t{ \delta_{st}^2}  +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2}  -2\bm{x}_{s}   \bm{x}_{t}   
+\]
+
+Rearranging terms, we get the dot product of $\bm{x}_{s}$ and $\bm{x}_{t}$ :
+\[
+\bm{x}_{s}   \bm{x}_{t} = \frac{-1}{2} \{\delta_{st}^2 - \frac{1}{n}\sum_s{ \delta_{st}^2} -  \frac{1}{n}\sum_t{ \delta_{st}^2}  +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2 }     \| \}
+\]
+
+
+
+Some of the sums in the above expression can be written in matrix notation
+\begin{align*}
+\bm{1}^{T}\Delta^2= \frac{1}{n}\sum_s{ \delta_{st}^2}\\
+\Delta^2 \bm{1} = \frac{1}{n}\sum_t{ \delta_{st}^2}
+\end{align*}.
+
+Using the above expressions and placing $\{\bm{x_i}\}$ rowwise into an $n \times d$ matrix $X$, we can write all of the terms in matrix notation
+\begin{align*}
+XX^T = \frac{-1}{2} \{\Delta^2 -  \frac{1}{n} \bm{1}\bm{1}^{T}\Delta^2  -  \frac{1}{n} \Delta^2 \bm{1}\bm{1}^{T} +   \frac{1}{n^2} \bm{1}\bm{1}^{T}\Delta^2 \bm{1}\bm{1}^{T}      \}
+\end{align*}.
+
+The final expression is 
+\begin{align*}
+XX^T = \frac{-1}{2} \{(I_n- \frac{1}{n}\bm{1}\bm{1}^{T})\Delta^2 (I_n- \frac{1}{n}\bm{1}\bm{1}^{T} \} 
+\end{align*}.
+
+$X$ can be recovered using a eigenvalue decomposition of $Z=\frac{-1}{2} \{ H \Delta^2 H\} $ where $H= (I_n- \frac{1}{n}\bm{1}\bm{1}^{T})$ . For the eigenvalue decomposition $Z=UDV^T$, the solution for $X$ is $\hat{X}=UD^{\frac{1}{2}}$ and  $\hat{X}=XR$ for some rotation matrix $R$. Note that since  $\Delta$ is Euclidean, so  all diagonal elements of $D$ is non-negative and $D^{\frac{1}{2}}$ has positive real entries. 
+
+For dimensionality reduction, we require a lower dimensional configuration in $\R^{d'}$where $d'<d$. For classical MDS, we seek  the configuration $X_{(d')}$ that minimizes   $\|XX^T-X_{(d')}X_{(d')}^T\|_F^2$. This criterion function is called the ''strain`` criterion. The minimizer of strain is found by sorting the diagonal elements of $D$ (eigenvalues of $X$) from largest to smallest and  using the first $d'$ eigenvalues as the diagonal elements of  $D_{(d')}$ and the corresponding eigenvalues as columns of $U_{(d')}$. These matrices give us $n \times d'$ configuration matrix, $\hat{X_{(d')}}=U_{(d')}D_{(d')}^{\frac{1}{2}}$. 
+
+If $\Delta$ is not Euclidean, there might be negative eigenvalues in $D$ which can be attributed to error and replaced by zeros.
+
+Note also that the classical MDS solution  is nested, i.e. if the $n \times d'$ matrix, $X_{(d')}$,  is the cMDS solution among $d'$ dimensional configurations, the first $d'-1$ columns of $X_{(d')}$ is the solution for $d'-1$ dimensional configurations (assuming the diagonal entries of  $D_{(d')}$ are sorted according from largest to smallest.)
+
+
+\subsection{Relation to other embedding methods\label{MDS_SpectralEmbed}}
+
+Note that Tang et al.\cite{MinhTrosset_SpectralEmbed} point out another connection between embedding methods by showing that the spectral embedding for  an unnormalized Laplacian matrix, $L$ (subject to  an appropriate scaling of dimensions) is equivalent to the classical MDS solution with the inner product matrix $Z=L^{\dag}$ where $L^{\dag}$ is the psuedo-inverse of $L$ \cite{MinhTrosset_SpectralEmbed}. Therefore for any d-dimensional spectral embedding of the Laplacian $L$  with Laplacian Eigenmaps, there exists an omnibus dissimilarity matrix $M$, the ($d$-dimensional) cMDS embedding of which   would give the same configuration.
+
+
+\subsection{Effect of Perturbations}
+  To determine how robust the embeddings are to error in dissimilarity measurements, it is necessary to carry out perturbation analysis. Two papers by Sibson \cite{Sibson_perturbational1979} investigate how small changes in the dissimilarity matrix change the configuration matrix obtained by classical MDS embedding. The main result in  \cite{Sibson_perturbational1979} says that 
+  
+    '' Let $E=\Delta^2$ for an Euclidean distance matrix $\Delta$ and $B=-{\frac{1}{2}}HEH$. Let $\lambda$ be a simple eigenvalue of $B$ with unit-length eigenvector $e$. Let $F$ be a symmetric matrix whose diagonal entries are zeros. Let $\widetilde E(\epsilon)= E +\epsilon F + \mcO(\epsilon ^2)$ be the perturbed version of $E$. Then the resulting perturbed versions of of $\lambda$ and $e$ are  $\widetilde \lambda(\epsilon)= \lambda +\epsilon \upsilon + \mcO(\epsilon ^2)$ where $\upsilon=(-\frac{1}{2}e^TFe)$ and  $\widetilde e(\epsilon)= e +\epsilon (\frac{1}{2}\left(B-\lambda I\right)^{\dag}Fe + \frac{1}{2} \left(\lambda n\right)^{-1}(\1_N^T F e)\1_N) + \mcO(\epsilon ^2)$
+    .
+    
+    ``Since  $\upsilon$, the first-order perturbation of $\lambda$ is linear with respect to $F$, we can conclude 
+  \[ E[\upsilon]= -\frac{1}{2}e^TE[F]e
+  \]  
+  
+  This result gives an intuition about how much the eigenvalue $\lambda$ would change for perturbation of $\epsilon$. Specifically the magnitude of change in the eigenvalue represented by $\upsilon$ is upperbounded  by the maximum eigenvalue of $F$ .
+\subsection{Maximum Likelihood MDS and MULTISCALE}
+Various probabilistic MDS methods have been proposed, with specific error assumptions.  In \cite{MacKay1989}, Mackay assumes the ``original'' coordinates have normally distributed errors independent in each dimension in the embedded space (The correlated error case can be simplified to the independent error case). As a result, the individiual dissimilarities has the same distribution as a weighted sum of independent chi-square distributed  random variables. Estimation of the embedding coordinates can be carried out using the maximum likelihood method. This method is implemented in a MDS program named MULTISCALE\cite{multiscale}.
+
+\subsection{Threeway MDS}
+Threeway MDS refers to  a variant of MDS that is used for analyzing many different dissimilarity matrices on the same collection of $n$ objects.  The different conditions  can be dissimilarities judged by different people or different dissimilarity measures applied to the same group of observations. We will refer to these different dissimilarities as different conditions, as we have mentioned in \autoref{sec:intro} and denote them by $\{\Delta_k\}$. The index $k$ that denotes the condition provides the third direction in addition to the  two-dimensional dissimilarity matrices.
+
+There are two ways of dealing with such 3-way data: One can compute a separate MDS solution for  each condition and match the configuration matrices by transformations. This two-step approach will be discussed in \autoref{sec:PoM}. The general approach assumes that there is a common configuration $\mathbf{G}$ ($n$ points in $\R^{d}$) and $K$ $d \times d$ transformation matrices ${\mathbf{T}_k}$ such that the dissimilarity matrix $\{\Delta_k\}$ arises  from the transformed configuration $\mathbf{G}_k =\mathbf{G}\mathbf{T}_k$. The inference problem is then computing $\mathbf{T}_k$.
+
+Another approach mentioned in \cite{borg+groenen:1997} is  mapping the dissimilarities(or proximities) into one distance matrix (which is the idea behind Multiple Kernel Learning \ref{sec:MultiViewLearn}).
+
+
+\section{Principal Components Analysis}
+Let $X$ be a random vector of   $d$ dimensions and $\mu$ and $\Sigma$ be its mean vector and covariance matrix , respectively. Then, for a given dimension $d'\leq d$, the successive maximization of  $$Var[u_{i}^T (X-\mu)]= E[u_{i}^T (X-\mu)(X-\mu)^T u_i]=u_{i}^T\Sigma u_{i},  i \in \{1,\ldots,d'\}$$, where $u_{i}$ is a  $d$-dimensional unit vector ($u_i^Tu_i=1$)  and $E[u_{i}^T X X^T u_j]=0 , 1\leq j<i$ (projections of $X$ along distinct dimensions are uncorrelated), gives the principal \emph{components} of $X$. These principal components are the directions in which $X$ has the maximum variance subject to the uncorrelatedness constraint of each direction. The $d' \times d$-matrix $U$ whose columns are $u_i, i \in \{1,\ldots,d'\}$  is the projection matrix that captures the maximum variance from $X$. That is, the elements of the random vector $UX$ are uncorrelated and have highest amount of variance in each dimension for any linear projection of $X$.
+
+For a sample of size $n$ drawn from the same distribution as $X$, consider the sample estimates $\hat{\mu}$ ,  $\hat{\Sigma} $. Then, sample principal components  is computed by replacing the distribution parameters with the sample estimates:
+ \[\hat{u_i}=\argmax_{u_i^Tu_i=1} u_{i}^T \hat{\Sigma}u_i. \]
+for the $i^{th}$ principal component.
+
+Suppose $\X$ is a $n \times d$ configuration matrix, representing the sample of $X$ ($n$ \textit{i.i.d.} realizations of $X$). Also, suppose $\X$ has a singular value decomposition $$\X= V\Lambda U^T$$ where the singular values on the diagonal of $\Lambda$ are sorted from largest to smallest (possibly padded with zeros to make \Lambda $d \times d$), $V$ and $U$ are orthogonal $n \times n$ and $d \times d$ matrices respectively. The PCA solution is  given by the eigenvalue decomposition of 
+$\frac{1}{n} {\X}^T H \X=U \left( \frac{1}{n} \Lambda^2 \right) U^T$. The columns of $U$, $\{ u_i \}$ are called the principal directions. 
+
+The principal coordinates are the projections of the samples of $X$ along the principal directions. For example, the first principal coordinates would be given by $u_1^T H {\X}^T$. The  first $d'$ principal coordinates can be represented with the $n \times d'$ configuration matrix $\X_{d'} =  {\X}  U_{d'}$. Therefore, using the SVD decomposition of $\X$,  the principal coordinates are found to be  $\X_{d'}= V \Lambda U^T U_{d'} = V  \Lambda \begin{array}{c}
+I_{d'}
+\bm{0}
+\end{array}= V_{d'} \Lambda_{d'} $ where   $V_{d'}$ are the first $d'$ columns  of   \Lambda_{d'}
+This dimensionality reduction method gives the same solution as classical Multidimensional Scaling when the dissimilarity matrix is $\Delta =d(\X)$. In the case of cMDS, $$\Delta^2=  \1_n \bm{y} +\bm{y} \1_n -2 \X \X^T \label{eq:dist_sqrd}$$ where $\bm{y}= \left(\X\X^T \right)_{(d)}$ is an n-dimensional vector that consists of  the diagonal of $\X\X^T$.
+For the classical MDS procedure, given the squared distance matrix $\Delta^2$ we compute $Z=  - \frac{1}{2} H\Delta^2 H \label{eq:tau_transform}$. Substituting $\Delta^2$ with \eqref{eq:dist_sqrd}   in \eqref{eq:tau_transform} gives $ Z= \X\X^T$ which has the same eigenvalues as the PCA solution. The MDS solution which is computed by the eigenvalue decomposition of $Z$ is given by the $n \times d'$ configuration matrix  $V_{d'} \Lambda_{d'}$. So for the same embedding dimension, $d'$, the two methods would give the same answer.
 
 
 
 
 
 \chapter{An expository problem for Multiview Learning : Match detection}
-\label{sec:match detection}
+\label{chap:match_detection}
 \chaptermark{Match detection Task}
 
  We are interested in problems where the data sources are disparate and the inference task requires that the observations from  the different data sources  can be judged to be similar or dissimilar.
@@ -351,7 +538,7 @@ Another approach is Three-way Multidimensional scaling\cite{3wayNMDS,borg+groene
 	We will use a finite-dimensional Euclidean space for  this commensurate representation, where standard  statistical inference tools can be used.
   %It should also be parsimonius, so that it can be learned from data of limited  size.
 	
-     ``Disparate data''  means that  the observations are from  different ``conditions'', for example, the data might come from different type of sensors. Formally, the original data  reside in a heteregenous collection of  spaces.  In addition, the data might be structured and/or might reside in  infinite dimensional spaces. Therefore, it is possible that a feature representation of the data is not available or inference with such a representation is fraught with complications (e.g. feature selection, non-i.i.d. data, infinite-dimensional spaces). This motivates our  dissimilarity-centric approach. For an excellent resource on the usage of dissimilarities in pattern recognition, we refer the reader to the Pekalska and Duin book \cite{duin2005dissimilarity}.
+     ``Disparate data''  means that  the observations are from  different ``conditions'', for example, the data might come from different type of sensors. Formally, the original data  reside in a heteregenous collection of  spaces.  In addition, the data might be structured and/or might reside in  infinite dimensional spaces. Therefore, it is possible that a feature representation of the data is not available or inference with such a representation is fraught with complications (e.g. feature selection, non-i.i.d. data, infinite-dimensional spaces). This motivates our  dissimilarity-centric approach. For an excellent resource on the usage of dissimilarities in pattern recognition, we refer the reader to the P\k{e}kalska and Duin book \cite{duin2005dissimilarity}.
 		
 		Since we proceed to inference starting from a dissimilarity representation of the data, our methodology may be applicable to any scenario in which multiple dissimilarity measures are available.  Some illustrative examples include:  pairs of images and their descriptive captions,  textual content  and  hyperlink graph
 structure of  Wikipedia  articles, photographs take under different illumination conditions. In each case, we have an intuitive notion of ``matchedness'': for photographs take under different illumination conditions, ``matched'' means they are of the same person. For a collection of linked Wikipedia articles, the different ``conditions''  are  the textual content and hyperlink graph structure, ``matched'' means a text document and  a vertex  corresponds to the same Wikipedia article. 
@@ -412,9 +599,9 @@ in the common representation space $\mX$.
     to simultaneously learn maps $\rho_1,\ldots,\rho_K$
     from disparate spaces 
     $\Xi_1,\ldots,\Xi_K$
-  to a common ``representation space'' $\mX$, for subsequent inference.}\label{fig:mm}
+  to a common ``representation space'' $\mX$, for subsequent inference.\label{fig:multisensor}}
   \end{center}
-  \label{fig:multisensor}
+  
 \end{figure}
 
 
@@ -434,7 +621,7 @@ MDS with raw stress will not result in a perfect reconstruction  of the original
 \end{comment}
 
 
-\section{Problem Description}
+\section{Problem Description \label{sec:jointembed}}
 In the problem setting considered here,  $n$ different objects are measured under $K$ different conditions (corresponding  to, for example, $K$ different sensors). We assume we begin with dissimilarity measures. These will be represented in matrix form as $K$ $n \times n$ matrices $\{\Delta_k,k=1 ,\ldots,K\}$.  In addition, for each condition, dissimilarities between  a new object  and the previous 
 $n$ objects $\{\mathcal{D}_k,k=1 ,\ldots,K\}$ are available. Under  the null hypothesis, ``these new dissimilarities represent a single \emph{new} object  compared to the previous $n$ objects'', measured under $K$ different conditions (the dissimilarities are matched). Under the alternative hypothesis, ``the dissimilarities $\{\mathcal{D}_k\}$ represent separate \emph{new} objects compared to the the previous $n$ objects''  measured under $K$ different conditions (the dissimilarities are unmatched)~\cite{JOFC}. %The test dissimilarities are referred to as  out-of-sample (OOS) dissimilarities. 
 
@@ -523,7 +710,7 @@ The embedding coordinates for the matched or unmatched pair  ${\hat{y}_{1}^{(.)}
 \Delta^{(.)}
 \right)
 }
-\right].
+\right]. \label{oos-embedding}
 \]
 
 \begin{remark}
@@ -621,7 +808,8 @@ In any closed interval that is a subset of $(0,1)$, the AUC function is continuo
 
  We do not have closed-form expressions for the null and alternative distributions of the test statistic $\tau$ (as a function of  $w$), so we cannot provide a rigorous proof of the uniqueness of $w^*$. However, for various data settings, simulations \ref{sec:simexp_results} always resulted in \emph{unimodal}  estimates for the AUC function which indicates a unique $w^*$ value.
 
-
+We should also mention that stochastic continuity of the test statistics $T(w)$ as a function of $w$  is a reasonable assumption. Discontinuity in the test statistic can arise as  a result of discontinuity of the embedded configurations. And the embedded configurations which are the global minimizers of the criterion function can have discontinuities if  there exist multiple local minima, and  infinitesimal changes in $w$ will change the ordering of the ``distinct'' local minima to change. While  we present an example where multiple local minima of the criterion function  lead to  a discontinuity of the embedded configuration  with respect to $\ref{subsubsec:Discontinuity}$, other than such carefully constructed examples, we do not expect that such discontinuities in the embedded configurations. 
+One can conclude  that stochastic continuity of the test statistic with respect to $w$  is a valid assumption.
 
 
 
@@ -668,11 +856,21 @@ By imputing the between-condition dissimilarities of the same object as 0, the c
 
 
 
-While  the above expressions for  \emph{fidelity} and  \emph{commensurability} errors  are specific to the joint embedding of disparate dissimilarities, the concepts of fidelity and commensurability are  general enough to be applicable to other dimensionality reduction methods for data from disparate sources. 
+
+
 
  There is also between-condition {\em separability error} given by
     $$\epsilon_{s_{k_1k_2}} = \frac{1}{{{n}\choose{2}}} \sum_{1 \leq i < j \leq n;k_1 <k_2} (d(\widetilde{\bm{x}}_{ik_1},\widetilde{\bm{x}}_{jk_2})-{ \delta_{k_1k_2}}(\bm{x}_{ik_1},\bm{x}_{jk_2}))^2.$$ This error will be ignored herein, due to the fact that 
 $\delta_{k_1k_2}(\bm{x}_{ik_1},\bm{x}_{jk_2})$ is not  available. Although it is possible to impute these dissimilarities, the optimal  imputation is an open question and ignoring these terms provides for investigation of simpler, still open questions.
+
+
+
+
+While  the presented  expressions for  \emph{fidelity} and  \emph{commensurability} errors  are specific to the joint embedding of disparate dissimilarities, the concepts of fidelity and commensurability are  general enough to be applicable to other dimensionality reduction methods for data from disparate sources.  For example , if the dissimilarities between different conditions were available, or imputed, a joint embedding could be carried out using the classical MDS. This joint embedding would also jointly optimize fidelity  and commensurability, but we would have no control over which dissimilarities are prioritized for preservation in the embedding, so we couldn't control the fidelity and commensurability tradeoff. As we show in simulation experiments, there are significant improvements in statistical power when commensurability is prioritized compared to the baseline uniform-weighting case.
+   
+   
+
+
 
 Note that the omnibus embedding approach using any variant of MDS tries to jointly optimize fidelity and commensurability, by minimization of some measure of discrepancy between the given dissimilarities (which are either between-condition or within-condition dissimilarities) and the distances of the embedded configuration. This is most obvious in the  raw stress version of  MDS, since the individual terms can be separated according to whether they are contributing to  fidelity or  commensurability  error.
 
@@ -710,51 +908,8 @@ This motivates  referring to the omnibus embedding approach as Joint Optimizatio
 
 \section{Fidelity and Commensurability Tradeoff}
  The weights in the raw stress function allow us to address the question of the optimal tradeoff of  fidelity and commensurability. Let $w \in (0,1)$. Setting the weights ($\{w_{ijk_1k_2}\}$)  for the commensurability  and fidelity  terms    to $w$ and $1-w$, respectively,  will allow us to control the relative importance of fidelity and commensurability terms in the objective function. Let us denote the raw stress function with these simple weights by $\sigma_w(\widetilde{X};M)$.  With simple weighting, when $w=0.5$, all terms in the objective function have the same weights. We will refer to this weighting scheme in the rest of this dissertation as \emph{uniform weighting}. The alternative scheme, $w \neq 0.5$, is called \emph{nonuniform weighting}.
-The initial  expectation in the investigation of fidelity and commmensurability was that there is a $w^*$ that is optimal for the specific match detection task ($w$ value which results in the best power for hypothesis testing). In fact,  exploratory simulations presented in \ref{} confirm the power of the tests varies with varying $w$ and indicate the range where the optimal  $w^*$ lies, assuming it exists. We show $w$ exists under certain conditions for the match detection task. Although we cannot provide  a rigorous proof of the uniqueness of $w^*$, for various data settings, simulations in \ref{} always resulted in \emph{unimodal}  estimates for the AUC function which indicates a unique $w^*$ value.
-Specifically,  for the match detection task, we provide evidence in \ref{} that  uniform weighting does not necessarily yield the best fidelity-commensurability tradeoff in terms of subsequent inference and one should consider non-uniform weighting for better performance in the inference task.
-
-\section{Incommensurability phenomenon}
-
- We can define a Dirichlet product model
-that is designed specifically to illustrate when and why {\em jofc} is superior to both {\it p}$\circ${\it m} and {\em cca}
-in terms of fidelity and commensurability.
-
-If $q$ is large with respect to the target dimensionality $m$,
-then with high probability {\em cca} will identify a $m-$dimensional subspace in the ``noise'' simplex $S^q$ with spurious correlation.
-This phenomenon requires only that $a>0$.
-In this event, the out-of-sample embedding will produce arbitrary $\widetilde{\bm{y}}_1$ and $\widetilde{\bm{y}}_2$,
-even under $H_0$.
-Thus the null distribution of the test statistic will be inflated by these spurious correlations.
-If the allowable Type I error level is smaller than the probability of inflation,
-then the power of the {\em cca} method will be negatively affected.
-
-If $a$ is small and $m \leq p$, then with high probability the $m-$dimensional subspaces identified by the MDS step
-will come from the ``signal'' simplex $S^p$.
-If $m<p$, then with positive probability, these two subspaces,
-identified separately in {\it p}$\circ${\it m},
-will be geometrically incommensurate (see Figure \ref{fig:incomm}).
-Thus the null distribution of the test statistic will be inflated by these incommensurate cases.
-If the allowable Type I error level $\alpha$ is smaller than the probability of inflation,
-then the power of the {\it p}$\circ${\it m} method will be negatively affected.
-
-
-\subsection{ A symmetric example}
-
-The
-  \begin{figure}
-  \begin{center}
-    \includegraphics[height=13.2cm, width=15.84cm,angle=0]{ZMfacetprojections3d.pdf}
-    \caption{Idealization of the incommensurability phenomenon:
-    for a symmetric collection $\{\bm{\gamma}_1,\bm{\gamma}_2,\bm{\gamma}_3,\bm{\gamma}_4\}$ in the simplex $S^3$,
-    all four of the facet projections have the same fidelity and are geometrically incommensurable with one another.}\label{fig:incomm}
-  \end{center}
-  \end{figure}
-
-For large $q$ and small $a$, the two phenomena described above occur in the same model.
-The {\it jofc} method is not susceptible to either phenomenon:
-incorporating fidelity into the objective function obviates the spurious correlation phenomenon, and
-incorporating commensurability into the objective function obviates the geometric incommensurability phenomenon.
-
+The initial  expectation in the investigation of fidelity and commmensurability was that there is a $w^*$ that is optimal for the specific match detection task ($w$ value which results in the best power for hypothesis testing). In fact,  exploratory simulations presented in \ref{sec:Simulation Results}  confirm the power of the tests varies with varying $w$ and indicate the range where the optimal  $w^*$ lies, assuming it exists. We show $w$ exists under certain conditions for the match detection task. Although we cannot provide  a rigorous proof of the uniqueness of $w^*$, for various data settings, simulations in \ref{sec:Simulation Results} always resulted in \emph{unimodal}  estimates for the AUC function which indicates a unique $w^*$ value.
+Specifically,  for the match detection task, we provide evidence in \ref{sec:Simulation Results} that  uniform weighting does not necessarily yield the best fidelity-commensurability tradeoff in terms of subsequent inference and one should consider non-uniform weighting for better performance in the inference task.
 
 
 
@@ -762,13 +917,13 @@ incorporating commensurability into the objective function obviates the geometri
 
 
 \chapter{Procrustes Analysis on Low-dimensional Embeddings}
-\label{sec:PoM}
+\label{chap:PoM}
 \chaptermark{Procrustes Analysis}
 
 
 
 \section{Procrustes Analysis}
-Given two configurations of $n$ points in $d$-dimensional that include the same number of points,  and Procrustean methods try to fit one configuration to the other so that the points align as well as possible. Let us denote the configurations by two $n \times d$ matrices: ${\X}_1$, ${\X}_2$. The most general version of this  method  seeks an affine transformation $\rho$ from the configuration ${\X}_2$  to the target configuration ${\X}_1$  transformed by $\rho$ such that the sum of squares of the distances from each point transformed with $\rho$ to its corresponding point is minimized.
+Given two configurations of $n$ points in $d$-dimensional Euclidean space, Procrustean methods try to fit one configuration to the other so that the points align as well as possible. Let us denote the configurations by two $n \times d$ matrices: ${\X}_1$, ${\X}_2$. The most general version of this  method  seeks an affine transformation $\rho$ from the configuration ${\X}_2$  to the target configuration ${\X}_1$  transformed by $\rho$ such that the sum of squares of the distances from each point transformed with $\rho$ to its corresponding point is minimized.
 It is also possible to  enforce constraints on the affine transformation such as requiring the translation component to be a zero vector (if both of the point configurations are zero-centered), or setting the scaling component to 1 (if only rigid transformations are allowed). First let us consider the general case  $\rho({{\X}_2}) = s{\X}_2\mathbf{Q}+\1\mathbf{t}^T$ where $\mathbf{Q} \in \M_{d\times d}$, $s \in (0,\infty)$, $t\in \Real^{d}$. We will summarize the derivation of the components of the Procrustean transformation found in \cite{borg+groenen:1997}.
 
 We seek to  minimize 
@@ -818,7 +973,7 @@ with equality if  $\bm{V}^T \mathbf{Q} \bm{U} = I$ . So the solution  that achie
 
 \section{Procrustes Analysis for Manifold Matching}
 
-Since separate  condition dissimilarities are available, a straightforward approach is to embed each conditional dissimilarity matrix, $\Delta_1$ and $\Delta_2$, separately  in  $d$-dimensional Euclidean space (call these embedded configurations ${\X}_1$ and ${\X}_2$, respectively) and then find a mapping function $\rho :\mathbb{R}^{d}\rightarrow\mathbb{R}^{d}$ that maps each point in ${\X}_2$ to approximately its corresponding point in ${\X}_1$. This approach can be seen as a specific example of the general setting where the commensurate space is d-dimensional  Euclidean space and $\rho_1$ in  ~\ref{fig:fig1} is the identity map. 
+Since separate  condition dissimilarities are available, a straightforward approach is to embed each conditional dissimilarity matrix, $\Delta_1$ and $\Delta_2$, separately  in  $d$-dimensional Euclidean space (call these embedded configurations ${\X}_1$ and ${\X}_2$, respectively) and then find a mapping function $\rho :\mathbb{R}^{d}\rightarrow\mathbb{R}^{d}$ that maps each point in ${\X}_2$ to approximately its corresponding point in ${\X}_1$. This approach can be seen as a specific example of the general setting where the commensurate space is d-dimensional  Euclidean space and $\rho_1$ in  ~\ref{fig:Fig1} is the identity map. 
 
 Estimation of $\rho$ is carried out using  Procrustes Analysis  on training data. Procrustes Analysis~The map $\rho$ estimated by the linear map $\mathbf{Q}^*$   makes the separate MDS embeddings as commensurate as possible. Once such a mapping is computed, one can out-of-sample embed  new dissimilarities for each condition (separately)  and  use $\mathbf{Q}^*$ to make the embeddings commensurate.
 One can then compute the test statistic $\tau$ (the distance between commensurate embeddings) for  the hypothesis testing problem. This approach will be referred to  as P$\circ$M - Procrustes $\circ$ MDS.
@@ -854,8 +1009,12 @@ $ f(\mcY, M) =(1-w)\left({\sigma{(\mcY_1)}}+{\sigma{(\mcY_2)}}\right)+w||{\mcY_1
 \end{array}\right]$ with the constraint that $\mcY_1$ and $\mcY_2$ are two $n \times p$ configuration matrices having column means of $\bm{0}$. Then, $$lim_{w\rightarrow0}\mathbf{Y}_{w}=\mathbf{X}\mathbf{R}$$ for a $p\times p$ orthonormal matrix $\mathbf{R}$. ($\mathbf{R}$ is a transformation matrix with a rotation and possibly a reflection component.)
 \end{thm}
  
-\section{Generalized Procrustes Analysis ($K>2$)}
-Generalized Procrustes analysis is the extension of Procrustes analysis to more than two configuration of points. This extension has been studied in \cite{GPCA}.
+\section{Generalized Procrustes Analysis ($K>2$) \label{sec:GenProcrustes}}
+Generalized Procrustes analysis is the extension of Procrustes analysis to more than two configuration of points. This extension has been studied in \cite{GPCA}. Suppose we have $K$ configurations : $\X_1,\X_2,\ldots \X_K$. We wish to find $K$ Procrustean transformations  $\tau_k(\X_k)= s_k\X_k\bm{Q}_k+\bm{t}_{k}$ such that 
+
+\[\sum_{kl}\|\tau_k(\X_k)-\tau_k(\X_k)\|^2_F\] is minimized. This problem doesn't have a single-step analytical solution  for all of the components like the Procrustes analysis problem. $\bm{t}_{k}$ components of the transformations can be solved by subtracting the column sums  ($\1\X_k$). The rotation/reflection components $\bm{Q}_k$ can be solved iteratively, by minimizing the error function with respect to $\X_k$ and keeping all other $\X_l, l \neq k$ constant for each $k$ in turn. After convergence of iterative  $\bm{Q}_k$, $s_k$ can be solved for analytically.
+
+Using Generalized Procrustes Analysis (GPA), we can have estimates for $K$ mapping functions $\rho_k$ mentioned in \ref{fig:multisensor} when $K>2$. Given $K$  dissimilarity matrices $\Delta_k,k=1,\ldots,K$,  we would compute separate  MDS embeddings of  $\{\Delta_k \}$  followed by GPA of all the embeddings. The separate embeddings mapped via $\{\tau_k \}$ of the embeddings would give us a single commensurate representation where the disparate dissimilarities can be compared. New dissimilarities $\{ \bm{D}_k \}$ can be out-of-sample embedded  and mapped by the same Procrustean transformations  $\{\tau_k \}$ to the commensurate space. We will use this approach  for the match testing test presented in \label{sec:match detection}, when $K>2$. Simulation results are available in \ref{k_more_than_two_experiment}.
 
 
 
@@ -886,7 +1045,7 @@ $$
 Note that $s$, the dimension of $X$ and $Y$, is the embedding dimension $d'$  in the CCA approach. 
 
 
-As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to a commensurate  space by maps provided by CCA. The test statistic   can now be computed and  the null hypothesis is rejected for ``large'' values of the test statistic $\tau$  as in Section \ref{subsec:PoM}.
+As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to a commensurate  space by maps provided by CCA. The test statistic   can now be computed and  the null hypothesis is rejected for ``large'' values of the test statistic $\tau$  as in Section \ref{chap:PoM}.
 
 
 
@@ -898,46 +1057,55 @@ As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to 
 \subsection{Relation of CCA and Commensurability} 
 
 \begin{thm}
-Let $ \mathcal{U}$ be the set of all orthogonal d-frames 
-(ordered set of d linearly independent vectors) of $R^{d'}$. 
-Let $X_1$ and $X_2$  be two $n\times d'$ (configuration) matrices that are perfectly ``matched"
+Let $ \mathcal{U}$ be the set of all orthogonal $d$-frames 
+(ordered set of $d$ linearly independent vectors) of $R^{d'}$. These correspond to all unique projection operators to $d$ dimensional linear subspaces of  $R^{d'}$.
+Let $X_1$ and $X_2$ be two $n\times d'$ (configuration) matrices that represent pair of points that are perfectly ``matched"
  (there exists a  matrix $\mathbf{Q}$ such that $\|   X_1\mathbf{Q}  -X_2 \|=0$).
-If commensurability is  defined as
-in equation~\eqref{comm-error},
- where  the embedded configurations are $\tilde{X_1}=X_1U_1$ and $\tilde{X_2}=X_2U_2$ for some  $U_1\in \mathcal{U}$ and $U_2\in  \mathcal{U}$,
-and   the original dissimilarities are $D(X_1)$ and $D(X_2) $,
- CCA on $X_1$ and $X_2$ gives $\mathbf{U}_1\in\mathcal{U}$ and  $\mathbf{U}_2\in\mathcal{U}$, 
+ Suppose, for the joint embedding procedure, the embedded configurations are constrained to be of the form $\tilde{X_1}=X_1U_1$ and $\tilde{X_2}=X_2U_2$ for some  $U_1\in \mathcal{U}$ and $U_2\in  \mathcal{U}$,
+%and   the original dissimilarities are $D(X_1)$ and $D(X_2) $,
+The commensurability error is  defined as
+in equation~\eqref{comm-error}.
+ 
+ Canonical Correlational Analysis on the  \emph{i.i.d.} sample of points represented by  $X_1$ and $X_2$ gives $\mathbf{U}_1\in\mathcal{U}$ and  $\mathbf{U}_2\in\mathcal{U}$, 
  the two elements of $\mathcal{U}$ that maximize commensurability, subject to $U_1^{T}X_1^{T}X_1U_1=I_d$ and $U_2^{T}X_2^{T}X_2U_2=I_d$ ($I_d$ is the $d \times d$ identity matrix).
 \end{thm}
 
 \begin{proof}
-Let $\rho=u_x^T \Sigma_{12} u_y$. Commensurability error subject to the linearity constraint is  \[
-\epsilon_{c_{(k_1=1,k_2=2)}} = \frac{1}{n} \sum_{1 \leq i \leq n;k_1=1,k_2=2} (d(U_x\widetilde{\bm{x}}_{ik_1},U_y \widetilde{\bm{x}}_{ik_2}))^2
+ Consider \ref{comm-error} and its simplified form when $\delta_{ij}=0$ as we assumed there exists a perfect matching. 
+ %For defining commensurability error, let us use expectation of the squared error term instead of the average squared error from $n$ pairs of points. Then, commensurability error subject to the linearity constraint is  
+ %\[
+%\epsilon_{c_{(k_1=1,k_2=2)}} = E \left[d(U_x\ {\bm{x}}_{k_1},U_y \ {\bm{x}}_{k_2})\right]^2
+%\label{eq:cca_commens_proof_1}.\]
+ \[\epsilon_{c_{(k_1=1,k_2=2)}} = \frac{1}{n} \sum_{1 \leq i \leq n;k_1=1,k_2=2} (d(U_x\widetilde{\bm{x}}_{ik_1},U_y \widetilde{\bm{x}}_{ik_2}))^2
 \label{eq:cca_commens_proof_1}\]
-which is the simplified form of \ref{comm-error} when $\delta_{ij}=0$ as we assumed there exists a perfect matching. \ref{eq:cca_commens_proof_1} can be written as
+. \ref{eq:cca_commens_proof_1} can be written as
+%\begin{align*}
+%\epsilon_{c12} &=  \sum_{j=1}^d E \left[((u_{xj}{\bm{x}}_{1}-u_{yj} {\bm{x}}_{2}))\right]^2 \\
+%&=  \sum_{j=1}^d {(u_{xj}\ {\bm{x}}_{i1}})^2+ ( u_{yj} \ {\bm{x}}_{i2})^2 - 2 (u_{xj}  {\bm{x}}_{i1} u_{yj}  {\bm{x}}_{i2}).
+%\end{align*}
+
 \begin{align*}
-\epsilon_c &= \sum_{1 \leq i \leq n} \sum_{j=1}^d ((u_{xj}\widetilde{\bm{x}}_{i1}-u_{yj} \widetilde{\bm{x}}_{i2}))^2 \\
-&= \sum_{1 \leq i \leq n} \sum_{j=1}^d {(u_{xj}\widetilde{\bm{x}}_{i1}})^2+ ( u_{yj} \widetilde{\bm{x}}_{i2})^2 - 2 (u_{xj} \widetilde{\bm{x}}_{i1} u_{yj} \widetilde{\bm{x}}_{i2}).
+\epsilon_{c12} &=  \frac{1}{n}  \sum_{j=1}^d \sum_{i=1}^n \left[((u_{xj}{\bm{x}}_{i1}-u_{yj} {\bm{x}}_{i2}))\right]^2 \\
+&=  \sum_{j=1}^d {(u_{xj}\ {\bm{x}}_{i1}})^2+ ( u_{yj} \ {\bm{x}}_{i2})^2 - 2 (u_{xj}  {\bm{x}}_{i1} u_{yj}  {\bm{x}}_{i2}).
 \end{align*}
 
-Note that since $U_1^{T}X_1^{T}X_1U_1=I_d$ ($U_2^{T}X_2^{T}X_2U_2=I_d$) , the first (second) terms, ${(u_{xj}\widetilde{\bm{x}}_{i1}})^2  $ , 
-(${(u_{yj}\widetilde{\bm{x}}_{i2}})^2 $ )
-in the sum are equal to  $1$. The third terms can be written in the form of  ($ -2 \times \xi$) where $\xi$ is the sum of the products of dot products  $u_{xj} \widetilde{\bm{x}}_{i1}$ and  $u_{yj} \widetilde{\bm{x}}_{i2}$  . So maximizing $\xi$ under the linearity constraints,  is maximizing  commensurability.
+
+Note that since $U_1^{T}X_1^{T}X_1U_1=I_d$ ($U_2^{T}X_2^{T}X_2U_2=I_d$) , the first (second) terms, ${(u_{xj} {\bm{x}}_{i1}})^2  $ , 
+(${(u_{yj} {\bm{x}}_{i2}})^2 $ )
+in the sum are equal to  $1$. The third terms can be written in the form of  ($ -2 \times \xi$) where $\xi$ is the sum of the products of dot products  $u_{xj}  {\bm{x}}_{i1}$ and  $u_{yj}  {\bm{x}}_{i2}$  . So maximizing $\xi$ under the linearity constraints,  is maximizing  commensurability.
+
+
 Note that 
 \begin{align*}
-\xi &= U_1^{T}X_1^{T}X_2U_2 - \sum_{1 \leq j_1 \leq d, 1 \leq j_2 \leq d, j_1 \neq j_2} u_{xj_1}^T X_1^{T}X_2u_{yj_2}  -   \sum_{1 \leq j_1 \leq d, 1 \leq j_2 \leq d, j_1 \neq j_2} u_{xj_1}^T X_1^{T}X_2u_{yj_2}  \\
-&=  U_1^{T}X_1^{T}X_2U_2 -\sum_{1 \leq i \leq n} \sum_{1 \leq j_1 \leq d, 1 \leq j_2 \leq d, j_1 \neq j_2} {(u_{xj_1} \widetilde{\bm{x}}_{i1}) (u_{yj_2} \widetilde{\bm{x}}_{i2})}
+\xi &=  \frac{1}{n} \left[ \tr{U_1^{T}X_1^{T}X_2U_2} - \sum_{1 \leq j \leq d} \sum_{1 \leq i < l \leq d} u_{xj_1}^T  {\bm{x}}_{i1}  {\bm{x}}_{l2}^T u_{yj_2} \right]
 \end{align*}
-.
-
-Note that in the formulation of CCA the succesive
-
-
+where the dot products $u_{xj_1}^T  {\bm{x}}_{i1}$ and  $ {\bm{x}}_{l2}^T u_{yj_2}$  are uncorrelated because ${\bm{x}}_{i1},{\bm{x}}_{l2}, i \neq l$  are independent samples. Therefore as $n \rightarrow \infty$ the second sum vanishes and only the trace term remains.  
+So $\xi= \frac{1}{n}\tr{U_1^{T}X_1^{T}X_2U_2}$ which is the objective function optimized with respect to $U_1$ and $U_2$ in the canonical correlational analysis. Therefore subject to constraints, CCA maximizes commensurability  with respect to $U_1$ and $U_2$.
 
 \end{proof}
 
 
-
+\subsection{Spectral Embedding Generalization of CCA}
 
 Another way to see the connection between CCA and JOFC embedding (using classical MDS) is by connections to spectral embedding. \cite{CCAviaSpectralEmbed} shows that CCA is a special case of Spectral Embedding with the restriction that the joint embedding coordinates are linear projections of the original multiview data, $X_1$ and $X_2$. First, let us define ``spectral embedding'':
 Given  a $k \times k$ weight matrix $W$, Spectral Embedding embeds $k$ points in $d$-dimensional Euclidean space by  minimizing the cost function $\sum_{i,j \in \{1,\ldots,k\}}W_{ij}\left(u_i-u_j\right)^2$, where $u_i, u_j \in \mathbb{R}^d$ are the embedded coordinates.
@@ -961,7 +1129,8 @@ let \[ Z= \left[
                 %(e.g. \exp(-d(X_1i,X_1j) for $(i,j)^{th} entry in the first diagonal block of  $W$. 
                 This would be akin to a JOFC-type embedding, as the commensurability criterion is taken into account by using  an identity matrix as the  off-diagonal block matrix in $W$ and the fidelity criterion by non-zero diagonal block matrices in $W$.
                 
-                Note that Tang et al.\cite{MinhTrosset_SpectralEmbed} elucidate another connection between embedding methods by showing that the spectral embedding for  an unnormalized Laplacian matrix, $L$ (subject to  an appropriate scaling) is equivalent to the classical MDS solution with the inner product matrix $L^{+}$ where $L^{+}$ is the psuedo-inverse of $L$ \cite{MinhTrosset_SpectralEmbed}. Therefore for any d-dimensional spectral embedding of the Laplacian $L$  with Laplacian Eigenmaps, there exists an omnibus dissimilarity matrix $M$, the ($d$-dimensional) cMDS embedding of which   would give the same configuration. Connecting the dots, we conclude the classical MDS embedding with an omnibus dissimilarity matrix $M$ that corresponds the psuedo-inverse of  $L=D-W$ , along with the linearity condition is equivalent to CCA.
+             As we have mentioned in \ref{MDS_SpectralEmbed}, the joint embedding of a dissimilarity matrix  via cMDS  is equivalent to spectral embedding under certain conditions.
+So just like the spectral embedding generalization of CCA  we have just presented with the multiview data $Z$ and weight matrix $W$ there is an equivalent classical MDS embedding with an omnibus dissimilarity matrix $M$ for which $\tau(M)=-\frac{1}{2}JMJ^T$  corresponds  to the  psuedo-inverse of  $L=D-W$, along with the linearity condition.
 
 
 
@@ -971,9 +1140,13 @@ let \[ Z= \left[
 \chaptermark{Multiple Minima in  Multidimensional Scaling}
 
 
-\subsubsection{ A short detour : Discontinuity in weighted raw stress OOS configurations\label{subsubsec:Discontinuity}}
+While we have considered  configurations embedded via optimization of  MDS criterion functions, previously  we have not mentioned  the difficulties that might rise in optimization, such as lack of convergence or multiple local minima. Since the raw stress minimization is done using the iterative majorization algorithm, it is prone to these problems and their severity depends on the value of  original dissimilarities. We are particularly interested in multiple minima problem, as the configurations that are the result of the optimization of MDS criterion might not be the global minima. In fact, a unique global minimum might not exist. In \cite{TrossetLocalMin}, the multiple local minima problem is discussed for raw stress. A simple example is constructed which is shown to have multiple local minima of which one is a global minimum.
 
-Note that it is possible to have multiple local minima in the embedding step(see example in \cite{TrossetLocalMin}). It is also possible to construct an example  where the weight parameter $w$ controls which of the local minima is the global minimum among the configurations of $\hat{X}_{.}$.
+
+Our focus is not proving  multiple local minima  exist in our data settings, but investigating how they might relate to $w$, in the case they exist. As $w$ changes, it might effect which local minimum  the iterative algorithm might terminate in, or another local minima can become the global minima. In the latter case, this means the embedded configuration, viewed as a function of $w$ has a point discontinuity. As $AUC(w)$ is a function of the embedded configuration, the discontinuity of the configuration at $w= w_{d}$ might also cause $AUC(w)$ to be discontinuous at that $w=w_{d}$ .   For investigating these issues, following the approach of\cite{TrossetLocalMin}, we design a simple example that is informative as it instructive.  
+
+\subsubsection{ Discontinuity in weighted raw stress OOS configurations\label{subsubsec:Discontinuity}}
+ It is  possible to construct an example  where the weight parameter $w$ controls which of the local minima is the global minimum among the configurations of $\hat{X}_{.}$.
 
 %Global Minimum Configuration determined by $w$ .
 
@@ -992,11 +1165,11 @@ the dissimilarity matrix is $$D'_{ij}=\begin{cases}
 D_{ij}-1.4 & \textrm{if  $(i,j) \in \{(4,6),(6,4),(2,7),(7,2)   \}$ }\\
 D_{ij}  & \textrm{ otherwise}\\
 \end{cases}.$$ 
-Qualitatively, the three points $X_1$, $X_5$ and $X_3$ form a barrier which the OOS points need to cross  to reach their matched counterparts. 
 
 The MDS criterion function is optimized starting with different initial configurations.   Depending on the initial configuration, the final embedding coordinates of $\hat{X}_6$ might be closer
 to $X_4$ compared to $X_2$. This is due to a local minimum in the configuration space. Consider the fact that, at the start of optimization, if  the initial coordinates of $\hat{X}_6$ is on the $X_4$ side of the $y=x$ line  in  $\mathbb{R}^2$ , 
-it has to cross paths with the embeddings of  ${X}_1,{X}_3,{X}_5$ and it has   nonzero dissimilarities with those points. The same argument can be made for $X_7$. This is  the ``barrier" mentioned that is encountered in the optimization. It is possible to distinguish two kinds of local minima, one where the embedded OOS points $X_6$ and $X_7$ end up in the same side as their respective matched points $X_2$ and $X_4$ (named ``true'' or real config.) and the other where they end up in sides  opposite their matched points (named ``alternative" local min.). The latter corresponds to the case where the OOS points are unable to cross the ``barrier"'. Other configurations such as the ones where $X_6$ and $X_7$  end up in the same side are not local minima, since the original dissimilarity between them is large ($\sqrt{2}$) compared to dissimilarities between other pairs of points and embedding them close would increase raw stress significantly.
+it has to cross paths with the embeddings of  ${X}_1,{X}_3,{X}_5$ and it has   nonzero dissimilarities with those points. The same argument can be made for $X_7$. To qualitatively describe the situation, the three points $X_1$, $X_5$ and $X_3$ form a barrier which the OOS points need to cross  to reach their matched counterparts. 
+It is possible to distinguish two kinds of local minima, one where the embedded OOS points $X_6$ and $X_7$ end up in the same side as their respective matched points $X_2$ and $X_4$ (named ``true'' or real config.) and the other where they end up in sides  opposite their matched points (named ``alternative" local min.). The latter corresponds to the case where the OOS points are unable to cross the ``barrier"'. Other configurations such as the ones where $X_6$ and $X_7$  end up in the same side are not local minima, since the original dissimilarity between them is large ($\sqrt{2}$) compared to dissimilarities between other pairs of points and embedding them close would increase raw stress significantly.
 Based on value of $w$, it might be easier to get out of the  ``alternative" local minimum. 
 In addition, depending on $w$ , this  local minimum can be a global minimum. 
 That is, if $w$ is small enough, the configuration where $X_6$ stays on the side of $X_4$ instead of $X_2$ might have a lower stress than the configuration where $X_6$ is near its matched point $X_2$, due to the fact that  contribution of $ D_{ij}-d(X_i,X_j)$ to the raw stress where $(i,j)=(4,6)$  is  multiplied by $1-w$ while every other dissimilarity is multiplied by $w$. 
@@ -1149,6 +1322,7 @@ The plots in Figures \ref{fig:Finalconfig-MultMin-w-0_1}, \ref{fig:Finalconfig-M
 
 % latex table generated in R 2.15.1 by xtable 1.7-0 package
 % Sat Jan 05 00:54:38 2013
+
 \begin{landscape}
 \begin{table}[ht]
 \def\h#1{\multicolumn{1}{p{3em}}{\mbox{}\hskip0pt #1}}
@@ -1186,9 +1360,13 @@ Alternative local min &   1.79 & 1.77 & 1.75 & 1.72 & 1.69 & 1.66 & 1.64 & NA & 
 
 \end{center}
 
-\label{stress-val-table}
+\caption{Final stress values for the two local minima configurations\label{stress-val-table}}
 \end{table}
+
 \end{landscape}
+
+
+
 
 
 \begin{comment}
@@ -1209,51 +1387,16 @@ Alternative local min & 0.39 & 1.53 & 1.65 & 1.74 & NA \\
 \end{table}
 \end{comment}
 
-Other than such carefully constructed examples, it is  unexpected that slight changes in $w$  will change the ordering of the ``distinct''  local minima according to their stress values.
-Therefore,  the argmin among the local minima configurations is independent of $w$. The minimum configuration is then a continuous function of $w$. 
-By the continuity of the distance function with respect to configurations, the test statistic is continuous with respect to $w$. One can conclude  that stochastic continuity  is a valid assumption and $\beta(w) $ is a continuous function of $w$. 
+
+
+
+%Other than such carefully constructed examples, it is  unexpected that slight changes in $w$  will change the ordering of the ``distinct''  local minima according to their stress values.
+%Therefore,  the argmin among the local minima configurations is independent of $w$. The minimum configuration is then a continuous function of $w$. 
+%By the continuity of the distance function with respect to configurations, the test statistic is continuous with respect to $w$. One can conclude  that stochastic continuity  is a valid assumption and $\beta(w) $ is a continuous function of $w$. 
 %It is possible this is not the global minimum in $\mathbb{R}^d$  
 
 %Does the discontinuity in configurations mean discontinuity  in the $\beta(w)$ function
 %It is possible this is not the global minimum in $\mathbb{R}^d$  
-
-\begin{comment}
-
-\includegraphics{FidCommPaper-fig-stats-p}
-
-
-
-, so any $w$ value that takes advantage of this situation and captures fidelity will limit the growth of the test statistic under alternative. So such $w$ values that are small enough to preserve fidelity, yet large enough to not lose significantly from commensurability will have increases in power to become $w^*$. 
-
-
-
-
-Consider  an increase in $r$, this will cause the test statistic under null to be stochastically smaller,
-leading to a smaller critical value. So , a increase in priority of fidelity,
-which corresponds to smaller $w$ might lead to the increase in the test statistic under alternative, and therefore an increase in power.\ref{fig-stats-r}  
-
-
-
-\includegraphics{FidCommPaper-fig-stats-r}
-
-Consider increases in $c$, which will increase the dissimilarity  both between matched and between unmatched vectors. 
-
-
-
-\includegraphics{FidCommPaper-fig-stats-c}
-
-
-
-
-Consider increases in $q$,  the test statistic under both null and alternative is inflated\ref{fig-stats-q}. 
-
-
-\includegraphics{FidCommPaper-fig-stats-q}
-If commensurability can be preserved in the face of the increase in $q$, the power of the test may be preserved. However a very large increase in $w$ is not guarenteed to increase the preservation of commensurability, since the extra dimensions are noise, trying to   make the differences between coordinates  small in those dimensions will not  help in power, in fact may be disruptive since,
-more fidelity may be lost in the effort to bring the pair of points together.
-
-\end{comment}
-
 
 %\section[Optional table of contents heading]{Dependence of globality of local minima on $w$}
 
@@ -1281,8 +1424,7 @@ $X_{i1}$ and $X_{i2}$ to be stochastically smaller than $X_{i1}$ and $X_{i'2}$ f
     \begin{figure}
 	\begin{center}
     \includegraphics[scale=0.75]{MVN_alpha_r_multiple_sancar.pdf}
-    \caption{For the  Gaussian setting (Section \ref{subsec:GaussianSet}), the $\alpha_i$ are denoted by black points and the $X_{ik}$ are denoted by red and blue points respectively.}
-\label{fig:Fig1}
+    \caption{For the  Gaussian setting (Section \ref{subsec:GaussianSet}), the $\alpha_i$ are denoted by black points and the $X_{ik}$ are denoted by red and blue points respectively.\label{fig:Fig1}}
 	\end{center}
   \end{figure}
 
@@ -1480,6 +1622,47 @@ For the noisy version of the Gaussian setting at allowable type I error 0.05 for
 
 
 
+
+\section{Match Testing when the number of conditions, $K$, is larger than 2\label{k_more_than_two_experiment}}
+
+
+As it was mentioned, all of the approaches are generalizable to $K>2$ conditions, though an ambiguity need to be resolved. The alternative hypothesis could be  defined as the event that at least one of the K new dissimilarities are pairwise unmatched ($ H_{A1}: \exists i, j , 1\leq i < j \leq K :\bm{y}_{i} \nsim \bm{y}_{j} $ ) or it could be defined as the case that absolutely none of the K dissimilarities are pairwise matched   ($H_{A2}: \forall i, j , 1\leq i < j \leq K :\bm{y}_{i} \nsim \bm{y}_{j}$ )  .
+% and the sample from the alternative must be generated accordingly during Monte Carlo simulation. In the first case, an appropriate test statistic is then the maximum of the pairwise %distances between embeddings of each test K-tuple.
+
+To adapt the P$\circ$M approach to this etting, one can use Procrustes analysis  generalized to more than two configurations. Generalized Procrustes Analysis \cite{GPCA} is described in \ref{sec:GenProcrustes}.
+
+For CCA approach, there are multiple generalizations available as the correlation between more than two configurations can be defined in multiple ways \cite{generalCCA}. Let $X_1,\ldots,X_K$ be random vectors. Consider the first set of canonical variates to be computed, $Z_1^{1},\ldots,Z_K^{1}$. Denote  the correlation matrix of  $Z_1^{1},\ldots,Z_K^{1}$ by $\Phi^{(1)}$.   The following three criteria  are proposed in \cite{generalCCA}.
+\begin{itemize}
+\item SUMCOR. Maximize the sum of the elements of $\Phi^{(1)}$ : $\mathbf{1'}(\Phi^{(1)})\mathbf{1'}$
+\item MAXVAR. Maximize the largest eigenvalue of $\Phi^{(1)}$ : $\lambda^{(1)}_1$ 
+\item  MINVAR. Minimize  the smallest eigenvalue of $\Phi^{(1)}$ : $\lambda^{(m)}_1$ 
+\end{itemize}
+One can think of all of these criteria as different norms on the correlation matrix.
+%For $H_{A1}$ MINVAR might be a good choice, since the exploitation task is to find evidence against the null and as favorable to the alternative as possible. 
+%MINVAR should be small whenever there exists \emph{at least} one unmatched measurement so under the alternative hypothesis. MAXVAR, in this case, wouldn't be necessarily small under alternative with respect to null.  MINVAR statistic should be stochastically smaller compared to null distribution. For $H_{A2}$ MAXVAR is appropriate, since under the alternative hypothesis, MAXVAR should be very small compared to under the null hypothesis. 
+%For $H_{A2}$ MAXVAR is appropriate, since under the alternative hypothesis, MAXVAR should be very small compared to under the null hypothesis. It is quite possible the other generalizations are appropriate for our task.
+An interesting question that will not be addressed here is whether any of these generalizations is more appropriate for $H_{A1}$ or $H_{A2}$.
+
+To test whether JOFC and generalized CCA approaches are appropriate for this setting as well,
+The simulations in the previous section\ref{sec:Simulation Results} were repeated with $K$-condition data , generated by a multivariate normal model with $K=3$ conditions. 
+The alternative was chosen as $ H_{A1}$ and SUMCOR criterion was chosen as the generalization of CCA.
+ The ``Noisy" case will be investigated, i.e. 
+ $q$-dimensional noise vectors of magnitude $c$ were added to the matched measurements, and ``signal" vectors were multiplied by $1-c$.  
+ The ROC curves for these simulations are shown in \ref{fig:MVN-c001-power-w-Kcond}.
+
+
+ 
+
+
+
+\begin{figure}
+\includegraphics[scale=0.95]{MVN-FC-Tradeoff-OOS-3cond.pdf}
+\caption{Power ($\beta$) vs Type I error ($\alpha$) plot for different $w$ values for the Gaussian setting with $K=3$ conditions (noisy case)}
+\label{fig:MVN-c001-power-w-Kcond}
+\end{figure}
+
+
+
 \section{Experiments on Wiki Data}
 To test the JOFC approach with real data, a collection of articles are collected from the English Wikipedia, consisting of the
  directed 2-neighborhood of the document "Algebraic Geometry". 
@@ -1577,15 +1760,12 @@ The following plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} 
 
 
 
-\section{Experiments on Graph Data}
-
-
 \section{1-1 matching of vertices}
 
-Another application of  the JOFC approach is  the graph matching problem. For a specific version of this problem, the  inference task is similar to  the same semi-supervised setting as mentioned in \ref{sec:RelatedWork}, where matchings between some vertices in different graphs are known 
+Another application of  the JOFC approach is  the graph matching problem. For a specific version of this problem, the  inference task is similar to  the same semi-supervised setting as mentioned in \ref{chap:RelatedWork}, where matchings between some vertices in different graphs are known 
   and the task is to infer the correspondences between the remaining collection of vertices in the graphs.  The pairs of vertices whose correspondences are known will be referred to as ``seeds''. We will refer to this variant of the graph matching problem as the ``seeded graph matching'' (SGM) problem.
  
-\subsection{Graph Matching }
+\subsection{Graph Matching}
 Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$ such that $\| V_1 \|=\| V_2 \|=$. Suppose there exists a bijection $f$   such that $f(v_1)=v_2$ and $\forall v' \in \mathbf{N}(v_1) f(v') \in \mathbf{N}(v_2)$. Then the \emph{exact} graph matching problem  is to find this bijection. Even determining the existence  of such an isomorphism is NP-hard.  Although the bijection might not exist,  the \emph{approximate} graph matching problem, which is the task of  finding a bijection between the
 graphs which minimizes the degree  of mismatch   between the two graphs, is an interesting problem that has practical applications\cite{GraphMatchReview,Bengoetxea2002,recentdevGraphMatching2000,VogConGraphMatchFAQ,Zaslavskiy2009}.
 
@@ -1737,6 +1917,39 @@ If $\hat{\alpha}>\epsilon$, the algorithm terminates that is $\hat{P}=\tilde{P}^
 +(1- \hat{\alpha} ) \hat{Q}$ if $\hat{\alpha}>\epsilon$   and repeat the steps for the next iteration.
 At the termination of the Frank-Wolfe Algorithm, it is quite possible that   ${P}^{*}$ is not a permutation matrix. One way to get a permutation matrix solution is to find  ${\tilde{P}}^{*}$ that is as close as possible to  ${P}^{*}$ (in some sense).  Note that in discussion of the different formulations of the  original optimization problem, we showed that maximizing $2*\tr {ST}$ with respect to $S$ was equivalent to minimizing $\ell_2$ distance between $S$ and $T$, and we have shown, in the discussion of the FAQ algorithm, minimization of  $2*\tr {ST}$ is solved by the Hungarian algorithm when $S$ is constrained to be permutation matrix. Therefore we can use the Hungarian algorithm one last time to get a permutation matrix result by  minimizing ${\tilde{P}}^{*}{P}^{*}$ with respect to ${\tilde{P}}^{*}$  which is the closest permutation matrix to  ${{P}}^{*}$ in $\ell_2$ sense.
 
+\subsubsection{Demonstration of FAQ on simulated data\label{subsubsec:sgm_sim_results}}
+
+We will demonstrate that  FAQ for SGM works with the following data model:
+Let $\G_1=(V_1,E_1)$ be an Erdos-Renyi graph that consist of $n$ vertices and $A$ be its adjacency matrix of  ,  that is
+  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$. Another adjacency matrix  ,$B'$, is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
+    $\left[B' \right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B'\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$  . Suppose $p_{10}=p_{11}=p_{pert}$.
+    
+    Let the isomorphism from  of $V_1$ to vertices of the second graph , $V_2$, be denoted by $\psi$. Thus we define the second graph $\G_2=(V_2,E_2)$ with the adjacency matrix $B=P_{\psi}B'P_{\psi}$ where $P_{\psi}$ is the permutation matrix that corresponds to the bijection $\psi$. m ($0\leq m<n$) seeds randomly selected from $n$ pairs of vertices, $\sigma_m \subset V_1 , {\psi(i), i \in \sigma_m}\subset V_2 $. The assignment problem for remaining $n-m$ pairs of vertices is solved via FAQ. The quality of the solution to the assignment problem, $\hat{f}_m$ which is a bijection from  $V_1$ to  $V_2$ is evaluated  by  $\delta_m = \frac{|\{i\in V_1-\sigma_m: \hat{f}_m(i)=\psi(i)\}|}{n-m}$.
+    
+  The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. 
+  The performance measure is the proportion of true matches to the number of matches. Note that 
+  under chance, the expected number of true matches is 1, as shown with the dashed line. In the simulation, $r=20$ and $s=5$. $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
+
+\begin{figure}
+ \centering
+  \caption{
+ \label{sim_bitflip_rqap}}
+ \includegraphics[width=1.2\textwidth]{sim_bitflip-paper600.pdf}
+\end{figure}
+
+\begin{figure}
+ \centering
+  \caption{
+ \label{sim_bitflip_rqap}}
+ \includegraphics[width=1.2\textwidth]{sim_bitflip_cluster_300_paper_2.pdf}
+\end{figure}
+
+\begin{figure}
+ \centering
+  \caption{
+ \label{sim_bitflip_rqap}}
+ \includegraphics[width=1.2\textwidth]{sim_bitflip_cluster_300_s_paper_2.pdf}
+\end{figure}
 
 
 \subsection{Relaxations of alternate formulations of the approximate seeded graph matching problem \label{subsec:rqap2}}
@@ -1861,12 +2074,20 @@ The stronger condition of minimization over the set of permutation matrices is i
 An interesting question is how does this extra constraint effect the convergence properties of Frank-Wolfe algorithm.  This question is investigated in the comparison of rQAP and rQAP2 formulations.  
 
 \subsection{The comparison of rQAP against the alternative formulation rQAP2}
-Although the two formulations are equivalent and the global extrema of the two functions are the same, we expect different convergence  properties. In particular the extra terms in the gradient of rQAP2 which vanishes for unitary matrices should act as a random noise. The conclusion of the literature of stochastic optimization  is that, under some conditions, such noise speeds up convergence, by overcoming local extrema. The problem is that, such noise needs to vanish to negligible levels in order for the iterative algorithm to converge. 
+Although the two formulations are equivalent and the global extrema of the two functions are the same, we expect different convergence  properties. In particular the extra terms in the gradient of rQAP2 which vanishes for unitary matrices should act as a random noise. The conclusion of the literature of stochastic optimization  is that, under some conditions, such noise speeds up convergence, by overcoming local extrema. The problem is that, the noise needs to vanish to negligible levels in order for the iterative algorithm to converge. 
 The experiment in the last  section was repeated with both rQAP and rQAP2 and the fraction of nonseed vertices correctly matched and the average number of iterations to satisfy a stopping criteria was compared between the two formulations. 
+
 
 \begin{figure}
  \centering
-  \caption{Fraction of the $n=70$ nonseeds correctly matched using our $\ell_2$-based algorithm for rQAP and rQAP2 formulations
+  \caption{ Fraction of correctly matched non-seed vertices for $m$ seeds (x-axis). Different colors correspond to different  $p_{pert}$. Solid and dashed lines corresponds to rQAP and rQAP2 solutions, respectively, for the matching problem.
+ \label{rqap2}}
+ \includegraphics[width=1.2\textwidth]{sim_bitflip_rqap2_300_hsv.pdf}
+\end{figure}
+
+\begin{figure}
+ \centering
+  \caption{Fraction of the $n-m=70$ nonseeds correctly matched using our $\ell_2$-based algorithm for rQAP and rQAP2 formulations
  \label{figell2}}
  \includegraphics[width=1.2\textwidth]{rQAP_vs_rQAP2-alotmore.pdf}
 \end{figure}
@@ -1904,14 +2125,67 @@ $-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -
 \chaptermark{Seeded Graph Matching and JOFC}
 
 
-Let us now explain the relevance of JOFC to the graph matching problem. The  task of finding vertex correspondences is similar to  detecting matched pairs in that both of the tasks require the quantification of distance between vertex pairs  in the two graphs.
+Let us first explain the relevance of JOFC to the graph matching problem. The  task of finding vertex correspondences is similar to  detecting matched pairs in that both of the tasks require the quantification of distance between vertex pairs  in the two graphs.
 Using omnibus  embedding, it is possible to embed the vertices of two graphs in a commensurate space.
 Therefore, the JOFC approach can be used here for determining the pairwise distances in the commensurate space between  the vertices of $A$ and $B$.
-The next step is to use the pairwise distances as costs to find the optimal 1-1 matchings by the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total  cost which is the sum of the pairwise distances of matched nodes is minimized. This matching step is independent of the embedding, so by always using the Hungarian algorithm, we could investigate what embedding methods are appropriate for the graph matching task and compare  different parameters for the JOFC approach on a equal footing.
+The next step is to use the pairwise distances as costs to find the optimal 1-1 matchings by the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total  cost which is the sum of the pairwise distances of matched nodes is minimized.
+%This matching step is separate from the embedding,  we can investigate compare  different parameters for the JOFC approach on a equal footing.
 
+Now, we detail how we use for seeded graph matching. We begin by jointly embedding our two graphs , $\G_1$ and $\G_2$, into a common Euclidean space. Let $\Delta_1\in \M_{n \times n}$ and $\Delta_2\in \M_{n \times n}$ be two dissimilarity matrices computed by the application of the dissimilarity measure to the vertices of the two graphs. Since we have two separate graphs, we have two conditions and the default assumption is that we do not have  between-graph (between-condition) dissimilarities. We will assume a priori that the dissimilarities have been normalized to be on the same scale.
+%see Remark \ref{rem:norm} for further discussion.
+
+Without loss of generality, we can assume the vertices in both graphs are labeled as integers  from 1 to n, the labeling consistent with the true correspondence  of vertices from different graphs. Suppose we have $m, 0 \leq m <n$ seeds. Let the seeded vertices be labeled  as the first $m$ vertices in both graphs, $S_1=\{1,2,\ldots,m\}$ and $S_2=\{1,2,\ldots,m\}$, so that 
+$$\Delta^{(1)}=\bordermatrix{&S_{1}&U_{in}\cr
+                S_1&\gD^{(1)}_{{in},{in}} 
+                & \gD^{(1)}_{{in},2}  \cr
+                U_1& \gD^{(1)}_{{oos},{in}}  
+                &  \gD^{(1)}_{{oos},{oos}}},\,\,
+                \Delta{(2)}=\bordermatrix{&S_2&U_2\cr
+                S_2&\gD^{(2)}_{{in},{in}} 
+                & \gD^{(2)}_{{in},{oos}}  \cr
+                U_2& \gD^{(2)}_{{oos},{in}}  
+                &  \gD^{(2)}_{{oos},{oos}}}.$$
+
+
+Note that the seeds correspond to the in-sample dissimilarities we considered in the match detection task. As these seeds provide the known correspondences (matched observations in the match detection task), we embed them using the in-sample JOFC embedding methodology we introduced in \ref{sec:jointembed}. That is, we find $\X= \begin{array}{c}
+\X_1 \\
+\X_2
+\end{array}$ such that $d(\X)$ is as close as possible to $M= \begin{array}{cc}
+\gD^{(1)}_{in,in} & L \\
+ L^T &\gD^{(2)}_{in,in}
+\end{array}  $.
+
+The remaining non-seed vertices are embedded using out-of-sample embedding with respect to the embedded seeds, i.e. we seek the configuration ${ \hat{\mathbf{Y}}}$ consisting of points in $\mathbb{R}^{d'}$ that consists of the $n-m$ unseeded vertices of $G_1$,  $\{\yhat^{(1)}_{(m+1)},\ldots,\yhat^{(1)}_{(n)}\}$, and the $n-m$ unseeded vertices of $G_2$, labeled  $\{\yhat^{(2)}_1,\ldots,\yhat^{(2)}_{(n-m)}\}$, where $\yhat_{i}^{(k)} 1\leq i \leq (n-m), k \in {1,2}$  that minimizes the stress function:
+\begin{align}
+\sigma({\bf Y})&=\sum_{s=1}^{m}\sum_{t=m+1}^{n} {W^{(1)}_{in,oos}(s,t-m)  \left(d(X^{(1)}_{s},\yhat_t^{(1)})-\gD^{(1)}_{in,oos}(s,t-m)\right)^2 } \label{eq:oos}\\
+&+\sum_{s=m+1}^{n}\sum_{t=1}^{m}
+{W^{(2)}_{oos,in}(s-m,t)  \left(d(X^{(2)}_{s},\yhat_t^{(2)})-\gD^{(2)}_{oos,in}(s-m,t)\right)^2}  \label{eq:oos2}\\
+&+\sum_{s=m+1}^{n}\sum_{t=1}^{m} 
+{W^{(2)}_{oos,oos}(s-m,t-m) \left(d(\yhat_s^{(1)},\yhat_t^{(1)})-\gD^{(1)}_{oos,oos}(s-m,t-m)\right)^2} \label{eq:oos3}\\
+&+\sum_{s=m+1}^{n}\sum_{t=1}^{m} 
+{W^{(2)}_{oos,oos}(s-m,t-m) \left(d(\yhat_s^{(2)},\yhat_t^{(2)})-\gD^{(2)}_{oos,oos}(s-m,t-m)\right)^2} \label{eq:oos4} \\
+&+\sum_{s=m+1}^{n} \sum_{t=1}^{m}
+W^{(1,2)}_{oos,oos}(s-m,t-m) \left(d(\yhat_s^{(1)},\yhat_t^{(2)})-\delta(\yhat_s^{(1)},\yhat_t^{(2)})\right)^2 \label{eq:oos5}\\
+&+\sum_{s=m+1}^{n} \sum_{t=1}^{m}
+W^{(1,2)}_{oos,in}(s-m,t) \left(d(\yhat_s^{(1)},X^{(2)}_{t})-\delta(\yhat_s^{(1)},X^{(2)}_{t})\right)^2 \label{eq:oos6}\\
+&+\sum_{s=1}^{m} \sum_{t=m+1}^{n}
+W^{(1,2)}_{in,oos}(s,t-m) \left(d(X^{(1)}_{s},\yhat_t^{(2)})-\delta(X^{(1)}_{s},\yhat_t^{(2)})\right)^2 \label{eq:oos7}
+%+\sum_{i=1}^{u_1} \sum_{j=1}^{s_2} W^{(1,2)}_{in,oos}(s-m,t) \left(d(Y^{(1)}_i,X^{(2)}_j)-\delta(Y^{(1)}_i,X^{(2)}_j)\right)^2 \\
+%&+\sum_{i=1}^{s_1} \sum_{j=1}^{u_2} W^{(1,2)}_{in,oos}(s-m,t-m)\left(d(X^{(1)}_i,Y^{(2)}_j)-\delta(X^{(1)}_i,Y^{(2)}_j)\right)^2, 
+\end{align}
+%where again $\widetilde w(\cdot,\cdot):V_1\times V_2 \mapsto\mathbb{R}$ are weighting functions representing our confidence in the computed/imputed dissimilarity between pairs of vertices, and as before $\delta$ is the unknown across--graph dissimilarity. 
+where $W_{a,b}^{(k)}$ and $W_{a,b}^{(k_1,k_2)}$ (for $a,b \in {'in', 'oos'}$ are the weights for dissimilarities between in/out-of-sample observations both in $k^{th}$ or $k_1^{th}$ and $k_2^{th}$ conditions.
+
+Note that \ref{eq:oos5}, \ref{eq:oos6} and \ref{eq:oos7} involve dissimilarities $\delta(.^{(1)},.^{(2)})$ between different conditions, which are generally not available. While  the dissimilarities in \ref{eq:oos6} and \ref{eq:oos7} can be imputed via known dissimilarities, the dissimilarities in \ref{eq:oos5}  cannot be imputed in any way. In fact, if these dissimilarities between out-of-sample observations in different cconditions were known, we would already know the solution to our inference task, as we would have the cost of assignment any oos observation in one condition to another oos observation in another condition.
+
+\ref{eq:oos3} and \ref{eq:oos4} contain dissimilarities between oos observations in the same condition. They can be  used or ignored in the joint embedding, depending on whether one wishes to embed oos observations all together or one at a time. If between-condition oos dissimilarities are ignored, then one would get the same answer if the oos observations are embedded one at a time.
+
+Once we find a minimum configuration ${ \hat{\mathbf{Y}}}$, we compute the pairwise distances between the points $c_{ij}=d(\yhat^{(1)}_s,\yhat^{(2)}_t),\onespace s \in \{(m+1),\ldots n\}, t \in  \{(m+1),\ldots n\}$, which corresponds to the off-diagonal block matrix of $d({ \hat{\mathbf{Y}}})$. This is the assignment cost matrix $C=\left[c_ij \right]$ for which we solve the linear assignment problem for which is to minimize $\sum a_{ij}*c_{ij}$  for the assignment $\{a_{ij}\}$
+$a_{i'j'} \in {0,1},\onespace \sum_{j'} a_{ij'} =\sum_{i'} a_{i'j} =1 \onespace \forall i',j'$.
  
 One useful property of dissimilarity representation is that the structure of data is irrelevant once an appropriate dissimilarity function  for the data is available. 
 There are many dissimilarities that can be defined between vertices in graphs. We assume that an appropriate dissimilarity measure is available to us.
+%See \cite{diffdist}, \cite{dis1}, \cite{dis2} for a wealth of possible dissimilarity measures.  
 In our experiments we will use five different dissimilarities/distances between vertices in a graph:
 \begin{itemize}
  \item the shortest path on the  unweighted graph whose adjacency matrix is available
@@ -1922,11 +2196,11 @@ In our experiments we will use five different dissimilarities/distances between 
  \end{itemize}
  We will omit the results for weighted graph dissimilarities, since they seem to have the same performance as the weighted dissimilarities.
  
- Note that these dissimilarities can only be defined between vertices of the same graph. We impute the inter-condition dissimilarities   as described before in section \ref{omnibus}.
+ Note that these dissimilarities can only be defined between vertices of the same graph. We impute the inter-condition dissimilarities   as described before in section \ref{omnibus}, or ignore them as defined before in \ref{eq:oos}.
  
 \section{Demonstrations}
 
-We perform simulations with graphs, and experiments on real-life graphs for  both modified FAQ approach and JOFC. The performance measure we consider is the true match ratio: the number of true matchings of vertices  divided by the number of pairs of vertices.
+We perform SGM simulations with graphs, and experiments on real-life graphs for  both modified FAQ approach and JOFC. The performance measure we consider is the true match ratio: the number of true matchings of vertices  divided by the number of pairs of vertices.
 
 \subsection{Simulations}
   To test graph matching approaches, consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
@@ -2011,14 +2285,17 @@ There are a lot  of interesting questions to ponder about the number of known co
 \subsection{Experiments on Real data}
 
 \subsubsection{C. elegans connectome}
-For experimental data, we consider two connectivity graphs of 279 neurons in the  worm C. elegans. The two conditions are two ways of measuring connectivity among neurons. The  weight matrix for the first connectivity type is Ac which is not symmetric, has values between 0 and 37 and is relatively sparse (has 2194 non-zero entries). The second connectivity type forms a unweighted graph. It is even sparser(1031 non-zero entries) than Ac. For each MC replicate, we leave out 10 pairs of vertices from each graph and use JOFC to out-of-sample embed these left out vertices. The embedded vertices are matched using Hungarian algorithm and number of true matches are counted. The MC replicate is repeated many times, to get an estimate of performance. 
+As one of the real graph data, we consider two connectivity graphs of 279 neurons of the  nematode, \textit{Caenorhabditis elegans}. The two conditions correspond to the two ways of measuring connectivity among neurons $\G_c$ and $\G_g$ . The connectivity in the first connectome is defined by chemical synapses, a directed connection between two cells.  The  weight matrix for the first connectivity type is $A_c$ which is not symmetric, has values between 0 and 37 and is relatively sparse (has 2194 non-zero entries). The second connectivity type forms a unweighted graph $\G_g$ with the adjacency matrix $A_g$ and is defined by the existence of gap junctions between neurons. $\G_g$ is even sparser(1031 non-zero entries) than $\G_c$.
+
+We remove isolated vertices from the two graphs and keep vertices which are connected in both graphs. This leaves $n=253$  vertices. We consider both the original weighted graphs and binarized version of the graphs and also symmetrized versions of each (which leads to directed and undirected graphs, respectively). In the case of weighted graphs, we normalize the two graphs, so that they approximately have the same scale. For JOFC, we use the weighted DICE dissimilarity (which simplifies to the generic DICE dissimilarity in the case of unweighted graphs) to compute $\Delta_c$ and $\Delta_g$.   
+
 \begin{figure}
 \includegraphics[scale=0.75]{worm_jofc_vs_faq_wt_unwt-crop}
 \caption{Graph Matching experiments on the C. elegans connectomes using JOFC and FAQ algorithms \label{worm_graphmatch}}
 \end{figure}
 
 \subsubsection{Enron communication graph}
-The Enron communication graph is extracted from the  Enron  email corpus, which was made public during criminal investigations by the  Federal Energy Regulatory Commission. Though the number of actual users is about 150,  each email alias is considered as a vertex in the communication graph. The original number of email aliases is 184. The whole time interval is divided into 187 sub-intervals. The emails are grouped according to which time interval their timestamps are in. We then construct a time series of graphs $\mathfrak{G}=\{G^{(t)} = (V,E^{(t)})\}$ where $E^{(t)}$ correspond to emails that were sent at $t^{th}$ interval. We are interested in the intervals $t=130$  and $t=131$. When isolated vertices (and their corresponding vertices in the other graph) are removed in these two graphs  , the number of vertices is reduced to 146. It is these two pruned graphs we match.
+The Enron communication graph is extracted from the  Enron  email corpus, which was made public during criminal investigations by the  Federal Energy Regulatory Commission. Though the number of actual users is about 150,  each email alias is considered as a vertex in the communication graph. The original number of email aliases is 184. The whole time interval is divided into 187 sub-intervals (each corresponding to a week). The emails are grouped according to which time interval their timestamps are in. We then construct a time series of graphs $\mathfrak{G}=\{G^{(t)} = (V,E^{(t)})\}$ where $E^{(t)}$ correspond to emails that were sent at $t^{th}$ interval. We are interested in the intervals $t=130$ , $t=131$ (and $t=132$ for some experiments), as previous  investigations of the corpus found chatter anomalies at these time intervals \cite{EnronStudy}. When isolated vertices (and their corresponding vertices in the other graph) are removed in these two graphs  , the number of vertices is reduced to 146. It is these two pruned graphs we match.
 
 \begin{figure}
 \includegraphics[scale=0.75]{JOFC-enron_dim_20}
@@ -2030,15 +2307,23 @@ The Enron communication graph is extracted from the  Enron  email corpus, which 
 \caption{Experiments on the Enron communication graphs for FAQ and JOFC \label{enron_graphmatch_faq_jofc}}
 \end{figure}
 
+
+\begin{figure}
+\includegraphics[scale=0.75]{enron-paper.pdf}
+\caption{Experiments on the Enron communication graphs for FAQ for t=130,131,132 \label{enron_graphmatch_faq_t}}
+\end{figure}
+
 \subsubsection{Wikipedia hyperlink subgraph}
 
-To test the JOFC approach with real data, a collection of articles are collected from the English Wikipedia, consisting of the
+Wikipedia is a free online encyclopedia created by volunteers around the world consisting of millions of article in hundreds of languages (30 million articles in 287 languages, including over 4.3 million in the English Wikipedia as of November 2013 \cite{wikipedia}). Articles contain text, links to other articles and multimedia content. We interpret the links as directed edges in a hyperlink graph where vertices correspond to articles. A collection of articles were collected from the English Wikipedia, consisting of the
  directed 2-neighborhood of the document "Algebraic Geometry". 
    This  collection of 1382 articles and the correspondence of each article in French 
-Wikipedia is our real-life dataset. It is possible to utilize both textual content of the documents and the hyperlink graph structure. The textual content of the documents is summarized by the bag-of-words model. Dissimilarities between documents  in the same language are computed by the Lin-Pantel discounted mutual information \cite{LinPantel,PantelLin}
+Wikipedia is our real-life dataset. For inference tasks, it is possible to utilize both textual content of the documents and the hyperlink graph structure. The textual content of the documents is summarized by the bag-of-words model. Dissimilarities between documents  in the same language are computed by the Lin-Pantel discounted mutual information \cite{LinPantel,PantelLin}
  and cosine dissimilarity $k(x_{ik}; x_{jk}) = 1 - (x_{ik} x_{jk})/(\|x_{ik}\|_2\|x_{ik}\|_2)$. 
- The dissimilarities based on the hyperlink graph of the collection of the articles are 
- for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$.  Further details about this dataset is available in \cite{Zhiliang_disparate}.
+ The dissimilarities based on the hyperlink graph are shortest path distances in the graph:
+ for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$. Due to the fact the French Wikipedia graph is sparser, the induced graph in French Wikipedia of 2-neighborhood in English Wikipedia might be a disconnected graph. Therefore the shortest path dissimilarities in French Wikipedia are set to 6 (maximum shortest path distance in English Wikipedia graph), if they are larger than 6.  Further details about this dataset is available in \cite{Zhiliang_disparate}.
+ 
+ As this graph is relatively large compared to other real life graphs we considered, we only tested modified FAQ algorithm. Note testing JOFC on this graph is still tractable.
 
 \begin{figure}
 \includegraphics[scale=0.75]{wiki-all-with-unseeded.pdf}
@@ -2055,7 +2340,8 @@ so $B_{ij}^{(t)}$ is a 1 if donor $i$ gives to charity $j$ during time interval 
 
 For charities $i$ and $j$,
 let $A_{ij}^{(t)}= \sum_{k}{(B_{ik}^{(t)}B_{jk}^{(t)}}$, i.e. the number of donors that both $i$ and $j$ receive from during time interval $t$.
-We match the two graphs represented by  $A^{\left[tmin,tmid\right)}$, $A^{\left(tmid,tmax\right]}$.
+We match the two graphs represented by  $A^{\left[ tmin,tmid \right)}$, $A^{\left(tmid,tmax\right]}$.
+
 \begin{figure}
 \includegraphics[scale=0.4]{charitynet_SGM_JOFCvsFAQ}
 \caption{Graph Matching experiments on the two Charitynet graphs for JOFC \label{charitynet_graphmatch}}
@@ -2063,26 +2349,33 @@ We match the two graphs represented by  $A^{\left[tmin,tmid\right)}$, $A^{\left(
 
 \subsection{1-to-k matching of vertices} 
 
-Consider the case where the correspondences between vertices in $A$ and $B$ are not one-to-one. We consider a very simple case where 
-the $i^{th}$ vertex in $B$ corresponds to $k_i$ vertices in $A$ where $1\leq k_i \leq k_{max}$ where $k_{max}$ is the maximum number of corresponding vertices a $B$ vertex can have.  Denote by $g$ the correspondence function from vertices in $G_1$ to vertices in $G_2$. Given $r$ vertices in $B$, and the corresponding vertices in $V_1$ for each of the $r$ vertices ($u \in V_1$ such that $g(u)=v_2$), the task is  to find at most $k_max$ closest matches to each vertex of of $B$. 
-The three information retrieval performance measures are used: Precision, Recall and F-measure.
+Consider the case where the correspondences between vertices of $\G_1=(V_1,E_1)$ and $\G_2= (V_2,E_2)$ (represented by adjacency matrices, $A$ and $B$ respectively) are not one-to-one. To describe the problem in its most general form, we could define group assignment functions $g_1{v_1}: V_1 \rightarrow \mcG={l_1,l_2,\ldots,l_{\upsilon}}$, $g_2{v_2}:V_2 \rightarrow \mcG$ where the inverse images of $g_1{l_i}$, $g_2{l_i}$ are always nonempty. A vertex $v_1 \in  V_1$ in one graph corresponds to a vertex $v_2 \in  V_2$  in another graph, if $g_1(v_1)=g_2(v_2)$. We want to make the simple restriction that $g_2$ is a one-to-one mapping, that is each vertex in $\G_2$ correspond to at least one vertex in  $\G_1$.
+For simulations, we consider a very simple case where the $i^{th}$ vertex in $B$ corresponds to $k_i$ vertices in $A$ where $1\leq k_i \leq k_{max}$ where $k_{max}$ is the maximum number of corresponding vertices a $B$ vertex can have.  Denote by $g(\cdot)=g_2^{-1}\circ g_1(\cdot) : V_1 \rightarrow V_2$ the correspondence function from vertices in $\G_1$ to vertices in $\G_2$. Given $r$ vertices in $B$, and the corresponding vertices in $V_1$ for each of the $r$ vertices ($u \in V_1$ such that $g(u)=v_2$), the task is  to find at most $k_max$ closest matches to each vertex of of $\G_2$. 
 
+These three information retrieval performance measures are used: Precision, Recall and F-measure.
 $$\mathrm{Precision} =\frac{\textrm{Number of correct matches found}}{\textrm{Number of found matches}}$$
 $$\mathrm{Recall}    =\frac{\textrm{Number of correct matches found}}{\textrm{Number of true matches}}$$
 
 $$F-measure  =\frac{2 \times \textrm{Precision} \times \textrm{Recall}}{\textrm{Precision} + \textrm{Recall}}$$
 
-For each vertex of $B$, the number of true matches is $k_i$. The three performance measure is calculated for each vertex of $B$ and then the three averages over all vertices $B$ is the performance measures computed for the  matching.
+For each vertex of $\G_2$, the number of true matches is $k_i$. The three performance measure is calculated for each vertex of $\G_2$ and then the three averages over all vertices $B$ is the performance measures computed for the  matching.
 
 \begin{figure}
 \includegraphics[scale=0.65]{Total_precision_JOFC_1_to_k_match_paper.pdf}
 \caption{Graph Matching experiments on simulated graphs for JOFC \label{1_k_graphmatch_sim}}
 \end{figure}
 
+The results provide evidence that JOFC is a suitable method for solving this variation of graph matching problem. While  both JOFC and modified FAQ were acceptable solutions for the approximate graph matching (AGM) problem with one-to-one correspondence between vertices, with comparable matching performance, modified FAQ  cannot directly solve  the 1-k correspondence variation of the GM problem. In contrast, JOFC is quite adequate for solving AGM with one-to-$k$ correspondence. One only needs to use a matching algorithm that allows multiple assignments for the vertices of one of the graphs. We should mention we use the full matching algorithm implemented in R package \cite{optmatch} which finds  `` a matching between units that minimizes the average within grouped distances, given a matrix describing the distances between two groups''\cite{optmatch_manual}. That is, the \emph{full} matching algorithm finds an assignment for all of the vertices in both graphs. As the assignment problem is independent of the embedding, other matching algorithms can be used with the same embedding.
 
 
-%<<'child-chapter12_Grassmannian.Rnw', child='chapter12_Grassmannian.Rnw',eval=TRUE>>=
-%@
+
+\chapter{Conclusion}
+\label{sec:conclusion}
+\chaptermark{Optional running chapter heading}
+
+\section{Conclusion}
+\subsection{Future Directions}
+
 
 
 \include{appendix}

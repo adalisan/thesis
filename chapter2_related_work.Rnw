@@ -5,7 +5,7 @@
 
 
 \section{Multiple View Learning}
-\label{sec:section}
+\label{sec:MultiViewLearn}
 When data are collected using a multitude of sensors or under significantly different environmental conditions, we refer to  the data setting as a multiple view setting where each ``view'' provide possibly complementary  information about the observed objects\footnote{We use the term ``object''  loosely, as the observed objects could be topics or concepts and the  collected data could be text, images, etc.}. Multiple view learning seeks to exploit these views simultaneously to be more successful in the learning task.
 
 In data settings for multiview learning, the data consist of observations from $K>1$ views, where both the relationship between the attributes from different views and the relationship between the features and the quantity to be predicted are unknown. The objective is to train the best predictor. While it is possible to use all the attributes in different views and carry out feature selection without regards from which view they come from, this ignores the fact that the modalities can be quite diverse and combining features from different modalities is not always meaningful. Consider features extracted from an image  and an audio segment as features from different modalities. A classifier that treats these features in the same way without taking into consideration their modalities is  unlikely to have good performance.
@@ -70,5 +70,5 @@ In another paper  the simultaneous embedding is written  as a single function  t
 
 
 Another approach is Three-way Multidimensional scaling\cite{3wayNMDS,borg+groenen:1997}.
- This approach assumes the  different ``conditions" of the data are linear transformations of a single configuration and aims to find this single configuration. With this approach, the mappings  \{\rho_k \} that we define in \ref{fig:gen-model} and \ref{sec:data} are  assumed to be embeddings followed by linear transformations.
+ This approach assumes the  different ``conditions" of the data are linear transformations of a single configuration and aims to find this single configuration. With this approach, the mappings  $\{\rho_k \}$ that we define in \autoref{fig:gen-model} and \autoref{sec:data} are  assumed to be embeddings followed by linear transformations.
  %For our setting, one would first embed the in-sample dissimilarities via the three-way MDS, which would give as the linear transformations that map from group configuration to individual configurations under each condition. This is followed by out-of-embedding the OOS dissimilarities, and use the inverse of the transformation matrices to find the out-of-sample embeddings with respect to the group configuration. Since the out-of-sample embeddings are commensurate, the test statistic can be computed as the distance between the OOS embeddings. 
