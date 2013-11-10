@@ -52,12 +52,12 @@ representing two different points in $\Xi$.
 This property allows inference to proceed in the common representation space $\mX$.
 
 
-As the inference proceeds from dissimilarities, we cannot make any observations about the object
+As the inference proceeds from dissimilarities, we cannot directly observe the object
  $\xi \in \Xi$,  and the measurements $x_k = \pi_k(\xi) \in \Xi_k$ cannot be represented directly. Furthermore, we do not have knowledge of the maps $\pi_k$.
  We have well defined dissimilarity measures
 $\delta_k:\Xi_k \times \Xi_k \to \mathbb{R}_+ = [0,\infty)$
 such that $\delta_k( \pi_k(\xi_1) , \pi_k(\xi_2) )$
-represents the ``dissimilarity'' of outcomes $\xi_1$ and $\xi_2$
+represents the ``dissimilarity'' of  the mappings of $\xi_1$ and $\xi_2$
 under map $\pi_k$.
 The data we have  available consist of dissimilarities between a sample of $n$ objects using $\{\delta_k\}_{k=1,\ldots,K}$.
 We propose to use sample dissimilarities for matched data in the disparate spaces $\Xi_k$
@@ -98,7 +98,7 @@ MDS with raw stress will not result in a perfect reconstruction  of the original
 
 \section{Problem Description \label{sec:jointembed}}
 In the problem setting considered here,  $n$ different objects are measured under $K$ different conditions (corresponding  to, for example, $K$ different sensors). We assume we begin with dissimilarity measures. These will be represented in matrix form as $K$ $n \times n$ matrices $\{\Delta_k,k=1 ,\ldots,K\}$.  In addition, for each condition, dissimilarities between  a new object  and the previous 
-$n$ objects $\{\mathcal{D}_k,k=1 ,\ldots,K\}$ are available. Under  the null hypothesis, ``these new dissimilarities represent a single \emph{new} object  compared to the previous $n$ objects'', measured under $K$ different conditions (the dissimilarities are matched). Under the alternative hypothesis, ``the dissimilarities $\{\mathcal{D}_k\}$ represent separate \emph{new} objects compared to the the previous $n$ objects''  measured under $K$ different conditions (the dissimilarities are unmatched)~\cite{JOFC}. %The test dissimilarities are referred to as  out-of-sample (OOS) dissimilarities. 
+$n$ objects $\{\mathcal{D}_k,k=1 ,\ldots,K\}$ are available in the form of $n$-length vectors. Under  the null hypothesis, ``these new dissimilarities represent a single \emph{new} object  compared to the previous $n$ objects'', measured under $K$ different conditions (the dissimilarities are matched). Under the alternative hypothesis, ``the dissimilarities $\{\mathcal{D}_k\}$ represent separate \emph{new} objects compared to the the previous $n$ objects''  measured under $K$ different conditions (the dissimilarities are unmatched)~\cite{JOFC}. %The test dissimilarities are referred to as  out-of-sample (OOS) dissimilarities. 
 
 For the English-French Wikipedia  article example in the introduction,  dissimilarities between the new English article and $n$ other English articles $(\mathcal{D}_1)$ are available, and likewise for the new French article  and other $n$ French articles $(\mathcal{D}_2)$ \footnote{in addition to the dissimilarities between articles in the same language  ($\{\Delta_k\})$ }. The null hypothesis is that the new English and French articles are on the same topic, while the alternative hypothesis is that they are on different topics.
 
@@ -111,19 +111,28 @@ M=  \left[ \begin{array}{cc}
          \Delta_1 & L\\
         L^T  & \Delta_2 
      \end{array}  \right]     \label{omnibus} 
-\end{equation} where $L$ is a matrix of imputed entries.   
+\end{equation} where $L$ is a matrix of imputed entries.
+
 
 \begin{remark}
 For clarity of exposition,we will consider $K=2$; the generalization to $K>2$ is straightforward. 
 \end{remark}
 
-We define the commensurate space to be  $\mathbb{R}^d$, where the embedding dimension $d$ is pre-specified. The selection of $d$ -- model selection -- is  a task that requires much attention and is  beyond the scope of this article. Investigation of the effect of $d$ on testing performance will be pursued in a  subsequent paper.
+\begin{remark}
+The imputation of the entries of $L$  is an important detail. The entries correspond to dissimilarities between different conditions. We have made it clear we do not assume these dissimiilarities are available  \ref{rem:between_cond_diss} in our approach. Assuming that the dissimilarities are not strongly disparate, which means that the dissimilarities between a pair of objects in two different conditions are strongly  correlated,  the dissimilarities in $L$ can be imputed as the average of the corresponding dissimilarities in $\Delta_1$ and $\Delta_2$. $$L=\frac{\Delta_1 + \Delta_2}{2}$$. For example, the dissimilarity between $i^{th}$ and $j^{th}$ objects under the first and  second conditions, respectively, ($\left[L \right]_{ij}$) can be imputed as the average of the dissimilarities between $i^{th}$ and $j^{th}$ objects under the first condition ($ \left[\Delta_1 \right]_{ij}$) and between the same objects under the second condition ($ \left[\Delta_2 \right]_{ij}$): $[L]_{ij}= ( [\Delta_1]_{ij}) + ( [\Delta_2]_{ij})$. Note that this would also lead to $[L]_{ii}$, the dissimilarities between the same object  under the first and  second conditions  being equal to $0$. This is consistent with our idea of matchedness, as we want the representations of ''matched`` observations to be highly similar. Therefore, $0$ is a reasonable value for these dissimilarities between measurements of the same object.  A more detailed reasoning for this choice is  in \ref{commens}.
+
+Another imputation strategy is to treat non-diagonal elements of $L$ as missing data ($NA$) and set diagonal entries ($[L]_{ii}$)  to 0. We are then required to use an MDS embedding method that can deal with dissimilarity matrices that has NA entries. This is one of the justifications for our usage of weighted raw stress \ref{raw-stress} as the MDS criterion function. We mention this point along with other justifications in  \autoref{sec:FidCommTradeoff}.
+\label{rem:imputationofdiss}
+\end{remark}
+
+
+We define the commensurate space to be  $\mathbb{R}^d$, where the embedding dimension $d$ is pre-specified. The selection of $d$ -- a model selection problem -- is  a task that requires much attention. We will  consider the effect  of $d$ on testing performance, however the general question of model selection requires detailed analysis and we make no claims to have settled this question for our multiview data setting.
 
  We use multidimensional scaling (MDS) \cite{borg+groenen:1997} to embed  the omnibus matrix in this  space, and obtain  a configuration of $2n$ embedded points $\{\hat{x}_{ik}; i=1,\ldots,n;k=1,2\}$ (which can be represented as $\hat{X}$, a $2n \times d$ matrix). The discrepancy between the interpoint distances of $\{\hat{x}_{ik}\}$ and the given dissimilarities in  $M$ is made as small  as possible (as measured by an objective function $\sigma(\widetilde{X})$ \footnote{$\sigma(\widetilde{X})$ implicitly depends on the omnibus dissimilarity matrix $M$}). In matrix form, $$ \hat{X}=\arg \min_{\tilde{X}} \sigma(\tilde{X}).$$ 
 %This approach will be referred to as the Joint Optimization of Fidelity and Commensurability (JOFC) approach, for reasons that will be explained in \ref{sec:FidComm}. 
 
 \begin{remark} 
-We will use $x_{ik}$ to denote the --possibly notional--  observation  for the $i^{th}$ object in the $k^{th}$ condition, $\tilde{x}_{ik}$ to denote an argument of the objective function  and  $\hat{x}_{ik}$  to denote the $\arg\min$  of the objective function, which coordinates of the embedded point. The notation for matrices ($X,\tilde{X},\hat{X}$) follows the  same convention.
+We will use $x_{ik}$ to denote the --possibly notional--  observation  for the $i^{th}$ object in the $k^{th}$ condition, $\tilde{x}_{ik}$ to denote an argument of the objective function  and  $\hat{x}_{ik}$  to denote the $\arg\min$  of the objective function, which are the coordinates of the embedded point. The notation for matrices ($X,\tilde{X},\hat{X}$) follows the  same convention.
 \end{remark}
 
   Given the omnibus matrix $M$ and the $2n \times d$ embedding configuration matrix $\hat{X}$ in the commensurate space, the out-of-sample extension~\cite{TrossetOOS} for MDS will be used to embed the test dissimilarities $\mathcal{D}_1$ and $\mathcal{D}_2$.  Once the test similarities are embedded as two points ($\hat{y}_{1},\hat{y}_{2}$) in  the commensurate space, it is possible to  compute the test statistic \[
@@ -136,7 +145,7 @@ We will use $x_{ik}$ to denote the --possibly notional--  observation  for the $
 \section{Definition of  $w^{*}$}
 
 \begin{remark}
-In our notation, $(.)$  denotes  either $(m)$  or   $(u)$. In the former case, an expression refers to values under  ``matched'' hypothesis, in the latter, the expression refers to values under  ``unmatched''   hypothesis.
+In our notation for this section, $(.)$  stand for either one of the two hypotheses, either $(m)$  or   $(u)$. In the former case, an expression refers to values under  ``matched'' hypothesis, in the latter, the expression refers to values under  ``unmatched''   hypothesis.
 \end{remark}
 Let us denote the test dissimilarities ($\mathcal{D}_1$, $\mathcal{D}_2$)  by  ($\mathcal{D}_1^{(m)}$, $\mathcal{D}_2^{(m)}$)  under the  ``matched'' hypothesis, and  by ($\mathcal{D}_1^{(u)}$, $\mathcal{D}_2^{(u)}$)  under the alternative. The out-of-sample embedding of ($\mathcal{D}_1^{(m)}$, $\mathcal{D}_2^{(m)}$) involves the  augmentation of  the omnibus matrix $M$, which consists of $n$ matched  pairs of dissimilarities,  with ($\mathcal{D}_1^{(m)}$, $\mathcal{D}_2^{(m)}$). The resulting augmented  $(2n+2)\times (2n+2)$ matrix  has the form:
 
@@ -148,12 +157,12 @@ Let us denote the test dissimilarities ($\mathcal{D}_1$, $\mathcal{D}_2$)  by  (
          \vec{\mathcal{D}}_{NA}^T & \mathcal{D}_2^{(m)T} & \mathcal{D}_{NA} &0\\
      \end{array}  \right].     \label{aug_omnibus} 
 \end{equation}  where
-the scalar $\mathcal{D}_{NA}$ and    $\vec{\mathcal{D}}_{NA}$ (a vector of NAs that has length $n$)   represent dissimilarities that are not available. 
-In our JOFC procedure, these unavailable entries in $\Delta^{(m)}$ are either imputed using other dissimilarities that are available, in the way described before equation \eqref{raw-stress}, or ignored in the embedding optimization. For a simpler  notation, let us assume it is the former case. Also note that $\Delta^{(u)}$  has the same form as $\Delta^{(m)}$ where $\mathcal{D}_k^{(m)}$ is replaced by $\mathcal{D}_k^{(u)}$.
+the scalar $\mathcal{D}_{NA}$ and    $\vec{\mathcal{D}}_{NA}$ (a $n$-length vector of $NA$s ) represent dissimilarities that are not available. 
+In our JOFC procedure, these unavailable entries in $\Delta^{(m)}$ are either imputed using other dissimilarities that are available, in the way described  equation \eqref{raw-stress}, or ignored in the embedding optimization. The former imputation method will result in  a simpler  notation, so from now on  it will be assumed that imputation method is used. Also note that $\Delta^{(u)}$  has the same form as $\Delta^{(m)}$ where $\mathcal{D}_k^{(m)}$ is replaced by $\mathcal{D}_k^{(u)}$. Therefore we will use  $(.)$ in place of $(m)$ and $(u)$ to represent the two expressions under the two hypotheses with one expression. 
 
 We define the dissimilarity matrices \{$\Delta^{(m)},\Delta^{(u)}$\} to be  two matrix-valued random variables: $\Delta^{(m)}:\Omega \rightarrow \mathbf{M}_{(2n+2)\times (2n+2)} $ and  $\Delta^{(u)}:\Omega \rightarrow \mathbf{M}_{(2n+2)\times (2n+2)} $) for the appropriate sample  space $(\Omega)$.
 \begin{remark}
-Suppose the objects in $k^{th}$  condition  can be represented as points in a measurable space $\Xi_k$, and the dissimilarities in $k^{th}$ condition are given by  a dissimilarity measure $\delta_k$ acting on pairs of points in $\Xi_k$. Assume $\mathcal{P}_{(m)}$ is the joint probability distribution over matched objects, while the joint distribution of unmatched objects \{$k=1,\ldots,K$\}  is $\mathcal{P}_{(u)}$. Assuming the data are i.i.d., under the two hypotheses (``matched'' and ``unmatched'', respectively), the $n+1$ pairs of objects are governed  by the product distributions $\{\mathcal{P}_{(m)}\}^n \times \mathcal{P}_{(m)} $ and $\{\mathcal{P}_{(m)}\}^n \times \mathcal{P}_{(u)} $.  The distributions of $\Delta^{(m)}$ and $\Delta^{(u)}$ are the induced probability distributions of  these product distributions (induced by the  dissimilarity measure $\delta_k$ applied to  objects in $k^{th}$ condition \{$k=1,\ldots,K$\}).
+Suppose the objects in $k^{th}$  condition  can be represented as points in a measurable space $\Xi_k$, and the dissimilarities in $k^{th}$ condition are given by  a dissimilarity measure $\delta_k$ acting on pairs of points in $\Xi_k$. Assume $\mathcal{P}_{(m)}$ is the joint probability distribution over matched objects, while the joint distribution of unmatched objects \{$k=1,\ldots,K$\}  is $\mathcal{P}_{(u)}$. Assuming the data are i.i.d., under the two hypotheses (''matched`` and ''unmatched``, respectively), the $n+1$ pairs of objects are governed  by the product distributions $\{\mathcal{P}_{(m)}\}^n \times \mathcal{P}_{(m)} $ and $\{\mathcal{P}_{(m)}\}^n \times \mathcal{P}_{(u)} $.  The distributions of $\Delta^{(m)}$ and $\Delta^{(u)}$ are the induced probability distributions of  these product distributions (induced by the  dissimilarity measure $\delta_k$ applied to  objects in $k^{th}$ condition \{$k=1,\ldots,K$\}).
 \end{remark}
 
 
@@ -167,7 +176,7 @@ Suppose the objects in $k^{th}$  condition  can be represented as points in a me
 \widetilde{y}_{2}^{(.)}
 \end {array}
 \right]$$ where ${\widetilde{\mathcal{T}}}$ is the argument for the in-sample embedding of the first $n$ pairs of matched points, and
- $\{\widetilde{y}_{1}^{(.)} \}$ and $\{\widetilde{y}_{2}^{(.)} \}$ are the arguments for the embedding coordinates of the matched  or unmatched pair,
+ $\widetilde{y}_{1}^{(.)} $ and $\widetilde{y}_{2}^{(.)} $ are the arguments for the embedding coordinates of the matched  or unmatched pair,
 and the omnibus dissimilarity matrix $\Delta^{(.)}$ is equal to  $\Delta^{(m)}$  (or $\Delta^{(u)}$) for the embedding of the  matched (unmatched) pair. Note that we use the simple weighting scheme, so with a slight abuse of notation, we rewrite the criterion function as  $\sigma_w(\widetilde{X}; \Delta^{(.)})$ where $w$ is a scalar parameter.
 The embedding coordinates for the matched or unmatched pair  ${\hat{y}_{1}^{(.)},\hat{y}_{2}^{(.)}}$ are given by
  \[
@@ -189,7 +198,7 @@ The embedding coordinates for the matched or unmatched pair  ${\hat{y}_{1}^{(.)}
 \]
 
 \begin{remark}
- Note that the in-sample embedding of $\widetilde{\mathcal{T}}$ is necessary but irrelevant for the inference task, hence the minimization with respect to $\widetilde{\mathcal{T}}$ is denoted by  $\min$ instead $\argmin$. It can be considered as a nuisance paramater for our hypothesis testing.
+ Note that the in-sample embedding of $\widetilde{\mathcal{T}}$ is necessary but irrelevant for the inference task, hence the minimization with respect to $\widetilde{\mathcal{T}}$ is denoted by  $\min$ instead $\argmin$. It can be interpreted as a nuisance paramater for our hypothesis testing task.
 \end{remark}
 \begin{remark}
  Note also that  all of the random variables following the embedding, such as $\{\hat{y}_{k}^{(.)}\}\!$,  are dependent on $w$; for the sake of simplicity, this will  be suppressed in the notation. 
@@ -267,7 +276,7 @@ Then, $Pr \left[ T(w) \geq 0\right]$ is continuous at $w_0$.
 \end{thm}
 
 \begin{proof}
-Consider any sequence $w_n \rightarrow w_0$. Let $z_n = T(w_n)$ and  $z=T(w_0)$ and choose $\gamma=0$. Since $T(w)$ is continuous in probability at $w_0$ and $Pr\left[T(w_0)=0\right]=0$, conditions for Lemma \ref{lemma_1} hold, i.e.\hspace{-.5em} as $w_n\rightarrow w_0$, $z_n$ converges in probability to $z=T(w_0)$. By  Lemma \ref{lemma_1}, we conclude  $g(T(w_n); 0 ) = Pr \left[ T(w_n) \geq 0\right]$ converges to $g(T(w_0);0)$. Therefore $g(T(w);0)$ is continuous with respect to $w$.
+Consider any sequence $w_n \rightarrow w_0$. Let $z_n = T(w_n)$ and  $z=T(w_0)$ and choose $\gamma=0$. Since $T(w)$ is continuous in probability at $w_0$ and $Pr\left[T(w_0)=0\right]=0$, conditions for Lemma \ref{lemma_1} hold, i.e. \hspace{-.5em} as $w_n\rightarrow w_0$, $z_n$ converges in probability to $z=T(w_0)$. By  Lemma \ref{lemma_1}, we conclude  $g(T(w_n); 0 ) = Pr \left[ T(w_n) \geq 0\right]$ converges to $g(T(w_0);0)$. Therefore $g(T(w);0)$ is continuous with respect to $w$.
 \end{proof}
 
 
@@ -283,6 +292,5 @@ In any closed interval that is a subset of $(0,1)$, the AUC function is continuo
 
  We do not have closed-form expressions for the null and alternative distributions of the test statistic $\tau$ (as a function of  $w$), so we cannot provide a rigorous proof of the uniqueness of $w^*$. However, for various data settings, simulations \ref{sec:simexp_results} always resulted in \emph{unimodal}  estimates for the AUC function which indicates a unique $w^*$ value.
 
-We should also mention that stochastic continuity of the test statistics $T(w)$ as a function of $w$  is a reasonable assumption. Discontinuity in the test statistic can arise as  a result of discontinuity of the embedded configurations. And the embedded configurations which are the global minimizers of the criterion function can have discontinuities if  there exist multiple local minima, and  infinitesimal changes in $w$ will change the ordering of the ``distinct'' local minima. While  we present an example where multiple local minima of the criterion function  lead to  a discontinuity of the embedded configuration  with respect to $\ref{subsubsec:Discontinuity}$, other than such carefully constructed examples, we do not expect  such discontinuities in the embedded configurations. 
-
+We should also mention that stochastic continuity of the test statistics $T(w)$ as a function of $w$  is a reasonable assumption. Discontinuity in the test statistic can arise as  a result of discontinuity of the embedded configurations with respect to $w$ parameter. And the embedded configurations which are the global minimizers of the criterion function can have discontinuities if  there exist multiple local minima, and  infinitesimal changes in $w$ will change the ordering of the ``distinct'' local minima. While  we present an example where multiple local minima of the criterion function  lead to  a discontinuity of the embedded configuration  with respect to $w$ \ref{subsubsec:Discontinuity}, other than such carefully constructed examples, we do not expect  such discontinuities in the embedded configurations occurring for data generated from continous case probability distributions. 
 One can conclude  that stochastic continuity of the test statistic with respect to $w$  is a valid assumption.

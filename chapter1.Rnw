@@ -73,6 +73,7 @@ For the hypothesis testing problem, we need to compute the test statistics for t
 A few points should be mentioned to distinguish our approach from related approaches and accentuate the specific challenges of the inference task.
 \begin{remark}
 Due to the fact that data sources are ``disparate", it is not immediately obvious how  a dissimilarity between an object in one condition and another object in another condition  can be computed, or even defined.  In general, these between-condition between-object  similarities are not available.
+\label{rem:between_cond_diss}
 \end{remark}
  
  \begin{remark}

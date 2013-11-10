@@ -3,49 +3,6 @@
 \chaptermark{Simulations and Experiments}
 
 
-\section{Two data settings for Match Detection}
-
-
-  Before introducing the match detection task, two data models are proposed that illustrate the idea of matchedness.
-\subsection{Gaussian setting\label{subsec:GaussianSet}}
-  Let    $\Xi_1 = \mathbb{R}^{p}$ and $\Xi_2 = \mathbb{R}^{p}$.
-  Let $\bm{\alpha}_i \sim^{iid} MVNormal(\bm{0},I_p)$ represent $n$ ``objects".  Let $X_{ik} \sim^{iid} MVNormal(\bm{\alpha_i},\Sigma)$ represent $K=2$ matched measurements (each under a different condition).
-  $\Sigma$ is a positive-definite $p\times p$ matrix such that  $\max(\Lambda(\Sigma))=\frac{1}{r} $ where $\Sigma=U\Lambda(\Sigma)U'$  is the eigenvalue decomposition of $\Sigma$. See Figure~\ref{fig:Fig1}.
-
-The parameter $r$ controls the variability between ``matched" measurements. If $r$ is large, it is expected that the distance between matched measurements
-$X_{i1}$ and $X_{i2}$ to be stochastically smaller than $X_{i1}$ and $X_{i'2}$ for $i \neq i'$ ; if r is small, then ``matched" is not informative in terms of similarity of measurements.
- Smaller $r$ will make the decision problem harder and will lead to higher rate of errors or tests with smaller power for fixed type I error rate $\alpha$.
-  
-    \begin{figure}
-	\begin{center}
-    \includegraphics[scale=0.75]{MVN_alpha_r_multiple_sancar.pdf}
-    \caption{For the  Gaussian setting (Section \ref{subsec:GaussianSet}), the $\alpha_i$ are denoted by black points and the $X_{ik}$ are denoted by red and blue points respectively.\label{fig:Fig1}}
-	\end{center}
-  \end{figure}
-
-\subsection{Dirichlet setting\label{subsec:DirichletSet}}
-Let $S^p=\{\bm{x}:\bm{x}\in\mathbb{R}^{(p+1)}, \sum_{l=1}^p{x_l}=1\}$ be the standard $p$-simplex in $\mathbb{R}^{p+1}$.
- Let $\Xi_1 = S^p$ and $\Xi_2 = S^p$.   Denote a vector of ones by $\bm{1}_{p+1}\in \mathbb{R}^{(p+1)}$.
-  Let $\bm{\alpha}_i \sim^{iid} Dirichlet(\bm{1}_{p+1})$ represent $n$  ``objects'' and let $X_{ik} \sim^{iid} Dirichlet(r\bm{\alpha}_i+\bm{1}_{p+1})$ represent $K$ measurements. See Figure~\ref{fig:Fig2}.
-
- The parameter $r$ again controls the variability between ``matched" measurements.
-    \begin{figure}
-	\begin{center}
-    \includegraphics[scale=0.75]{Dirichlet_alpha_r_multiple_sancar.pdf}
-   \caption{ For the  Dirichlet setting (Section \ref{subsec:DirichletSet}),  the $\alpha_i$ are denoted by black points and the $X_{ik}$ are denoted by red and blue points respectively.}
-\label{fig:Fig2}
-	\end{center}
-  \end{figure}
-
-\subsection{Noise\label{noise}}
-Measurements $X_{ik}$ carry the signal that is relevant to the exploitation task. Noise dimensions can be introduced to  the measurements by concatenating a $q$-dimensional error vector whose magnitude is controlled by the parameter $c$. The noisy measurements will be  represented by the random vectors 
- \begin{equation}
-\breve{X}_{ik}=[(1-c)X_{ik}\hspace{5pt} cE_{ik}]\label{eq:noise-expr}
-\end{equation}
- where $E_{ik} \sim^{iid} Dirichlet(\bm{1}_{(q+1)})\label{eq:noise-model-dir} $ for the Dirichlet setting and $E_{ik} \sim^{iid} MVNormal(\bm{0} , (1+\frac{1}{r})I_{q+1}) \label{eq:noise-model-mvn} $ for the Gaussian setting. $\breve{X}_{ik}$ will be used instead of ${X}_{ik}$ for computing dissimilarities in the ``noisy" version of the problem. These noisy measurements allow the comparison of  different methods applied to the problem with respect to their robustness.
-  
-
-
 
 
 
@@ -226,17 +183,7 @@ As it was mentioned, all of the approaches are generalizable to $K>2$ conditions
 
 To adapt the P$\circ$M approach to this etting, one can use Procrustes analysis  generalized to more than two configurations. Generalized Procrustes Analysis \cite{GPCA} is described in \ref{sec:GenProcrustes}.
 
-For CCA approach, there are multiple generalizations available as the correlation between more than two configurations can be defined in multiple ways \cite{generalCCA}. Let $X_1,\ldots,X_K$ be random vectors. Consider the first set of canonical variates to be computed, $Z_1^{1},\ldots,Z_K^{1}$. Denote  the correlation matrix of  $Z_1^{1},\ldots,Z_K^{1}$ by $\Phi^{(1)}$.   The following three criteria  are proposed in \cite{generalCCA}.
-\begin{itemize}
-\item SUMCOR. Maximize the sum of the elements of $\Phi^{(1)}$ : $\mathbf{1'}(\Phi^{(1)})\mathbf{1'}$
-\item MAXVAR. Maximize the largest eigenvalue of $\Phi^{(1)}$ : $\lambda^{(1)}_1$ 
-\item  MINVAR. Minimize  the smallest eigenvalue of $\Phi^{(1)}$ : $\lambda^{(m)}_1$ 
-\end{itemize}
-One can think of all of these criteria as different norms on the correlation matrix.
-%For $H_{A1}$ MINVAR might be a good choice, since the exploitation task is to find evidence against the null and as favorable to the alternative as possible. 
-%MINVAR should be small whenever there exists \emph{at least} one unmatched measurement so under the alternative hypothesis. MAXVAR, in this case, wouldn't be necessarily small under alternative with respect to null.  MINVAR statistic should be stochastically smaller compared to null distribution. For $H_{A2}$ MAXVAR is appropriate, since under the alternative hypothesis, MAXVAR should be very small compared to under the null hypothesis. 
-%For $H_{A2}$ MAXVAR is appropriate, since under the alternative hypothesis, MAXVAR should be very small compared to under the null hypothesis. It is quite possible the other generalizations are appropriate for our task.
-An interesting question that will not be addressed here is whether any of these generalizations is more appropriate for $H_{A1}$ or $H_{A2}$.
+We also have described generalized CCA in \autoref{sec:GenCCA}.
 
 To test whether JOFC and generalized CCA approaches are appropriate for this setting as well,
 The simulations in the previous section\ref{sec:Simulation Results} were repeated with $K$-condition data , generated by a multivariate normal model with $K=3$ conditions. 

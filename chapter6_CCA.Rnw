@@ -2,24 +2,28 @@
 \label{sec:CCA}
 \chaptermark{Canonical Correlation Analysis for Data Fusion}
 
-For the CCA approach, MDS is used  to compute embedding configurations, $ X_1$ and $X_2$. It is desirable to  embed into the highest dimensional space  possible ($\mathbb{R}^{d'}$ where $d'=p+q$ for the Gaussian and Dirichlet settings)  to  preserve as many of the signal dimensions as possible (at the risk of possibly including  some noise dimensions). CCA~\cite{Hardoon2004}, then,  yields two mappings $\mathcal{U}_1$ and $\mathcal{U}_2$ that map these embeddings in $\mathbb{R}^{d'}$ to  the low-dimensional commensurate space ($\mathbb{R}^d$). 
-While embedding the dissimilarities in the the highest dimension possible is a good idea for preserving the signal dimensions, in the presence of noise dimensions, the noise will be incorporated into the embeddings. Even if the dissimilarities are errorless representations of measurements of a particular dimension; for  the  sake of inference, it is preferable to embed at a lower  dimension due to the bias-variance tradeoff. This variant of CCA approach, which is called regularized CCA, with the  embedding dimension choice $d'< (p+q)$ is expected to have performance better than CCA approach.
+\section{Canonical Correlational Analysis on MDS embeddings}
 
-\subsubsection*{Canonical Correlational Analysis}
+Canonical Correlational Analysis provides another method to tackle the incommensurability of dissimilarities from different conditions. We will refer to the match detection task in \autoref{chap:match_detection} and the data settings in \autoref{sec:data_settings} to explain this alternative approach.
+
+For the CCA approach, MDS is used  to compute embedding configurations, $ \X_1$ and $\X_2$. For the data settings in  It is desirable to  embed into the highest dimensional space  possible ($\mathbb{R}^{s}$ where $s=p+q$ for the Gaussian and Dirichlet settings)  to  preserve as many of the signal dimensions as possible (at the risk of possibly including  some noise dimensions). CCA~\cite{Hardoon2004}, then,  yields two mappings $\mathcal{U}_1$ and $\mathcal{U}_2$ that map these embeddings in $\mathbb{R}^{s}$ to  the low-dimensional commensurate space ($\mathbb{R}^d$). 
+While embedding the dissimilarities in the  highest dimension possible is a good idea for preserving the signal dimensions, in the presence of noise dimensions \ref{sec:noise}, the noise will be incorporated into the embeddings. Even if the dissimilarities are errorless representations of measurements of a particular dimension $d^*$; for  the  sake of inference, it is preferable to embed at a lower  dimension due to the bias-variance tradeoff. This variant of CCA approach, which is called regularized CCA, with the  embedding dimension choice $s< (p+q)$ is expected to have performance better than CCA approach by removing variance at the sake of introducing more bias. We expect that  we will see a difference between CCA and regularized CCA  in our data settings since we introduce noise to the dissimilarities.
+
+\section{Canonical Correlational Analysis}
 
  Let $X$ and $Y$ be two $s$-dimensional random vectors. If  one wants to find  the pair of linear projection operators $U_1:\mathbb{R}^s \rightarrow  \mathbb{R}$, $U_2 :\mathbb{R}^s \rightarrow  \mathbb{R}$ that maximize correlation between the projections of   $X$ and $Y$, CCA finds the solution as stated in the  optimization problem
 $$
 {\hat{(u)}_1 ,\hat{(u)}_2}=\arg\max_{u_1\in\mathbb{R}^s,u_2\in\mathbb{R}^s} {\frac{E[u_1^{T}XY^Tu_2]}{{E[u_1^{T}XX^T u_1]}{E[u_2^{T}YY^T u_2]}}}$$
 with the constraints $E[{u_1^{T}XX^T u_1}]=1 , E[{u_2^{T}YY^T u_2}]=1$ for uniqueness. The constraints simplify the optimization function to $$
-\max_{u_1\in \mathbb{R}^s,u_2\in \mathbb{R}^s} {E[u_1^{T}XY^Tu_2]}$$. Then the projection operators are $U_1(x)=(\hat{(u)}_1)^{T} x$ and $U_1(y)=(\hat{(u)}_2)^{T} y$
+\max_{u_1\in \mathbb{R}^s,u_2\in \mathbb{R}^s} {E[u_1^{T}XY^Tu_2]}$$. Then the projection operators are $U_1(x)=(\hat{u}_1)^{T} x$ and $U_1(y)=(\hat{u}_2)^{T} y$.
 
-In general, the projection mappings are to a pair of $d$-dimensional linear subspaces, that is $U_1:\mathbb{R}^s \rightarrow  \mathbb{R}^{d}$, $U_2 :\mathbb{R}^s \rightarrow  \mathbb{R}^{d}$. The projection matrices which represent the mappings are $\mathcal{U}_1$ and $\mathcal{U}_2$  whose rows are the direction vectors ${{(u)}_{1(i)},{(u)}_{2(i)}}, i=1,\ldots,d $. These additional pairs of projection vectors can be computed sequentially, with the constraints that the projections along the new directions are uncorrelated with  projections along previous directions. That is, $i^{th}$ pair of directions  that maximize correlation is computed by 
+In general, the projection mappings are to a pair of $d$-dimensional linear subspaces, that is $U_1:\mathbb{R}^s \rightarrow  \mathbb{R}^{d}$, $U_2 :\mathbb{R}^s \rightarrow  \mathbb{R}^{d}$. The projection matrices which represent the mappings are $\mathcal{U}_1$ and $\mathcal{U}_2$  whose rows are the direction vectors ${{u}_{1(i)},{u}_{2(i)}}, i=1,\ldots,d $. These additional pairs of projection vectors can be computed sequentially, with the constraints that the projections along the new directions are uncorrelated with  projections along previous directions. That is, $i^{th}$ pair of directions  that maximize correlation is computed by 
 $$
 {\hat{(u)}_{1(i)},\hat{(u)}_{2(i)}}=\arg\max_{u_{1(i)},u_{2(i)}\in\mathbb{R}^s} {E[u_{1(i)}^{T}XY^Tu_{2(i)}]}.$$ subject to constraints $E[{u_{1(i)}^{T}XX^T u_{1(i)}}]=1$ , $E[{u_{2(i)}^{T}YY^T u_{2(i)}}]=1$, $E[{u_{1(i)}^{T}XX^T u_{1(j)}}]=0$,  
    $ E[{u_{2(i)}^{T}YY^T u_{2(j)}}]=\nolinebreak0$ $\forall \quad  j=1,\ldots,i-1$. For sample CCA, $E[XX^T]$,$E[YY^T]$ and $E[XY^T]$ are replaced with their sample estimates.
 
 
-Note that $s$, the dimension of $X$ and $Y$, is the embedding dimension $d'$  in the CCA approach. 
+Note that $s$, the dimension of $X$ and $Y$, is the embedding dimension $s$  in the CCA approach. 
 
 
 As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to a commensurate  space by maps provided by CCA. The test statistic   can now be computed and  the null hypothesis is rejected for ``large'' values of the test statistic $\tau$  as in Section \ref{chap:PoM}.
@@ -31,20 +35,20 @@ As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to 
 
 
 
-\subsection{Relation of CCA and Commensurability} 
+\section{Relation of CCA and Commensurability} 
 
 \begin{thm}
 Let $ \mathcal{U}$ be the set of all orthogonal $d$-frames 
-(ordered set of $d$ linearly independent vectors) of $R^{d'}$. These correspond to all unique projection operators to $d$ dimensional linear subspaces of  $R^{d'}$.
-Let $X_1$ and $X_2$ be two $n\times d'$ (configuration) matrices that represent pair of points that are perfectly ``matched"
- (there exists a  matrix $\mathbf{Q}$ such that $\|   X_1\mathbf{Q}  -X_2 \|=0$).
- Suppose, for the joint embedding procedure, the embedded configurations are constrained to be of the form $\tilde{X_1}=X_1U_1$ and $\tilde{X_2}=X_2U_2$ for some  $U_1\in \mathcal{U}$ and $U_2\in  \mathcal{U}$,
-%and   the original dissimilarities are $D(X_1)$ and $D(X_2) $,
+(ordered set of $d$ linearly independent vectors) of $R^{s}$. These correspond to all unique projection operators to $d$-dimensional linear subspaces of  $R^{s}$.
+Let $\X_1$ and $\X_2$ be two $n\times s$ (configuration) matrices that represent pair of points that are perfectly ``matched"
+ (there exists a  matrix $\mathbf{Q}$ such that $\|   \X_1\mathbf{Q}  -\X_2 \|=0$).
+ Suppose, for the joint embedding procedure, the embedded configurations are constrained to be of the form $\widetilde{\X_1}=\X_1U_1$ and $\widetilde{\X_2}=\X_2U_2$ for some  $U_1\in \mathcal{U}$ and $U_2\in  \mathcal{U}$,
+%and   the original dissimilarities are $D(\X_1)$ and $D(\X_2) $,
 The commensurability error is  defined as
 in equation~\eqref{comm-error}.
  
- Canonical Correlational Analysis on the  \emph{i.i.d.} sample of points represented by  $X_1$ and $X_2$ gives $\mathbf{U}_1\in\mathcal{U}$ and  $\mathbf{U}_2\in\mathcal{U}$, 
- the two elements of $\mathcal{U}$ that maximize commensurability, subject to $U_1^{T}X_1^{T}X_1U_1=I_d$ and $U_2^{T}X_2^{T}X_2U_2=I_d$ ($I_d$ is the $d \times d$ identity matrix).
+ Canonical Correlational Analysis on the  \emph{i.i.d.} sample of points represented by  $\X_1$ and $\X_2$ gives $\mathbf{U}_1\in\mathcal{U}$ and  $\mathbf{U}_2\in\mathcal{U}$, 
+ the two elements of $\mathcal{U}$ that maximize commensurability, subject to $U_1^{T}\X_1^{T}\X_1U_1=I_d$ and $U_2^{T}\X_2^{T}\X_2U_2=I_d$ ($I_d$ is the $d \times d$ identity matrix).
 \end{thm}
 
 \begin{proof}
@@ -67,33 +71,33 @@ in equation~\eqref{comm-error}.
 \end{align*}
 
 
-Note that since $U_1^{T}X_1^{T}X_1U_1=I_d$ ($U_2^{T}X_2^{T}X_2U_2=I_d$) , the first (second) terms, ${(u_{xj} {\bm{x}}_{i1}})^2  $ , 
+Note that since $U_1^{T}\X_1^{T}\X_1U_1=I_d$ ($U_2^{T}\X_2^{T}\X_2U_2=I_d$) , the first (second) terms, ${(u_{xj} {\bm{x}}_{i1}})^2  $ , 
 (${(u_{yj} {\bm{x}}_{i2}})^2 $ )
 in the sum are equal to  $1$. The third terms can be written in the form of  ($ -2 \times \xi$) where $\xi$ is the sum of the products of dot products  $u_{xj}  {\bm{x}}_{i1}$ and  $u_{yj}  {\bm{x}}_{i2}$  . So maximizing $\xi$ under the linearity constraints,  is maximizing  commensurability.
 
 
 Note that 
 \begin{align*}
-\xi &=  \frac{1}{n} \left[ \tr{U_1^{T}X_1^{T}X_2U_2} - \sum_{1 \leq j \leq d} \sum_{1 \leq i < l \leq d} u_{xj_1}^T  {\bm{x}}_{i1}  {\bm{x}}_{l2}^T u_{yj_2} \right]
+\xi &=  \frac{1}{n} \left[ \tr{U_1^{T}\X_1^{T}\X_2U_2} - \sum_{1 \leq j \leq d} \sum_{1 \leq i < l \leq d} u_{xj_1}^T  {\bm{x}}_{i1}  {\bm{x}}_{l2}^T u_{yj_2} \right]
 \end{align*}
 where the dot products $u_{xj_1}^T  {\bm{x}}_{i1}$ and  $ {\bm{x}}_{l2}^T u_{yj_2}$  are uncorrelated because ${\bm{x}}_{i1},{\bm{x}}_{l2}, i \neq l$  are independent samples. Therefore as $n \rightarrow \infty$ the second sum vanishes and only the trace term remains.  
-So $\xi= \frac{1}{n}\tr{U_1^{T}X_1^{T}X_2U_2}$ which is the objective function optimized with respect to $U_1$ and $U_2$ in the canonical correlational analysis. Therefore subject to constraints, CCA maximizes commensurability  with respect to $U_1$ and $U_2$.
+So $\xi= \frac{1}{n}\tr{U_1^{T}\X_1^{T}\X_2U_2}$ which is the objective function optimized with respect to $U_1$ and $U_2$ in the canonical correlational analysis. Therefore subject to constraints, CCA maximizes commensurability  with respect to $U_1$ and $U_2$.
 
 \end{proof}
 
 
-\subsection{Spectral Embedding Generalization of CCA}
+\section{Spectral Embedding Generalization of CCA}
 
-Another way to see the connection between CCA and JOFC embedding (using classical MDS) is by connections to spectral embedding. \cite{CCAviaSpectralEmbed} shows that CCA is a special case of Spectral Embedding with the restriction that the joint embedding coordinates are linear projections of the original multiview data, $X_1$ and $X_2$. First, let us define ``spectral embedding'':
+Another way to see the connection between CCA and JOFC embedding (using classical MDS) is via connections to spectral embedding. \cite{CCAviaSpectralEmbed} shows that CCA is a special case of Spectral Embedding with the restriction that the joint embedding coordinates are linear projections of the original multiview data, $\X_1$ and $\X_2$. First, let us define ``spectral embedding'':
 Given  a $k \times k$ weight matrix $W$, Spectral Embedding embeds $k$ points in $d$-dimensional Euclidean space by  minimizing the cost function $\sum_{i,j \in \{1,\ldots,k\}}W_{ij}\left(u_i-u_j\right)^2$, where $u_i, u_j \in \mathbb{R}^d$ are the embedded coordinates.
 
-Assume CCA is applied to $X_1$ and $X_2$ which yields two  $n \times d$ matrices, $\tilde{X_1}$ and $\tilde{X_2}$,  which are the embedded configuration matrices . 
+Assume CCA is applied to $\X_1$ and $\X_2$ which yields two  $n \times d$ matrices, $\widetilde{\X_1}$ and $\widetilde{\X_2}$,  which are the embedded configuration matrices . 
 
-For the same multi-view data, $X_1$ and $X_2$,
+For the same multi-view data, $\X_1$ and $\X_2$,
 let \[ Z= \left[
 \begin{array}{cc}
-                  X_1 & \vec{0} \\
-                \vec{0}   & X_2 
+                  \X_1 & \vec{0} \\
+                \vec{0}   & \X_2 
                 \end{array}
                 \right]
                 \].
@@ -102,9 +106,25 @@ let \[ Z= \left[
                 \vec{0} & I_n \\
                 I_n   & \vec{0}
                 \end{array}
-                \right]$ be a $2n \times 2n$ weight matrix. We can assume $W$ is an adjacency matrix which represents a graph which is bipartite and the only  edges are between $i^{th}$ and $(n+i)^{th}$ vertices (which correspond to matched pairs in earlier chapters) for $i \in \{1,\ldots,n\}$. The degree matrix for this graph is then  $D=I_{2n}$. The graph laplacian is $L=D-W$. Assume the constraint that the embedding coordinate of $i^{th}$ point are $\widetilde{Z_i}=p^{T}Z_i$ is introduced for some $p \in \mathbb{R}^d$, ie $p$ is a projection vector. Let us call this constraint the linearity condition. Then, the embedding of $i^{th}$ point of the $2n$ points  via Spectral Embedding where the weighted adjacency matrix is $L$,is $\widetilde{Z_i}$, where $\widetilde{Z_i}= \left[] \tilde{X_{1i}} \vec{0} \right]$ or  $\tilde{Z_i}=\left[ \vec{0} \tilde{X_{2i}} \right]$ and $\tilde{X_{1i}}$ and $\tilde{X_{2i}}$ are  the $i^{th}$ rows of $\tilde{X_1}$ and $\tilde{X_2}$ yielded by CCA.  As the authors note in \cite{CCAviaSpectralEmbed} by looking at $W$, one can take intra-view similarities into account (which means preserving more fidelity) and choose the diagonal block matrices in $W$ to be nonzero.
-                %(e.g. \exp(-d(X_1i,X_1j) for $(i,j)^{th} entry in the first diagonal block of  $W$. 
+                \right]$ be a $2n \times 2n$ weight matrix. We can assume $W$ is an adjacency matrix which represents a graph which is bipartite and the only  edges are between $i^{th}$ and $(n+i)^{th}$ vertices (which correspond to matched pairs in earlier chapters) for $i \in \{1,\ldots,n\}$. The degree matrix for this graph is then  $D=I_{2n}$. The graph laplacian is $L=D-W$. Assume the constraint that the embedding coordinate of $i^{th}$ point are $\widetilde{Z_i}=p^{T}Z_i$ is introduced for some $p \in \mathbb{R}^d$, ie $p$ is a projection vector. Let us call this constraint the linearity condition. Then, the embedding of $i^{th}$ point of the $2n$ points  via Spectral Embedding where the weighted adjacency matrix is $L$,is $\widetilde{Z_i}$, where $\widetilde{Z_i}= \left[] \widetilde{X_{1i}} \vec{0} \right]$ or  $\widetilde{Z_i}=\left[ \vec{0} \widetilde{X_{2i}} \right]$ and $\widetilde{X_{1i}}$ and $\widetilde{X_{2i}}$ are  the $i^{th}$ rows of $\widetilde{\X_1}$ and $\widetilde{\X_2}$ yielded by CCA.  As the authors note in \cite{CCAviaSpectralEmbed} by looking at $W$, one can take intra-view similarities into account (which means preserving more fidelity) and choose the diagonal block matrices in $W$ to be nonzero.
+                %(e.g. \exp(-d(\X_1i,\X_1j) for $(i,j)^{th} entry in the first diagonal block of  $W$. 
                 This would be akin to a JOFC-type embedding, as the commensurability criterion is taken into account by using  an identity matrix as the  off-diagonal block matrix in $W$ and the fidelity criterion by non-zero diagonal block matrices in $W$.
                 
              As we have mentioned in \ref{MDS_SpectralEmbed}, the joint embedding of a dissimilarity matrix  via cMDS  is equivalent to spectral embedding under certain conditions.
 So just like the spectral embedding generalization of CCA  we have just presented with the multiview data $Z$ and weight matrix $W$ there is an equivalent classical MDS embedding with an omnibus dissimilarity matrix $M$ for which $\tau(M)=-\frac{1}{2}JMJ^T$  corresponds  to the  psuedo-inverse of  $L=D-W$, along with the linearity condition.
+
+
+
+\section{Generalized CCA: $K>2$ \label{sec:GenCCA}}
+
+While CCA is defined for $K=2$ conditions, there are multiple generalizations available as the correlation between more than two configurations can be defined in multiple ways \cite{generalCCA}. Let $X_1,\ldots,X_K$ be random vectors. Consider the first set of canonical variates to be computed, $Z_1^{(1)},\ldots,Z_K^{(1)}$. Denote  the correlation matrix of  $Z_1^{(1)},\ldots,Z_K^{(1)}$ by $\Phi^{(1)}$.   The following three criteria  are proposed in \cite{generalCCA}.
+\begin{itemize}
+\item SUMCOR. Maximize the sum of the elements of $\Phi^{(1)}$ : $\mathbf{1'}(\Phi^{(1)})\mathbf{1'}$
+\item MAXVAR. Maximize the largest eigenvalue of $\Phi^{(1)}$ : $\lambda^{(1)}_1$ 
+\item  MINVAR. Minimize  the smallest eigenvalue of $\Phi^{(1)}$ : $\lambda^{(m)}_1$ 
+\end{itemize}
+One can interpret all of these criteria as different norms on the correlation matrix.
+%For $H_{A1}$ MINVAR might be a good choice, since the exploitation task is to find evidence against the null and as favorable to the alternative as possible. 
+%MINVAR should be small whenever there exists \emph{at least} one unmatched measurement so under the alternative hypothesis. MAXVAR, in this case, wouldn't be necessarily small under alternative with respect to null.  MINVAR statistic should be stochastically smaller compared to null distribution. For $H_{A2}$ MAXVAR is appropriate, since under the alternative hypothesis, MAXVAR should be very small compared to under the null hypothesis. 
+%For $H_{A2}$ MAXVAR is appropriate, since under the alternative hypothesis, MAXVAR should be very small compared to under the null hypothesis. It is quite possible the other generalizations are appropriate for our task.
+An interesting question that will not be addressed here is whether any of these generalizations is more appropriate for $H_{A1}$ or $H_{A2}$.
