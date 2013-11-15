@@ -1,12 +1,13 @@
 \chapter{Canonical Correlation Analysis for Data Fusion}
-\label{sec:CCA}
+\label{chap:CCA}
 \chaptermark{Canonical Correlation Analysis for Data Fusion}
 
-\section{Canonical Correlational Analysis on MDS embeddings}
+\section{Canonical Correlational Analysis on MDS embeddings\label{sec:CCA}}
 
 Canonical Correlational Analysis provides another method to tackle the incommensurability of dissimilarities from different conditions. We will refer to the match detection task in \autoref{chap:match_detection} and the data settings in \autoref{sec:data_settings} to explain this alternative approach.
 
 For the CCA approach, MDS is used  to compute embedding configurations, $ \X_1$ and $\X_2$. For the data settings in  It is desirable to  embed into the highest dimensional space  possible ($\mathbb{R}^{s}$ where $s=p+q$ for the Gaussian and Dirichlet settings)  to  preserve as many of the signal dimensions as possible (at the risk of possibly including  some noise dimensions). CCA~\cite{Hardoon2004}, then,  yields two mappings $\mathcal{U}_1$ and $\mathcal{U}_2$ that map these embeddings in $\mathbb{R}^{s}$ to  the low-dimensional commensurate space ($\mathbb{R}^d$). 
+
 While embedding the dissimilarities in the  highest dimension possible is a good idea for preserving the signal dimensions, in the presence of noise dimensions \ref{sec:noise}, the noise will be incorporated into the embeddings. Even if the dissimilarities are errorless representations of measurements of a particular dimension $d^*$; for  the  sake of inference, it is preferable to embed at a lower  dimension due to the bias-variance tradeoff. This variant of CCA approach, which is called regularized CCA, with the  embedding dimension choice $s< (p+q)$ is expected to have performance better than CCA approach by removing variance at the sake of introducing more bias. We expect that  we will see a difference between CCA and regularized CCA  in our data settings since we introduce noise to the dissimilarities.
 
 \section{Canonical Correlational Analysis}
@@ -16,11 +17,15 @@ $$
 {\hat{(u)}_1 ,\hat{(u)}_2}=\arg\max_{u_1\in\mathbb{R}^s,u_2\in\mathbb{R}^s} {\frac{E[u_1^{T}XY^Tu_2]}{{E[u_1^{T}XX^T u_1]}{E[u_2^{T}YY^T u_2]}}}$$
 with the constraints $E[{u_1^{T}XX^T u_1}]=1 , E[{u_2^{T}YY^T u_2}]=1$ for uniqueness. The constraints simplify the optimization function to $$
 \max_{u_1\in \mathbb{R}^s,u_2\in \mathbb{R}^s} {E[u_1^{T}XY^Tu_2]}$$. Then the projection operators are $U_1(x)=(\hat{u}_1)^{T} x$ and $U_1(y)=(\hat{u}_2)^{T} y$.
-
+\begin{remark}
+$X$ and $Y$ can be of different dimensions $s_1$ and $s_2$, but for  the sake of simplicity, we will assume they have the same dimension $s$. 
+\end{remark}
 In general, the projection mappings are to a pair of $d$-dimensional linear subspaces, that is $U_1:\mathbb{R}^s \rightarrow  \mathbb{R}^{d}$, $U_2 :\mathbb{R}^s \rightarrow  \mathbb{R}^{d}$. The projection matrices which represent the mappings are $\mathcal{U}_1$ and $\mathcal{U}_2$  whose rows are the direction vectors ${{u}_{1(i)},{u}_{2(i)}}, i=1,\ldots,d $. These additional pairs of projection vectors can be computed sequentially, with the constraints that the projections along the new directions are uncorrelated with  projections along previous directions. That is, $i^{th}$ pair of directions  that maximize correlation is computed by 
 $$
 {\hat{(u)}_{1(i)},\hat{(u)}_{2(i)}}=\arg\max_{u_{1(i)},u_{2(i)}\in\mathbb{R}^s} {E[u_{1(i)}^{T}XY^Tu_{2(i)}]}.$$ subject to constraints $E[{u_{1(i)}^{T}XX^T u_{1(i)}}]=1$ , $E[{u_{2(i)}^{T}YY^T u_{2(i)}}]=1$, $E[{u_{1(i)}^{T}XX^T u_{1(j)}}]=0$,  
-   $ E[{u_{2(i)}^{T}YY^T u_{2(j)}}]=\nolinebreak0$ $\forall \quad  j=1,\ldots,i-1$. For sample CCA, $E[XX^T]$,$E[YY^T]$ and $E[XY^T]$ are replaced with their sample estimates.
+   $ E[{u_{2(i)}^{T}YY^T u_{2(j)}}]=\nolinebreak0$ $\forall \quad  j=1,\ldots,i-1$.  These directions are called ''canonical`` directions. The projections $\X \hat{(u)}_{1(i)}, i=1,\ldots,d$ are called ''canonical'' variates.
+   
+   For sample CCA, $E[XX^T]$,$E[YY^T]$ and $E[XY^T]$ are replaced with their sample estimates.
 
 
 Note that $s$, the dimension of $X$ and $Y$, is the embedding dimension $s$  in the CCA approach. 
@@ -32,6 +37,20 @@ As in P$ \circ $M, new dissimilarities are out-of-sample embedded and mapped to 
 
 \section{Geometric Interpretation of CCA}
 
+To complement CCA, one should also mention Canonical Variate Analysis (CVA). In CVA, the  projections are also maximally correlated, however one is concerned with the variates $a_i={u}_{1(i)}^TX $ and $b_i={u}_{2(i)}^T Y $ in contrast to the canonical directions ${u}_{1(i)}$ and ${u}_{2(i)}$. So CVA is to CCA  as what Principal Coordinate Analysis is to Principal Components Analysis.
+
+We should also define canonical angles:
+
+\begin{defn}
+For two subspaces $\mcV$ and $\mcW$ of $\R^d$ , the first \emph{canonical} (or \emph{principal})  angle  between them  is $\arccos \max_{v \in \mcV, w \in \mcW}\frac{<v,w>}{\|v\|}{\|w\|}$. Other ($i^{th}$) canonical angles are defined as 
+$\arccos \max_{v_i \in \mcV, w_i \in \mcW, v_i \perp v_j, w_i \perp w_j, \forall j<i}\frac{<v_i,w_i>}{\|v_i\|}{\|w_i\|}$.
+The vectors $v_i$ and $w_i$ that maximize $\frac{<v_i,w_i>}{\|v_i\|}{\|w_i\|}$ are called \emph{canonical} vectors.
+\end{defn}
+
+Now for two $n \times s$ configuration matrices $\X$ and $\Y$, consider the column spaces of the two  matrices  $\mcL{\X}={\X u : u \in \R^s}$ and ${\mcL{\Y}}$. Note that these spaces are subspaces of $\R^n$ , not of $\R^s$ (The $n$ points of the configuration lie in $\R^s$). 
+We already know that CCA/CVA maximizes the correlation of the variates. Let us we borrow terminology from pattern recognition and call any one-dimensional subspace of   $\mcL{\X}$ (and $\mcL{\Y}$) a ''feature``. In this case any linear combination of the  the  original feature vectors(rows of $\X$ and $\Y$) is also a feature. The (sample) correlation of the variates (defined by the canonical ''direction``s $u_{1(i)}$ and $u_{2(i)}$) in CCA is also  the cosine of the angle between the features defined by the same directions . The uncorrelatedness condition of two canonical variates of $\X$  correspond to perpendicularity of the corresponding feature vectors of $\X$. Thus,
+ CCA/CVA for $d$ variates solves the problem of finding the first $d$ canonical angles and the corresponding canonical directions of $\mcL{\X}$ and $\mcL{\Y}$.
+ 
 
 
 
@@ -128,3 +147,4 @@ One can interpret all of these criteria as different norms on the correlation ma
 %MINVAR should be small whenever there exists \emph{at least} one unmatched measurement so under the alternative hypothesis. MAXVAR, in this case, wouldn't be necessarily small under alternative with respect to null.  MINVAR statistic should be stochastically smaller compared to null distribution. For $H_{A2}$ MAXVAR is appropriate, since under the alternative hypothesis, MAXVAR should be very small compared to under the null hypothesis. 
 %For $H_{A2}$ MAXVAR is appropriate, since under the alternative hypothesis, MAXVAR should be very small compared to under the null hypothesis. It is quite possible the other generalizations are appropriate for our task.
 An interesting question that will not be addressed here is whether any of these generalizations is more appropriate for $H_{A1}$ or $H_{A2}$.
+The alternative was chosen as $ H_{A1}$ and SUMCOR criterion was chosen as the generalization of CCA.

@@ -13,12 +13,12 @@
 
 
 \section{Simulation Results\label{sec:Simulation Results}}
-To compare the  different approaches, training data of matched sets of measurements were generated according to the Dirichlet and Gaussian settings. Dissimilarity representations were computed from pairwise Euclidean distances of these measurements. A set of matched pairs and unmatched pairs of measurements were also generated for testing with the same distributions. Following the out-of-sample embedding of the dissimilarities test pairs (computed via by one of the three P$\circ $M, CCA and JOFC approaches)  test statistics  for matched and unmatched pairs were used to compute power values at a set of fixed type I error rate $\alpha$ values.
+To compare the  different approaches, training data of matched pairs of measurements were generated according to the Dirichlet and Gaussian settings\ref{chap:data_models} with parameters $p,q,r,c$. Dissimilarity representations\ref{sec:dissim_repr} were computed from pairwise Euclidean distances of these measurements. A set of matched pairs and unmatched pairs of measurements were also generated for testing with the same distributions. Following the out-of-sample embedding of the dissimilarities test pairs (computed via by one of  P$\circ $M \ref{chap:PoM}, CCA \ref{chap:CCA}, regularized CCA \ref{sec:CCA} and JOFC \ref{chap:match_detection} approaches),  test statistics  for matched and unmatched pairs (corresponding to null and alternative hypothesis, respectively) were used to compute power values at a set of fixed type I error rate $\alpha$ values. By using the same generated data for all of the approaches, we are able to compare the performance of  different approaches either using the area under curve (AUC) measure or the statistical power at a desired $\alpha$ value.
 
- Additionally, to take robustness of methods into consideration, ``noisy" measurements were created from the original measurements by concatenating randomly generated independent noise vectors (subsection \ref{noise}).   This setting will be referred to as the ``noisy case". The magnitude of noise is controlled by the parameter $c$ in equation \eqref{eq:noise-expr}). The original setting, with $c=0$,  will be referred as the ``noiseless case".
-If the magnitude of noise is small enough, and the embedding dimension is not larger than signal dimension, the embeddings provided by PCA and MDS will not be affected significantly. However  if the number of noisy dimensions (controlled by the parameter $q$ in the distribution of $E_{ik}$ as defined in equation \eqref{eq:noise-expr}) is large enough, embeddings via  CCA  will be affected due to spurious correlation between noisy dimensions.
+ Additionally, to consider  relative robustness of methods , ``noisy" measurements were created from the original measurements by concatenating randomly generated independent noise vectors (\autoref{noise}).   This setting will be referred to as the ``noisy case". The magnitude of noise is controlled by the parameter $c$ in equation \eqref{eq:noise-expr}). The original setting, with $c=0$,  will be referred as the ``noiseless case".
+If the magnitude of noise is small enough, and the embedding dimension is not larger than signal dimension, the embeddings provided by PCA and MDS should not be affected significantly by the noise. However  if the number of noise dimensions (controlled by the parameter $q$ in the distribution of $E_{ik}$ as defined in equation \eqref{eq:noise-expr} ) is large enough, it is expected that embeddings via  CCA  will  be affected due to spurious correlation between noisy dimensions.
 
-Given the setting ("Gaussian","Dirichlet"),   the steps for each Monte Carlo replicate are as follows:
+We will now describe the steps for our Monte Carlo simulation in detail. Given the setting ("Gaussian","Dirichlet"),   the steps for each Monte Carlo replicate are as follows:
 \begin{itemize}
 \item A training set ($\mathbf{T}_{mc}$) which consists of  $n$ pairs of matched measurements is generated.  If $c=0$, the ``noiseless" data setting is being simulated and measurements are $p$-dimensional vectors, otherwise  the ``noisy" setting is being used to generate data and measurement vectors are $(p+q)$-dimensional. $ \mathbf{T}_{mc}$ = 
 $\begin{array}{ccc}
@@ -27,8 +27,10 @@ $\begin{array}{ccc}
         X_{n1} & \ldots     & X_{nK} \\
     \end{array}
 $
- where each $X_{ik}$ is a random vector of dimension $(p+q \times I(c>0))$ and the conditional distribution  $X_{i.}|\bm{\alpha}_i  $ is specified as an appropriate Multivariate Normal or Dirichlet distribution.
-\item Dissimilarities are computed and embedded in  Euclidean space  via MDS (followed by a transformation from  $\mathbf{R}^d$ to  $\mathbf{R}^d$ and  projection into $\mathbf{R}^d$, respectively  for P$\circ$M and CCA) . The final embeddings lie in $\mathbb{R}^d$.   Denote this in-sample embedding configuration as   $\hat{\mathbf{T}}$. Note that  if the JOFC method is being used, embedding is carried out with the weighted raw stress function $\sigma_{W}(\cdot)=f_{w}(D(\cdot),M)$ in equation \eqref{fid-comm-tradeoff-func} with a common weight $w$ for commensurability terms and another common weight $1-w$ for fidelity terms, otherwise unweighted raw stress function ($\sigma(\cdot)$) is used as a criterion function for embedding.
+ where each $X_{ik}$ is a random vector of dimension $(p+q \times \I (c>0))$ and the conditional distribution  $X_{i.}|\bm{\alpha}_i  $ is specified as an appropriate Multivariate Normal or Dirichlet distribution. The data generation is also described in detail \autoref{chap:data_models}
+\item  Dissimilarities are computed from $X_{ik}$, $\left[\Delta_{k}\right]_{ij}=d(X_{ik},X_{jk})$ for each condition $k$. We use Euclidean Distance for both Gaussian and Dirichlet settings.
+\item Dissimilarities are embedded in  Euclidean space  via MDS. For P$\circ$M approach, the embedding is into $\R^d$ followed by a transformation from  $\R^d$ to  $\R^d$. For CCA , the embedding is into $\R^{p+q}$ , followed by projection into $\R^d$. For regularized CCA,  the embedding is into $\R^{s}$ where $s=(p+q)/2$\footnote{$s$ could be chosen as any integer between $d$ and $p+q$. This particular choice was a sensible one for the values of $p,q,d$ in our simulations.} , followed by projection into $\R^d$. The final embeddings lie in $\R^d$.   Denote this in-sample embedding configuration as   $\hat{\mathbf{T}}$. For JOFC approach, embedding is carried out with the weighted raw stress function $\sigma_{W}(\cdot)=f_{w}(D(\cdot),M)$ in equation \eqref{fid-comm-tradeoff-func} with a common weight $w$ for commensurability terms and another common weight $1-w$ for fidelity terms. We try different values of $w$ in our simulations. For P$\circ$M, CCA and regularized CCA, unweighted raw stress function ($\sigma(\cdot)$) is used as a criterion function for embedding the dissimilarities.
+%These are \emph{non-uniform} and \emph{uniform}  weighting, respectively.
 
 \item  $m$ pairs of matched   measurements are generated which are treated as out-of-sample, and 
 \begin{itemize}
@@ -36,10 +38,10 @@ $
  between these out-of-sample  points and the points in ${\mathbf{T}_{mc}}$,  
 \item  embed the OOS dissimilarities as pairs of embedded points via the OOS extension:\\
  $(\tilde{y}_1^{(1)},\tilde{y}_1^{(2)}),\ldots, (\tilde{y}_m^{(1)},\tilde{y}_m^{(2)})$, 
-\item compute the test statistic $\tau$ for each pair.%, $t(\tilde{y}_i^{(1)},\tilde{y}_i^{(2)});\hspace{4pt}
-%i=1,\ldots,m$
+\item compute the test statistic $\tau$ for each pair, $\tau_i=d(\tilde{y}_i^{(1)},\tilde{y}_i^{(2)});\hspace{4pt}
+i=1,\ldots,m$
 \end{itemize}
- The values of the statistic $\tau$ are used for computing  the empirical cumulative distribution function under null hypothesis. 
+ The values of the statistic $\tau={tau_i,i=1,\ldots,m}$ are used for computing  the empirical cumulative distribution function under null hypothesis. 
 
 \item Identical steps for $m$ pairs of unmatched measurements result in the empirical cumulative distribution  function of $\tau$ under alternative hypothesis.
 \item For any fixed $\alpha$ value, a critical value for the test statistic and the corresponding power is computed.
@@ -84,7 +86,9 @@ $
 \label{fig:Dir-c001-power-w}
 \end{figure}
 
-Setting p and q to 5 and 10, respectively, for $n=150$ and $m=150$, the average of the power values for $nmc=150$ Monte Carlo replicates are computed at  different $\alpha$s and are plotted in Figure \ref{fig:MVN-c001-power-w} against $\alpha$ for the Gaussian setting.  Qualititatively similar plots for the Dirichlet setting  are not included for brevity.  The plot in Figure \ref{fig:MVN-c001-power-w} shows that for different values of  $w$, $\beta$-$\alpha$ curves vary significantly.  The conclusion is that the match detection tests with JOFC embedding using specific $w$ values have better performance than other $w$ values in terms of power.  In Figure
+For $p=5$,$q=10$,$d=2$, and $c\in{0,0.01}$, for $n=150$ and $m=150$, the average of the power values for $nmc=150$ Monte Carlo replicates are computed at  different $\alpha$s and are plotted in Figure \ref{fig:MVN-c001-power-w} against $\alpha$ for the Gaussian setting.  
+%Qualititatively similar plots for the Dirichlet setting  are not included for brevity.  
+The plot in \autoref{fig:MVN-c001-power-w} shows that for different values of  $w$, $\beta$-$\alpha$ curves vary significantly.  The conclusion is that the match detection tests with JOFC embedding using specific $w$ values have better performance than other $w$ values in terms of power.  In Figure
  \ref{fig:MVN-c001-power-w},  $\beta(w)$ is plotted against $w$ for fixed values of $\alpha$. It is  interesting that the optimal value of $w$ seems to be in the range of $(0.85,1)$ for all settings, which suggests a significant emphasis on commensurability might be  critical for the match detection  task. 
 
 
@@ -126,45 +130,39 @@ Note that in Figure \ref{fig:MVN-c001-power-w} for $\alpha=0.05$, $\beta_{\alpha
 
 
 Note that  for all of the settings, the estimate of the optimal $w^{*}$ has  higher power than $w$=0.5 (the unweighted case).
-To test the statistical significance of this observation,   the null hypothesis that  $H_{0}: \beta_{\alpha}({\hat{w}^*})\leq\beta_{\alpha}({w=0.5})$  is tested against the alternative $H_{A}=\beta_{\alpha}({\hat{w}^*})>\beta_{\alpha}({w=0.5})$.  The least favorable null hypothesis is that  $H_{0}: \beta_{\alpha}({\hat{w}^*})=\beta_{\alpha}({w=0.5})$.
-Using previous notation,  the test statistic will be denoted by $T_a(w)$ under the alternative hypothesis and $T_0(w)$ under the null hypothesis.
+To test the statistical significance of this observation, we consider the following hypothesis test:  the null hypothesis that  $\mcH_{0}: \beta_{\alpha}({\hat{w}^*})\leq\beta_{\alpha}({w=0.5})$  is tested against the alternative $\mcH_{A}=\beta_{\alpha}({\hat{w}^*})>\beta_{\alpha}({w=0.5})$.  The least favorable null hypothesis is that  $\mcH_{0}: \beta_{\alpha}({\hat{w}^*})=\beta_{\alpha}({w=0.5})$.
+
 
 McNemar's test will be used to compare the two predictors (referred to as $C_1$ and $C_2$ with $w$=0.5 and $w$=$w^*$ at a fixed $\alpha$ value.
-
-For a fixed $\alpha$ value, one can compute two critical values $c(0.5)=max_l \{  P(T_0(0.5)>c)<\alpha\}$,  $c(w^*)=max_l \{  P(T_0(w_2)>c)<\alpha\}$. The values of the decision function that uses these critical  values, for each pair of embedded points (indexed by $i$, are  $(\tilde{y}_i^{(1)},\tilde{y}_i^{(2)}),\hspace{7pt}i=1,\ldots,m$. To compare the  two statistical tests with  $w=0.5$ and $w$=$w^*$  , one can prepare a $2\times 2$ contingency-table of correct decisions and incorrect decisions made by each statistical test (or equivalently true and false classifications made by two classifiers). Denote decision outcome as $g_1$ for the first statistical test and $g_2$ for the second statistical test. If $g_1=True$ and $g_2=False$ for an instance,  the first test made the correct decision and the second test made the incorrect decision with regard to the null and alternative hypotheses.
+\subsection{McNemar's Test\label{subsec:McNemarstest}}
+Using previous notation,  the test statistic will be denoted by $T_a(w)$ under the alternative hypothesis and $T_0(w)$ under the null hypothesis.
+For a fixed $\alpha$ value, one can compute two critical values $c(0.5)=max_l \{  P(T_0(0.5)>c)<\alpha\}$,  $c(w^*)=max_l \{  P(T_0(w_2)>c)<\alpha\}$. These critical values determine two binary classifiers, if we interpret the hypothesis testing as deciding whether a new pair is ``matched'' or not, and the test statistic as a score. Hypothesis testing is more nuanced than a binary decision problem, but for the sake of comparing two tests we can treat it as such.
+%The values of the decision function that uses these critical  values, for each pair of embedded points (indexed by $i$, are  $(\tilde{y}_i^{(1)},\tilde{y}_i^{(2)}),\quad i=1,\ldots,m$.
+To compare the  two statistical tests with  $w=0.5$ and $w$=$w^*$ , simulation result are used to compute $2\times 2$ contingency-tables of correct decisions and incorrect decisions made by each statistical test (or equivalently true and false classifications made by two classifiers). Let $\mathcal{D}$ denote the test dissimilarities for a new test pair, $\tau(\mathcal{D})$ the test statistic for the oos-embedding of that pair,$m_{\mathcal{D}}$ denote a binary variable whose value is $1$ if the pair is matched,$0$ otherwise. Denote decision outcome (whether the true or false decision is made) for the $i^{th}$ test pair by two binary variables $g_1^{i}$ and $g_2^{i}$,respectively.  If $g_1^{i} =1$ and $g_2^{i}=0$  for the $l^{th}$ MC replicate,  the first test made the correct decision and the second test made the incorrect decision with regard to the null and alternative hypotheses. 
+\begin{align*}
+g_1^{i}=\I(\I(\tau(\mathcal{D^{(i)}})>c(0.5))=m_{\mathcal{D}^{(i)}}) \textrm{for the first statistical test} \\
+g_2^{i}=\I(\I(\tau(\mathcal{D^{(i)}})>c(w^*))=m_{\mathcal{D}^{(i)}}) \textrm{for the second statistical test}
+\end{align*}
 % McNemar's test was used to compare the two contingency tables for fixed $\alpha$. McNemar's test is a statistical test for %comparing two binary classifiers based on a 2-by-2 table of the counts of misclassifications of each. That is,
-Consider the contingency table for a Monte Carlo replicate given by $$G^{(l)}= \begin{array}{|c|c|}
+Consider the contingency table for the any Monte Carlo replicate given by $$G^{(l)}= \begin{array}{|c|c|}
       \hline
-       e_{FF}^{(l)} & e_{TF}^{(l)}\\
+       e_{00}^{(l)} & e_{10}^{(l)}\\
       \hline
-       e_{FT}^{(l)} & e_{TT}^{(l)}\\
+       e_{01}^{(l)} & e_{11}^{(l)}\\
       \hline
-      \end{array}      $$  where $l$ is the index of the MC replicate, $e_{g_1g_2}^{(l)}$ is equal to the number of instances at which the true hypothesis were identified  correctly ($g_1=True$) or incorrectly ($g_1=False$) by the first test, and correctly ($g_2=True$) or incorrectly ($g_2=False$) by the second test in that MC replicate.
+      \end{array}      $$  where  $e_{uv}^{(l)}=\sum_{i}{\I(\{g_1^{i}=u\} \&\& \{g_2^{i}=v\})}$ is equal to the number of instances at which the true hypothesis were identified  correctly ($g_1^{i}=1$) or incorrectly ($g_1^{i}=0$) by the first test, and correctly ($g_2^{i}=1$) or incorrectly ($g_2^{i}=0$) by the second test \emph{ in the $l^{th}$  MC replicate}.
 
-Under the null  hypothesis that the two predictors have the same power at $\alpha$ ,
- $Pr[\left(g_1g_2\right)=(TF)]=Pr[\left(g_1g_2\right)=(FT)]$, so $\sum_l{I \{e_{TF}^{(l)}>e_{FT}^{(l)}\}}$ will be distributed according to  the binomial distribution, $\mathcal{B}(nmc,0.5)$. ($I\{\cdot\}$ is the indicator function.) 
+Under the null  hypothesis that the two predictors have the same power at $\alpha$,
+ $\Pry[\left(\{g_1^{i}=1\} \&\& \{g_2^{i}=0\}\right)]=\Pry[\left(\{g_1^{i}=0\} \&\& \{g_2^{i}=1\}\right)]$. Thus, a one-sided sign test is appropriate,  where the test statistic $e_{01}^{(l)}$ is distributed according to  the binomial distribution, $\mcB(e_{10}^{(l)}+e_{01}^{(l)},0.5)$. 
 
-% For each Monte Carlo replicate, the p-value of McNemar's test was computed separately.
+We consider simulated data with the noisy version of the Gaussian setting for this McNemar's test. The critical values $c(0.5)$ and $c(w^*)$ were computed for  allowable type I error $\alpha=0.05$ for the two tests. When comparing  the null hypothesis that  $\mcH_{0}: \beta_{\alpha}({\hat{w}^*})=\beta_{\alpha}({w=0.5})$ against the alternative $\mcH_{A}=\beta_{\alpha}({\hat{w}^*})>\beta_{\alpha}({w=0.5})$, the p-value is $p<1.09E-24$ which indicates the power using estimate of optimal $w^*$ is significantly greater than the power when using $w=0.5$.
 
-\begin{comment}
-\begin{figure}
-\begin{tabular}{p{4.7cm}p{4.7cm}}
-$e_{00}$:Misclassified by \newline Both $C_1$ and $C_2$ & $e_{10}$:Correctly Classified by $C_1$,\newline Misclassified by $C_2$\\
-& \\
-$e_{01}$:Correctly Classified by $C_1$, \newline Misclassified by $C_2$ & $e_{11}$:Correctly Classified by \newline Both $C_1$ and $C_2$
-\end{tabular}. 
+Under the null distribution, we expect p-values for each MC replicate to be uniformly distributed. We find
+ the distribution of p-values from McNemar's tests  is skewed and  we reject $\beta_{0.5}>=\beta_{w^*} $ for  55\%  of the Monte Carlo replicates.
+%Insert plot here? 
 
-\caption{Contingency Table for McNemar's test for comparing two classifiers, $C_1$ and $C_2$}
-\label{fig:cont-table}
-\end{figure}
-\end{comment}
-
-For the noisy version of the Gaussian setting at allowable type I error 0.05 for the two tests, when comparing  the null hypothesis that  $H_{0}: \beta_{\alpha}({\hat{w}^*})=\beta_{\alpha}({w=0.5})$ against the alternative $H_{A}=\beta_{\alpha}({\hat{w}^*})>\beta_{\alpha}({w=0.5})$, the p-value is $p<1.09E-24$ which indicates the power using estimate of optimal $w^*$ is significantly greater than the power when using $w=0.5$. 
-%In fact
-% the distribution of p-values from McNemar's tests is skewed and  we reject $\beta_{0.5}>=\beta_{w^*} $ for  55\%  of the %Monte Carlo replicates.
-
-
- Another avenue for investigation is  how the parameters of the distribution of  data such as $p$ ,$q$, $r$, $c$ and $d$ affect the results. For example, it was  speculated that as $q$, the number of   ``noise" dimensions increases, the performance of  CCA approach would suffer, due to spurious correlations. This hypothesis was tested using simulated data with q=90. The  bundle of ROC curves in the Figure \ref{fig:largeq}.  Both CCA and  regularized CCA is not competitive with JOFC approach with the appropriate $w$ values. In fact, the ROC curve for CCA is not very distinct from  random guess line.
+\section{Effects of parameters of data model }
+ Another avenue for investigation is  how the parameters of the distribution of  data such as $p$ ,$q$, $r$, $c$ and $d$ affect the results. We speculated  that as $q$, the number of   noise dimensions increases, the performance of  CCA approach would suffer, due to spurious correlations. We tested  our speculation using simulated data in the Gaussian Setting with $q=90$. The results are visualized in the  bundle of ROC curves in the Figure \ref{fig:largeq}.  Both CCA and  regularized CCA are not competitive with the JOFC approach with the appropriate $w$ values. In fact, the ROC curve for CCA is not very distinct from  random guess line. We conclude that CCA approach is not robust with respect to large number of noise dimensions, no matter what the magnitude  of the noise  is (which is controlled by the parameter $c$).
 
 \begin{figure}
 \includegraphics[scale=0.8]{MVN_JOFC_q_90_c_0_001}
@@ -173,28 +171,23 @@ For the noisy version of the Gaussian setting at allowable type I error 0.05 for
 \end{figure}
 
 
-
-
 \section{Match Testing when the number of conditions, $K$, is larger than 2\label{k_more_than_two_experiment}}
 
 
-As it was mentioned, all of the approaches are generalizable to $K>2$ conditions, though an ambiguity need to be resolved. The alternative hypothesis could be  defined as the event that at least one of the K new dissimilarities are pairwise unmatched ($ H_{A1}: \exists i, j , 1\leq i < j \leq K :\bm{y}_{i} \nsim \bm{y}_{j} $ ) or it could be defined as the case that absolutely none of the K dissimilarities are pairwise matched   ($H_{A2}: \forall i, j , 1\leq i < j \leq K :\bm{y}_{i} \nsim \bm{y}_{j}$ )  .
+As it was mentioned, all of the approaches are generalizable to $K>2$ conditions, though an ambiguity need to be resolved. The alternative hypothesis could be  defined as the event that at least one of the K new dissimilarities are pairwise unmatched ($ H_{A1}: \exists i, j , 1\leq i < j \leq K :\bm{y}_{i} \nsim \bm{y}_{j} $ ) or it could be defined as the case that absolutely none of the K dissimilarities are pairwise matched   ($H_{A2}: \forall i, j , 1\leq i < j \leq K :\bm{y}_{i} \nsim \bm{y}_{j}$ ). We chose the alternative   $ H_{A1}$ for our simulations.
 % and the sample from the alternative must be generated accordingly during Monte Carlo simulation. In the first case, an appropriate test statistic is then the maximum of the pairwise %distances between embeddings of each test K-tuple.
 
-To adapt the P$\circ$M approach to this etting, one can use Procrustes analysis  generalized to more than two configurations. Generalized Procrustes Analysis \cite{GPCA} is described in \ref{sec:GenProcrustes}.
+To adapt the P$\circ$M approach to this setting, one can use Procrustes analysis  generalized to more than two configurations. Generalized Procrustes Analysis \cite{GPCA} is described in \ref{sec:GenProcrustes}.
 
-We also have described generalized CCA in \autoref{sec:GenCCA}.
+We also have described generalized CCA in \autoref{sec:GenCCA}.  Of the different choices for the generalization of CCA, SUMCOR criterion was chosen.
 
-To test whether JOFC and generalized CCA approaches are appropriate for this setting as well,
-The simulations in the previous section\ref{sec:Simulation Results} were repeated with $K$-condition data , generated by a multivariate normal model with $K=3$ conditions. 
-The alternative was chosen as $ H_{A1}$ and SUMCOR criterion was chosen as the generalization of CCA.
- The ``Noisy" case will be investigated, i.e. 
- $q$-dimensional noise vectors of magnitude $c$ were added to the matched measurements, and ``signal" vectors were multiplied by $1-c$.  
- The ROC curves for these simulations are shown in \ref{fig:MVN-c001-power-w-Kcond}.
-
-
+To test whether P$\circ$M, JOFC, CCA and generalized CCA approaches are appropriate for this setting as well,
+the simulations in \autoref{sec:Simulation Results} were repeated with $K$-condition data , generated by a multivariate normal model with $K=3$ conditions. 
  
-
+ We investigate the  ``noisy" case for this setting , i.e. 
+ $q$-dimensional noise vectors of magnitude $c$ were added to the matched measurements, and ``signal" vectors were multiplied by $1-c$.  
+ 
+ The ROC curves for these simulations are shown in \ref{fig:MVN-c001-power-w-Kcond}.
 
 
 \begin{figure}
@@ -238,9 +231,10 @@ method \cite{ZhuGhodsi}, resulting in d = 6 for this data set.
 
 
 \section{Model Selection}
-For the simulations presented up to now, the embedding dimension $d$ was set to 2. This was a convenient choice which allowed us to investigate various aspects of JOFC and competing approaches.
-However,  more care is required in selection of this parameter, since it plays such a big role in performance in general learning settings. The signal dimension was set to $p=10$ and different $d=2,5,7,10,15$ values were used to test the JOFC approach.
-The following plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} shows the effect of $d$ parameter on the performance of different methods for the Gaussian setting for the noisy case.
+For the simulations presented up to now, the embedding dimension $d$ was set to 2. This was a convenient choice which allowed us to investigate various aspects of the JOFC and competing approaches.
+However,  more care is required in selection of this parameter, since it plays such a big role in performance in general learning settings. To investigate the performance of JOFC approach as $d$ changes, we ran the usual Gaussian setting simulations. The signal dimension was set to $p=10$ and different $d=2,5,7,10,15$ values were used to test the JOFC approach.
+
+The  plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} shows the effect of $d$ parameter on the performance of different methods for the Gaussian setting for the noisy case.
 
 \begin{figure}
  \centering
@@ -287,7 +281,8 @@ The following plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} 
 \end{center}
 
 
-
+The result show how different approaches are sensitive to the embedding dimension. For larger $d$, CCA and regularized CCA has serious degradation in performance. We expect that this is again due to spurious correlation phenomenon, where more noise dimensions appear in the embedding as the embedding dimension increases. At the same time, the performance of  P$\circ$M and and JOFC with  $w=0.5$  improve with increasing embedding dimension and become the approaches with the best performing test statistic. JOFC with the highest $w$ values ${0.95,0.99,0.999}$  perform slightly worse while the ROC curves for the other $w$ values are more or less the same. Increasing the embedding dimension, seems to push $w^*$ towards the fidelity end ($w=0$) of the fidelity-commensurability tradeoff.
+These results require more investigation, so we can  provide a rigorous explanation as to   how the embedding dimension effects the different approaches (JOFC and  P$\circ$M). Specifically, it would help how the null and alternative distributions of the test statistic for the different approaches change with $d$.
 
 
 

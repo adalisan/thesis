@@ -235,16 +235,16 @@ Let $z$ be a random variable. The functional $g(z;\gamma) = P\left[z \geq \gamma
 
 \begin{proof}
 Suppose $z_n$ converges to $z$ in probability. Then by definition, for any  $\delta>0$ and  $\epsilon>0$, $\exists	N\in\mathbb{Z^+}$ such that for all   $n \geq N$ 
-$$ Pr\left[\left|z_n-z\right| \geq \delta \right] \leq \epsilon.$$
+$$ \Pry\left[\left|z_n-z\right| \geq \delta \right] \leq \epsilon.$$
 
  The functional  $g(z;\gamma)$ is  non-increasing with respect to $\gamma$. Therefore, for $\delta>0$, 
 $g(z_n;\gamma) -g(z;\gamma) \geq g(z_n;\gamma) -g(z;\gamma-\delta) $. Furthermore, $g(z;\gamma)$ is left-continuous with respect to $\gamma$, so the difference between the two sides of the inequality can be made as small as desired.
 
 \begin{eqnarray}
-g(z_n;\gamma) - g(z;\gamma-\delta) & = &Pr\left[z_n\geq \gamma \right] -Pr\left[z \geq  \gamma - \delta \right] \label{prob_defn}\\
-& \leq &  Pr\left[\{z_n \geq \gamma \} \backslash \{z \geq \gamma - \delta \} \right] \label{set_diff}\\
-& \leq & Pr\left[\{\{z_n \geq \gamma \} \backslash \{z \geq \gamma - \delta \} \} \cap \{z_n \geq  z\} \right] \label{conjunct_with_set} \\
-& =  & Pr\left[\{z_n - z \geq \delta \} \right] \leq \epsilon. \label{upper_semicont}
+g(z_n;\gamma) - g(z;\gamma-\delta) & = &\Pry\left[z_n\geq \gamma \right] -\Pry\left[z \geq  \gamma - \delta \right] \label{prob_defn}\\
+& \leq &  \Pry\left[\{z_n \geq \gamma \} \backslash \{z \geq \gamma - \delta \} \right] \label{set_diff}\\
+& \leq & \Pry\left[\{\{z_n \geq \gamma \} \backslash \{z \geq \gamma - \delta \} \} \cap \{z_n \geq  z\} \right] \label{conjunct_with_set} \\
+& =  & \Pry\left[\{z_n - z \geq \delta \} \right] \leq \epsilon. \label{upper_semicont}
 \end{eqnarray}
  
 Since $\epsilon$ and $\delta$ are arbitrary,
@@ -268,20 +268,20 @@ Along with \eqref{lower_semicont}, this means that
 
 \begin{thm} \label{main_thm}
 Let $T(w)$ be  a stochastic process indexed by $w$ in the interval (0,1). Assume  the process is continuous in probability  (stochastic continuity)   at $w=w_0$,  i.e.
-\begin{equation} \forall a>0 \quad  \lim_{s \rightarrow w_0} Pr\left[\left|T(s)-T(w_0) \right| \geq a \right] = 0 
+\begin{equation} \forall a>0 \quad  \lim_{s \rightarrow w_0} \Pry\left[\left|T(s)-T(w_0) \right| \geq a \right] = 0 
 \end{equation}
-for $ w_0\in (0,1)$. Furthermore, assume that $Pr\left[T(w_0)=0\right]=0$.
+for $ w_0\in (0,1)$. Furthermore, assume that $\Pry\left[T(w_0)=0\right]=0$.
 
-Then, $Pr \left[ T(w) \geq 0\right]$ is continuous at $w_0$.
+Then, $\Pry \left[ T(w) \geq 0\right]$ is continuous at $w_0$.
 \end{thm}
 
 \begin{proof}
-Consider any sequence $w_n \rightarrow w_0$. Let $z_n = T(w_n)$ and  $z=T(w_0)$ and choose $\gamma=0$. Since $T(w)$ is continuous in probability at $w_0$ and $Pr\left[T(w_0)=0\right]=0$, conditions for Lemma \ref{lemma_1} hold, i.e. \hspace{-.5em} as $w_n\rightarrow w_0$, $z_n$ converges in probability to $z=T(w_0)$. By  Lemma \ref{lemma_1}, we conclude  $g(T(w_n); 0 ) = Pr \left[ T(w_n) \geq 0\right]$ converges to $g(T(w_0);0)$. Therefore $g(T(w);0)$ is continuous with respect to $w$.
+Consider any sequence $w_n \rightarrow w_0$. Let $z_n = T(w_n)$ and  $z=T(w_0)$ and choose $\gamma=0$. Since $T(w)$ is continuous in probability at $w_0$ and $\Pry\left[T(w_0)=0\right]=0$, conditions for Lemma \ref{lemma_1} hold, i.e. \hspace{-.5em} as $w_n\rightarrow w_0$, $z_n$ converges in probability to $z=T(w_0)$. By  Lemma \ref{lemma_1}, we conclude  $g(T(w_n); 0 ) = \Pry \left[ T(w_n) \geq 0\right]$ converges to $g(T(w_0);0)$. Therefore $g(T(w);0)$ is continuous with respect to $w$.
 \end{proof}
 
 
 \begin{cor}{
- If $Pr[T_a(w)-T_0(w)=0]=0$ and $T_a(w)$, $T_0(w)$ are continuous in probability for all $w \in (0,1)$, then $AUC(w)=Pr\left[T_a(w)-T_0(w) >0 \right]$ is continuous with respect to $w$  in the interval $(0,1)$.}
+ If $\Pry[T_a(w)-T_0(w)=0]=0$ and $T_a(w)$, $T_0(w)$ are continuous in probability for all $w \in (0,1)$, then $AUC(w)=\Pry\left[T_a(w)-T_0(w) >0 \right]$ is continuous with respect to $w$  in the interval $(0,1)$.}
 \end{cor}
 \begin{proof}
 

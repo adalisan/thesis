@@ -61,7 +61,19 @@
 \newtheorem{thm}{Theorem}
 \newtheorem{cor}{Corollary}
 \newtheorem{lem}{Lemma}
+\newtheorem{defn}{Definition}
 
+\usepackage[refpage]{nomencl}
+\renewcommand{\nomname}{List of Notations}
+\renewcommand*{\pagedeclaration}[1]{\unskip\dotfill\hyperpage{#1}}
+
+
+\makenomenclature
+
+\usepackage{makeidx}
+\makeindex
+
+%shorthand commands
 \input{common.tex}
 
 %\tolerance=10000

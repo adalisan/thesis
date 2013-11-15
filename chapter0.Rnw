@@ -23,7 +23,7 @@ Thanks!
 
 \begin{dedication}
  
-This thesis is dedicated to myself who did all the hard work,
+This thesis is dedicated to myself who did all the hard work, my mother 
 
 \end{dedication}
 
@@ -35,5 +35,8 @@ This thesis is dedicated to myself who did all the hard work,
 
 % generate list of figures
 \listoffigures
+
+
+\printnomenclature
 
 \end{frontmatter}
