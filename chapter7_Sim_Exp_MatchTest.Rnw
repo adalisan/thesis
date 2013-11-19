@@ -13,7 +13,7 @@
 
 
 \section{Simulation Results\label{sec:Simulation Results}}
-To compare the  different approaches, training data of matched pairs of measurements were generated according to the Dirichlet and Gaussian settings\ref{chap:data_models} with parameters $p,q,r,c$. Dissimilarity representations\ref{sec:dissim_repr} were computed from pairwise Euclidean distances of these measurements. A set of matched pairs and unmatched pairs of measurements were also generated for testing with the same distributions. Following the out-of-sample embedding of the dissimilarities test pairs (computed via by one of  P$\circ $M \ref{chap:PoM}, CCA \ref{chap:CCA}, regularized CCA \ref{sec:CCA} and JOFC \ref{chap:match_detection} approaches),  test statistics  for matched and unmatched pairs (corresponding to null and alternative hypothesis, respectively) were used to compute power values at a set of fixed type I error rate $\alpha$ values. By using the same generated data for all of the approaches, we are able to compare the performance of  different approaches either using the area under curve (AUC) measure or the statistical power at a desired $\alpha$ value.
+To compare the  different approaches, training data of matched pairs of measurements were generated according to the Dirichlet and Gaussian settings  with parameters $p,q,r,c$ \ref{chap:data_models}. Dissimilarity representations (\ref{sec:dissim_repr}) were computed from pairwise Euclidean distances of these measurements. A set of matched pairs and unmatched pairs of measurements were also generated for testing with the same distributions. Following the out-of-sample embedding of the dissimilarities test pairs (computed via by one of  P$\circ $M \ref{chap:PoM}, CCA \ref{chap:CCA}, regularized CCA \ref{sec:CCA} and JOFC \ref{chap:match_detection} approaches),  test statistics  for matched and unmatched pairs (corresponding to null and alternative hypothesis, respectively) were used to compute power values at a set of fixed type I error rate $\alpha$ values. By using the same generated data for all of the approaches, we are able to compare the performance of  different approaches either using the area under curve (AUC) measure or the statistical power at a desired $\alpha$ value.
 
  Additionally, to consider  relative robustness of methods , ``noisy" measurements were created from the original measurements by concatenating randomly generated independent noise vectors (\autoref{noise}).   This setting will be referred to as the ``noisy case". The magnitude of noise is controlled by the parameter $c$ in equation \eqref{eq:noise-expr}). The original setting, with $c=0$,  will be referred as the ``noiseless case".
 If the magnitude of noise is small enough, and the embedding dimension is not larger than signal dimension, the embeddings provided by PCA and MDS should not be affected significantly by the noise. However  if the number of noise dimensions (controlled by the parameter $q$ in the distribution of $E_{ik}$ as defined in equation \eqref{eq:noise-expr} ) is large enough, it is expected that embeddings via  CCA  will  be affected due to spurious correlation between noisy dimensions.
@@ -62,7 +62,7 @@ i=1,\ldots,m$
 \end{figure}
 
 \begin{figure}
-\includegraphics[scale=0.95]{OOSMVN-power-w-c0_01.pdf}
+\includegraphics[scale=0.75]{OOSMVN-power-w-c0_01.pdf}
 \caption{Power ($\beta$) vs $w$ plot for different Type I error ($\alpha$) values for the Gaussian setting (noisy case)}
 \label{fig:MVN-c001-power-w}
 \end{figure}
@@ -81,7 +81,7 @@ i=1,\ldots,m$
 \end{figure}
 
 \begin{figure}
-\includegraphics[scale=0.95]{OOSDirichlet-power-w-c0-01.pdf}
+\includegraphics[scale=0.75]{OOSDirichlet-power-w-c0-01.pdf}
 \caption{Power ($\beta$) vs $w$ plot for different Type I error ($\alpha$) values for the Gaussian setting (noisy case)}
 \label{fig:Dir-c001-power-w}
 \end{figure}
@@ -171,13 +171,13 @@ Under the null distribution, we expect p-values for each MC replicate to be unif
 \end{figure}
 
 
-\section{Match Testing when the number of conditions, $K$, is larger than 2\label{k_more_than_two_experiment}}
+\section{Match Testing when the number of\\ conditions, $K$, is larger than 2\label{k_more_than_two_experiment}}
 
 
 As it was mentioned, all of the approaches are generalizable to $K>2$ conditions, though an ambiguity need to be resolved. The alternative hypothesis could be  defined as the event that at least one of the K new dissimilarities are pairwise unmatched ($ H_{A1}: \exists i, j , 1\leq i < j \leq K :\bm{y}_{i} \nsim \bm{y}_{j} $ ) or it could be defined as the case that absolutely none of the K dissimilarities are pairwise matched   ($H_{A2}: \forall i, j , 1\leq i < j \leq K :\bm{y}_{i} \nsim \bm{y}_{j}$ ). We chose the alternative   $ H_{A1}$ for our simulations.
 % and the sample from the alternative must be generated accordingly during Monte Carlo simulation. In the first case, an appropriate test statistic is then the maximum of the pairwise %distances between embeddings of each test K-tuple.
 
-To adapt the P$\circ$M approach to this setting, one can use Procrustes analysis  generalized to more than two configurations. Generalized Procrustes Analysis \cite{GPCA} is described in \ref{sec:GenProcrustes}.
+To adapt the P$\circ$M approach to this setting, one can use Procrustes analysis  generalized to more than two configurations. Generalized Procrustes Analysis \cite{GPCA} is described in \autoref{sec:GenProcrustes}.
 
 We also have described generalized CCA in \autoref{sec:GenCCA}.  Of the different choices for the generalization of CCA, SUMCOR criterion was chosen.
 
@@ -212,12 +212,12 @@ The exploitation task is still testing for matchedness of vertices between diffe
 For hypothesis testing,   randomly held out four documents - one matched pair and one unmatched pair
  -  are used to compute empirical type I error $\alpha$ and estimate of power based on the critical value computed
   from the distribution of the test statistic for the remaining 1380 matched pairs. 
-The test statistic is computed using one of the three approached mentioned  $cca$, $p\circ m$, and $jofc$ . 
+The test statistic is computed using one of the three approached mentioned  $CCA$, $P\circ M$, and $JOFC$ . 
 The two sets of held-out matched pairs are embedded as $\tilde{y}_1$ and $\tilde{y}_2$, via out-of-sample
 embedding, to estimate the null distribution of the test statistic $T = d(\tilde{y}_1; \tilde{y}_2)$. This allows
 us to estimate critical values for any specified Type I error level. 
-Then the two sets of heldout unmatched pairs are embedded as $\tilde{y'}_1$ and $\tilde{y'}_2$, via out-of-sample embedding. 
-$T' = d(\tilde{y'}_1; \tilde{y'}_2)$ will give us an empirical distribution of the test statistic  under the alternative hypothesis. 
+Then the two sets of heldout unmatched pairs are embedded as $\tilde{y}_1^{(u)}$ and $\tilde{y}_2^{(u)}$, via out-of-sample embedding. 
+$T' = d(\tilde{y}_1^{(u)}; \tilde{y}_1^{(u)})$ will give us an empirical distribution of the test statistic  under the alternative hypothesis. 
 And the distribution under null hypothesis and under alternative hypothesis can be used to estimate power.
 Target dimensionality d is determined by the Zhu and Ghodsi  automatic dimensionality selection
 method \cite{ZhuGhodsi}, resulting in d = 6 for this data set.
@@ -281,7 +281,7 @@ The  plots of ROC curves in    \ref{fig:ROC-d} and  \ref{fig:ROC-d-15} shows the
 \end{center}
 
 
-The result show how different approaches are sensitive to the embedding dimension. For larger $d$, CCA and regularized CCA has serious degradation in performance. We expect that this is again due to spurious correlation phenomenon, where more noise dimensions appear in the embedding as the embedding dimension increases. At the same time, the performance of  P$\circ$M and and JOFC with  $w=0.5$  improve with increasing embedding dimension and become the approaches with the best performing test statistic. JOFC with the highest $w$ values ${0.95,0.99,0.999}$  perform slightly worse while the ROC curves for the other $w$ values are more or less the same. Increasing the embedding dimension, seems to push $w^*$ towards the fidelity end ($w=0$) of the fidelity-commensurability tradeoff.
+The results show how different approaches are sensitive to the embedding dimension. For larger $d$, CCA and regularized CCA has serious degradation in performance. We expect that this is again due to spurious correlation phenomenon, where more noise dimensions appear in the embedding as the embedding dimension increases. At the same time, the performance of  P$\circ$M and and JOFC with  $w=0.5$  improve with increasing embedding dimension and become the approaches with the best performing test statistic. JOFC with the highest $w$ values ${0.95,0.99,0.999}$  perform slightly worse while the ROC curves for the other $w$ values are more or less the same. Increasing the embedding dimension, seems to push $w^*$ towards the fidelity end ($w=0$) of the fidelity-commensurability tradeoff.
 These results require more investigation, so we can  provide a rigorous explanation as to   how the embedding dimension effects the different approaches (JOFC and  P$\circ$M). Specifically, it would help how the null and alternative distributions of the test statistic for the different approaches change with $d$.
 
 

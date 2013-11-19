@@ -23,7 +23,7 @@ $X$ and $Y$ can be of different dimensions $s_1$ and $s_2$, but for  the sake of
 In general, the projection mappings are to a pair of $d$-dimensional linear subspaces, that is $U_1:\mathbb{R}^s \rightarrow  \mathbb{R}^{d}$, $U_2 :\mathbb{R}^s \rightarrow  \mathbb{R}^{d}$. The projection matrices which represent the mappings are $\mathcal{U}_1$ and $\mathcal{U}_2$  whose rows are the direction vectors ${{u}_{1(i)},{u}_{2(i)}}, i=1,\ldots,d $. These additional pairs of projection vectors can be computed sequentially, with the constraints that the projections along the new directions are uncorrelated with  projections along previous directions. That is, $i^{th}$ pair of directions  that maximize correlation is computed by 
 $$
 {\hat{(u)}_{1(i)},\hat{(u)}_{2(i)}}=\arg\max_{u_{1(i)},u_{2(i)}\in\mathbb{R}^s} {E[u_{1(i)}^{T}XY^Tu_{2(i)}]}.$$ subject to constraints $E[{u_{1(i)}^{T}XX^T u_{1(i)}}]=1$ , $E[{u_{2(i)}^{T}YY^T u_{2(i)}}]=1$, $E[{u_{1(i)}^{T}XX^T u_{1(j)}}]=0$,  
-   $ E[{u_{2(i)}^{T}YY^T u_{2(j)}}]=\nolinebreak0$ $\forall \quad  j=1,\ldots,i-1$.  These directions are called ''canonical`` directions. The projections $\X \hat{(u)}_{1(i)}, i=1,\ldots,d$ are called ''canonical'' variates.
+   $ E[{u_{2(i)}^{T}YY^T u_{2(j)}}]=\nolinebreak0$ $\forall \quad  j=1,\ldots,i-1$.  These directions are called ``canonical'' directions. The projections $\X \hat{(u)}_{1(i)}, i=1,\ldots,d$ are called ``canonical'' variates.
    
    For sample CCA, $E[XX^T]$,$E[YY^T]$ and $E[XY^T]$ are replaced with their sample estimates.
 
@@ -48,7 +48,7 @@ The vectors $v_i$ and $w_i$ that maximize $\frac{<v_i,w_i>}{\|v_i\|}{\|w_i\|}$ a
 \end{defn}
 
 Now for two $n \times s$ configuration matrices $\X$ and $\Y$, consider the column spaces of the two  matrices  $\mcL{\X}={\X u : u \in \R^s}$ and ${\mcL{\Y}}$. Note that these spaces are subspaces of $\R^n$ , not of $\R^s$ (The $n$ points of the configuration lie in $\R^s$). 
-We already know that CCA/CVA maximizes the correlation of the variates. Let us we borrow terminology from pattern recognition and call any one-dimensional subspace of   $\mcL{\X}$ (and $\mcL{\Y}$) a ''feature``. In this case any linear combination of the  the  original feature vectors(rows of $\X$ and $\Y$) is also a feature. The (sample) correlation of the variates (defined by the canonical ''direction``s $u_{1(i)}$ and $u_{2(i)}$) in CCA is also  the cosine of the angle between the features defined by the same directions . The uncorrelatedness condition of two canonical variates of $\X$  correspond to perpendicularity of the corresponding feature vectors of $\X$. Thus,
+We already know that CCA/CVA maximizes the correlation of the variates. Let us we borrow terminology from pattern recognition and call any one-dimensional subspace of   $\mcL{\X}$ (and $\mcL{\Y}$) a ``feature''. In this case any linear combination of the  the  original feature vectors(rows of $\X$ and $\Y$) is also a feature. The (sample) correlation of the variates (defined by the canonical directions $u_{1(i)}$ and $u_{2(i)}$) in CCA is also  the cosine of the angle between the features defined by the same directions . The uncorrelatedness condition of two canonical variates of $\X$  correspond to perpendicularity of the corresponding feature vectors of $\X$. Thus,
  CCA/CVA for $d$ variates solves the problem of finding the first $d$ canonical angles and the corresponding canonical directions of $\mcL{\X}$ and $\mcL{\Y}$.
  
 
@@ -115,17 +115,17 @@ Assume CCA is applied to $\X_1$ and $\X_2$ which yields two  $n \times d$ matric
 For the same multi-view data, $\X_1$ and $\X_2$,
 let \[ Z= \left[
 \begin{array}{cc}
-                  \X_1 & \vec{0} \\
-                \vec{0}   & \X_2 
+                  \X_1 & \bm{0} \\
+                \bm{0}   & \X_2 
                 \end{array}
                 \right]
                 \].
                 Let $W=\left[
                 \begin{array}{cc}
-                \vec{0} & I_n \\
-                I_n   & \vec{0}
+                \bm{0} & I_n \\
+                I_n   & \bm{0}
                 \end{array}
-                \right]$ be a $2n \times 2n$ weight matrix. We can assume $W$ is an adjacency matrix which represents a graph which is bipartite and the only  edges are between $i^{th}$ and $(n+i)^{th}$ vertices (which correspond to matched pairs in earlier chapters) for $i \in \{1,\ldots,n\}$. The degree matrix for this graph is then  $D=I_{2n}$. The graph laplacian is $L=D-W$. Assume the constraint that the embedding coordinate of $i^{th}$ point are $\widetilde{Z_i}=p^{T}Z_i$ is introduced for some $p \in \mathbb{R}^d$, ie $p$ is a projection vector. Let us call this constraint the linearity condition. Then, the embedding of $i^{th}$ point of the $2n$ points  via Spectral Embedding where the weighted adjacency matrix is $L$,is $\widetilde{Z_i}$, where $\widetilde{Z_i}= \left[] \widetilde{X_{1i}} \vec{0} \right]$ or  $\widetilde{Z_i}=\left[ \vec{0} \widetilde{X_{2i}} \right]$ and $\widetilde{X_{1i}}$ and $\widetilde{X_{2i}}$ are  the $i^{th}$ rows of $\widetilde{\X_1}$ and $\widetilde{\X_2}$ yielded by CCA.  As the authors note in \cite{CCAviaSpectralEmbed} by looking at $W$, one can take intra-view similarities into account (which means preserving more fidelity) and choose the diagonal block matrices in $W$ to be nonzero.
+                \right]$ be a $2n \times 2n$ weight matrix. We can assume $W$ is an adjacency matrix which represents a graph which is bipartite and the only  edges are between $i^{th}$ and $(n+i)^{th}$ vertices (which correspond to matched pairs in earlier chapters) for $i \in \{1,\ldots,n\}$. The degree matrix for this graph is then  $D=I_{2n}$. The graph laplacian is $L=D-W$. Assume the constraint that the embedding coordinate of $i^{th}$ point are $\widetilde{Z_i}=p^{T}Z_i$ is introduced for some $p \in \mathbb{R}^d$, ie $p$ is a projection vector. Let us call this constraint the linearity condition. Then, the embedding of $i^{th}$ point of the $2n$ points  via Spectral Embedding where the weighted adjacency matrix is $L$,is $\widetilde{Z_i}$, where $\widetilde{Z_i}= \left[ \widetilde{X_{1i}} \onespace \bm{0} \right]$ or  $\widetilde{Z_i}=\left[ \bm{0} \onespace \widetilde{X_{2i}} \right]$ and $\widetilde{X_{1i}}$ and $\widetilde{X_{2i}}$ are  the $i^{th}$ rows of $\widetilde{\X_1}$ and $\widetilde{\X_2}$ yielded by CCA.  As the authors note in \cite{CCAviaSpectralEmbed} by looking at $W$, one can take intra-view similarities into account (which means preserving more fidelity) and choose the diagonal block matrices in $W$ to be nonzero.
                 %(e.g. \exp(-d(\X_1i,\X_1j) for $(i,j)^{th} entry in the first diagonal block of  $W$. 
                 This would be akin to a JOFC-type embedding, as the commensurability criterion is taken into account by using  an identity matrix as the  off-diagonal block matrix in $W$ and the fidelity criterion by non-zero diagonal block matrices in $W$.
                 

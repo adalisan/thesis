@@ -121,7 +121,7 @@ XX^T = \frac{-1}{2} \{(I_n- \frac{1}{n}\bm{1}\bm{1}^{T})\Delta^2 (I_n- \frac{1}{
 
 $X$ can be recovered using a eigenvalue decomposition of $Z=\frac{-1}{2} \{ H \Delta^2 H\} $ where $H= (I_n- \frac{1}{n}\bm{1}\bm{1}^{T})$ . For the eigenvalue decomposition $Z=UDV^T$, the solution for $X$ is $\hat{X}=UD^{\frac{1}{2}}$ and  $\hat{X}=XR$ for some rotation matrix $R$. Note that since  $\Delta$ is Euclidean, so  all diagonal elements of $D$ is non-negative and $D^{\frac{1}{2}}$ has positive real entries. 
 
-For dimensionality reduction, we require a lower dimensional configuration in $\R^{d'}$where $d'<d$. For classical MDS, we seek  the configuration $X_{(d')}$ that minimizes   $\|XX^T-X_{(d')}X_{(d')}^T\|_F^2$. This criterion function is called the ''strain`` criterion. The minimizer of strain is found by sorting the diagonal elements of $D$ (eigenvalues of $X$) from largest to smallest and  using the first $d'$ eigenvalues as the diagonal elements of  $D_{(d')}$ and the corresponding eigenvalues as columns of $U_{(d')}$. These matrices give us $n \times d'$ configuration matrix, $\hat{X_{(d')}}=U_{(d')}D_{(d')}^{\frac{1}{2}}$. 
+For dimensionality reduction, we require a lower dimensional configuration in $\R^{d'}$where $d'<d$. For classical MDS, we seek  the configuration $X_{(d')}$ that minimizes   $\|XX^T-X_{(d')}X_{(d')}^T\|_F^2$. This criterion function is called the ``strain'' criterion. The minimizer of strain is found by sorting the diagonal elements of $D$ (eigenvalues of $X$) from largest to smallest and  using the first $d'$ eigenvalues as the diagonal elements of  $D_{(d')}$ and the corresponding eigenvalues as columns of $U_{(d')}$. These matrices give us $n \times d'$ configuration matrix, $\hat{X_{(d')}}=U_{(d')}D_{(d')}^{\frac{1}{2}}$. 
 
 If $\Delta$ is not Euclidean, there might be negative eigenvalues in $D$ which can be attributed to error and replaced by zeros.
 
@@ -136,10 +136,9 @@ Note that Tang et al.\cite{MinhTrosset_SpectralEmbed} point out another connecti
 \subsection{Effect of Perturbations}
   To determine how robust the embeddings are to error in dissimilarity measurements, it is necessary to carry out perturbation analysis. Two papers by Sibson \cite{Sibson_perturbational1979} investigate how small changes in the dissimilarity matrix change the configuration matrix obtained by classical MDS embedding. The main result in  \cite{Sibson_perturbational1979} says that 
   
-    '' Let $E=\Delta^2$ for an Euclidean distance matrix $\Delta$ and $B=-{\frac{1}{2}}HEH$. Let $\lambda$ be a simple eigenvalue of $B$ with unit-length eigenvector $e$. Let $F$ be a symmetric matrix whose diagonal entries are zeros. Let $\widetilde E(\epsilon)= E +\epsilon F + \mcO(\epsilon ^2)$ be the perturbed version of $E$. Then the resulting perturbed versions of of $\lambda$ and $e$ are  $\widetilde \lambda(\epsilon)= \lambda +\epsilon \upsilon + \mcO(\epsilon ^2)$ where $\upsilon=(-\frac{1}{2}e^TFe)$ and  $\widetilde e(\epsilon)= e +\epsilon (\frac{1}{2}\left(B-\lambda I\right)^{\dag}Fe + \frac{1}{2} \left(\lambda n\right)^{-1}(\1_N^T F e)\1_N) + \mcO(\epsilon ^2)$
-    .
-    
-    ``Since  $\upsilon$, the first-order perturbation of $\lambda$ is linear with respect to $F$, we can conclude 
+    ``Let $\mcE=\Delta^2$ for an Euclidean distance matrix $\Delta$ and $B=-{\frac{1}{2}}H\mcE H$. Let $\lambda$ be a simple eigenvalue of $B$ with unit-length eigenvector $e$. Let $F$ be a symmetric matrix whose diagonal entries are zeros. Let $\widetilde \mcE(\epsilon)= \mcE +\epsilon F + \mcO(\epsilon ^2)$ be the perturbed version of $\mcE$. Then the eigenvalue and eigenvector of $\widetilde \mcE(\epsilon)$ (the perturbed versions of $\lambda$ and $e$ ) are  $\widetilde \lambda(\epsilon)= \lambda +\epsilon \upsilon + \mcO(\epsilon ^2)$ where $\upsilon=(-\frac{1}{2}e^TFe)$ and  $\widetilde e(\epsilon)= e +\epsilon (\frac{1}{2}\left(B-\lambda I\right)^{\dag}Fe + \frac{1}{2} \left(\lambda n\right)^{-1}(\1_N^T F e)\1_N) + \mcO(\epsilon ^2)$
+    .''
+    Since  $\upsilon$, the first-order perturbation of $\lambda$ is linear with respect to $F$, we can conclude 
   \[ E[\upsilon]= -\frac{1}{2}e^TE[F]e
   \]  
   

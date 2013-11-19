@@ -76,6 +76,8 @@
 %shorthand commands
 \input{common.tex}
 
+
+\usepackage{animate}
 %\tolerance=10000
 
 %\makeglossary % enable the glossary
