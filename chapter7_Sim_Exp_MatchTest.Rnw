@@ -15,7 +15,7 @@
 \section{Simulation Results\label{sec:Simulation Results}}
 To compare the  different approaches, training data of matched pairs of measurements were generated according to the Dirichlet and Gaussian settings  with parameters $p,q,r,c$ \ref{chap:data_models}. Dissimilarity representations (\ref{sec:dissim_repr}) were computed from pairwise Euclidean distances of these measurements. A set of matched pairs and unmatched pairs of measurements were also generated for testing with the same distributions. Following the out-of-sample embedding of the dissimilarities test pairs (computed via by one of  P$\circ $M \ref{chap:PoM}, CCA \ref{chap:CCA}, regularized CCA \ref{sec:CCA} and JOFC \ref{chap:match_detection} approaches),  test statistics  for matched and unmatched pairs (corresponding to null and alternative hypothesis, respectively) were used to compute power values at a set of fixed type I error rate $\alpha$ values. By using the same generated data for all of the approaches, we are able to compare the performance of  different approaches either using the area under curve (AUC) measure or the statistical power at a desired $\alpha$ value.
 
- Additionally, to consider  relative robustness of methods , ``noisy" measurements were created from the original measurements by concatenating randomly generated independent noise vectors (\autoref{noise}).   This setting will be referred to as the ``noisy case". The magnitude of noise is controlled by the parameter $c$ in equation \eqref{eq:noise-expr}). The original setting, with $c=0$,  will be referred as the ``noiseless case".
+ Additionally, to consider  relative robustness of methods , ``noisy" measurements were created from the original measurements by concatenating randomly generated independent noise vectors (\autoref{subsec:noise}).   This setting will be referred to as the ``noisy case". The magnitude of noise is controlled by the parameter $c$ in equation \eqref{eq:noise-expr}). The original setting, with $c=0$,  will be referred as the ``noiseless case".
 If the magnitude of noise is small enough, and the embedding dimension is not larger than signal dimension, the embeddings provided by PCA and MDS should not be affected significantly by the noise. However  if the number of noise dimensions (controlled by the parameter $q$ in the distribution of $E_{ik}$ as defined in equation \eqref{eq:noise-expr} ) is large enough, it is expected that embeddings via  CCA  will  be affected due to spurious correlation between noisy dimensions.
 
 We will now describe the steps for our Monte Carlo simulation in detail. Given the setting ("Gaussian","Dirichlet"),   the steps for each Monte Carlo replicate are as follows:
@@ -81,7 +81,7 @@ i=1,\ldots,m$
 \end{figure}
 
 \begin{figure}
-\includegraphics[scale=0.75]{OOSDirichlet-power-w-c0-01.pdf}
+\includegraphics[scale=0.80]{OOSDirichlet-power-w-c0-01.pdf}
 \caption{Power ($\beta$) vs $w$ plot for different Type I error ($\alpha$) values for the Gaussian setting (noisy case)}
 \label{fig:Dir-c001-power-w}
 \end{figure}
@@ -196,6 +196,7 @@ the simulations in \autoref{sec:Simulation Results} were repeated with $K$-condi
 \label{fig:MVN-c001-power-w-Kcond}
 \end{figure}
 
+The results indicate a similar behaviour as $K=2$ case. Different  values of $w$ has significantly different ROC curves. This shows that JOFC is a suitable approach for match detection using $K>2$ conditions as well as $K=2$ conditions.
 
 
 \section{Experiments on Wiki Data}
@@ -205,19 +206,19 @@ To test the JOFC approach with real data, a collection of articles are collected
 Wikipedia is our real-life dataset. It is possible to utilize both textual content of the documents and the hyperlink graph structure. The textual content of the documents is summarized by the bag-of-words model. Dissimilarities between documents  in the same language are computed by the Lin-Pantel discounted mutual information \cite{LinPantel,PantelLin}
  and cosine dissimilarity $k(x_{ik}; x_{jk}) = 1 - (x_{ik} x_{jk})/(\|x_{ik}\|_2\|x_{ik}\|_2)$. 
  The dissimilarities based on the hyperlink graph of the collection of the articles are 
- for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$.  Further details about this dataset is available in \cite{Zhiliang_disparate}     
-Only  dissimilarities based on the textual content will be considered in this example.
+ for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$.  Further details about this dataset is available in \cite{Zhiliang_disparate}.     
+Only  dissimilarities based on the textual content will be considered for our experiments presented here.
    
 The exploitation task is still testing for matchedness of vertices between different conditions, in this case wiki articles that are on the same topic  in  different languages.
 For hypothesis testing,   randomly held out four documents - one matched pair and one unmatched pair
  -  are used to compute empirical type I error $\alpha$ and estimate of power based on the critical value computed
   from the distribution of the test statistic for the remaining 1380 matched pairs. 
-The test statistic is computed using one of the three approached mentioned  $CCA$, $P\circ M$, and $JOFC$ . 
+The test statistic is computed using one of the three approached mentioned  CCA, P$\circ$M, and JOFC. 
 The two sets of held-out matched pairs are embedded as $\tilde{y}_1$ and $\tilde{y}_2$, via out-of-sample
-embedding, to estimate the null distribution of the test statistic $T = d(\tilde{y}_1; \tilde{y}_2)$. This allows
+embedding, to estimate the null distribution of the test statistic $T_0 = d(\tilde{y}_1; \tilde{y}_2)$. This allows
 us to estimate critical values for any specified Type I error level. 
 Then the two sets of heldout unmatched pairs are embedded as $\tilde{y}_1^{(u)}$ and $\tilde{y}_2^{(u)}$, via out-of-sample embedding. 
-$T' = d(\tilde{y}_1^{(u)}; \tilde{y}_1^{(u)})$ will give us an empirical distribution of the test statistic  under the alternative hypothesis. 
+$T_{a} = d(\tilde{y}_1^{(u)}; \tilde{y}_1^{(u)})$ will give us an empirical distribution of the test statistic  under the alternative hypothesis. 
 And the distribution under null hypothesis and under alternative hypothesis can be used to estimate power.
 Target dimensionality d is determined by the Zhu and Ghodsi  automatic dimensionality selection
 method \cite{ZhuGhodsi}, resulting in d = 6 for this data set.
@@ -225,9 +226,11 @@ method \cite{ZhuGhodsi}, resulting in d = 6 for this data set.
 
 \begin{figure}
  \centering
-\includegraphics[scale=0.8]{graphs/FidCommPaperwiki-two-cond-plot} 
+\includegraphics[scale=0.8]{graphs/FidCommPaperwiki-two-cond-plot}
+\caption{Match Detection using Wikipedia dataset. Different $w$ values listed in the legend correspond to different ROC curves.}
 \end{figure}
 
+The results show that a lot fidelity is prioritized more compared to Gaussian and Dirichlet simulations presented in \label{sec:Simulation Results}. Our conclusion is that there is no universal $w^*$, as its value depends on the data distribution and the inference task.
 
 
 \section{Model Selection}

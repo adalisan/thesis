@@ -2,16 +2,13 @@
 \label{sec:sgm-faq}
 \chaptermark{Seeded Graph Matching and Fast Approximate Quadratic Programming }
 
-
-
-
 \section{Introduction to Graph Matching}
 
 Another application of  the JOFC approach is  a variant of the graph matching problem. First let us define the general graph matching problem.
 
  
 \subsection{Graph Matching}
-Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$   such that $\| V_1 \|=\| V_2 \|$. Suppose there exists a bijection $f$  between $V_2$ and $V_1$ such that $f(v_2)=v_1$ and $\forall v' \in \mcN(v_2) \textrm{ iff } f(v') \in \mcN(v_1)$. Then the \emph{exact} graph matching problem  is to find $f$. Even determining the existence  of such an isomorphism is NP-hard.  Although an efficient algorithm  for the general  graph matching problem is not known, there are various principled heuristic algorithms for  approximate solutions of the graph matching problem  in the literature\cite{GraphMatchReview}.
+Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$   such that $\| V_1 \|=\| V_2 \|$. Suppose there exists a bijection $f$  between $V_2$ and $V_1$ such that $f(v_2)=v_1$ and $\forall v' \in \mcN(v_2) \textrm{ iff } f(v') \in \mcN(v_1)$. Then the \emph{exact} graph matching problem  is to find $f$. Even the problem of \emph{Graph Isomorphism}, which is defined as determining the existence  of such an isomorphism, is NP-hard.  Although an efficient algorithm  for the general  graph matching problem is not known, there are various principled heuristic algorithms for  approximate solutions of the graph matching problem  in the literature\cite{GraphMatchReview}.
 Even though an isomorphism between the two graphs might not exist,  the \emph{approximate} graph matching problem, which is the task of  finding a bijection $f$ between the
 graphs which minimizes the degree  of mismatch   between  (edges of ) the two graphs, is an interesting problem  worth studying on its own with practical applications\cite{GraphMatchReview,Bengoetxea2002,recentdevGraphMatching2000,VogConGraphMatchFAQ,Zaslavskiy2009}.
 
@@ -55,9 +52,9 @@ For weighted graphs, it could be any monotonic transformation of the difference 
 %
    
    
- Note this optimization problem is equivalent to minimizing various functions, \eg
+ Note this optimization problem is equivalent to the minimization of various functions over all permutation matrices $P$,  \eg
  \begin{itemize}
-\item $\|A(I_{m \times m}\oplus P)-(I_{m \times m}\oplus P)B\|_1$ (since $I_{m \times m}\oplus P$ is a permutation matrix) or
+\item $\|A(I_{m \times m}\oplus P)-(I_{m \times m}\oplus P)B\|_1$ (since $I_{m \times m}\oplus P$ is a permutation matrix and the norm is independent of the ordering of the rows and column) or
 \item $\|A-(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P)^T\|_2$ (monotonic function of $\ell_1$ norm) or
 \item  $\|A(I_{m \times m}\oplus P)-(I_{m \times m}\oplus P)B\|_2$ ( $I_{m \times m}\oplus P$ is unitary), 
  \end{itemize}
@@ -67,7 +64,7 @@ or maximizing
 \|A\|_2^2 + \|B\|_2^2
 - 2 \cdot \tr{A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$  and removing the constant terms) \label{item:squareofdist_eq_tr_crossprod}
 \end{itemize}
-over all permutation matrices $P$,
+
 where $\| \cdot \|_2$ is the $\ell_2$ vector norm on matrices.   Althought these different formulations  are equivalent, \ie  their global extrema are the same, their relaxations result in different methods for solving the approximate graph matching problem(\autoref{subsec:rqap2}). Specifically the $\ell_1$ formulation is the  linear assignment problem. $\ell_2$ formulations are examples of the quadratic assignment problem.
 
  
@@ -104,9 +101,10 @@ over a bounded and convex domain $\mathbf{S}$.
 
 The first step in each iteration solves a linear approximation of the problem $h(x)=h(x^i)+\nabla{h(x^i)}(x-x^i)$. The second step minimizes the original function with the domain restricted to the line between $\hat{y}$ and $x^{i}$. When $h(x)$ is quadratic, a unique  $\hat{\alpha}$ can be found analytically.
 
-\subsection{rQAP\textsubscript{1} formulation of Seeded Graph Matching and \\  FAQ Algorithm}
-Let us now present the derivation of the steps of  FAQ algorithm.  The objective function we use for FAQ is $\tr {A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$. This is a simplified expression for $\ell_2$ distance of $A$ and $(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P)^T$. The feasible region for the optimization is the set of permutation matrices. The minimization of  a cost function over the set of permutations (each one corresponding to an assignment) is known as the quadratic assignment problem. In this case, the cost function has a value of $1$ when the adjacency matrices ($B$ with the vertex labels  permuted and  $A$) agree \ie between two pairs of assigned vertices, there is an edge in one of the graphs and no edges in the other. It has a value of $0$ when the adjacency matrices disagree.
+\subsection{rQAP\textsubscript{1} formulation of Seeded Graph Matching and FAQ Algorithm}
+Let us now present the derivation of the steps of  FAQ algorithm.  The objective function we use for FAQ is $\tr {A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$. This is a simplified expression for $\ell_2$ distance of $A$ and $(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P)^T$. The feasible region for the optimization is the set of permutation matrices. The minimization of  a cost function over the set of permutations (each one corresponding to an assignment) is known as the quadratic assignment problem. In this case, the cost function has a value of $1$ when the adjacency matrices ($B$ with the vertex labels  permuted and  $A$) agree \ie between two pairs of assigned vertices, there is an edge in one of the graphs and no edges in the other.  The cost function has a value of $0$ when the adjacency matrices disagree.
 The relaxation of the optimization where the feasible region is relaxed to the set of doubly stochastic matrices gives our first formulation for the seeded graph matching problem. Therefore we call this formulation relaxed quadratic assignment problem (rQAP\textsubscript{1}).
+
 The objective function is
 \begin{eqnarray*}  h(P)  & =  &   \tr \left (
 \left [  \begin{array}{cc}  A^T_{11} & A^T_{21} \\ A^T_{12} & A^T_{22}  \end{array} \right ]
@@ -170,16 +168,16 @@ Let $\G_1=(V_1,E_1)$ be an Erdos-Renyi graph that consists of $n$ vertices and $
     
     Let the isomorphism from  $V_1$ to vertices of the second graph, $V_2$, be denoted by $\psi$. Thus we define the second graph $\G_2=(V_2,E_2)$ with the adjacency matrix $B=P_{\psi}B'P_{\psi}$ where $P_{\psi}$ is the permutation matrix that corresponds to the bijection $\psi$. $m$ ($0\leq m<n$) seeds randomly selected from $n$ pairs of vertices, $\sigma_m \subset V_1$  and  $\{\psi(i), i \in \sigma_m \}\subset V_2 $. The assignment problem for remaining $n-m$ pairs of vertices is solved via FAQ. The quality of the solution to the assignment problem, $\hat{f}_m$ which is a bijection from  $V_1$ to  $V_2$ is evaluated  by  $\delta^{(m)} = \frac{|\{i\in V_1-\sigma_m: \hat{f}_m(i)=\psi(i)\}|}{n-m}$.
   
-  The results of our simulations are plotted in the figures \ref{sim_bitflip_rqap_fig1,sim_bitflip_rqap_fig2,sim_bitflip_rqap_fig3}. For graph size, we choose $n=600$. We generate pairs of random Erd\o s-Renyi graphs  for different number of seeds, $m$, we solve the FAQ problem for the remaining $n-m$ vertex pairs. The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. The performance measure, the proportion of true matches to the number of matches, is the variable on the y-axis.
+  The results of our simulations are plotted in the figures \ref{fig:sim_bitflip_rqap_fig1},\ref{sim_bitflip_rqap_fig2},\ref{sim_bitflip_rqap_fig3}. For graph size, we choose $n=600$. We generate pairs of random Erd\o s-Renyi graphs  for different number of seeds, $m$, and  we solve the FAQ problem for the remaining $n-m$ vertex pairs. The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. The performance measure, the proportion of true matches to the number of matches, is the variable on the y-axis.
   Note that 
-  under chance, the expected number of true matches is 1. As shown with the dashed line, this means for completely random assignments of vertices, the performance measure of the assignments would be $\frac{1}{n-m}$.  $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
+  under chance, the expected number of true matches is 1. this means for completely random assignments of vertices, the performance measure of the assignments would be $\frac{1}{n-m}$, as shown with the dashed line.  $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
 
-\begin{figure}
+\begin{figure}[h]
  \centering
   
  \includegraphics[width=\textwidth]{sim_bitflip-paper600.pdf}
  \caption{$\delta^{(m)}$ vs $m$ for $n=600$ vertices. The error bars represent two times  the standard error of the mean of the true match ratio. Different colors listed in the legend correspond to different $p_{pert}$ values.
- \label{sim_bitflip_rqap_fig1}}
+ \label{fig:sim_bitflip_rqap_fig1}}
 \end{figure}
 
 \begin{figure}
@@ -218,7 +216,7 @@ Consider term (1)
 where the simplification in the fourth line is due to the fact that $B_{21}^{T}P^{T}A_{21}$ and $A_{21}^{T}PB_{21}$
  are transposes of each other.
 The three terms  in the last line are referred
-as (1.1),(1.2) and (1.3), respectively.
+as (1.1), (1.2) and (1.3), respectively.
 
 We make a similar simplification for term (2):
 \begin{align*}
@@ -230,7 +228,7 @@ We make a similar simplification for term (2):
  -\underbrace{2 \tr \left[P^{T}A_{12}^{T}B_{12}\right]}_{(2.2)}
  +\underbrace{\tr \left[B_{12}^{T}B_{12}\right]}_{(2.3)}
 \end{align*}
-The three trace terms will be referred as (2.1),(2.2) and
+The three trace terms will be referred as (2.1), (2.2) and
 (2.3), respectively.
 
 Finally, for term (3):
@@ -265,62 +263,60 @@ $\boldsymbol{\nabla}_{P}f(P)=
 +\underbrace{2A_{12}^{T}A_{12}P}_{(2.1)}
 +\underbrace{2A_{22}^{T}A_{22}P}_{(3.1)}
 +\underbrace{2PB_{22}B_{22}^{T}}_{(3.3)}
--\underbrace{2A_{22}^{T}PB_{22}}_{(3.3)}$. The numbers below the underbraces indicate which term  of $h(P)$ each gradient term comes from.
+-\underbrace{4A_{22}^{T}PB_{22}}_{(3.2)}$. The numbers below the underbraces indicate which term  of $h(P)$ each gradient term comes from.
 
-\begin{flushleft}
-The corresponding line search function in terms of $\alpha$ is
-\par\end{flushleft}
+For the second step of F-W algorithm, we set  $P=(1-\alpha) \hat{P}+ \alpha\hat{Q}$ and maximize $h(P)$ with respect to $\alpha$ for $\hat{Q}$ found in the first step. We will now derive a simplification of this one dimensional optimization problem.
 
-\begin{flushleft}
+The function in terms of $\alpha$ is
+%\begin{flushleft}
 \begin{align*}
-g(\alpha) & = & \alpha^{2}  \tr\biggl[\hat{P}^{T}\hat{P}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{P}\hat{P}^{T} & (1.3+3.3)+(2.1+3.1)\\
- &  &   -\hat{P}^{T}A_{22}^{T}\hat{P}B_{22}-\hat{P}^{T}A_{22}\hat{P}B_{22}^{T}\biggr] & (3.2)\\
- & + & \left(1-\alpha\right)^{2}  \tr\biggl[\hat{Q}^{T}\hat{Q}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{Q}\hat{Q}^{T} &  (1.3+3.3)+(2.1+3.1)\\
- &  &   -\hat{Q}^{T}A_{22}^{T}\hat{Q}B_{22}-\hat{Q}^{T}A_{22}\hat{Q}B_{22}^{T}\biggr] & (3.2)\\
- & + & \alpha\left(1-\alpha\right)  \tr[\left(\hat{Q}^{T}\hat{P}+\hat{P}^{T}\hat{Q}\right)\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)& \\
- & + & \left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\left(\hat{Q}\hat{P}^{T}+\hat{P}\hat{Q}^{T}\right)& (1.3)+(3.3) +(2.1)+(3.1)\\
- &  & -\hat{P}^{T}\left[A_{22}^{T}\hat{Q}B_{22}+A_{22}\hat{Q}B_{22}^{T}\right]-\hat{Q}^{T}\left[A_{22}^{T}\hat{P}B_{22}+A_{22}\hat{P}B_{22}^{T}\right]] & [(3.2)]+[(3.2)]\\
- & + & \alpha  \tr\left[-2\hat{P}B_{12}^{T}A_{12}-2\hat{P}^{T}A_{21}B_{21}^{T}\right] & [-(2.2)-(1.2)]\\
- & + & \left(1-\alpha\right)  \tr\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right] & [-(2.2)-(1.2)]
+g(\alpha) & = & \alpha^{2}  \tr\biggl[\hat{P}^{T}\hat{P}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)  & \qquad(1.3+3.3) \\
+ &  & +\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{P}\hat{P}^{T} & \qquad (2.1+3.1)\\
+ &  &   -2\hat{P}^{T}A_{22}^{T}\hat{P}B_{22}\biggr] & \qquad (3.2)\\ %-\hat{P}^{T}A_{22}\hat{P}B_{22}^{T}
+ & +  & \left(1-\alpha\right)^{2}  \tr\biggl[\hat{Q}^{T}\hat{Q}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right) & \qquad (1.3+3.3) \\
+ &  & +\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{Q}\hat{Q}^{T} &  \qquad (2.1+3.1)\\
+ &  &   -\hat{Q}^{T}A_{22}^{T}\hat{Q}B_{22}\biggr] & \qquad (3.2)\\ %-\hat{Q}^{T}A_{22}\hat{Q}B_{22}^{T}
+ & + & \alpha\left(1-\alpha\right)  \tr \biggl[ \left(\hat{Q}^{T}\hat{P}+\hat{P}^{T}\hat{Q}\right)\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right) & \qquad  (1.3)+(3.3) \\
+ &  & +\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\left(\hat{Q}\hat{P}^{T}+\hat{P}\hat{Q}^{T}\right)& \qquad (2.1)+(3.1)\\
+ &  & -2\hat{P}^{T}\left[A_{22}^{T}\hat{Q}B_{22}\right]-2\hat{Q}^{T}\left[A_{22}^{T}\hat{P}B_{22}\right] \biggr] & \qquad (3.2)\\
+ & + & \alpha  \tr\left[-2\hat{P}B_{12}^{T}A_{12}-2\hat{P}^{T}A_{21}B_{21}^{T}\right] &\qquad [-(2.2)-(1.2)]\\
+ & + & \left(1-\alpha\right)  \tr\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right] &  \qquad [-(2.2)-(1.2)]
 \end{align*}
-
-\par\end{flushleft}
-
-where the decimal numbers in the right end of the line refer to the
+%\par\end{flushleft}
+where the  numbers in the right end of each line refer to the
 terms for corresponding to $\left\Vert A_{21}-PB_{21}\right\Vert _{F}$
-,$\left\Vert A_{12}P-B_{12}\right\Vert _{F}$ and $\left\Vert A_{22}P-PB_{22}\right\Vert _{F}$
+,$\left\Vert A_{12}P-B_{12}\right\Vert _{F}^2$ and $\left\Vert A_{22}P-PB_{22}\right\Vert _{F}^2$
 in the objective function. Writing $g\left(\alpha\right)$ in terms
 of $\alpha$ and (1-$\alpha$),
 
 $g\left(\alpha\right)=c\alpha^{2}+e(1-\alpha)^{2}+d\alpha(1-\alpha)+u\alpha+v(1-\alpha)$
 
-So $c=\tr\left[\hat{P}^{T}\hat{P}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{P}\hat{P}^{T}-\hat{P}^{T}A_{22}^{T}\hat{P}B_{22}-\hat{P}^{T}A_{22}\hat{P}B_{22}^{T}\right]$
 
-\noindent 
-\begin{eqnarray*}
-d & = & \tr\biggl[\left(\hat{Q}^{T}\hat{P}+\hat{P}^{T}\hat{Q}\right)\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\left(\hat{Q}\hat{P}^{T}+\hat{P}\hat{Q}^{T}\right)\\
- &  & -\hat{P}^{T}\left[A_{22}^{T}\hat{Q}B_{22}+A_{22}\hat{Q}B_{22}^{T}\right]-\hat{Q}^{T}\left[A_{22}^{T}\hat{P}B_{22}+A_{22}\hat{P}B_{22}^{T}\right]\biggr]
-\end{eqnarray*}
+\begin{align*}
+c & = &\tr&\left[\hat{P}^{T}\hat{P}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{P}\hat{P}^{T}-2\hat{P}^{T}A_{22}^{T}\hat{P}B_{22}\right]
+\\
+d & = & \tr& \biggl[\left(\hat{Q}^{T}\hat{P}+\hat{P}^{T}\hat{Q}\right)\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\left(\hat{Q}\hat{P}^{T}+\hat{P}\hat{Q}^{T}\right) \\
+ &  &  & -\hat{P}^{T}\left[2 A_{22}^{T}\hat{Q}B_{22}\right]-\hat{Q}^{T}\left[ 2 A_{22}^{T}\hat{P}B_{22}\right]\biggr] \\
+e & =& \tr & \left[\hat{Q}^{T}\hat{Q}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{Q}\hat{Q}^{T}-2\hat{Q}^{T}A_{22}^{T}\hat{Q}B_{22}\right]
+\\ u & = & \tr &\left[-2\hat{P}B_{12}^{T}A_{12}-2\hat{P}^{T}A_{21}B_{21}^{T}\right]
+\\ v & = & \tr &\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right]
+\end{align*}
 
-
-$e=\tr\left[\hat{Q}^{T}\hat{Q}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{Q}\hat{Q}^{T}-\hat{Q}^{T}A_{22}^{T}\hat{Q}B_{22}-\hat{Q}^{T}A_{22}\hat{Q}B_{22}^{T}\right]$
-
-$u=\tr\left[-2\hat{P}B_{12}^{T}A_{12}-2\hat{P}^{T}A_{21}B_{21}^{T}\right]$
-
-$v=\tr\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right]$
-
-Putting this polynomial of $\alpha$ in standard form, we get $a=c+e-d$,
+The coefficients of this  polynomial of $\alpha$ in standard form $g(\alpha)= a{\alpha}^2+b\alpha+c$ equal $a=c+e-d$,
 $b=d-2e+u-v$ and $c=e+v$ .
 
-Note that if this rQAP\textsubscript{2} formulation is further simplified  by the unitary property of permutation  matrix, we get the first rQAP\textsubscript{1} formulation. When we use the constraints $P^TP=PP^T=I_{s}$, specific terms in $\boldsymbol{\nabla}_{P}f(P)$ vanish,
-$\boldsymbol{\nabla}_{P}f(P)=-2A_{21}B_{21}^{T}+2PB_{21}B_{21}^{T}-2A_{12}^{T}B_{12}+2A_{12}^{T}A_{12}P+2(A_{22}^{T}A_{22}P+PB_{22}B_{22}^{T}-A_{22}^{T}PB_{22}-A_{22}PB_{22}^{T}$
-becomes $-2*(A_{21}B_{21}^T+A_{12}^TB_{12}+A_{22}PB_{22}^T+A_{22}^TPB_{22})$
-The stronger condition of minimization over the set of permutation matrices is incorporated in the Hungarian Algorithm step.
+Note that if this rQAP\textsubscript{2} formulation is further simplified  by the unitary/orthogonality property of permutation  matrix, we get the first rQAP\textsubscript{1} formulation. When we use the constraints $P^TP=PP^T=I_{s}$, terms (1.3),(2.1),(3.1),(3.3) become constant terms. The corresponding  terms that in $\boldsymbol{\nabla}_{P}f(P)$ vanish,
+$\boldsymbol{\nabla}_{P}f(P)=-2A_{21}B_{21}^{T}+2PB_{21}B_{21}^{T}-2A_{12}^{T}B_{12}+2A_{12}^{T}A_{12}P+2(A_{22}^{T}A_{22}P+PB_{22}B_{22}^{T}-2A_{22}^{T}PB_{22})$
+becomes $-2*(A_{21}B_{21}^T+A_{12}^TB_{12}+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is the gradient for rQAP\textsubscript{1} formulation.
+%This can be interpreted as a projection on
+%The stronger condition of minimization over the set of permutation matrices is incorporated in the Hungarian Algorithm step.
 An interesting question is how does this extra constraint effect the convergence properties of Frank-Wolfe algorithm.  This question is investigated in the comparison of rQAP\textsubscript{1} and rQAP\textsubscript{2} formulations.  
 
 \subsection{The comparison of rQAP\textsubscript{1} against the alternative formulation rQAP\textsubscript{2}}
-Although the two formulations are equivalent and the global extrema of the two functions are the same, we expect different convergence  properties. In particular the extra terms in the gradient of rQAP\textsubscript{2} which vanishes for unitary matrices should act as a random noise. The conclusion of the literature of stochastic optimization  is that, under some conditions, such noise speeds up convergence, by overcoming local extrema. The problem is that, the noise needs to vanish to negligible levels in order for the iterative algorithm to converge. 
-The experiment in the last  section was repeated with both rQAP\textsubscript{1} and rQAP\textsubscript{2} and the fraction of nonseed vertices correctly matched and the average number of iterations to satisfy a stopping criteria was compared between the two formulations. 
+Although the two formulations are equivalent and the global extrema of the two functions are the same, we expect different convergence  properties. In particular the extra terms in the gradient of rQAP\textsubscript{2} which vanishes for unitary matrices should act as a random noise. The conclusion of the literature of stochastic optimization  is that, under some conditions, such noise speeds up convergence, by overcoming local extrema. However, for convergence of the iterative algorithm , the noise needs to vanish to negligible levels. While the final permutation matrix is orthogonal, the solution of the rQAP\textsubscript{1} is not necessarily orthogonal. So rQAP\textsubscript{2}  will eventually converge to an orthogonal matrix, while rQAP\textsubscript{1}   has no such constraint.
+
+The experiment in the \autoref{subsubsec:sgm_sim_results} was repeated with both rQAP\textsubscript{1} and rQAP\textsubscript{2}. For the same pairs of graphs,  the fraction of nonseed vertices correctly matched were computed for both methods.
+%and the fraction of nonseed vertices correctly matched and the average number of iterations to satisfy a stopping criteria was compared between the two formulations. 
 
 
 \begin{figure}
@@ -334,25 +330,26 @@ The experiment in the last  section was repeated with both rQAP\textsubscript{1}
  \centering
   \caption{Fraction of the $n-m=70$ nonseeds correctly matched using our $\ell_2$-based algorithm for rQAP\textsubscript{1} and rQAP\textsubscript{2} formulations
  \label{figell2}}
- \includegraphics[width=1.2\textwidth]{rQAP_vs_rQAP2-alotmore.pdf}
+ \includegraphics[scale=0.8]{rQAP_vs_rQAP2-alotmore.pdf}
 \end{figure}
 Note that for small number of hard seeds rQAP\textsubscript{2} is slighly better, while for larger number of hard seeds rQAP\textsubscript{1} is clearly better. The average number of iterations of Frank-Wolfe algorithm until termination for the two formulation is as follows,
 
-Our conclusion is that our expectations for the two formulations is warranted, rQAP\textsubscript{2}   converges slower(or doesn't converge, but stays within the neighborhood of the extrema), whiler rQAP\textsubscript{1} converges in very few steps. When the number of hard seeds is small (which corresponds to lower number of constraints for P and higher incidence of local minima near the true solution. ), rQAP\textsubscript{2} is slightly better than rQAP\textsubscript{1}.
+
+Our conclusion is that our expectations for the two formulations is warranted, rQAP\textsubscript{2}   converges slower (or doesn't converge, but stays within the neighborhood of the extrema), while rQAP\textsubscript{1} converges in very few steps. When the number of hard seeds is small (which corresponds to lower number of constraints for P and higher incidence of local minima near the true solution.), rQAP\textsubscript{2} is slightly better than rQAP\textsubscript{1}.
 
 
-A natural follow-up to the previous inquiry is whether one can get the best of both world by making a hybrid of the two formulations: First start with minimizing rQAP\textsubscript{2} function, until the current iterate of solution is relatively close to the true solution, and follow with maximizing rQAP\textsubscript{1} function. 
+A natural follow-up to the previous inquiry is whether one can get the best of both worlds by making a hybrid of the two formulations: First start with minimizing rQAP\textsubscript{2} function, until the current iterate of solution is relatively close to the true solution, and follow with maximizing rQAP\textsubscript{1} function. 
 
 
 \subsection{A hybrid formulation: Fast approximate quadratic programming with smooth transition from rQAP\textsubscript{2} to rQAP\textsubscript{1} \label{subsec:hybrid}}
 
-For this hybrid form of the FAQ algorithm, we weight the terms that differ between rQAP\textsubscript{2} and rQAP\textsubscript{1} by a decreasing weight $r$. $\boldsymbol{\nabla}_{P}h(P)=
+For this hybrid form of the FAQ algorithm, we weight the terms that differ between the gradients of  rQAP\textsubscript{2} and rQAP\textsubscript{1} by a decreasing weight $r$. $\boldsymbol{\nabla}_{P}h(P)=
 r*\{2PB_{21}B_{21}^{T}
 +2A_{12}^{T}A_{12}P
 +A_{22}^{T}A_{22}P
 +PB_{22}B_{22}^{T}\}
 -2A_{21}B_{21}^{T}-2A_{12}^{T}B_{12}
--2A_{22}^{T}PB_{22}-2A_{22}PB_{22}^{T}$. As $r \rightarrow 0 $, the gradient expression at each step of F-W algorithm approaches
+-4A_{22}^{T}PB_{22}$. As $r \rightarrow 0 $, the gradient expression at each step of F-W algorithm approaches
 $-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -2 times the gradient in rQAP\textsubscript{1}. We let $r= 0.5- \frac{\tan((i-(i_{end}/2)))}{\pi}$, so as the iteration counter, $i$ goes from $1$ to $i_{end}$, $r$ goes from $1$ to $0$. This hybrid formulation will behave like rQAP\textsubscript{2} for the initial iterations of Frank-Wolfe algorithm and will start to behave like rQAP\textsubscript{1} as $i$ approaches $i_{end}$.
 
 
@@ -360,5 +357,5 @@ $-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -
  \centering
   \caption{
  \label{fig:hybrid}}
- \includegraphics[width=1.2\textwidth]{sim_bitflip_hybrid_cluster_300_hsv.pdf}
+ \includegraphics[scale=0.85]{sim_bitflip_hybrid_cluster_300_hsv.pdf}
 \end{figure}

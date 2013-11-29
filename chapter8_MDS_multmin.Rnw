@@ -52,9 +52,9 @@ For our simulation, we chose a grid of starting points for $X_6$ has the x-coord
 
 Starting from a small enough value for $w$ and increasing it until $w$ is arbitrarily close to $1$, there are two $w$ values where important changes in embedding configurations and final stress values occur.
 
-The plots in Figures \ref{fig:Finalconfig-MultMin-w-0_1}, \ref{fig:Finalconfig-MultMin-w-0_5}, \ref{fig:Finalconfig-MultMin-w-0_8}, \ref{fig:Finalconfig-MultMin-w-0_81} , \ref{fig:Finalconfig-MultMin-w-0_84} show the  embedding configurations of ${X}_6$ (in red circles) and ${X}_7$(in blue plusses). Each point in the plots is where the IM algorithm terminates in in starting from different initial configurations (One red and one blue point for each  initial configuration). The point pairs plotted in the left box for each figure pair are those configurations  where the  ${X}_6$ and ${X}_7$ end up in the side of their matched points (``true'' final configuration). The configurations in the right are those where the points end up in the opposite side of their matched points. For the last 4 $w$ values $(0.82,0.83,0.84,0.85)$, there are no initial configurations that end up in ``alternative''-kind configurations. Both kind of  configurations(``true'' and ``alternative'') for selected $w$ values are plotted in Figure \ref{fig:plot_final_pts}. The plots for different $w$ are also animated\ref{fig:config_w_ani}.
+The plots in Figures \ref{fig:Finalconfig-MultMin-w-0_1}, \ref{fig:Finalconfig-MultMin-w-0_5}, \ref{fig:Finalconfig-MultMin-w-0_8}, \ref{fig:Finalconfig-MultMin-w-0_81} , \ref{fig:Finalconfig-MultMin-w-0_84} show the  embedding configurations of ${X}_6$ (in red circles) and ${X}_7$(in blue plusses). Each point in the plots is where the IM algorithm terminates in in starting from different initial configurations (One red and one blue point for each  initial configuration). The point pairs plotted in the left box for each figure pair are those configurations  where the  ${X}_6$ and ${X}_7$ end up in the side of their matched points (``true'' final configuration). The configurations in the right are those where the points end up in the opposite side of their matched points. For the last 4 $w$ values $(0.82,0.83,0.84,0.85)$, there are no initial configurations that end up in ``alternative''-kind configurations. Both kinds of  configurations (``true'' and ``alternative'') for selected $w$ values are plotted in Figure \ref{fig:plot_final_pts_all_w}. The plots for different $w$ are also animated\ref{fig:config_w_ani}.
 
-The final stress values of the final configurations listed in  \autoref{stress-val-table} (the minimum stress value among each kind of local minima) and plotted in \autoref{fig:final_stress_plot} show that around $w=0.5$ the  ``true''-kind local minima   starts having a lower stress value compared to ``alternative''-kind.  This is the first $w$ value that corresponds to an important change. This transition provides evidence that different local minima might become global minima, depending on value of $w$.
+We are also interested in which kind of local minima has lower stress and contains the global minima solution. We compute  the minimum stress value among each kind of local minima and compare these final stress values. The final stress values of the final configurations listed in  \autoref{table:stress_val} and plotted in figure \ref{fig:final_stress_plot} indicate that around $w=0.5$ the  ``true''-kind local minima   starts having a lower stress value compared to ``alternative''-kind.  This is the first $w$ value that corresponds to an important change. This transition provides evidence that different local minima might become global minima, depending on value of $w$.
 
 Also note that starting around $w=0.8$ in Figure \ref{fig:Finalconfig-MultMin-w-0_8}, all of the $\hat{X}_6$ and $\hat{X}_7$  pairs are on the verge of passing throught the barrier and start ending up in the side of their matched points, due to the fact that the barrier starts to become negligible and there are no separate local minima. When $w>0.8$, all of the point pairs end up in  the ``real'' configuration \ref{fig:Finalconfig-MultMin-w-0_81}. This is the other $w$ value where important changes in configurations and stress values occur. Further increasing $w$ changes the final stress value, and  the final embedding configuration moves closer to the original locations of $X_{i}$ in \ref{original-config} \ref{fig:Finalconfig-MultMin-w-0_84}.
 
@@ -764,7 +764,7 @@ Alternative local min &   1.79 & 1.77 & 1.75 & 1.72 & 1.69 & 1.66 & 1.64 & NA & 
 
 \end{center}
 
-\caption{Final stress values for the two local minima configurations\label{stress-val-table}}
+\caption{Final stress values for the two local minima configurations\label{table:stress_val}}
 \end{table}
 
 \end{landscape}
@@ -787,7 +787,7 @@ Alternative local min & 0.39 & 1.53 & 1.65 & 1.74 & NA \\
 \hline
 \end{tabular}
 \end{center}
-\label{stress-val-table}
+\label{table:stress_val}
 \end{table}
 \end{comment}
 
