@@ -1,0 +1,640 @@
+\chapter{JOFC Approach as a solution to Seeded Graph Matching and comparison to FAQ}
+\label{sec:sgm-jofc}
+\chaptermark{Seeded Graph Matching and JOFC}
+
+
+Let us first explain the relevance of JOFC to the graph matching problem. The  task of finding vertex correspondences is similar to  detecting matched pairs \ref{chap:match_detection} in that both of the tasks require the quantification of distance between vertex pairs  in the two graphs.
+Using omnibus  embedding, it is possible to embed the vertices of two graphs in a commensurate space.
+Therefore, the JOFC approach can be used here for determining the pairwise distances in the commensurate space between  the vertices of $A$ and $B$.
+The next step is to use the pairwise distances as costs to find the optimal 1-1 matchings by the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total  cost which is the sum of the pairwise distances of matched nodes is minimized.
+%This matching step is separate from the embedding,  we can investigate compare  different parameters for the JOFC approach on a equal footing.
+
+Now, we detail how we use JOFC embedding for seeded graph matching. We begin by jointly embedding our two graphs, $\G_1$ and $\G_2$, into a common Euclidean space. Let $\Delta_1\in \M_{n \times n}$ and $\Delta_2\in \M_{n \times n}$ be two dissimilarity matrices computed by the application of the dissimilarity measure to the vertices of the two graphs. Since we have two separate graphs, we have two conditions and the default assumption is that we do not have  between-graph (between-condition) dissimilarities. We will assume that prior to embedding, the dissimilarities have been normalized to be on the same scale.
+%see Remark \ref{rem:norm} for further discussion.
+
+Without loss of generality, we can assume the vertices in both graphs are labeled as integers  from $1$ to $n$, the labeling consistent with the true correspondence  of vertices from different graphs. Suppose we have $m,\, 0 \leq m <n$ seeds. Again, without loss of generality, let the seeded vertices be labeled  as the first $m$ vertices in both graphs, $S_1=\{1,2,\ldots,m\}$ and $S_2=\{1,2,\ldots,m\}$, so that 
+$$\Delta^{(1)}=\bordermatrix{&S_{1}&U_{in}\cr
+                S_1&\gD^{(1)}_{{in},{in}} 
+                & \gD^{(1)}_{{in},2}  \cr
+                U_1& \gD^{(1)}_{{oos},{in}}  
+                &  \gD^{(1)}_{{oos},{oos}}},\,\,
+                \Delta{(2)}=\bordermatrix{&S_2&U_2\cr
+                S_2&\gD^{(2)}_{{in},{in}} 
+                & \gD^{(2)}_{{in},{oos}}  \cr
+                U_2& \gD^{(2)}_{{oos},{in}}  
+                &  \gD^{(2)}_{{oos},{oos}}}.$$
+
+
+Note that the seeds correspond to the in-sample dissimilarities we considered in the match detection task\ref{chap:match_detection} . As these seeds provide the known correspondences (matched observations in the match detection task), we embed them using the in-sample JOFC embedding methodology we introduced in \ref{sec:jointembed}. That is, we find $\X= \begin{array}{c}
+\X_1 \\
+\X_2
+\end{array}$ such that $d(\X)$ is as close as possible to $$M= \begin{array}{cc}
+\gD^{(1)}_{in,in} & L \\
+ L^T &\gD^{(2)}_{in,in}
+\end{array} . $$
+
+The remaining non-seed vertices are embedded using out-of-sample embedding with respect to the embedded seeds, \ie we seek the configuration ${ \hat{\mathbf{Y}}}$ consisting of points in $\mathbb{R}^{d'}$ that consists of the $n-m$ unseeded vertices of $G_1$, with the embedded coordinates  $\{\yhat^{(1)}_{(m+1)},\ldots,\yhat^{(1)}_{(n)}\}$, and the $n-m$ unseeded vertices of $G_2$, with the embedded coordinates  $\{\yhat^{(2)}_1,\ldots,\yhat^{(2)}_{(n-m)}\}$, where $\yhat_{i}^{(k)}, \onespace 1\leq i \leq (n-m), k \in {1,2}$  minimize the stress function:
+\begin{align}
+\sigma({\bf Y})&=\sum_{s=1}^{m}\sum_{t=m+1}^{n} {W^{(1)}_{in,oos}(s,t-m)  \left(d(X^{(1)}_{s},\yhat_t^{(1)})-\gD^{(1)}_{in,oos}(s,t-m)\right)^2 } \label{eq:oos}\\
+&+\sum_{s=m+1}^{n}\sum_{t=1}^{m}
+{W^{(2)}_{oos,in}(s-m,t)  \left(d(X^{(2)}_{s},\yhat_t^{(2)})-\gD^{(2)}_{oos,in}(s-m,t)\right)^2}  \label{eq:oos2}\\
+&+\sum_{s=m+1}^{n}\sum_{t=1}^{m} 
+{W^{(2)}_{oos,oos}(s-m,t-m) \left(d(\yhat_s^{(1)},\yhat_t^{(1)})-\gD^{(1)}_{oos,oos}(s-m,t-m)\right)^2} \label{eq:oos3}\\
+&+\sum_{s=m+1}^{n}\sum_{t=1}^{m} 
+{W^{(2)}_{oos,oos}(s-m,t-m) \left(d(\yhat_s^{(2)},\yhat_t^{(2)})-\gD^{(2)}_{oos,oos}(s-m,t-m)\right)^2} \label{eq:oos4} \\
+&+\sum_{s=m+1}^{n} \sum_{t=1}^{m}
+W^{(1,2)}_{oos,oos}(s-m,t-m) \left(d(\yhat_s^{(1)},\yhat_t^{(2)})-\delta(\yhat_s^{(1)},\yhat_t^{(2)})\right)^2 \label{eq:oos5}\\
+&+\sum_{s=m+1}^{n} \sum_{t=1}^{m}
+W^{(1,2)}_{oos,in}(s-m,t) \left(d(\yhat_s^{(1)},X^{(2)}_{t})-\delta(\yhat_s^{(1)},X^{(2)}_{t})\right)^2 \label{eq:oos6}\\
+&+\sum_{s=1}^{m} \sum_{t=m+1}^{n}
+W^{(1,2)}_{in,oos}(s,t-m) \left(d(X^{(1)}_{s},\yhat_t^{(2)})-\delta(X^{(1)}_{s},\yhat_t^{(2)})\right)^2 \label{eq:oos7}
+%+\sum_{i=1}^{u_1} \sum_{j=1}^{s_2} W^{(1,2)}_{in,oos}(s-m,t) \left(d(Y^{(1)}_i,X^{(2)}_j)-\delta(Y^{(1)}_i,X^{(2)}_j)\right)^2 \\
+%&+\sum_{i=1}^{s_1} \sum_{j=1}^{u_2} W^{(1,2)}_{in,oos}(s-m,t-m)\left(d(X^{(1)}_i,Y^{(2)}_j)-\delta(X^{(1)}_i,Y^{(2)}_j)\right)^2, 
+\end{align}
+%where again $\widetilde w(\cdot,\cdot):V_1\times V_2 \mapsto\mathbb{R}$ are weighting functions representing our confidence in the computed/imputed dissimilarity between pairs of vertices, and as before $\delta$ is the unknown across--graph dissimilarity. 
+where $W_{a,b}^{(k)}$ and $W_{a,b}^{(k_1,k_2)}$ (for $a,b \in \{`in', `oos'\}$ are the weights for dissimilarities between in/out-of-sample observations both in $k^{th}$ (or $k_1^{th}$ and $k_2^{th}$) conditions.
+
+Note that \ref{eq:oos5}, \ref{eq:oos6} and \ref{eq:oos7} involve dissimilarities $\delta(.^{(1)},.^{(2)})$ between different conditions, which are generally not available. While  the dissimilarities in \ref{eq:oos6} and \ref{eq:oos7} can be imputed via known dissimilarities, the dissimilarities in \ref{eq:oos5}  cannot be imputed in any way. In fact, if these dissimilarities in  \ref{eq:oos5}   between out-of-sample observations in different conditions were known, we would already know the solution to our inference task, as we would have the  assignment cost  of any oos observation in one condition to another oos observation in another condition and we would minimize the total cost over all possible alignments. In other words, all we would have to do is solve the linear assignment problem).
+
+\ref{eq:oos3} and \ref{eq:oos4} contain dissimilarities between oos observations in the same condition. They can be  used or ignored in the joint embedding, depending on whether one wishes to embed oos observations all together or one at a time. If between-condition oos dissimilarities are ignored, the oos embedding function $\sigma({\bf Y})$ is separable with respect to different  $\yhat^{(k)}_{j} \quad j \in m+1,\ldots n$. Then we would get the same embedding configuration if the oos observations $\yhat^{(k)}_{j}\quad j \in m+1,\ldots n$ are embedded one at a time.
+
+Once we find a minimum configuration ${ \hat{\mathbf{Y}}}$, we compute the pairwise distances between the points $c_{ij}=d(\yhat^{(1)}_s,\yhat^{(2)}_t),\onespace s \in \{(m+1),\ldots n\}, t \in  \{(m+1),\ldots n\}$, which corresponds to the off-diagonal block matrix of $d({ \hat{\mathbf{Y}}})$. This is the assignment cost matrix $C=\left[c_{ij} \right]$ for which we solve the linear assignment problem for which is to minimize $\tr(A^{T}C)=\sum_{ij} a_{ij}*c_{ij}$  for the assignment $\{a_{ij}\}$ where
+$\forall i',j' \qquad a_{i'j'} \in {0,1},\onespace \sum_{i}{a_{ij'}} =\sum_{j} a_{i'j} =1 $ \ie $A$ is a permutation matrix. 
+
+So the seeded graph matching problem is solved by a joint embedding of the two graphs followed by solving the linear assignment problem of distances between embedded points.
+ 
+One useful property of dissimilarity representation is that the structure of data is irrelevant once an appropriate dissimilarity function  for the data is available. 
+There are many dissimilarities that can be defined between vertices in graphs. We assume that an appropriate dissimilarity measure is available to us.
+%See \cite{diffdist}, \cite{dis1}, \cite{dis2} for a wealth of possible dissimilarity measures.  
+In our experiments we will use five different dissimilarities/distances between vertices in a graph:
+\begin{itemize}
+ \item the shortest path on the  unweighted graph whose adjacency matrix is available
+ \item the shortest path on a weighted version of the graph whose weight matrix is available
+ \item diffusion distance between vertices on the (unweighted) graph.
+ \item weighted extension of Czekanowski-Dice dissimilarity\cite{DICE,weightedDICE} which simplifies to the original Czekanowski-Dice dissimilarity in the case of unweighted graphs(C-D dissimilarity  quantifies local similarity of two vertices in a graph).
+ \item expected commute time for random walks on the graph.
+ \end{itemize}
+ %We will omit the results for weighted graph dissimilarities, since they seem to have the same performance as the weighted dissimilarities.
+ \begin{remark}
+ Note that these dissimilarities are defined between vertices of the same graph. Since the dissimilarities between vertices of different graphs are not available, we have to resort to the same imputation work-arounds  as the JOFC embedding in  \ref{rem:imputationofdiss}.
+ %We impute the inter-condition dissimilarities   as described before in section \ref{omnibus}, or ignore them as defined before in \ref{eq:oos}.
+ We would again choose 0 for the dissimilarities between matched vertices, then either impute the remaining unknown dissimilarities or ignore them in the embedding.
+ \end{remark}
+ 
+ While it is plausible the JOFC approach can also solve the seeded graph matching (SGM) problem, it is not obvious it can compete with the modified FAQ algorithm, specifically formulated to solve the  seeded approximate graph matching problem. Then, why should one choose to use JOFC for SGM? The graph representation of real data are not always well-defined and the correspondence of vertices may be  ambiguous, one-to-many or many-to-many. In such situations, we would prefer a robust algorithm, that would still match seeded graphs with satisfactory performance. Modified FAQ, in the form that we have presented, can not handle such pathologies and significant changes must be made to modified FAQ before it can handle them. If it turns out that  true match ratio of the JOFC approach is on the same level as modified FAQ, we can conclude JOFC is reasonably competitive with modified FAQ for seeded graph matching. Our simulation and experiments are tailored for comparison of  the two approaches, whenever both of the approaches   are  feasible for the problem size (the running times are acceptable).
+ 
+ \section{Demonstrations}
+
+We perform SGM simulations with graphs generated according to a paired Erdos-Renyi graph, and experiments on real-life graphs for  both modified FAQ approach and JOFC. The performance measure we consider is the true match ratio: the number of true matchings of vertices  divided by the number of pairs of vertices.
+
+\subsection{Simulations}
+
+
+ 
+  
+  
+ 
+  To test the JOFC approach, consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, \ie
+  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$. The adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, \ie
+    $\left[B\right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$. Suppose $p_{10}=p_{11}=p_{pert}$.
+  
+  The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. 
+  The performance measure is the proportion of true matches to the number of matches. Note that 
+  under chance, the expected number of true matches is 1, as shown with the dashed line. In this particular simulation, we consider the JOFC approach with classical and raw stress variants and compare the performance of each in small graphs. For JOFC with raw stress, we set $w=0.8$. The joint embedding with cMDS is compared with  the JOFC approach, in order to figure out how the performance measure is sensitive to the Fidelity-Commensurability tradeoff. 
+  %$r=20$ and $s=5$. 
+  $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$.  
+  
+
+
+
+  
+
+ 
+
+
+<<JOFC-on-ER-Graph-init, echo=FALSE,fig=FALSE,results='hide',cache=TRUE,trace=TRUE,eval=TRUE>>=
+root.dir<-Sys.getenv("PROJECT_DIR")
+setwd(root.dir)
+source("./JOFC_MatchDetect/lib/multipleMinimaTest_fn.R")
+ #perl <- "C://Program\ Files//MATLAB//R2012a//sys//perl//win32//bin/perl.exe"
+require(igraph,quietly=TRUE)
+require(optmatch,quietly=TRUE)
+require(MASS,quietly=TRUE)
+require(clue,quietly=TRUE)
+require(MCMCpack,quietly=TRUE)
+source("./JOFC_MatchDetect/lib/simulation_math_util_fn.R")
+source("./JOFC_MatchDetect/lib/oosMDS.R")
+source("./JOFC-GraphMatch/lib/smacofM.R")
+source("./JOFC-GraphMatch/lib/oosIM.R")
+source("./JOFC-GraphMatch/lib/diffusion_distance.R")
+source("./JOFC-GraphMatch/lib/graph_embedding_fn.R")
+
+embed.via.cMDS=TRUE
+verbose= FALSE
+oos=TRUE
+oos.embed.via.cMDS = TRUE
+debug.mode= FALSE
+a.embed.via.cMDS <-20
+
+n = 50
+m = 30 # the first m pairs are known matches ; the last n-m pairs are to-be-matched
+
+div=10
+
+nmc = 100
+
+if(debug.mode){
+  div=4
+  nmc=5
+}
+
+pert=seq(0,1,1.0/div)
+npert = length(pert)
+diss.meas.list <- c("default","C_dice_weighted","diffusion","ECT","hybrid_DICE_SP","ell1")
+num.diss.meas <- length(diss.meas.list)
+
+
+n.correct.match.jofc.agg = array(0,dim=c(npert,nmc,num.diss.meas))
+dimnames(n.correct.match.jofc.agg)[[1]] <- pert
+dimnames(n.correct.match.jofc.agg)[[3]] <- diss.meas.list
+
+n.correct.match.jofc = matrix(0,npert,nmc)
+nc.jofc.diff = matrix(0,npert,nmc)
+nc.jofc.weighted = matrix(0,npert,nmc)
+nc.jofc.unweighted = matrix(0,npert,nmc)
+
+
+
+nc.cmds = matrix(0,npert,nmc)
+
+
+
+
+#w.vals.vec <- c(0.2,0.5,0.7,0.9)
+w.vals.vec<-c(0.8)
+
+w.max.index<-length(w.vals.vec)
+
+matched.cost<-0.01 #If matched.cost is equal to 1, consider an unweighted graph, with edges between matched vertices
+#If matched.cost is  between 0 and 1, the graph is weighted with edges between matched vertices with weights equal to matched.cost. Edges between 
+# vertices of the same condition have either weight 1 or 2 according to whether they're connected according to given adjacency matrix or not.
+
+d.dim<-8
+T.diff<-1
+c.imp<- 20
+
+dims.for.dist<-2:d.dim
+
+# these three lines are not really used,  ...
+# they just set up a dummy D.M which is the correct object for input to fullmatch".
+
+G<-ER(n,0.5)
+G.comb<-omnibusM(G,G,diag(n))
+Graph.M <- graph.adjacency(G.comb,weighted= NULL ,mode="undirected")
+D.M<-shortest.paths(Graph.M)
+
+
+
+seed<-2893479
+set.seed(seed)
+@
+
+<<JOFC-on-ER-Graph-run, echo=FALSE,fig.show='hide',results='hide',dependson='JOFC-on-ER-Graph-init' ,cache=TRUE,trace=FALSE,eval=TRUE,warning=FALSE>>=
+for(imc in 1:nmc)
+{
+  G<-ER(n,0.5)
+	for(ipert in 1:npert)
+	{
+    
+		Y.emb<-NULL
+		Gp<-bitflip(G ,pert[ipert],pert[ipert])
+    
+    oos.sampling<-sample(1:n, size=(n-m), replace=FALSE)
+  	in.sample.ind<-rep(TRUE,2*n)
+		in.sample.ind[oos.sampling]<-FALSE
+		in.sample.ind[n+oos.sampling]<-FALSE
+		for ( diss.it in 1:num.diss.meas ){
+    diss_measure = diss.meas.list[diss.it]
+    print(diss_measure)
+     J.1 <- JOFC.graph.custom.dist  (G,Gp,
+			in.sample.ind,
+			d.dim=d.dim,
+			w.vals.vec,
+			graph.is.directed  =  FALSE,
+			vert_diss_measure  =  diss_measure,
+			T.param  =  T.diff,
+			num_v_to_embed_at_a_time   =   sum(!in.sample.ind)/2,
+			graph.is.weighted=FALSE ,
+			sep.err.w=TRUE,   legacy.func= TRUE, const.dim=TRUE)
+
+		#if (imc==1) print(in.sample.ind)
+		
+		
+		M = solveMarriage(J.1[[1]])
+		n.correct.match.jofc[ipert,imc] = present(M)         # returns the number correct in the marriage?
+    
+    n.correct.match.jofc.agg[ipert,imc,diss.it] = n.correct.match.jofc[ipert,imc]/(n-m)
+		}
+			
+     
+    #First fill out the entire dissimilarity matrix
+    
+    Graph.1<-graph.adjacency(G)
+		Graph.2<-graph.adjacency(Gp)
+		D.1<-shortest.paths(Graph.1)
+		D.2<-shortest.paths(Graph.2)
+    
+		myD.M = D.M
+		myD.M[1:n,1:n]=D.1
+		myD.M[(n+1):(2*n),(n+1):(2*n)]=D.2
+		myD.M[1:n,(n+1):(2*n)]=(D.1+D.2)/2
+		myD.M[(n+1):(2*n),1:n]=(D.1+D.2)/2
+    
+    #Replace the dissimilarity matrix entries which we do not known (in-oos dissimilarities between the graphs)
+		for(i in 1:n) for(j in (n+m+1):(2*n))   myD.M[i,j] = myD.M[j,i] = a.embed.via.cMDS
+		for(i in (m+1):n) for(j in (n+1):(2*n)) myD.M[i,j] = myD.M[j,i] = a.embed.via.cMDS
+		
+		
+		
+			in.sample.vec.for.oos<- c(1:m,(n+1):(n+m))
+			in.sample.log.for.oos.embed<- rep(FALSE,2*n)
+			in.sample.log.for.oos.embed[in.sample.vec.for.oos]<-TRUE
+			myD.M.in<- myD.M[in.sample.log.for.oos.embed, in.sample.log.for.oos.embed]
+			ccc = cmdscale(myD.M.in,k=d.dim,eig=T)
+			#plot(ccc$eig)
+			#pairs(ccc$points , col=colvec,pch=c(Ln,Ln))
+			#plot(ccc$points[,c(2,3)] , col=colvec,pch=c(Ln,Ln))
+			Y.emb<-oosMDS(myD.M,X=ccc$points, w=ifelse(in.sample.log.for.oos.embed,1,0),init="gower")			 			
+			U = as.matrix(dist(Y.emb[,dims.for.dist]))
+		
+				
+		M = solveMarriage(U[1:(n-m),(n-m+1):(2*(n-m))])
+		nc.cmds[ipert,imc] = present(M)/(n-m)         # returns the number correct in the marriage?		
+	}
+}
+@
+
+
+<<JOFC_on_Graphs_Plot,echo=FALSE,eval=TRUE,fig.cap="The matching ratio for seeded graph matching via JOFC is different for different dissimilarity measures. For $n=50$ vertices and $m=30$ seeds, the true matching ratio is plotted against the perturbation parameter $p_{pert}$. Note the U-shape of some of the dissimilarities.",dependson='JOFC-on-ER-Graph-init'>>=
+require(arrayhelpers,quietly=TRUE)
+require(ggplot2,quietly=TRUE)
+dimnames(n.correct.match.jofc.agg)[[1]]<- pert
+dimnames(n.correct.match.jofc.agg)[[3]] <- c("ShortestPath","WeightedCz-Dice","DiffusionDist","ExpCommuteTime","ShortestPath/Cz-Dice","L_1-Distance")
+nc.jofc.lf <- array2df(n.correct.match.jofc.agg,levels=list(pert=TRUE,mc=NULL,diss.meas=TRUE),label.x="nc.ratio")
+
+nc.ratio.mean.sd<-summarySE(data=nc.jofc.lf,measurevar="nc.ratio",groupvars=c("pert","diss.meas"))
+ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=diss.meas))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=diss.meas))+geom_line(aes(group=diss.meas))+theme(legend.position="bottom")
+@
+
+Our first observation from the plot is that for low amounts of perturbation, JOFC performs satisfactorily, that is most of the test vertices are matched correctly. Various dissimilarity measures can be chosen for the dissimilarity matrix. The appropriate dissimilarity measure might depend on the degree distribution and the size of the graph. \autoref{fig:JOFC_on_Graphs_Plot} shows some dissimilarity measures result in significantly different behaviour as $p_{pert}$  changes.
+
+ As the perturbation parameter gets larger, (for all dissimilarity measures) the performance  degrades until it is indistinguishable from random chance at $p_{pert}=0.5$. For this $p_{pert}$ value, there is no edge correlation between the two graphs, since the mutual information between $A_{ij}$ and $B_{ij}$ is 0. So at that  $p_{pert}$ value, we expect on average the same number of true matches as random chance. Further $p_{pert}$ means the dissimilarity between truly matched vertices, say  with the shortest path distance as the dissimilarity measure, is even larger than you would expect by chance, which means even less number of true matches.
+
+
+
+
+<<JOFC_vs_cMDS_on_ER_graph,fig.show='asis',fig.cap="The matching ratio for seeded graph matching via JOFC is compared with classical MDS embedding with out-of-sample extension. For $n=50$ vertices and $m=30$ seeds, the true matching ratio is plotted against the perturbation parameter $p_{pert}$.",echo=FALSE,eval=TRUE,dependson='JOFC-on-ER-Graph-init'>>=
+require(arrayhelpers,quietly=TRUE)
+require(ggplot2,quietly=TRUE)
+dimnames(nc.cmds)[[1]]<-pert
+
+nc.cmds.lf<- array2df(nc.cmds,levels=list(pert=TRUE,mc=NULL),label.x="nc.ratio")
+print()
+
+nc.cmds.lf<- cbind(nc.cmds.lf,data.frame(diss.meas=rep("ClassicalMDS",nrow(nc.cmds.lf))))
+nc.jofc.shortpath.lf <- subset(x=nc.jofc.lf,subset=(nc.jofc.lf$diss.meas=="ShortestPath"))
+nc.jofc.shortpath.lf$diss.meas <- "RawStressEmbed"
+nc.jofc.vs.cmds.lf <- rbind(nc.jofc.shortpath.lf,nc.cmds.lf)
+nc.ratio.mean.sd<-summarySE(data=nc.jofc.vs.cmds.lf ,measurevar="nc.ratio",groupvars=c("pert","diss.meas"))
+ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=diss.meas))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=diss.meas))+geom_line(aes(group=diss.meas))
+@ 
+
+JOFC embedding  has significantly better performance compared to cMDS \ref{fig:JOFC_vs_cMDS_on_ER_graph}. 
+
+
+
+As $p_{pert}$ approaches $1$, $\G_2$ gets closer to the complement of $\G_1$. An interesting feature of the plot is the U-shape of the curve for some of the dissimilarities. This invariancy with respect to complement of the graph should be investigated further.  
+
+
+
+%An interesting trend in the graph is that shortest-path based dissimilarities are an improvement over diffusion-path dissimilarities for perturbation parameter less than 0.5 , but as perturbation parameter increases past 0.5, fraction of correct matches for diffusion distance based dissimilarity recovers, while for other dissimilarities the fraction continues to fall. 
+
+%The dissimilarity type that has the best improvement in performance is JOFC with shortest path distances in weighted graphs(unweighted graphs have similar performance).
+
+
+<<JOFC-on-ER-Graph-w_param-run, echo=FALSE,results='hide',cache=TRUE,trace=TRUE,eval=TRUE,warning=FALSE,dependson='JOFC-on-ER-Graph-init'>>=
+diss_measure = "default"
+
+w.vals.vec <- c(0.2,0.5,0.7,0.9,0.95)
+  w.max.index <- length(w.vals.vec)
+
+nc.jofc.diff.w       = array(0,dim=c(npert,nmc,length(w.vals.vec)))
+
+nc.jofc.unweighted.w = array(0,dim=c(npert,nmc,length(w.vals.vec)))
+
+
+
+# these three lines are not used, really ...
+# they just set up a dummy D.M which is the correct object for input to fullmatch".
+# i'm just using Sancar's object ... i don't really understand it!
+G<-matrix(0,n,n)
+G.comb<-matrix(0,2*n,2*n)
+Graph.M <- graph.adjacency(G.comb,weighted= NULL ,mode="undirected")
+D.M<-shortest.paths(Graph.M)
+
+seed<-123
+
+for(imc in 1:nmc)
+{
+  G<-ER(n,0.5)
+	for(ipert in 1:npert)
+	{
+		
+		Gp<-bitflip(G ,pert[ipert],pert[ipert])
+		Graph.1<-graph.adjacency(G)
+		Graph.2<-graph.adjacency(Gp)
+		D.1<-shortest.paths(Graph.1)
+		D.2<-shortest.paths(Graph.2)
+		oos.sampling<-sample(1:n,size=n-m,replace=FALSE)
+		in.sample.ind<-rep(TRUE,2*n)
+		in.sample.ind[oos.sampling]<-FALSE
+		in.sample.ind[n+oos.sampling]<-FALSE
+		
+		
+		
+      J.3 <- JOFC.graph.custom.dist  (G,Gp,
+  		in.sample.ind,
+			d.dim=d.dim,
+			w.vals.vec,
+			graph.is.directed  =  FALSE,
+			vert_diss_measure  =  diss_measure,
+			T.param  =  T.diff,
+			num_v_to_embed_at_a_time   =   sum(!in.sample.ind)/2,
+			graph.is.weighted=FALSE ,
+			sep.err.w=TRUE,   legacy.func= TRUE, const.dim=TRUE)
+		
+		for (w.i in 1:w.max.index){
+			M = solveMarriage(J.3[[w.i]])
+			nc.jofc.unweighted.w[ipert,imc,w.i] = present(M)/(n-m)         # returns the number correct in the marriage?
+		}
+		
+		
+		
+	}
+}
+@
+
+
+<<JOFC-on-ER-Graph-w_param-plot, echo=FALSE,trace=TRUE,eval=TRUE,dependson='JOFC-on-ER-Graph-init'>>=
+require(arrayhelpers,quietly=TRUE)
+require(ggplot2,quietly=TRUE)
+print(str(nc.jofc.unweighted.w))
+dimnames(nc.jofc.unweighted.w)[[1]] <- pert
+dimnames(nc.jofc.unweighted.w)[[3]] <- w.vals.vec
+
+nc.jofc.w.lf<- array2df(nc.jofc.unweighted.w,levels=list(pert=TRUE,mc=NULL,w=TRUE),label.x="nc.ratio")
+print(str(nc.jofc.w.lf))
+
+nc.ratio.mean.sd<-summarySE(data=nc.jofc.w.lf ,measurevar="nc.ratio",groupvars=c("pert","w"))
+ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=w))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=w))+geom_line(aes(group=w))+theme(legend.position="bottom")
+
+@
+
+This graph \ref{fig:JOFC-on-ER-Graph-w_param-plot} shows the effect of the weight parameter of stress $w$ on the probability of true matches. We note that in this graph matching setting using the shortest path distance as the dissimilarity measure and for the $w$ values we tested, there is no significant difference between the true matching ratios. This indicates that the choice of the parameter $w$ is not necessarily critical for performance in all data settings. 
+%\begin{figure}
+%\includegraphics{FidCommPaper-graph-plot-4}
+%\end{figure}
+
+
+
+<<JOFC-on-ER-Graph-d_param-run, echo=FALSE,results='hide',cache=TRUE,trace=TRUE,eval=TRUE,warning=FALSE,dependson='JOFC-on-ER-Graph-init'>>=
+
+require(abind,quietly=TRUE)
+
+d.dim.vec<-c(4,6,10,13)
+
+nc.jofc.diff.d       = array(0,dim=c(npert,nmc,length(d.dim.vec)))
+nc.jofc.weighted.d   = array(0,dim=c(npert,nmc,length(d.dim.vec)))
+nc.jofc.unweighted.d = array(0,dim=c(npert,nmc,length(d.dim.vec)))
+
+nc.cmds.d           = array(0,dim=c(npert,nmc,length(d.dim.vec)))
+
+
+G<-ER(n,0.5)
+G.comb<-omnibusM(G,G,diag(n))
+Graph.M <- graph.adjacency(G.comb,weighted= NULL ,mode="undirected")
+D.M<-shortest.paths(Graph.M)
+
+seed<-123
+
+for (d.dim in d.dim.vec){
+  dims.for.dist<-2:d.dim
+	d.i<-which(d.dim.vec==d.dim)
+	for(imc in 1:nmc)
+	{
+		G<-ER(n,0.5)
+		for(ipert in 1:npert)
+		{
+			
+			Gp<-bitflip(G ,pert[ipert],pert[ipert])
+			Graph.1<-graph.adjacency(G)
+			Graph.2<-graph.adjacency(Gp)
+			D.1<-shortest.paths(Graph.1)
+			D.2<-shortest.paths(Graph.2)
+			oos.sampling<-sample(1:n,size=n-m,replace=FALSE)
+			in.sample.ind<-rep(TRUE,2*n)
+			in.sample.ind[oos.sampling]<-FALSE
+			in.sample.ind[n+oos.sampling]<-FALSE
+			
+			
+			J.3 = JOFC.graph.custom.dist  (G,Gp,
+    	in.sample.ind,
+			d.dim=d.dim,
+			w.vals.vec,
+			graph.is.directed  =  FALSE,
+			vert_diss_measure  =  diss_measure,
+			T.param  =  T.diff,
+			num_v_to_embed_at_a_time   =   sum(!in.sample.ind)/2,
+			graph.is.weighted=FALSE ,
+			sep.err.w=TRUE,   legacy.func= TRUE, const.dim=TRUE)
+			
+			M = solveMarriage(J.3[[1]])
+			nc.jofc.unweighted.d[ipert,imc,d.i] = present(M)         # returns the number correct in the marriage?
+			
+			
+			
+			
+			
+			if (embed.via.cMDS){
+				U<-matrix()
+				
+				myD.M = D.M # i use just the object D.M ... none of the original entries!
+				myD.M[1:n,1:n]=D.1
+				myD.M[(n+1):(2*n),(n+1):(2*n)]=D.2
+				myD.M[1:n,(n+1):(2*n)]=(D.1+D.2)/2
+				myD.M[(n+1):(2*n),1:n]=(D.1+D.2)/2
+				for(i in 1:n) for(j in (n+m+1):(2*n)) myD.M[i,j] = myD.M[j,i] = a.embed.via.cMDS
+				for(i in (m+1):n) for(j in (n+1):(2*n)) myD.M[i,j] = myD.M[j,i] = a.embed.via.cMDS
+				
+				
+				if (oos.embed.via.cMDS){
+					
+					oos.in.sample.vec<- c(1:m,(n+1):(n+m))
+					oos.in.sample.ind<- rep(FALSE,2*n)
+					oos.in.sample.ind[oos.in.sample.vec]<-TRUE
+					myD.M.in<- myD.M[oos.in.sample.ind,oos.in.sample.ind]
+					
+					ccc = cmdscale(myD.M.in,k=d.dim,eig=T)
+					#plot(ccc$eig)
+					#pairs(ccc$points , col=colvec,pch=c(Ln,Ln))
+					#plot(ccc$points[,c(2,3)] , col=colvec,pch=c(Ln,Ln))
+					Y.emb<-oosMDS(myD.M,X=ccc$points, w=ifelse(oos.in.sample.ind,1,0),init="gower")					
+# 			
+					U = as.matrix(dist(Y.emb[,dims.for.dist]))
+				} else {
+					
+					
+					ccc = cmdscale(myD.M,k=d.dim,eig=T)
+					#plot(ccc$eig)
+					#pairs(ccc$points , col=colvec,pch=c(Ln,Ln))
+					#plot(ccc$points[,c(2,3)] , col=colvec,pch=c(Ln,Ln))
+					
+					U = as.matrix(dist(ccc$points[ c((m+1):(n),(n+m+1):(n+n)) ,dims.for.dist]))
+				}
+				M = fullmatch(U[1:(n-m),(n-m+1):(2*(n-m))])
+				nc.cmds.d[ipert,imc,d.i] = present(M)         # returns the number correct in the marriage?
+			}
+			
+						
+		}
+	}
+}
+
+nc.jofc.cmds.d<- abind(nc.jofc.unweighted.d ,nc.cmds.d, along = 0.5) #fractional `along` argument creates a new dimension along which the two arrays are combined. it is the first dimension after
+
+
+
+@
+
+<<JOFC_on_ER_Graph_d_param-plot, echo=FALSE,trace=TRUE,eval=TRUE,dependson='JOFC-on-ER-Graph-init'>>=
+require(arrayhelpers,quietly=TRUE)
+require(ggplot2,quietly=TRUE)
+
+
+
+
+dimnames(nc.jofc.cmds.d)[[1]] <- c("stress","cMDS")
+dimnames(nc.jofc.cmds.d)[[2]] <- pert
+dimnames(nc.jofc.cmds.d)[[4]] <- d.dim.vec
+print(str(nc.jofc.cmds.d))
+
+nc.jofc.d.lf<- array2df(nc.jofc.cmds.d,levels=list(stress.or.cMDS=TRUE,pert=TRUE,mc=NULL,d=TRUE),label.x="nc.ratio")
+print(str(nc.jofc.d.lf))
+
+nc.ratio.mean.sd<-summarySE(data=nc.jofc.d.lf ,measurevar="nc.ratio",groupvars=c("pert","d","stress.or.cMDS"))
+ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=d,shape=stress.or.cMDS))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=interaction(d,stress.or.cMDS)))+geom_line(aes(group=interaction(d,stress.or.cMDS)))
+
+@
+
+\autoref{fig:JOFC_on_ER_Graph_d_param-plot} shows that the embedding dimension is a more important concern when the classical MDS embedding is used. For JOFC, even the smallest embedding ($d=4$) dimension is large enough so that significant amount of fidelity  is not  lost which results in mostly accurate matchings of vertices.
+
+
+
+There are a lot  of interesting questions to ponder about the number of known correspondences, such as 
+\begin{itemize}
+\item How many known correspondences are necessary for satisfactory performance for graphs of some fixed size 
+\item Are there  any ``elbows'' in the ``match ratio'' vs number of known correspondences curve,  after which the cost of more correspondences are not justified by the accompanying increase in ``match ratio''.
+\end{itemize}.
+We try to find answers to these questions by using the Erdos-Renyi graph pair model we introduced along with some real-world graphs.
+
+Figure \ref{fig:bitflipJOFC} shows ``match ratio'' plotted against number of ``seeds'' for the bitflip simulations (the data is generated using the Erdos-Renyi graph pair model) using the Czekanowski-Dice dissimilarity measure. These results suggest that even with the perturbation, when a portion of the correspondences are known, it is possible to recover most of the remaining correspondences using JOFC embedding of the pair of graphs. This application of JOFC is  investigated further in \cite{SGMviaJOFC} with real datasets.
+\begin{figure}
+\includegraphics[scale=0.75]{bitflip_JOFC}
+\caption{Bitflip Simulations for JOFC \label{fig:bitflipJOFC}}
+\end{figure}
+
+
+\subsection{Experiments on Real data}
+
+\subsubsection{C. elegans connectome}
+As one of the real graph data, we consider two connectivity graphs of 279 neurons of the  nematode, \textit{Caenorhabditis elegans}. The two conditions correspond to the two ways of measuring connectivity among neurons $\G_c$ and $\G_g$ . The connectivity in the first connectome is defined by chemical synapses, a directed connection between two cells.  The  weight matrix for the first connectivity type is $A_c$ which is not symmetric, has values between 0 and 37 and is relatively sparse (has 2194 non-zero entries). The second connectivity type forms a unweighted graph $\G_g$ with the adjacency matrix $A_g$ and is defined by the existence of gap junctions between neurons. $\G_g$ is even sparser(1031 non-zero entries) than $\G_c$.
+
+We remove isolated vertices from the two graphs and keep vertices which are connected in both graphs. This leaves $n=253$  vertices. We consider both the original weighted graphs and binarized version of the graphs and also symmetrized versions of each (which leads to directed and undirected graphs, respectively). In the case of weighted graphs, we normalize the two graphs, so that they approximately have the same scale. For JOFC, we use the weighted DICE dissimilarity (which simplifies to the generic DICE dissimilarity in the case of unweighted graphs) to compute $\Delta_c$ and $\Delta_g$.   
+
+\begin{figure}
+\includegraphics[scale=0.75]{worm_jofc_vs_faq_wt_unwt-crop}
+\caption{Graph Matching experiments on the C. elegans connectomes using JOFC and FAQ algorithms \label{worm_graphmatch}}
+\end{figure}
+
+\subsubsection{Enron communication graph}
+The Enron communication graph is extracted from the  Enron  email corpus, which was made public during criminal investigations by the  Federal Energy Regulatory Commission. Though the number of actual users is about 150,  each email alias is considered as a vertex in the communication graph. The original number of email aliases is 184. The whole time interval is divided into 187 sub-intervals (each corresponding to a week). The emails are grouped according to which time interval their timestamps are in. We then construct a time series of graphs $\mathfrak{G}=\{G^{(t)} = (V,E^{(t)})\}$ where $E^{(t)}$ correspond to emails that were sent at $t^{th}$ interval. We are interested in the intervals $t=130$ , $t=131$ (and $t=132$ for some experiments), as previous  investigations of the corpus found chatter anomalies at these time intervals \cite{EnronStudy}. When isolated vertices (and their corresponding vertices in the other graph) are removed in these two graphs  , the number of vertices is reduced to 146. It is these two pruned graphs we match.
+
+\begin{figure}
+\includegraphics[scale=0.75]{JOFC-enron_dim_20}
+\caption{Experiments on the Enron communication graphs for JOFC \label{enron_graphmatch}}
+\end{figure}
+
+\begin{figure}
+\includegraphics[scale=0.75]{enron-JOFC-FAQ-paper.pdf}
+\caption{Experiments on the Enron communication graphs for FAQ and JOFC \label{enron_graphmatch_faq_jofc}}
+\end{figure}
+
+
+\begin{figure}
+\includegraphics[scale=0.75]{enron-paper.pdf}
+\caption{Experiments on the Enron communication graphs for FAQ for t=130,131,132 \label{enron_graphmatch_faq_t}}
+\end{figure}
+
+\subsubsection{Wikipedia hyperlink subgraph}
+
+Wikipedia is a free online encyclopedia created by volunteers around the world consisting of millions of article in hundreds of languages (30 million articles in 287 languages, including over 4.3 million in the English Wikipedia as of November 2013 \cite{wikipedia}). Articles contain text, links to other articles and multimedia content. We interpret the links as directed edges in a hyperlink graph where vertices correspond to articles. A collection of articles were collected from the English Wikipedia, consisting of the
+ directed 2-neighborhood of the document "Algebraic Geometry". 
+   This  collection of 1382 articles and the correspondence of each article in French 
+Wikipedia is our real-life dataset. For inference tasks, it is possible to utilize both textual content of the documents and the hyperlink graph structure. The textual content of the documents is summarized by the bag-of-words model. Dissimilarities between documents  in the same language are computed by the Lin-Pantel discounted mutual information \cite{LinPantel,PantelLin}
+ and cosine dissimilarity $k(x_{ik}; x_{jk}) = 1 - (x_{ik} x_{jk})/(\|x_{ik}\|_2\|x_{ik}\|_2)$. 
+ The dissimilarities based on the hyperlink graph are shortest path distances in the graph:
+ for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$. Due to the fact the French Wikipedia graph is sparser, the induced graph in French Wikipedia of 2-neighborhood in English Wikipedia might be a disconnected graph. Therefore the shortest path dissimilarities in French Wikipedia are set to 6 (maximum shortest path distance in English Wikipedia graph), if they are larger than 6.  Further details about this dataset is available in \cite{Zhiliang_disparate}.
+ 
+ As this graph is relatively large compared to other real life graphs we considered, we only tested modified FAQ algorithm. Note testing JOFC on this graph is still tractable.
+
+\begin{figure}
+\includegraphics[scale=0.75]{wiki-all-with-unseeded.pdf}
+\caption{Graph Matching Experiments on the English and French Wikipedia subgraph for FAQ \label{wiki_graphmatch}}
+\end{figure}
+      
+\subsubsection{Charitynet graph}
+
+The charitynet dataset consists  of timestamped donation relationships between 8052 donors and 756 charities. The donations are divided into two time intervals according to whether they are before the midpoint of the earliest and latest timestamps.
+Let $tmid = \frac{(tmax - tmin)}{2}$.
+We build two bipartite graphs represented by $B_1$ and $B_2$ for $\left[tmin,tmid\right)$ and $\left(tmid,tmax\right]$, respectively --
+each $B^{(t)}$ is $n \times m$, where $n$ is total number of donors in all of charitynet and $m$ is total number of charities in all of charitynet.
+so $B_{ij}^{(t)}$ is a 1 if donor $i$ gives to charity $j$ during time interval $t$.
+
+For charities $i$ and $j$,
+let $A_{ij}^{(t)}= \sum_{k}{(B_{ik}^{(t)}B_{jk}^{(t)}}$, i.e. the number of donors that both $i$ and $j$ receive from during time interval $t$.
+We match the two graphs represented by  $A^{\left[ tmin,tmid \right)}$, $A^{\left(tmid,tmax\right]}$.
+
+\begin{figure}
+\includegraphics[scale=0.4]{charitynet_SGM_JOFCvsFAQ}
+\caption{Graph Matching experiments on the two Charitynet graphs for JOFC \label{charitynet_graphmatch}}
+\end{figure}
+
+\subsection{1-to-k matching of vertices} 
+
+Consider the case where the correspondences between vertices of $\G_1=(V_1,E_1)$ and $\G_2= (V_2,E_2)$ (represented by adjacency matrices, $A$ and $B$ respectively) are not one-to-one. To describe the problem in its most general form, we could define group assignment functions $g_1{v_1}: V_1 \rightarrow \mcG={l_1,l_2,\ldots,l_{\upsilon}}$, $g_2{v_2}:V_2 \rightarrow \mcG$ where the inverse images of $g_1{l_i}$, $g_2{l_i}$ are always nonempty. A vertex $v_1 \in  V_1$ in one graph corresponds to a vertex $v_2 \in  V_2$  in another graph, if $g_1(v_1)=g_2(v_2)$. We want to make the simple restriction that $g_2$ is a one-to-one mapping, that is each vertex in $\G_2$ correspond to at least one vertex in  $\G_1$.
+For simulations, we consider a very simple case where the $i^{th}$ vertex in $B$ corresponds to $k_i$ vertices in $A$ where $1\leq k_i \leq k_{max}$ where $k_{max}$ is the maximum number of corresponding vertices a $B$ vertex can have.  Denote by $g(\cdot)=g_2^{-1}\circ g_1(\cdot) : V_1 \rightarrow V_2$ the correspondence function from vertices in $\G_1$ to vertices in $\G_2$. Given $r$ vertices in $B$, and the corresponding vertices in $V_1$ for each of the $r$ vertices ($u \in V_1$ such that $g(u)=v_2$), the task is  to find at most $k_max$ closest matches to each vertex of of $\G_2$. 
+
+These three information retrieval performance measures are used: Precision, Recall and F-measure.
+$$\mathrm{Precision} =\frac{\textrm{Number of correct matches found}}{\textrm{Number of found matches}}$$
+$$\mathrm{Recall}    =\frac{\textrm{Number of correct matches found}}{\textrm{Number of true matches}}$$
+
+$$F-measure  =\frac{2 \times \textrm{Precision} \times \textrm{Recall}}{\textrm{Precision} + \textrm{Recall}}$$
+
+For each vertex of $\G_2$, the number of true matches is $k_i$. The three performance measure is calculated for each vertex of $\G_2$ and then the three averages over all vertices $B$ is the performance measures computed for the  matching.
+
+\begin{figure}
+\includegraphics[scale=0.65]{Total_precision_JOFC_1_to_k_match_paper.pdf}
+\caption{Graph Matching experiments on simulated graphs for JOFC \label{1_k_graphmatch_sim}}
+\end{figure}
+
+The results provide evidence that JOFC is a suitable method for solving this variation of graph matching problem. While  both JOFC and modified FAQ were acceptable solutions for the approximate graph matching (AGM) problem with one-to-one correspondence between vertices, with comparable matching performance, modified FAQ  cannot directly solve  the 1-k correspondence variation of the GM problem. In contrast, JOFC is quite adequate for solving AGM with one-to-$k$ correspondence. One only needs to use a matching algorithm that allows multiple assignments for the vertices of one of the graphs. We should mention we use the full matching algorithm implemented in R package \cite{optmatch} which finds  `` a matching between units that minimizes the average within grouped distances, given a matrix describing the distances between two groups''\cite{optmatch_manual}. That is, the \emph{full} matching algorithm finds an assignment for all of the vertices in both graphs. As the assignment problem is independent of the embedding, other matching algorithms can be used with the same embedding.
