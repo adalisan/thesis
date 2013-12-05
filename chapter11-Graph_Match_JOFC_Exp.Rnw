@@ -81,7 +81,17 @@ In our experiments we will use five different dissimilarities/distances between 
  We would again choose 0 for the dissimilarities between matched vertices, then either impute the remaining unknown dissimilarities or ignore them in the embedding.
  \end{remark}
  
- While it is plausible the JOFC approach can also solve the seeded graph matching (SGM) problem, it is not obvious it can compete with the modified FAQ algorithm, specifically formulated to solve the  seeded approximate graph matching problem. Then, why should one choose to use JOFC for SGM? One of the many problems with analysis of real data is that the graph representation of real data is not always well-defined and the correspondence of vertices may be  ambiguous, one-to-many or many-to-many. In such situations, we would prefer a robust algorithm, that would still match seeded graphs with satisfactory performance. Modified FAQ, in the form that we have presented, can not handle such pathologies and significant changes must be made to modified FAQ algorithm before it can handle them. If it turns out that the true match ratios by the assignments given by the JOFC approach is at least as high as the ones given by the modified FAQ algorithm, we can conclude JOFC is reasonably competitive with the modified FAQ algorithm for seeded graph matching. Our simulations using the correlated Erdos-Renyi graphs and experiments with real graph data are tailored for comparison of  the two approaches. We compared the algorithms whenever both of the approaches   are  feasible for the problem size (the running times are acceptable). This application of JOFC for seeded graph matching is  investigated  in \cite{SGMviaJOFC} with simulation and real datasets and some of the same results will be presented in herein.
+ While it is plausible the JOFC approach can also solve the seeded graph matching (SGM) problem, it is not obvious it can compete with the modified FAQ algorithm, specifically formulated to solve the  seeded approximate graph matching problem. Then, why should one choose to use JOFC for SGM?
+One of the many problems with analysis of real data is that the graph representation of real data is 
+ not always well-defined and the correspondence of vertices may be  ambiguous, one-to-many or many-to-many. 
+In such situations, we would prefer a robust algorithm, that would still match seeded graphs with satisfactory performance. 
+Modified FAQ, in the form that we have presented, can not handle such pathologies and significant changes must be made to modified FAQ algorithm before it can handle them. 
+
+
+If it turns out that the true match ratios of the assignments given by the JOFC approach is at least as high as the ones given by the modified FAQ algorithm, we can conclude JOFC is reasonably competitive with the modified FAQ algorithm for seeded graph matching. 
+
+Our simulations using the correlated Erdos-Renyi graphs and experiments with real graph data are tailored for comparison of  the two approaches. We compared the algorithms whenever both of the approaches   are  feasible for the problem size (the running times are acceptable). 
+ This application of JOFC for seeded graph matching is  investigated  in \cite{SGMviaJOFC} with simulation and real datasets and some of the same results will be presented in herein.
  
 
  
@@ -93,7 +103,7 @@ We perform SGM simulations with graphs generated according to a paired Erdos-Ren
 
 
   We first present our exploratory simulations to  test the JOFC approach, and figure out what are reasonable choices for  the dissimilarity measure and $w$ (Fidelity-Commensurability tradeoff parameter). We will also  see how sensitive the results are for different choices of the dissimilarity measure and different $w$ values. 
-  
+ 
   consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, \ie
   $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$. The adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, \ie
     $\left[B\right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$. Suppose $p_{10}=p_{11}=p_{pert}$.
@@ -299,14 +309,14 @@ require(ggplot2,quietly=TRUE)
 dimnames(nc.cmds)[[1]]<-pert
 
 nc.cmds.lf<- array2df(nc.cmds,levels=list(pert=TRUE,mc=NULL),label.x="nc.ratio")
-print()
+
 
 nc.cmds.lf<- cbind(nc.cmds.lf,data.frame(diss.meas=rep("ClassicalMDS",nrow(nc.cmds.lf))))
 nc.jofc.shortpath.lf <- subset(x=nc.jofc.lf,subset=(nc.jofc.lf$diss.meas=="ShortestPath"))
 nc.jofc.shortpath.lf$diss.meas <- "RawStressEmbed"
 nc.jofc.vs.cmds.lf <- rbind(nc.jofc.shortpath.lf,nc.cmds.lf)
 nc.ratio.mean.sd<-summarySE(data=nc.jofc.vs.cmds.lf ,measurevar="nc.ratio",groupvars=c("pert","diss.meas"))
-ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=diss.meas))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=diss.meas))+geom_line(aes(group=diss.meas))
+ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=diss.meas))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=diss.meas))+geom_line(aes(group=diss.meas))+theme(legend.position="bottom")
 @ 
 
 JOFC embedding  has significantly better performance compared to cMDS \ref{fig:JOFC_vs_cMDS_on_ER_graph}. 
@@ -411,7 +421,7 @@ This graph \ref{fig:JOFC-on-ER-Graph-w_param-plot} shows the effect of the weigh
 
 require(abind,quietly=TRUE)
 
-d.dim.vec<-c(4,6,10,13)
+d.dim.vec<-c(4,6,8,11)
 
 nc.jofc.diff.d       = array(0,dim=c(npert,nmc,length(d.dim.vec)))
 nc.jofc.weighted.d   = array(0,dim=c(npert,nmc,length(d.dim.vec)))
@@ -548,7 +558,6 @@ There are a lot  of interesting questions to ponder about the number of known co
 We try to find answers to these questions by using the Erdos-Renyi graph pair model we introduced along with some real-world graphs.
 
 Figure \ref{fig:bitflipJOFC} shows ``match ratio'' plotted against number of ``seeds'' for the bitflip simulations (the data is generated using the Erdos-Renyi graph pair model) using the Czekanowski-Dice dissimilarity measure. These results along with the previous simulations suggest that even with the perturbation, when a portion of the correspondences are known, it is possible to recover most of the remaining correspondences using JOFC embedding of the pair of graphs. We note that the number of correspondence that must be known before the proportion of true matches are satisfactory depends on various factors such as the size and average connectivity of the graphs, the connectivity of the seed vertices, the dissimilarity measure and the amount of perturbation between the two graphs. Further investigations into these factors could be fruitful. 
-
 \begin{figure}
 \includegraphics[scale=0.75]{bitflip_JOFC}
 \caption{Bitflip Simulations for JOFC \label{fig:bitflipJOFC}}
@@ -605,7 +614,7 @@ Wikipedia is a free online encyclopedia created by volunteers around the world c
 Wikipedia is our real-life dataset. For inference tasks, it is possible to utilize both textual content of the documents and the hyperlink graph structure. The textual content of the documents is summarized by the bag-of-words model. Dissimilarities between documents  in the same language are computed by the Lin-Pantel discounted mutual information \cite{LinPantel,PantelLin}
  and cosine dissimilarity $k(x_{ik}; x_{jk}) = 1 - (x_{ik} x_{jk})/(\|x_{ik}\|_2\|x_{ik}\|_2)$. 
  The dissimilarities based on the hyperlink graph are shortest path distances in the graph:
- for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$. Due to the fact the French Wikipedia graph is sparser, the induced graph in French Wikipedia of 2-neighborhood in English Wikipedia might be a disconnected graph. Therefore the shortest path dissimilarities in French Wikipedia are set to 6 (maximum shortest path distance in English Wikipedia graph), if they are larger than 6.  Further details about this dataset is available in \cite{Zhiliang_disparate}.
+ for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$. We consider the connected neighborhood of the English  "Algebraic Geometry" and the induced graph in French Wikipedia of 2-neighborhood in English Wikipedia might be a disconnected graph. Therefore the shortest path dissimilarities in French Wikipedia are cut off at 6 (maximum shortest path distance in English Wikipedia graph).  Further details about this dataset is available in \cite{Zhiliang_disparate}.
  
  As this graph is relatively large compared to other real life graphs we considered, we only tested modified FAQ algorithm. Note that testing JOFC on this graph is still possible, but we had no reason to believe that another JOFC experiment would provide any new insight.
 
@@ -613,26 +622,28 @@ Wikipedia is our real-life dataset. For inference tasks, it is possible to utili
 \includegraphics[scale=0.75]{wiki-all-with-unseeded.pdf}
 \caption{Graph Matching Experiments on the English and French Wikipedia subgraph for FAQ \label{wiki_graphmatch}}
 \end{figure}
-
+      
 The results show that there is strong correlation between the two wikipedia graphs, and as many as 50 seeds is enough to improve graph matching dramatically. More seeds improve the true matching ratio,  but the improvements are much more modest. With graph matching using no seeds, we get a very small number of  true matches. 
 %The different values plotted in   \ref{wiki_graphmatch} for the no seed case are just independent repeat
       
 \subsubsection{Charitynet graph}
 
-The charitynet dataset consists  of timestamped donation relationships between 8052 donors and 756 charities. The donations are divided into two time intervals according to whether they are before the midpoint of the earliest and latest timestamps.
+The charitynet dataset consists  of timestamped donation relationships between 8052 donors and 756 charities. The donations are divided into two time intervals according to whether they are before the midpoint of the earliest and latest timestamps. Each group of donations are represented as edges in bipartite graphs, where vertices correspond to donor or charity entities.
+
 Let $tmid = \frac{(tmax - tmin)}{2}$.
 We build two bipartite graphs represented by $B_1$ and $B_2$ for $\left[tmin,tmid\right)$ and $\left(tmid,tmax\right]$, respectively --
 each $B^{(t)}$ is $n \times m$, where $n$ is total number of donors in all of charitynet and $m$ is total number of charities in all of charitynet.
 so $B_{ij}^{(t)}$ is a 1 if donor $i$ gives to charity $j$ during time interval $t$.
 
 For charities $i$ and $j$,
-let $A_{ij}^{(t)}= \sum_{k}{(B_{ik}^{(t)}B_{jk}^{(t)}}$, i.e. the number of donors that both $i$ and $j$ receive from during time interval $t$.
-We match the two graphs represented by  $A^{\left[ tmin,tmid \right)}$, $A^{\left(tmid,tmax\right]}$.
+let $A_{ij}^{(t)}= \sum_{k}{B_{ki}^{(t)}B_{kj}^{(t)}}$, i.e. the number of donors that give funds to both $i$ and $j$  during the time interval $t$.
+We consider the two graphs $\G_1$ and $\G_2$ represented by  $A^{\left[ tmin,tmid \right)}$, $A^{\left[ tmid,tmax\right]}$. These graphs consist of 8052   vertices representing all donors. Since the graphs are too large for matching by any algorithm, we sample pairs of subgraphs from these two graphs where the pairs consist of the corresponding vertices. Consider the vertices from the largest connected components of $\G_1$ and $\G_2$, $V_1^*$ and $V_2^*$, respectively. We will slightly abuse the  notation by considering the corresponding vertices as the same vertex, \ie $\G_1= (V,E_1)$, $\G_2= (V,E_2)$ We randomly sample $j$ vertices from  $V_1^* \cap V_2^* \subset V$. For each sampled vertex  pair $v \in V_1^* \cap V_2^*$, we consider $\mcN_1(v,k)$ and $\mcN_2(v,k)$ : $k$-neighborhood of $v$  in each graph. $k$ is incremented by 1 starting from 1 until   $\| \mcN_1(v,k) \cap\mcN_2(v',k)\|>n$ where $n$ is the maximum allowable graph size which depends on the computation time allotted for the graph matching. We match the  subgraphs of $\G_1$ and $\G_2$ induced by $\mcN_1(v,k) \cap\mcN_2(v,k)$. There is no guarantee that   either of these subgraphs are connected, however for strongly correlated $\G_1$ and $\G_2$ they should be mostly connected \ie the largest connected component size  is close to the graph size. This is because the local neighborhood of vertices must be the same for two strongly correlated graphs.
 
 \begin{figure}
 \includegraphics[scale=0.4]{charitynet_SGM_JOFCvsFAQ}
 \caption{Graph Matching experiments on the two Charitynet graphs for JOFC \label{charitynet_graphmatch}}
 \end{figure}
+The comparison of JOFC and FAQ  approaches for CharityNet data\ref{charitynet_graphmatch} show that the two approaches have comparable performances. Both of the approaches have small true matching ratios compared to $1$, this is either  due to the weak correlation between the two graphs, $\G_1$ and $\G_2$ or due to the related fact that the sampled subgraphs are not mostly connected.
 
 \subsection{One-to-$k$ matching of vertices} 
 
@@ -652,4 +663,4 @@ For each vertex of $\G_2$, the number of true matches is $k_i$. The three perfor
 \caption{Graph Matching experiments on simulated graphs for JOFC \label{1_k_graphmatch_sim}}
 \end{figure}
 
-The results provide evidence that JOFC is a suitable method for solving this variation of graph matching problem. While  both JOFC and modified FAQ were acceptable solutions for the approximate graph matching (AGM) problem with one-to-one correspondence between vertices, with comparable matching performance, modified FAQ  cannot directly solve  the one-to-$k$ correspondence variation of the GM problem. In contrast, JOFC is quite adequate for solving AGM with one-to-$k$ correspondence. One only needs to use a matching algorithm that allows multiple assignments for the vertices of one of the graphs. We should mention we use the full matching algorithm implemented in R package \cite{optmatch} which finds  `` a matching between units that minimizes the average within grouped distances, given a matrix describing the distances between two groups''\cite{optmatch_manual}. That is, the \emph{full} matching algorithm finds an assignment for all of the vertices in both graphs. As the assignment problem is independent of the embedding, other matching algorithms can be used with the same embedding.
+The results provide evidence that JOFC is a suitable method for solving this variation of graph matching problem. While  both JOFC and modified FAQ were acceptable solutions for the approximate graph matching (AGM) problem with one-to-one correspondence between vertices, with comparable matching performance, modified FAQ  cannot directly solve  the one-to-$k$ correspondence variation of the GM problem. In contrast, JOFC is quite adequate for solving AGM with one-to-$k$ correspondence. One only needs to use a matching algorithm that allows multiple assignments for the vertices of one of the graphs. We should mention we use the full matching algorithm implemented in R package \cite{optmatch} which finds  `` a matching between units that minimizes the average within grouped distances, given a matrix describing the distances between two groups''\cite{optmatch_manual}. That is, the \emph{full} matching algorithm finds an assignment for all of the vertices in both graphs. As the assignment problem is independent of the embedding, other matching algorithms can be used with the same embedding, if one is concerned about efficiency or other aspects of the matching algorithm.
