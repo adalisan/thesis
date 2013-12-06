@@ -83,6 +83,7 @@
 %\makeglossary % enable the glossary
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 <<include=FALSE>>=
 opts_chunk$set(concordance=TRUE,eval=FALSE)
@@ -150,7 +151,7 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 <<'child-chapter11_Graph_Match.Rnw', child='chapter11-Graph_Match_JOFC_Exp.Rnw',eval=TRUE>>=
 @
 
-<<'child-chapter12_conclusion.Rnw', child='chapter12_conclusion.Rnw',eval=TRUE>>=
+<<'child-chapter15_conclusion.Rnw', child='chapter15_conclusion.Rnw',eval=TRUE>>=
 @
 
 
