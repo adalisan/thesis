@@ -83,7 +83,6 @@
 %\makeglossary % enable the glossary
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
 
 <<include=FALSE>>=
 opts_chunk$set(concordance=TRUE,eval=FALSE)
