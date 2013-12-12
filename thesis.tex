@@ -133,6 +133,7 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 
 
@@ -140,8 +141,8 @@
 
 \title{Joint Optimization of Fidelity and Commensurability for Manifold Alignment and Graph Matching}
 \author{Sancar Adali}
-\degreemonth{May}
-\degreeyear{2013} 
+\degreemonth{January}
+\degreeyear{2014} 
 \dissertation
 \doctorphilosophy
 \copyrightnotice
@@ -517,7 +518,7 @@ Various probabilistic MDS methods have been proposed, with specific error assump
 \subsection{Threeway MDS\label{subsec:3wayMDS}}
 Threeway MDS refers to  a variant of MDS that is used for analyzing many different dissimilarity matrices on the same collection of $n$ objects.  The different conditions  can be dissimilarities judged by different people or different dissimilarity measures applied to the same group of observations. We will refer to these different dissimilarities as different conditions, as we have mentioned in \autoref{sec:intro} and denote them by $\{\Delta_k\}$. The index $k$ that denotes the condition provides the third direction in addition to the  two-dimensional dissimilarity matrices.
 
-There are two ways of dealing with such 3-way data: One can compute a separate MDS solution for  each condition and match the configuration matrices by transformations. This two-step approach will be discussed in \autoref{sec:PoM}. The general approach assumes that there is a common configuration $\mathbf{G}$ ($n$ points in $\R^{d}$) and $K$ $d \times d$ transformation matrices ${\mathbf{T}_k}$ such that the dissimilarity matrix $\{\Delta_k\}$ arises  from the transformed configuration $\mathbf{G}_k =\mathbf{G}\mathbf{T}_k$. The inference problem is then computing $\mathbf{T}_k$.
+There are two ways of dealing with such 3-way data: One can compute a separate MDS solution for  each condition and match the configuration matrices by transformations. This two-step approach will be discussed in \autoref{chap:PoM}. The general approach assumes that there is a common configuration $\mathbf{G}$ ($n$ points in $\R^{d}$) and $K$ $d \times d$ transformation matrices ${\mathbf{T}_k}$ such that the dissimilarity matrix $\{\Delta_k\}$ arises  from the transformed configuration $\mathbf{G}_k =\mathbf{G}\mathbf{T}_k$. The inference problem is then computing $\mathbf{T}_k$.
 
 Another approach mentioned in \cite{borg+groenen:1997} is  mapping the dissimilarities(or proximities) into one distance matrix (which is the idea behind Multiple Kernel Learning \ref{sec:MultiViewLearn}).
 
@@ -984,7 +985,7 @@ Let $S^p=\{\bm{x}:\bm{x}\in\mathbb{R}^{(p+1)}, \sum_{l=1}^p{x_l}=1\}$ be the sta
 	\end{center}
   \end{figure}
 
-\subsection{Noise\label{noise}}
+\subsection{Noise\label{subsec:noise}}
 Measurements $X_{ik}$ carry the signal that is relevant to the exploitation task. Noise dimensions can be introduced to  the measurements by concatenating a $q$-dimensional error vector whose magnitude is controlled by the parameter $c$. The noisy measurements will be  represented by the random vectors 
  \begin{equation}
 \breve{X}_{ik}=[(1-c)X_{ik}\hspace{5pt} cE_{ik}]\label{eq:noise-expr}
@@ -1114,7 +1115,7 @@ Canonical Correlational Analysis provides another method to tackle the incommens
 
 For the CCA approach, MDS is used  to compute embedding configurations, $ \X_1$ and $\X_2$. For the data settings in  It is desirable to  embed into the highest dimensional space  possible ($\mathbb{R}^{s}$ where $s=p+q$ for the Gaussian and Dirichlet settings)  to  preserve as many of the signal dimensions as possible (at the risk of possibly including  some noise dimensions). CCA~\cite{Hardoon2004}, then,  yields two mappings $\mathcal{U}_1$ and $\mathcal{U}_2$ that map these embeddings in $\mathbb{R}^{s}$ to  the low-dimensional commensurate space ($\mathbb{R}^d$). 
 
-While embedding the dissimilarities in the  highest dimension possible is a good idea for preserving the signal dimensions, in the presence of noise dimensions \ref{sec:noise}, the noise will be incorporated into the embeddings. Even if the dissimilarities are errorless representations of measurements of a particular dimension $d^*$; for  the  sake of inference, it is preferable to embed at a lower  dimension due to the bias-variance tradeoff. This variant of CCA approach, which is called regularized CCA, with the  embedding dimension choice $s< (p+q)$ is expected to have performance better than CCA approach by removing variance at the sake of introducing more bias. We expect that  we will see a difference between CCA and regularized CCA  in our data settings since we introduce noise to the dissimilarities.
+While embedding the dissimilarities in the  highest dimension possible is a good idea for preserving the signal dimensions, in the presence of noise dimensions (\ref{subsec:noise}), the noise will be incorporated into the embeddings. Even if the dissimilarities are errorless representations of measurements of a particular dimension $d^*$; for  the  sake of inference, it is preferable to embed at a lower  dimension due to the bias-variance tradeoff. This variant of CCA approach, which is called regularized CCA, with the  embedding dimension choice $s< (p+q)$ is expected to have performance better than CCA approach by removing variance at the sake of introducing more bias. We expect that  we will see a difference between CCA and regularized CCA  in our data settings since we introduce noise to the dissimilarities.
 
 \section{Canonical Correlational Analysis}
 
@@ -1312,66 +1313,57 @@ For our simulation, we chose a grid of starting points for $X_6$ has the x-coord
 
 Starting from a small enough value for $w$ and increasing it until $w$ is arbitrarily close to $1$, there are two $w$ values where important changes in embedding configurations and final stress values occur.
 
-The plots in Figures \ref{fig:Finalconfig-MultMin-w-0_1}, \ref{fig:Finalconfig-MultMin-w-0_5}, \ref{fig:Finalconfig-MultMin-w-0_8}, \ref{fig:Finalconfig-MultMin-w-0_81} , \ref{fig:Finalconfig-MultMin-w-0_84} show the  embedding configurations of ${X}_6$ (in red circles) and ${X}_7$(in blue plusses). Each point in the plots is where the IM algorithm terminates in in starting from different initial configurations (One red and one blue point for each  initial configuration). The point pairs plotted in the left box for each figure pair are those configurations  where the  ${X}_6$ and ${X}_7$ end up in the side of their matched points (``true'' final configuration). The configurations in the right are those where the points end up in the opposite side of their matched points. For the last 4 $w$ values $(0.82,0.83,0.84,0.85)$, there are no initial configurations that end up in ``alternative''-kind configurations. Both kind of  configurations(``true'' and ``alternative'') for selected $w$ values are plotted in Figure \ref{fig:plot_final_pts}. The plots for different $w$ are also animated\ref{fig:config_w_ani}.
+The plots in Figures \ref{fig:Finalconfig-MultMin-w-0_1}, \ref{fig:Finalconfig-MultMin-w-0_5}, \ref{fig:Finalconfig-MultMin-w-0_8}, \ref{fig:Finalconfig-MultMin-w-0_81} , \ref{fig:Finalconfig-MultMin-w-0_84} show the  embedding configurations of ${X}_6$ (in red circles) and ${X}_7$(in blue plusses). Each point in the plots is where the IM algorithm terminates in in starting from different initial configurations (One red and one blue point for each  initial configuration). The point pairs plotted in the left box for each figure pair are those configurations  where the  ${X}_6$ and ${X}_7$ end up in the side of their matched points (``true'' final configuration). The configurations in the right are those where the points end up in the opposite side of their matched points. For the last 4 $w$ values $(0.82,0.83,0.84,0.85)$, there are no initial configurations that end up in ``alternative''-kind configurations. Both kinds of  configurations (``true'' and ``alternative'') for selected $w$ values are plotted in Figure \ref{fig:plot_final_pts_all_w}. The plots for different $w$ are also animated\ref{fig:config_w_ani}.
 
-The final stress values of the final configurations listed in  \autoref{stress-val-table} (the minimum stress value among each kind of local minima) and plotted in \autoref{fig:final_stress_plot} show that around $w=0.5$ the  ``true''-kind local minima   starts having a lower stress value compared to ``alternative''-kind.  This is the first $w$ value that corresponds to an important change. This transition provides evidence that different local minima might become global minima, depending on value of $w$.
+We are also interested in which kind of local minima has lower stress and contains the global minima solution. We compute  the minimum stress value among each kind of local minima and compare these final stress values. The final stress values of the final configurations listed in  \autoref{table:stress_val} and plotted in figure \ref{fig:final_stress_plot} indicate that around $w=0.5$ the  ``true''-kind local minima   starts having a lower stress value compared to ``alternative''-kind.  This is the first $w$ value that corresponds to an important change. This transition provides evidence that different local minima might become global minima, depending on value of $w$.
 
 Also note that starting around $w=0.8$ in Figure \ref{fig:Finalconfig-MultMin-w-0_8}, all of the $\hat{X}_6$ and $\hat{X}_7$  pairs are on the verge of passing throught the barrier and start ending up in the side of their matched points, due to the fact that the barrier starts to become negligible and there are no separate local minima. When $w>0.8$, all of the point pairs end up in  the ``real'' configuration \ref{fig:Finalconfig-MultMin-w-0_81}. This is the other $w$ value where important changes in configurations and stress values occur. Further increasing $w$ changes the final stress value, and  the final embedding configuration moves closer to the original locations of $X_{i}$ in \ref{original-config} \ref{fig:Finalconfig-MultMin-w-0_84}.
 
-
-
-
-
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}[]
-
-\includegraphics[width=\maxwidth]{figure/plot_final_pts_all_w} \caption[Embedded Point Pairs ($\hat{X}_6$ and $\hat{X}_7$) for all initial configurations for different $w$ values]{Embedded Point Pairs ($\hat{X}_6$ and $\hat{X}_7$) for all initial configurations for different $w$ values\label{fig:plot_final_pts_all_w}}
-\end{figure}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
 
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot change working directory}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file './JOFC\_MatchDetect/lib/smacofM.R': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file './JOFC\_MatchDetect/lib/oosIM.R': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file './JOFC\_MatchDetect/lib/multipleMinimaTest\_fn.R': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: package or namespace load failed for 'ggplot2'}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}smacofM"{}}}\end{kframe}
 \end{knitrout}
 
 
 
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: package or namespace load failed for 'ggplot2'}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: subscript out of bounds}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ggplot"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'g1' not found}}\end{kframe}
+\end{knitrout}
 
 
 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\animategraphics[width=6in,controls,loop]{1}{figure/config_w_ani}{1}{36}
-
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ggplot"{}}}\end{kframe}
 \end{knitrout}
 
 
@@ -1537,7 +1529,7 @@ Alternative local min &   1.79 & 1.77 & 1.75 & 1.72 & 1.69 & 1.66 & 1.64 & NA & 
 
 \end{center}
 
-\caption{Final stress values for the two local minima configurations\label{stress-val-table}}
+\caption{Final stress values for the two local minima configurations\label{table:stress_val}}
 \end{table}
 
 \end{landscape}
@@ -1560,14 +1552,17 @@ Alternative local min & 0.39 & 1.53 & 1.65 & 1.74 & NA \\
 \hline
 \end{tabular}
 \end{center}
-\label{stress-val-table}
+\label{table:stress_val}
 \end{table}
 \end{comment}
 
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/final_stress_plot} 
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ggplot"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'g2' not found}}\end{kframe}
 \end{knitrout}
 
 
@@ -1604,7 +1599,7 @@ This example was constructed carefully with a symmetric configuration of points.
 \section{Simulation Results\label{sec:Simulation Results}}
 To compare the  different approaches, training data of matched pairs of measurements were generated according to the Dirichlet and Gaussian settings  with parameters $p,q,r,c$ \ref{chap:data_models}. Dissimilarity representations (\ref{sec:dissim_repr}) were computed from pairwise Euclidean distances of these measurements. A set of matched pairs and unmatched pairs of measurements were also generated for testing with the same distributions. Following the out-of-sample embedding of the dissimilarities test pairs (computed via by one of  P$\circ $M \ref{chap:PoM}, CCA \ref{chap:CCA}, regularized CCA \ref{sec:CCA} and JOFC \ref{chap:match_detection} approaches),  test statistics  for matched and unmatched pairs (corresponding to null and alternative hypothesis, respectively) were used to compute power values at a set of fixed type I error rate $\alpha$ values. By using the same generated data for all of the approaches, we are able to compare the performance of  different approaches either using the area under curve (AUC) measure or the statistical power at a desired $\alpha$ value.
 
- Additionally, to consider  relative robustness of methods , ``noisy" measurements were created from the original measurements by concatenating randomly generated independent noise vectors (\autoref{noise}).   This setting will be referred to as the ``noisy case". The magnitude of noise is controlled by the parameter $c$ in equation \eqref{eq:noise-expr}). The original setting, with $c=0$,  will be referred as the ``noiseless case".
+ Additionally, to consider  relative robustness of methods , ``noisy" measurements were created from the original measurements by concatenating randomly generated independent noise vectors (\autoref{subsec:noise}).   This setting will be referred to as the ``noisy case". The magnitude of noise is controlled by the parameter $c$ in equation \eqref{eq:noise-expr}). The original setting, with $c=0$,  will be referred as the ``noiseless case".
 If the magnitude of noise is small enough, and the embedding dimension is not larger than signal dimension, the embeddings provided by PCA and MDS should not be affected significantly by the noise. However  if the number of noise dimensions (controlled by the parameter $q$ in the distribution of $E_{ik}$ as defined in equation \eqref{eq:noise-expr} ) is large enough, it is expected that embeddings via  CCA  will  be affected due to spurious correlation between noisy dimensions.
 
 We will now describe the steps for our Monte Carlo simulation in detail. Given the setting ("Gaussian","Dirichlet"),   the steps for each Monte Carlo replicate are as follows:
@@ -1670,7 +1665,7 @@ i=1,\ldots,m$
 \end{figure}
 
 \begin{figure}
-\includegraphics[scale=0.75]{OOSDirichlet-power-w-c0-01.pdf}
+\includegraphics[scale=0.80]{OOSDirichlet-power-w-c0-01.pdf}
 \caption{Power ($\beta$) vs $w$ plot for different Type I error ($\alpha$) values for the Gaussian setting (noisy case)}
 \label{fig:Dir-c001-power-w}
 \end{figure}
@@ -1785,6 +1780,7 @@ the simulations in \autoref{sec:Simulation Results} were repeated with $K$-condi
 \label{fig:MVN-c001-power-w-Kcond}
 \end{figure}
 
+The results indicate a similar behaviour as $K=2$ case. Different  values of $w$ has significantly different ROC curves. This shows that JOFC is a suitable approach for match detection using $K>2$ conditions as well as $K=2$ conditions.
 
 
 \section{Experiments on Wiki Data}
@@ -1794,19 +1790,19 @@ To test the JOFC approach with real data, a collection of articles are collected
 Wikipedia is our real-life dataset. It is possible to utilize both textual content of the documents and the hyperlink graph structure. The textual content of the documents is summarized by the bag-of-words model. Dissimilarities between documents  in the same language are computed by the Lin-Pantel discounted mutual information \cite{LinPantel,PantelLin}
  and cosine dissimilarity $k(x_{ik}; x_{jk}) = 1 - (x_{ik} x_{jk})/(\|x_{ik}\|_2\|x_{ik}\|_2)$. 
  The dissimilarities based on the hyperlink graph of the collection of the articles are 
- for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$.  Further details about this dataset is available in \cite{Zhiliang_disparate}     
-Only  dissimilarities based on the textual content will be considered in this example.
+ for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$.  Further details about this dataset is available in \cite{Zhiliang_disparate}.     
+Only  dissimilarities based on the textual content will be considered for our experiments presented here.
    
 The exploitation task is still testing for matchedness of vertices between different conditions, in this case wiki articles that are on the same topic  in  different languages.
 For hypothesis testing,   randomly held out four documents - one matched pair and one unmatched pair
  -  are used to compute empirical type I error $\alpha$ and estimate of power based on the critical value computed
   from the distribution of the test statistic for the remaining 1380 matched pairs. 
-The test statistic is computed using one of the three approached mentioned  $CCA$, $P\circ M$, and $JOFC$ . 
+The test statistic is computed using one of the three approached mentioned  CCA, P$\circ$M, and JOFC. 
 The two sets of held-out matched pairs are embedded as $\tilde{y}_1$ and $\tilde{y}_2$, via out-of-sample
-embedding, to estimate the null distribution of the test statistic $T = d(\tilde{y}_1; \tilde{y}_2)$. This allows
+embedding, to estimate the null distribution of the test statistic $T_0 = d(\tilde{y}_1; \tilde{y}_2)$. This allows
 us to estimate critical values for any specified Type I error level. 
 Then the two sets of heldout unmatched pairs are embedded as $\tilde{y}_1^{(u)}$ and $\tilde{y}_2^{(u)}$, via out-of-sample embedding. 
-$T' = d(\tilde{y}_1^{(u)}; \tilde{y}_1^{(u)})$ will give us an empirical distribution of the test statistic  under the alternative hypothesis. 
+$T_{a} = d(\tilde{y}_1^{(u)}; \tilde{y}_1^{(u)})$ will give us an empirical distribution of the test statistic  under the alternative hypothesis. 
 And the distribution under null hypothesis and under alternative hypothesis can be used to estimate power.
 Target dimensionality d is determined by the Zhu and Ghodsi  automatic dimensionality selection
 method \cite{ZhuGhodsi}, resulting in d = 6 for this data set.
@@ -1814,9 +1810,11 @@ method \cite{ZhuGhodsi}, resulting in d = 6 for this data set.
 
 \begin{figure}
  \centering
-\includegraphics[scale=0.8]{graphs/FidCommPaperwiki-two-cond-plot} 
+\includegraphics[scale=0.8]{graphs/FidCommPaperwiki-two-cond-plot}
+\caption{Match Detection using Wikipedia dataset. Different $w$ values listed in the legend correspond to different ROC curves.}
 \end{figure}
 
+The results show that a lot fidelity is prioritized more compared to Gaussian and Dirichlet simulations presented in \label{sec:Simulation Results}. Our conclusion is that there is no universal $w^*$, as its value depends on the data distribution and the inference task.
 
 
 \section{Model Selection}
@@ -1883,16 +1881,13 @@ These results require more investigation, so we can  provide a rigorous explanat
 \label{sec:sgm-faq}
 \chaptermark{Seeded Graph Matching and Fast Approximate Quadratic Programming }
 
-
-
-
 \section{Introduction to Graph Matching}
 
 Another application of  the JOFC approach is  a variant of the graph matching problem. First let us define the general graph matching problem.
 
  
 \subsection{Graph Matching}
-Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$   such that $\| V_1 \|=\| V_2 \|$. Suppose there exists a bijection $f$  between $V_2$ and $V_1$ such that $f(v_2)=v_1$ and $\forall v' \in \mcN(v_2) \textrm{ iff } f(v') \in \mcN(v_1)$. Then the \emph{exact} graph matching problem  is to find $f$. Even determining the existence  of such an isomorphism is NP-hard.  Although an efficient algorithm  for the general  graph matching problem is not known, there are various principled heuristic algorithms for  approximate solutions of the graph matching problem  in the literature\cite{GraphMatchReview}.
+Consider two  graphs $G_1=(V_1,E_1)$ and $G_2=(V_2,E_2)$   such that $\| V_1 \|=\| V_2 \|$. Suppose there exists a bijection $f$  between $V_2$ and $V_1$ such that $f(v_2)=v_1$ and $\forall v' \in \mcN(v_2) \textrm{ iff } f(v') \in \mcN(v_1)$. Then the \emph{exact} graph matching problem  is to find $f$. Even the problem of \emph{Graph Isomorphism}, which is defined as determining the existence  of such an isomorphism, is NP-hard.  Although an efficient algorithm  for the general  graph matching problem is not known, there are various principled heuristic algorithms for  approximate solutions of the graph matching problem  in the literature\cite{GraphMatchReview}.
 Even though an isomorphism between the two graphs might not exist,  the \emph{approximate} graph matching problem, which is the task of  finding a bijection $f$ between the
 graphs which minimizes the degree  of mismatch   between  (edges of ) the two graphs, is an interesting problem  worth studying on its own with practical applications\cite{GraphMatchReview,Bengoetxea2002,recentdevGraphMatching2000,VogConGraphMatchFAQ,Zaslavskiy2009}.
 
@@ -1936,9 +1931,9 @@ For weighted graphs, it could be any monotonic transformation of the difference 
 %
    
    
- Note this optimization problem is equivalent to minimizing various functions, \eg
+ Note this optimization problem is equivalent to the minimization of various functions over all permutation matrices $P$,  \eg
  \begin{itemize}
-\item $\|A(I_{m \times m}\oplus P)-(I_{m \times m}\oplus P)B\|_1$ (since $I_{m \times m}\oplus P$ is a permutation matrix) or
+\item $\|A(I_{m \times m}\oplus P)-(I_{m \times m}\oplus P)B\|_1$ (since $I_{m \times m}\oplus P$ is a permutation matrix and the norm is independent of the ordering of the rows and column) or
 \item $\|A-(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P)^T\|_2$ (monotonic function of $\ell_1$ norm) or
 \item  $\|A(I_{m \times m}\oplus P)-(I_{m \times m}\oplus P)B\|_2$ ( $I_{m \times m}\oplus P$ is unitary), 
  \end{itemize}
@@ -1948,7 +1943,7 @@ or maximizing
 \|A\|_2^2 + \|B\|_2^2
 - 2 \cdot \tr{A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$  and removing the constant terms) \label{item:squareofdist_eq_tr_crossprod}
 \end{itemize}
-over all permutation matrices $P$,
+
 where $\| \cdot \|_2$ is the $\ell_2$ vector norm on matrices.   Althought these different formulations  are equivalent, \ie  their global extrema are the same, their relaxations result in different methods for solving the approximate graph matching problem(\autoref{subsec:rqap2}). Specifically the $\ell_1$ formulation is the  linear assignment problem. $\ell_2$ formulations are examples of the quadratic assignment problem.
 
  
@@ -1985,9 +1980,10 @@ over a bounded and convex domain $\mathbf{S}$.
 
 The first step in each iteration solves a linear approximation of the problem $h(x)=h(x^i)+\nabla{h(x^i)}(x-x^i)$. The second step minimizes the original function with the domain restricted to the line between $\hat{y}$ and $x^{i}$. When $h(x)$ is quadratic, a unique  $\hat{\alpha}$ can be found analytically.
 
-\subsection{rQAP\textsubscript{1} formulation of Seeded Graph Matching and \\  FAQ Algorithm}
-Let us now present the derivation of the steps of  FAQ algorithm.  The objective function we use for FAQ is $\tr {A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$. This is a simplified expression for $\ell_2$ distance of $A$ and $(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P)^T$. The feasible region for the optimization is the set of permutation matrices. The minimization of  a cost function over the set of permutations (each one corresponding to an assignment) is known as the quadratic assignment problem. In this case, the cost function has a value of $1$ when the adjacency matrices ($B$ with the vertex labels  permuted and  $A$) agree \ie between two pairs of assigned vertices, there is an edge in one of the graphs and no edges in the other. It has a value of $0$ when the adjacency matrices disagree.
+\subsection{rQAP\textsubscript{1} formulation of Seeded Graph Matching and FAQ Algorithm}
+Let us now present the derivation of the steps of  FAQ algorithm.  The objective function we use for FAQ is $\tr {A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$. This is a simplified expression for $\ell_2$ distance of $A$ and $(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P)^T$. The feasible region for the optimization is the set of permutation matrices. The minimization of  a cost function over the set of permutations (each one corresponding to an assignment) is known as the quadratic assignment problem. In this case, the cost function has a value of $1$ when the adjacency matrices ($B$ with the vertex labels  permuted and  $A$) agree \ie between two pairs of assigned vertices, there is an edge in one of the graphs and no edges in the other.  The cost function has a value of $0$ when the adjacency matrices disagree.
 The relaxation of the optimization where the feasible region is relaxed to the set of doubly stochastic matrices gives our first formulation for the seeded graph matching problem. Therefore we call this formulation relaxed quadratic assignment problem (rQAP\textsubscript{1}).
+
 The objective function is
 \begin{eqnarray*}  h(P)  & =  &   \tr \left (
 \left [  \begin{array}{cc}  A^T_{11} & A^T_{21} \\ A^T_{12} & A^T_{22}  \end{array} \right ]
@@ -2051,16 +2047,16 @@ Let $\G_1=(V_1,E_1)$ be an Erdos-Renyi graph that consists of $n$ vertices and $
     
     Let the isomorphism from  $V_1$ to vertices of the second graph, $V_2$, be denoted by $\psi$. Thus we define the second graph $\G_2=(V_2,E_2)$ with the adjacency matrix $B=P_{\psi}B'P_{\psi}$ where $P_{\psi}$ is the permutation matrix that corresponds to the bijection $\psi$. $m$ ($0\leq m<n$) seeds randomly selected from $n$ pairs of vertices, $\sigma_m \subset V_1$  and  $\{\psi(i), i \in \sigma_m \}\subset V_2 $. The assignment problem for remaining $n-m$ pairs of vertices is solved via FAQ. The quality of the solution to the assignment problem, $\hat{f}_m$ which is a bijection from  $V_1$ to  $V_2$ is evaluated  by  $\delta^{(m)} = \frac{|\{i\in V_1-\sigma_m: \hat{f}_m(i)=\psi(i)\}|}{n-m}$.
   
-  The results of our simulations are plotted in the figures \ref{sim_bitflip_rqap_fig1,sim_bitflip_rqap_fig2,sim_bitflip_rqap_fig3}. For graph size, we choose $n=600$. We generate pairs of random Erd\o s-Renyi graphs  for different number of seeds, $m$, we solve the FAQ problem for the remaining $n-m$ vertex pairs. The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. The performance measure, the proportion of true matches to the number of matches, is the variable on the y-axis.
+  The results of our simulations are plotted in the figures \ref{fig:sim_bitflip_rqap_fig1},\ref{sim_bitflip_rqap_fig2},\ref{sim_bitflip_rqap_fig3}. For graph size, we choose $n=600$. We generate pairs of random Erd\o s-Renyi graphs  for different number of seeds, $m$, and  we solve the FAQ problem for the remaining $n-m$ vertex pairs. The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. The performance measure, the proportion of true matches to the number of matches, is the variable on the y-axis.
   Note that 
-  under chance, the expected number of true matches is 1. As shown with the dashed line, this means for completely random assignments of vertices, the performance measure of the assignments would be $\frac{1}{n-m}$.  $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
+  under chance, the expected number of true matches is 1. this means for completely random assignments of vertices, the performance measure of the assignments would be $\frac{1}{n-m}$, as shown with the dashed line.  $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
 
-\begin{figure}
+\begin{figure}[h]
  \centering
   
  \includegraphics[width=\textwidth]{sim_bitflip-paper600.pdf}
  \caption{$\delta^{(m)}$ vs $m$ for $n=600$ vertices. The error bars represent two times  the standard error of the mean of the true match ratio. Different colors listed in the legend correspond to different $p_{pert}$ values.
- \label{sim_bitflip_rqap_fig1}}
+ \label{fig:sim_bitflip_rqap_fig1}}
 \end{figure}
 
 \begin{figure}
@@ -2099,7 +2095,7 @@ Consider term (1)
 where the simplification in the fourth line is due to the fact that $B_{21}^{T}P^{T}A_{21}$ and $A_{21}^{T}PB_{21}$
  are transposes of each other.
 The three terms  in the last line are referred
-as (1.1),(1.2) and (1.3), respectively.
+as (1.1), (1.2) and (1.3), respectively.
 
 We make a similar simplification for term (2):
 \begin{align*}
@@ -2111,7 +2107,7 @@ We make a similar simplification for term (2):
  -\underbrace{2 \tr \left[P^{T}A_{12}^{T}B_{12}\right]}_{(2.2)}
  +\underbrace{\tr \left[B_{12}^{T}B_{12}\right]}_{(2.3)}
 \end{align*}
-The three trace terms will be referred as (2.1),(2.2) and
+The three trace terms will be referred as (2.1), (2.2) and
 (2.3), respectively.
 
 Finally, for term (3):
@@ -2146,62 +2142,60 @@ $\boldsymbol{\nabla}_{P}f(P)=
 +\underbrace{2A_{12}^{T}A_{12}P}_{(2.1)}
 +\underbrace{2A_{22}^{T}A_{22}P}_{(3.1)}
 +\underbrace{2PB_{22}B_{22}^{T}}_{(3.3)}
--\underbrace{2A_{22}^{T}PB_{22}}_{(3.3)}$. The numbers below the underbraces indicate which term  of $h(P)$ each gradient term comes from.
+-\underbrace{4A_{22}^{T}PB_{22}}_{(3.2)}$. The numbers below the underbraces indicate which term  of $h(P)$ each gradient term comes from.
 
-\begin{flushleft}
-The corresponding line search function in terms of $\alpha$ is
-\par\end{flushleft}
+For the second step of F-W algorithm, we set  $P=(1-\alpha) \hat{P}+ \alpha\hat{Q}$ and maximize $h(P)$ with respect to $\alpha$ for $\hat{Q}$ found in the first step. We will now derive a simplification of this one dimensional optimization problem.
 
-\begin{flushleft}
+The function in terms of $\alpha$ is
+%\begin{flushleft}
 \begin{align*}
-g(\alpha) & = & \alpha^{2}  \tr\biggl[\hat{P}^{T}\hat{P}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{P}\hat{P}^{T} & (1.3+3.3)+(2.1+3.1)\\
- &  &   -\hat{P}^{T}A_{22}^{T}\hat{P}B_{22}-\hat{P}^{T}A_{22}\hat{P}B_{22}^{T}\biggr] & (3.2)\\
- & + & \left(1-\alpha\right)^{2}  \tr\biggl[\hat{Q}^{T}\hat{Q}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{Q}\hat{Q}^{T} &  (1.3+3.3)+(2.1+3.1)\\
- &  &   -\hat{Q}^{T}A_{22}^{T}\hat{Q}B_{22}-\hat{Q}^{T}A_{22}\hat{Q}B_{22}^{T}\biggr] & (3.2)\\
- & + & \alpha\left(1-\alpha\right)  \tr[\left(\hat{Q}^{T}\hat{P}+\hat{P}^{T}\hat{Q}\right)\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)& \\
- & + & \left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\left(\hat{Q}\hat{P}^{T}+\hat{P}\hat{Q}^{T}\right)& (1.3)+(3.3) +(2.1)+(3.1)\\
- &  & -\hat{P}^{T}\left[A_{22}^{T}\hat{Q}B_{22}+A_{22}\hat{Q}B_{22}^{T}\right]-\hat{Q}^{T}\left[A_{22}^{T}\hat{P}B_{22}+A_{22}\hat{P}B_{22}^{T}\right]] & [(3.2)]+[(3.2)]\\
- & + & \alpha  \tr\left[-2\hat{P}B_{12}^{T}A_{12}-2\hat{P}^{T}A_{21}B_{21}^{T}\right] & [-(2.2)-(1.2)]\\
- & + & \left(1-\alpha\right)  \tr\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right] & [-(2.2)-(1.2)]
+g(\alpha) & = & \alpha^{2}  \tr\biggl[\hat{P}^{T}\hat{P}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)  & \qquad(1.3+3.3) \\
+ &  & +\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{P}\hat{P}^{T} & \qquad (2.1+3.1)\\
+ &  &   -2\hat{P}^{T}A_{22}^{T}\hat{P}B_{22}\biggr] & \qquad (3.2)\\ %-\hat{P}^{T}A_{22}\hat{P}B_{22}^{T}
+ & +  & \left(1-\alpha\right)^{2}  \tr\biggl[\hat{Q}^{T}\hat{Q}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right) & \qquad (1.3+3.3) \\
+ &  & +\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{Q}\hat{Q}^{T} &  \qquad (2.1+3.1)\\
+ &  &   -\hat{Q}^{T}A_{22}^{T}\hat{Q}B_{22}\biggr] & \qquad (3.2)\\ %-\hat{Q}^{T}A_{22}\hat{Q}B_{22}^{T}
+ & + & \alpha\left(1-\alpha\right)  \tr \biggl[ \left(\hat{Q}^{T}\hat{P}+\hat{P}^{T}\hat{Q}\right)\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right) & \qquad  (1.3)+(3.3) \\
+ &  & +\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\left(\hat{Q}\hat{P}^{T}+\hat{P}\hat{Q}^{T}\right)& \qquad (2.1)+(3.1)\\
+ &  & -2\hat{P}^{T}\left[A_{22}^{T}\hat{Q}B_{22}\right]-2\hat{Q}^{T}\left[A_{22}^{T}\hat{P}B_{22}\right] \biggr] & \qquad (3.2)\\
+ & + & \alpha  \tr\left[-2\hat{P}B_{12}^{T}A_{12}-2\hat{P}^{T}A_{21}B_{21}^{T}\right] &\qquad [-(2.2)-(1.2)]\\
+ & + & \left(1-\alpha\right)  \tr\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right] &  \qquad [-(2.2)-(1.2)]
 \end{align*}
-
-\par\end{flushleft}
-
-where the decimal numbers in the right end of the line refer to the
+%\par\end{flushleft}
+where the  numbers in the right end of each line refer to the
 terms for corresponding to $\left\Vert A_{21}-PB_{21}\right\Vert _{F}$
-,$\left\Vert A_{12}P-B_{12}\right\Vert _{F}$ and $\left\Vert A_{22}P-PB_{22}\right\Vert _{F}$
+,$\left\Vert A_{12}P-B_{12}\right\Vert _{F}^2$ and $\left\Vert A_{22}P-PB_{22}\right\Vert _{F}^2$
 in the objective function. Writing $g\left(\alpha\right)$ in terms
 of $\alpha$ and (1-$\alpha$),
 
 $g\left(\alpha\right)=c\alpha^{2}+e(1-\alpha)^{2}+d\alpha(1-\alpha)+u\alpha+v(1-\alpha)$
 
-So $c=\tr\left[\hat{P}^{T}\hat{P}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{P}\hat{P}^{T}-\hat{P}^{T}A_{22}^{T}\hat{P}B_{22}-\hat{P}^{T}A_{22}\hat{P}B_{22}^{T}\right]$
 
-\noindent 
-\begin{eqnarray*}
-d & = & \tr\biggl[\left(\hat{Q}^{T}\hat{P}+\hat{P}^{T}\hat{Q}\right)\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\left(\hat{Q}\hat{P}^{T}+\hat{P}\hat{Q}^{T}\right)\\
- &  & -\hat{P}^{T}\left[A_{22}^{T}\hat{Q}B_{22}+A_{22}\hat{Q}B_{22}^{T}\right]-\hat{Q}^{T}\left[A_{22}^{T}\hat{P}B_{22}+A_{22}\hat{P}B_{22}^{T}\right]\biggr]
-\end{eqnarray*}
+\begin{align*}
+c & = &\tr&\left[\hat{P}^{T}\hat{P}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{P}\hat{P}^{T}-2\hat{P}^{T}A_{22}^{T}\hat{P}B_{22}\right]
+\\
+d & = & \tr& \biggl[\left(\hat{Q}^{T}\hat{P}+\hat{P}^{T}\hat{Q}\right)\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\left(\hat{Q}\hat{P}^{T}+\hat{P}\hat{Q}^{T}\right) \\
+ &  &  & -\hat{P}^{T}\left[2 A_{22}^{T}\hat{Q}B_{22}\right]-\hat{Q}^{T}\left[ 2 A_{22}^{T}\hat{P}B_{22}\right]\biggr] \\
+e & =& \tr & \left[\hat{Q}^{T}\hat{Q}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{Q}\hat{Q}^{T}-2\hat{Q}^{T}A_{22}^{T}\hat{Q}B_{22}\right]
+\\ u & = & \tr &\left[-2\hat{P}B_{12}^{T}A_{12}-2\hat{P}^{T}A_{21}B_{21}^{T}\right]
+\\ v & = & \tr &\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right]
+\end{align*}
 
-
-$e=\tr\left[\hat{Q}^{T}\hat{Q}\left(B_{21}B_{21}^{T}+B_{22}B_{22}^{T}\right)+\left(A_{12}^{T}A_{12}+A_{22}^{T}A_{22}\right)\hat{Q}\hat{Q}^{T}-\hat{Q}^{T}A_{22}^{T}\hat{Q}B_{22}-\hat{Q}^{T}A_{22}\hat{Q}B_{22}^{T}\right]$
-
-$u=\tr\left[-2\hat{P}B_{12}^{T}A_{12}-2\hat{P}^{T}A_{21}B_{21}^{T}\right]$
-
-$v=\tr\left[-2\hat{Q}B_{12}^{T}A_{12}-2\hat{Q}^{T}A_{21}B_{21}^{T}\right]$
-
-Putting this polynomial of $\alpha$ in standard form, we get $a=c+e-d$,
+The coefficients of this  polynomial of $\alpha$ in standard form $g(\alpha)= a{\alpha}^2+b\alpha+c$ equal $a=c+e-d$,
 $b=d-2e+u-v$ and $c=e+v$ .
 
-Note that if this rQAP\textsubscript{2} formulation is further simplified  by the unitary property of permutation  matrix, we get the first rQAP\textsubscript{1} formulation. When we use the constraints $P^TP=PP^T=I_{s}$, specific terms in $\boldsymbol{\nabla}_{P}f(P)$ vanish,
-$\boldsymbol{\nabla}_{P}f(P)=-2A_{21}B_{21}^{T}+2PB_{21}B_{21}^{T}-2A_{12}^{T}B_{12}+2A_{12}^{T}A_{12}P+2(A_{22}^{T}A_{22}P+PB_{22}B_{22}^{T}-A_{22}^{T}PB_{22}-A_{22}PB_{22}^{T}$
-becomes $-2*(A_{21}B_{21}^T+A_{12}^TB_{12}+A_{22}PB_{22}^T+A_{22}^TPB_{22})$
-The stronger condition of minimization over the set of permutation matrices is incorporated in the Hungarian Algorithm step.
+Note that if this rQAP\textsubscript{2} formulation is further simplified  by the unitary/orthogonality property of permutation  matrix, we get the first rQAP\textsubscript{1} formulation. When we use the constraints $P^TP=PP^T=I_{s}$, terms (1.3),(2.1),(3.1),(3.3) become constant terms. The corresponding  terms that in $\boldsymbol{\nabla}_{P}f(P)$ vanish,
+$\boldsymbol{\nabla}_{P}f(P)=-2A_{21}B_{21}^{T}+2PB_{21}B_{21}^{T}-2A_{12}^{T}B_{12}+2A_{12}^{T}A_{12}P+2(A_{22}^{T}A_{22}P+PB_{22}B_{22}^{T}-2A_{22}^{T}PB_{22})$
+becomes $-2*(A_{21}B_{21}^T+A_{12}^TB_{12}+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is the gradient for rQAP\textsubscript{1} formulation.
+%This can be interpreted as a projection on
+%The stronger condition of minimization over the set of permutation matrices is incorporated in the Hungarian Algorithm step.
 An interesting question is how does this extra constraint effect the convergence properties of Frank-Wolfe algorithm.  This question is investigated in the comparison of rQAP\textsubscript{1} and rQAP\textsubscript{2} formulations.  
 
 \subsection{The comparison of rQAP\textsubscript{1} against the alternative formulation rQAP\textsubscript{2}}
-Although the two formulations are equivalent and the global extrema of the two functions are the same, we expect different convergence  properties. In particular the extra terms in the gradient of rQAP\textsubscript{2} which vanishes for unitary matrices should act as a random noise. The conclusion of the literature of stochastic optimization  is that, under some conditions, such noise speeds up convergence, by overcoming local extrema. The problem is that, the noise needs to vanish to negligible levels in order for the iterative algorithm to converge. 
-The experiment in the last  section was repeated with both rQAP\textsubscript{1} and rQAP\textsubscript{2} and the fraction of nonseed vertices correctly matched and the average number of iterations to satisfy a stopping criteria was compared between the two formulations. 
+Although the two formulations are equivalent and the global extrema of the two functions are the same, we expect different convergence  properties. In particular the extra terms in the gradient of rQAP\textsubscript{2} which vanishes for unitary matrices should act as a random noise. The conclusion of the literature of stochastic optimization  is that, under some conditions, such noise speeds up convergence, by overcoming local extrema. However, for convergence of the iterative algorithm , the noise needs to vanish to negligible levels. While the final permutation matrix is orthogonal, the solution of the rQAP\textsubscript{1} is not necessarily orthogonal. So rQAP\textsubscript{2}  will eventually converge to an orthogonal matrix, while rQAP\textsubscript{1}   has no such constraint.
+
+The experiment in the \autoref{subsubsec:sgm_sim_results} was repeated with both rQAP\textsubscript{1} and rQAP\textsubscript{2}. For the same pairs of graphs,  the fraction of nonseed vertices correctly matched were computed for both methods.
+%and the fraction of nonseed vertices correctly matched and the average number of iterations to satisfy a stopping criteria was compared between the two formulations. 
 
 
 \begin{figure}
@@ -2215,25 +2209,26 @@ The experiment in the last  section was repeated with both rQAP\textsubscript{1}
  \centering
   \caption{Fraction of the $n-m=70$ nonseeds correctly matched using our $\ell_2$-based algorithm for rQAP\textsubscript{1} and rQAP\textsubscript{2} formulations
  \label{figell2}}
- \includegraphics[width=1.2\textwidth]{rQAP_vs_rQAP2-alotmore.pdf}
+ \includegraphics[scale=0.8]{rQAP_vs_rQAP2-alotmore.pdf}
 \end{figure}
 Note that for small number of hard seeds rQAP\textsubscript{2} is slighly better, while for larger number of hard seeds rQAP\textsubscript{1} is clearly better. The average number of iterations of Frank-Wolfe algorithm until termination for the two formulation is as follows,
 
-Our conclusion is that our expectations for the two formulations is warranted, rQAP\textsubscript{2}   converges slower(or doesn't converge, but stays within the neighborhood of the extrema), whiler rQAP\textsubscript{1} converges in very few steps. When the number of hard seeds is small (which corresponds to lower number of constraints for P and higher incidence of local minima near the true solution. ), rQAP\textsubscript{2} is slightly better than rQAP\textsubscript{1}.
+
+Our conclusion is that our expectations for the two formulations is warranted, rQAP\textsubscript{2}   converges slower (or doesn't converge, but stays within the neighborhood of the extrema), while rQAP\textsubscript{1} converges in very few steps. When the number of hard seeds is small (which corresponds to lower number of constraints for P and higher incidence of local minima near the true solution.), rQAP\textsubscript{2} is slightly better than rQAP\textsubscript{1}.
 
 
-A natural follow-up to the previous inquiry is whether one can get the best of both world by making a hybrid of the two formulations: First start with minimizing rQAP\textsubscript{2} function, until the current iterate of solution is relatively close to the true solution, and follow with maximizing rQAP\textsubscript{1} function. 
+A natural follow-up to the previous inquiry is whether one can get the best of both worlds by making a hybrid of the two formulations: First start with minimizing rQAP\textsubscript{2} function, until the current iterate of solution is relatively close to the true solution, and follow with maximizing rQAP\textsubscript{1} function. 
 
 
 \subsection{A hybrid formulation: Fast approximate quadratic programming with smooth transition from rQAP\textsubscript{2} to rQAP\textsubscript{1} \label{subsec:hybrid}}
 
-For this hybrid form of the FAQ algorithm, we weight the terms that differ between rQAP\textsubscript{2} and rQAP\textsubscript{1} by a decreasing weight $r$. $\boldsymbol{\nabla}_{P}h(P)=
+For this hybrid form of the FAQ algorithm, we weight the terms that differ between the gradients of  rQAP\textsubscript{2} and rQAP\textsubscript{1} by a decreasing weight $r$. $\boldsymbol{\nabla}_{P}h(P)=
 r*\{2PB_{21}B_{21}^{T}
 +2A_{12}^{T}A_{12}P
 +A_{22}^{T}A_{22}P
 +PB_{22}B_{22}^{T}\}
 -2A_{21}B_{21}^{T}-2A_{12}^{T}B_{12}
--2A_{22}^{T}PB_{22}-2A_{22}PB_{22}^{T}$. As $r \rightarrow 0 $, the gradient expression at each step of F-W algorithm approaches
+-4A_{22}^{T}PB_{22}$. As $r \rightarrow 0 $, the gradient expression at each step of F-W algorithm approaches
 $-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -2 times the gradient in rQAP\textsubscript{1}. We let $r= 0.5- \frac{\tan((i-(i_{end}/2)))}{\pi}$, so as the iteration counter, $i$ goes from $1$ to $i_{end}$, $r$ goes from $1$ to $0$. This hybrid formulation will behave like rQAP\textsubscript{2} for the initial iterations of Frank-Wolfe algorithm and will start to behave like rQAP\textsubscript{1} as $i$ approaches $i_{end}$.
 
 
@@ -2241,7 +2236,7 @@ $-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -
  \centering
   \caption{
  \label{fig:hybrid}}
- \includegraphics[width=1.2\textwidth]{sim_bitflip_hybrid_cluster_300_hsv.pdf}
+ \includegraphics[scale=0.85]{sim_bitflip_hybrid_cluster_300_hsv.pdf}
 \end{figure}
 
 
@@ -2251,16 +2246,16 @@ $-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$ which is -
 \chaptermark{Seeded Graph Matching and JOFC}
 
 
-Let us first explain the relevance of JOFC to the graph matching problem. The  task of finding vertex correspondences is similar to  detecting matched pairs in that both of the tasks require the quantification of distance between vertex pairs  in the two graphs.
+Let us first explain the relevance of JOFC to the graph matching problem. The  task of finding vertex correspondences is similar to  detecting matched pairs \ref{chap:match_detection} in that both of the tasks require the quantification of distance between vertex pairs  in the two graphs.
 Using omnibus  embedding, it is possible to embed the vertices of two graphs in a commensurate space.
 Therefore, the JOFC approach can be used here for determining the pairwise distances in the commensurate space between  the vertices of $A$ and $B$.
-The next step is to use the pairwise distances as costs to find the optimal 1-1 matchings by the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total  cost which is the sum of the pairwise distances of matched nodes is minimized.
+The next step is to use the pairwise distances as costs to find the optimal one-to-one matchings by the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total  cost which is the sum of the pairwise distances of matched nodes is minimized.
 %This matching step is separate from the embedding,  we can investigate compare  different parameters for the JOFC approach on a equal footing.
 
-Now, we detail how we use for seeded graph matching. We begin by jointly embedding our two graphs , $\G_1$ and $\G_2$, into a common Euclidean space. Let $\Delta_1\in \M_{n \times n}$ and $\Delta_2\in \M_{n \times n}$ be two dissimilarity matrices computed by the application of the dissimilarity measure to the vertices of the two graphs. Since we have two separate graphs, we have two conditions and the default assumption is that we do not have  between-graph (between-condition) dissimilarities. We will assume a priori that the dissimilarities have been normalized to be on the same scale.
+Now, we detail how we use JOFC embedding for seeded graph matching. We begin by jointly embedding our two graphs, $\G_1$ and $\G_2$, into a common Euclidean space. Let $\Delta_1\in \M_{n \times n}$ and $\Delta_2\in \M_{n \times n}$ be two dissimilarity matrices computed by the application of the dissimilarity measure to the vertices of the two graphs. Since we have two separate graphs, we have two conditions and the default assumption is that we do not have  between-graph (between-condition) dissimilarities. We will assume that prior to embedding, the dissimilarities have been normalized to be on the same scale.
 %see Remark \ref{rem:norm} for further discussion.
 
-Without loss of generality, we can assume the vertices in both graphs are labeled as integers  from 1 to n, the labeling consistent with the true correspondence  of vertices from different graphs. Suppose we have $m, 0 \leq m <n$ seeds. Let the seeded vertices be labeled  as the first $m$ vertices in both graphs, $S_1=\{1,2,\ldots,m\}$ and $S_2=\{1,2,\ldots,m\}$, so that 
+Without loss of generality, we can assume the vertices in both graphs are labeled as integers  from $1$ to $n$, the labeling consistent with the true correspondence  of vertices from different graphs. Suppose we have $m,\, 0 \leq m <n$ seeds. Again, without loss of generality, let the seeded vertices be labeled  as the first $m$ vertices in both graphs, $S_1=\{1,2,\ldots,m\}$ and $S_2=\{1,2,\ldots,m\}$, so that 
 $$\Delta^{(1)}=\bordermatrix{&S_{1}&U_{in}\cr
                 S_1&\gD^{(1)}_{{in},{in}} 
                 & \gD^{(1)}_{{in},2}  \cr
@@ -2273,15 +2268,15 @@ $$\Delta^{(1)}=\bordermatrix{&S_{1}&U_{in}\cr
                 &  \gD^{(2)}_{{oos},{oos}}}.$$
 
 
-Note that the seeds correspond to the in-sample dissimilarities we considered in the match detection task. As these seeds provide the known correspondences (matched observations in the match detection task), we embed them using the in-sample JOFC embedding methodology we introduced in \ref{sec:jointembed}. That is, we find $\X= \begin{array}{c}
+Note that the seeds correspond to the in-sample dissimilarities we considered in the match detection task\ref{chap:match_detection} . As these seeds provide the known correspondences (matched observations in the match detection task), we embed them using the in-sample JOFC embedding methodology we introduced in \ref{sec:jointembed}. That is, we find $\X= \begin{array}{c}
 \X_1 \\
 \X_2
-\end{array}$ such that $d(\X)$ is as close as possible to $M= \begin{array}{cc}
+\end{array}$ such that $d(\X)$ is as close as possible to $$M= \begin{array}{cc}
 \gD^{(1)}_{in,in} & L \\
  L^T &\gD^{(2)}_{in,in}
-\end{array}  $.
+\end{array} . $$
 
-The remaining non-seed vertices are embedded using out-of-sample embedding with respect to the embedded seeds, i.e. we seek the configuration ${ \hat{\mathbf{Y}}}$ consisting of points in $\mathbb{R}^{d'}$ that consists of the $n-m$ unseeded vertices of $G_1$,  $\{\yhat^{(1)}_{(m+1)},\ldots,\yhat^{(1)}_{(n)}\}$, and the $n-m$ unseeded vertices of $G_2$, labeled  $\{\yhat^{(2)}_1,\ldots,\yhat^{(2)}_{(n-m)}\}$, where $\yhat_{i}^{(k)} 1\leq i \leq (n-m), k \in {1,2}$  that minimizes the stress function:
+The remaining non-seed vertices are embedded using out-of-sample embedding with respect to the embedded seeds, \ie we seek the configuration ${ \hat{\mathbf{Y}}}$ consisting of points in $\mathbb{R}^{d'}$ that consists of the $n-m$ unseeded vertices of $G_1$, with the embedded coordinates  $\{\yhat^{(1)}_{(m+1)},\ldots,\yhat^{(1)}_{(n)}\}$, and the $n-m$ unseeded vertices of $G_2$, with the embedded coordinates  $\{\yhat^{(2)}_1,\ldots,\yhat^{(2)}_{(n-m)}\}$, where $\yhat_{i}^{(k)}, \onespace 1\leq i \leq (n-m), k \in {1,2}$  minimize the stress function:
 \begin{align}
 \sigma({\bf Y})&=\sum_{s=1}^{m}\sum_{t=m+1}^{n} {W^{(1)}_{in,oos}(s,t-m)  \left(d(X^{(1)}_{s},\yhat_t^{(1)})-\gD^{(1)}_{in,oos}(s,t-m)\right)^2 } \label{eq:oos}\\
 &+\sum_{s=m+1}^{n}\sum_{t=1}^{m}
@@ -2300,14 +2295,16 @@ W^{(1,2)}_{in,oos}(s,t-m) \left(d(X^{(1)}_{s},\yhat_t^{(2)})-\delta(X^{(1)}_{s},
 %&+\sum_{i=1}^{s_1} \sum_{j=1}^{u_2} W^{(1,2)}_{in,oos}(s-m,t-m)\left(d(X^{(1)}_i,Y^{(2)}_j)-\delta(X^{(1)}_i,Y^{(2)}_j)\right)^2, 
 \end{align}
 %where again $\widetilde w(\cdot,\cdot):V_1\times V_2 \mapsto\mathbb{R}$ are weighting functions representing our confidence in the computed/imputed dissimilarity between pairs of vertices, and as before $\delta$ is the unknown across--graph dissimilarity. 
-where $W_{a,b}^{(k)}$ and $W_{a,b}^{(k_1,k_2)}$ (for $a,b \in {'in', 'oos'}$ are the weights for dissimilarities between in/out-of-sample observations both in $k^{th}$ or $k_1^{th}$ and $k_2^{th}$ conditions.
+where $W_{a,b}^{(k)}$ and $W_{a,b}^{(k_1,k_2)}$ (for $a,b \in \{`in', `oos'\}$ are the weights for dissimilarities between in/out-of-sample observations both in $k^{th}$ (or $k_1^{th}$ and $k_2^{th}$) conditions.
 
-Note that \ref{eq:oos5}, \ref{eq:oos6} and \ref{eq:oos7} involve dissimilarities $\delta(.^{(1)},.^{(2)})$ between different conditions, which are generally not available. While  the dissimilarities in \ref{eq:oos6} and \ref{eq:oos7} can be imputed via known dissimilarities, the dissimilarities in \ref{eq:oos5}  cannot be imputed in any way. In fact, if these dissimilarities between out-of-sample observations in different cconditions were known, we would already know the solution to our inference task, as we would have the cost of assignment any oos observation in one condition to another oos observation in another condition.
+Note that \ref{eq:oos5}, \ref{eq:oos6} and \ref{eq:oos7} involve dissimilarities $\delta(.^{(1)},.^{(2)})$ between different conditions, which are generally not available. While  the dissimilarities in \ref{eq:oos6} and \ref{eq:oos7} can be imputed via known dissimilarities, the dissimilarities in \ref{eq:oos5}  cannot be imputed in any way. In fact, if these dissimilarities in  \ref{eq:oos5}   between out-of-sample observations in different conditions were known, we would already know the solution to our inference task, as we would have the  assignment cost  of any oos observation in one condition to another oos observation in another condition and we would minimize the total cost over all possible alignments. In other words, all we would have to do is solve the linear assignment problem).
 
-\ref{eq:oos3} and \ref{eq:oos4} contain dissimilarities between oos observations in the same condition. They can be  used or ignored in the joint embedding, depending on whether one wishes to embed oos observations all together or one at a time. If between-condition oos dissimilarities are ignored, then one would get the same answer if the oos observations are embedded one at a time.
+\ref{eq:oos3} and \ref{eq:oos4} contain dissimilarities between oos observations in the same condition. They can be  used or ignored in the joint embedding, depending on whether one wishes to embed oos observations all together or one at a time. If between-condition oos dissimilarities are ignored, the oos embedding function $\sigma({\bf Y})$ is separable with respect to different  $\yhat^{(k)}_{j} \quad j \in m+1,\ldots n$. Then we would get the same embedding configuration if the oos observations $\yhat^{(k)}_{j}\quad j \in m+1,\ldots n$ are embedded one at a time.
 
-Once we find a minimum configuration ${ \hat{\mathbf{Y}}}$, we compute the pairwise distances between the points $c_{ij}=d(\yhat^{(1)}_s,\yhat^{(2)}_t),\onespace s \in \{(m+1),\ldots n\}, t \in  \{(m+1),\ldots n\}$, which corresponds to the off-diagonal block matrix of $d({ \hat{\mathbf{Y}}})$. This is the assignment cost matrix $C=\left[c_ij \right]$ for which we solve the linear assignment problem for which is to minimize $\sum a_{ij}*c_{ij}$  for the assignment $\{a_{ij}\}$
-$a_{i'j'} \in {0,1},\onespace \sum_{j'} a_{ij'} =\sum_{i'} a_{i'j} =1 \onespace \forall i',j'$.
+Once we find a minimum configuration ${ \hat{\mathbf{Y}}}$, we compute the pairwise distances between the points $c_{ij}=d(\yhat^{(1)}_s,\yhat^{(2)}_t),\onespace s \in \{(m+1),\ldots n\}, t \in  \{(m+1),\ldots n\}$, which corresponds to the off-diagonal block matrix of $d({ \hat{\mathbf{Y}}})$. This is the assignment cost matrix $C=\left[c_{ij} \right]$ for which we solve the linear assignment problem for which is to minimize $\tr(A^{T}C)=\sum_{ij} a_{ij}*c_{ij}$  for the assignment $\{a_{ij}\}$ where
+$\forall i',j' \qquad a_{i'j'} \in {0,1},\onespace \sum_{i}{a_{ij'}} =\sum_{j} a_{i'j} =1 $ \ie $A$ is a permutation matrix. 
+
+So the seeded graph matching problem is solved by a joint embedding of the two graphs followed by solving the linear assignment problem of distances between embedded points.
  
 One useful property of dissimilarity representation is that the structure of data is irrelevant once an appropriate dissimilarity function  for the data is available. 
 There are many dissimilarities that can be defined between vertices in graphs. We assume that an appropriate dissimilarity measure is available to us.
@@ -2315,146 +2312,316 @@ There are many dissimilarities that can be defined between vertices in graphs. W
 In our experiments we will use five different dissimilarities/distances between vertices in a graph:
 \begin{itemize}
  \item the shortest path on the  unweighted graph whose adjacency matrix is available
- \item the shortest path on a weighted version of the graph whose adjacency matrix is available
+ \item the shortest path on a weighted version of the graph whose weight matrix is available
  \item diffusion distance between vertices on the (unweighted) graph.
- \item weighted extension of Czekanowski-Dice dissimilarity\cite{DICE,weightedDICE} which simplifies to the original Czekanowski-Dice dissimilarity (C-D dissimilarity  quantifies local similarity of two vertices in a graph).
+ \item weighted extension of Czekanowski-Dice dissimilarity\cite{DICE,weightedDICE} which simplifies to the original Czekanowski-Dice dissimilarity in the case of unweighted graphs(C-D dissimilarity  quantifies local similarity of two vertices in a graph).
  \item expected commute time for random walks on the graph.
  \end{itemize}
- We will omit the results for weighted graph dissimilarities, since they seem to have the same performance as the weighted dissimilarities.
+ %We will omit the results for weighted graph dissimilarities, since they seem to have the same performance as the weighted dissimilarities.
+ \begin{remark}
+ Note that these dissimilarities are defined between vertices of the same graph. Since the dissimilarities between vertices of different graphs are not available, we have to resort to the same imputation work-arounds  as the JOFC embedding in  \ref{rem:imputationofdiss}.
+ %We impute the inter-condition dissimilarities   as described before in section \ref{omnibus}, or ignore them as defined before in \ref{eq:oos}.
+ We would again choose 0 for the dissimilarities between matched vertices, then either impute the remaining unknown dissimilarities or ignore them in the embedding.
+ \end{remark}
  
- Note that these dissimilarities can only be defined between vertices of the same graph. We impute the inter-condition dissimilarities   as described before in section \ref{omnibus}, or ignore them as defined before in \ref{eq:oos}.
+ While it is plausible the JOFC approach can also solve the seeded graph matching (SGM) problem, it is not obvious it can compete with the modified FAQ algorithm, specifically formulated to solve the  seeded approximate graph matching problem. Then, why should one choose to use JOFC for SGM? One of the many problems with analysis of real data is that the graph representation of real data is not always well-defined and the correspondence of vertices may be  ambiguous, one-to-many or many-to-many. In such situations, we would prefer a robust algorithm, that would still match seeded graphs with satisfactory performance. Modified FAQ, in the form that we have presented, can not handle such pathologies and significant changes must be made to modified FAQ algorithm before it can handle them. If it turns out that the true match ratios by the assignments given by the JOFC approach is at least as high as the ones given by the modified FAQ algorithm, we can conclude JOFC is reasonably competitive with the modified FAQ algorithm for seeded graph matching. Our simulations using the correlated Erdos-Renyi graphs and experiments with real graph data are tailored for comparison of  the two approaches. We compared the algorithms whenever both of the approaches   are  feasible for the problem size (the running times are acceptable). This application of JOFC for seeded graph matching is  investigated  in \cite{SGMviaJOFC} with simulation and real datasets and some of the same results will be presented in herein.
  
-\section{Demonstrations}
 
-We perform SGM simulations with graphs, and experiments on real-life graphs for  both modified FAQ approach and JOFC. The performance measure we consider is the true match ratio: the number of true matchings of vertices  divided by the number of pairs of vertices.
+ 
+ \section{Demonstrations}
+
+We perform SGM simulations with graphs generated according to a paired Erdos-Renyi graph, and experiments on real-life graphs for  both modified FAQ approach and JOFC. The performance measure we consider is the true match ratio: the number of true matchings of vertices  divided by the number of pairs of vertices.
 
 \subsection{Simulations}
-  To test graph matching approaches, consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
-  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
- 
-   and the adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
-   $\left[B\right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$. Suppose $p_{10}=p_{11}=p$.
+
+
+  We first present our exploratory simulations to  test the JOFC approach, and figure out what are reasonable choices for  the dissimilarity measure and $w$ (Fidelity-Commensurability tradeoff parameter). We will also  see how sensitive the results are for different choices of the dissimilarity measure and different $w$ values. 
   
-  The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. 
-  The performance measure is the proportion of true matches to the number of matches. Note that 
-  under chance, the expected number of true matches is 1, as shown with the dashed line. In this particular simulation, we consider the JOFC approach with classical and raw stress variants and compare the performance of each in small graphs. $r=20$ and $s=5$. $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$.  
-  
-\begin{figure}
-  \includegraphics[scale=0.65]{FidCommPapergraph-plot-1.pdf}
-\end{figure}
-
-
-
-
-
-
-
-
-
-
-
-
-Note that JOFC for unweighted and weighted graphs  have better performance compared to CMDS. As the perturbation parameter gets larger, the performance degrades until it is indistinguishable from random chance at $pert=0.5$.
-
-\begin{comment}
-Another feature of the plot is the U-shape of the curve for diffusion-distance based dissimilarities. This invariancy with respect to complement of the graph should be investigated further.
-
-\includegraphics{graphs/FidCommPapergraph-plot-3}An interesting trend in the graph is that shortest-path based dissimilarities are an improvement over diffusion-path dissimilarities for perturbation parameter less than 0.5 , but as perturbation parameter increases past 0.5, fraction of correct matches for diffusion distance based dissimilarity recovers, while for other dissimilarities the fraction continues to fall. 
-\end{comment}
-
- 
-  To test JOFC approach, consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, that is
-  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$.
-   and the adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is
+  consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, \ie
+  $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$. The adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, \ie
     $\left[B\right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$. Suppose $p_{10}=p_{11}=p_{pert}$.
   
   The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$ which is the variable on the x-axis. 
   The performance measure is the proportion of true matches to the number of matches. Note that 
-  under chance, the expected number of true matches is 1, as shown with the dashed line. In the simulation, $r=20$ and $s=5$. $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
-\begin{figure}
-  \includegraphics[scale=0.65]{FidCommPapergraph-plot-1.pdf}
-\end{figure}
+  under chance, the expected number of true matches is 1, as shown with the dashed line. In this particular simulation, we consider the JOFC approach with classical and raw stress variants and compare the performance of each in small graphs. For JOFC with raw stress, we set $w=0.8$. The joint embedding with cMDS is compared with  the JOFC approach, in order to figure out how the performance measure is sensitive to the Fidelity-Commensurability tradeoff. 
+  %$r=20$ and $s=5$. 
+  $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$.  
+  
 
 
-In the plot above, JOFC approach applied to  dissimilarities based on weighted and unweighted graphs is compared with classical MDS on dissimilarities of weighted graphs.
-
-As the perturbation parameter gets larger, the performance degrades until it is indistinguishable from random chance at $pert=0.5$.
-
-Another feature of the plot is the U-shape of the curve for diffusion-distance based dissimilarities. This invariancy with respect to complement of the graph should be investigated further.
 
   
 
-\begin{figure}
-\centering
-\includegraphics{graphs/FidCommPapergraph-plot-3} 
-\end{figure}
+ 
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot change working directory}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file './JOFC\_MatchDetect/lib/multipleMinimaTest\_fn.R': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# You're loading optmatch, by B. Hansen and M. Fredrickson.\\\#\#\ \ The optmatch package makes essential use of D. P. Bertsekas\\\#\#\ \ and P. Tseng's RELAX-IV algorithm and code, as well as\\\#\#\ \ Bertsekas' AUCTION algorithm and code.\ \ Using the software\\\#\#\ \ to 'satisfy in any part commercial delivery requirements to\\\#\#\ \ government or industry' requires a special agreement with\\\#\#\ \ Dr. Bertsekas. For more information, enter\\\#\#\ \ relaxinfo() at the command line.}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file './JOFC\_MatchDetect/lib/simulation\_math\_util\_fn.R': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file './JOFC\_MatchDetect/lib/oosMDS.R': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file './JOFC-GraphMatch/lib/smacofM.R': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file './JOFC-GraphMatch/lib/oosIM.R': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file './JOFC-GraphMatch/lib/diffusion\_distance.R': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: cannot open file './JOFC-GraphMatch/lib/graph\_embedding\_fn.R': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ER"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}omnibusM"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'G.comb' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'Graph.M' not found}}\end{kframe}
+\end{knitrout}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ER"{}}}\end{kframe}
+\end{knitrout}
 
 
 
-An interesting trend in the graph is that shortest-path based dissimilarities are an improvement over diffusion-path dissimilarities for perturbation parameter less than 0.5 , but as perturbation parameter increases past 0.5, fraction of correct matches for diffusion distance based dissimilarity recovers, while for other dissimilarities the fraction continues to fall. 
-
-The dissimilarity type that has the best improvement in performance is JOFC with shortest path distances in weighted graphs(unweighted graphs have similar performance).
-
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 
 
-This graph shows the effect of the weight parameter of stress $w$ on the probability of true matches.
-\begin{figure}
-\includegraphics{FidCommPaper-graph-plot-4}
-\end{figure}
-There are a lot  of interesting questions to ponder about the number of known correspondences, such as , how many known correspondences are necessary for satisfactory performance for graphs of some fixed size and whether , in the ``match ratio'' vs number of known correspondences curve,  there are any ``elbows'' , after which the cost of more correspondences are not justified by the accompanying increase in ``match ratio''. Figure \ref{bitflipJOFC} shows ``match ratio'' plotted against number of ``seeds'' for the same bitflip experiments using  Czekanowski-Dice dissimilarities . These results suggest that even with the perturbation, when a portion of the correspondences are known, it is possible to recover most of the remaining correspondences. This application of JOFC is  investigated further in \cite{SGMviaJOFC} with real datasets.
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: there is no package called 'arrayhelpers'}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}array2df"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}summarySE"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ggplot"{}}}\end{kframe}
+\end{knitrout}
+
+
+Our first observation from the plot is that for low amounts of perturbation, JOFC performs satisfactorily, that is most of the test vertices are matched correctly. Various dissimilarity measures can be chosen for the dissimilarity matrix. The appropriate dissimilarity measure might depend on the degree distribution and the size of the graph. \autoref{fig:JOFC_on_Graphs_Plot} shows some dissimilarity measures result in significantly different behaviour as $p_{pert}$  changes.
+
+ As the perturbation parameter gets larger, (for all dissimilarity measures) the performance  degrades until it is indistinguishable from random chance at $p_{pert}=0.5$. For this $p_{pert}$ value, there is no edge correlation between the two graphs, since the mutual information between $A_{ij}$ and $B_{ij}$ is 0. So at that  $p_{pert}$ value, we expect on average the same number of true matches as random chance. Further $p_{pert}$ means the dissimilarity between truly matched vertices, say  with the shortest path distance as the dissimilarity measure, is even larger than you would expect by chance, which means even less number of true matches.
+
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: there is no package called 'arrayhelpers'}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}array2df"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: argument "{}x"{} is missing, with no default}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'nc.cmds.lf' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'nc.jofc.lf' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'nc.jofc.shortpath.lf' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'nc.jofc.shortpath.lf' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}summarySE"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ggplot"{}}}\end{kframe}
+\end{knitrout}
+
+
+JOFC embedding  has significantly better performance compared to cMDS \ref{fig:JOFC_vs_cMDS_on_ER_graph}. 
+
+
+
+As $p_{pert}$ approaches $1$, $\G_2$ gets closer to the complement of $\G_1$. An interesting feature of the plot is the U-shape of the curve for some of the dissimilarities. This invariancy with respect to complement of the graph should be investigated further.  
+
+
+
+%An interesting trend in the graph is that shortest-path based dissimilarities are an improvement over diffusion-path dissimilarities for perturbation parameter less than 0.5 , but as perturbation parameter increases past 0.5, fraction of correct matches for diffusion distance based dissimilarity recovers, while for other dissimilarities the fraction continues to fall. 
+
+%The dissimilarity type that has the best improvement in performance is JOFC with shortest path distances in weighted graphs(unweighted graphs have similar performance).
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ER"{}}}\end{kframe}
+\end{knitrout}
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: there is no package called 'arrayhelpers'}}\begin{verbatim}
+##  num [1:11, 1:100, 1:5] 0 0 0 0 0 0 0 0 0 0 ...
+## NULL
+\end{verbatim}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}array2df"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'nc.jofc.w.lf' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}summarySE"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ggplot"{}}}\end{kframe}
+\end{knitrout}
+
+
+This graph \ref{fig:JOFC-on-ER-Graph-w_param-plot} shows the effect of the weight parameter of stress $w$ on the probability of true matches. We note that in this graph matching setting using the shortest path distance as the dissimilarity measure and for the $w$ values we tested, there is no significant difference between the true matching ratios. This indicates that the choice of the parameter $w$ is not necessarily critical for performance in all data settings. 
+%\begin{figure}
+%\includegraphics{FidCommPaper-graph-plot-4}
+%\end{figure}
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ER"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}omnibusM"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ER"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}abind"{}}}\end{kframe}
+\end{knitrout}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning: there is no package called 'arrayhelpers'}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'nc.jofc.cmds.d' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'nc.jofc.cmds.d' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'nc.jofc.cmds.d' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'nc.jofc.cmds.d' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}array2df"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'nc.jofc.d.lf' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}summarySE"{}}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: could not find function "{}ggplot"{}}}\end{kframe}
+\end{knitrout}
+
+
+\autoref{fig:JOFC_on_ER_Graph_d_param-plot} shows that the embedding dimension is a more important concern when the classical MDS embedding is used. For JOFC, even the smallest embedding ($d=4$) dimension is large enough so that significant amount of fidelity  is not  lost which results in mostly accurate matchings of vertices.
+
+
+
+There are a lot  of interesting questions to ponder about the number of known correspondences, such as 
+\begin{itemize}
+\item How many known correspondences are necessary for satisfactory performance for graphs of some fixed size 
+\item Are there  any ``elbows'' in the ``match ratio'' vs number of known correspondences curve,  after which the cost of more correspondences are not justified by the accompanying increase in ``match ratio''.
+\end{itemize}.
+We try to find answers to these questions by using the Erdos-Renyi graph pair model we introduced along with some real-world graphs.
+
+Figure \ref{fig:bitflipJOFC} shows ``match ratio'' plotted against number of ``seeds'' for the bitflip simulations (the data is generated using the Erdos-Renyi graph pair model) using the Czekanowski-Dice dissimilarity measure. These results along with the previous simulations suggest that even with the perturbation, when a portion of the correspondences are known, it is possible to recover most of the remaining correspondences using JOFC embedding of the pair of graphs. We note that the number of correspondence that must be known before the proportion of true matches are satisfactory depends on various factors such as the size and average connectivity of the graphs, the connectivity of the seed vertices, the dissimilarity measure and the amount of perturbation between the two graphs. Further investigations into these factors could be fruitful. 
+
 \begin{figure}
 \includegraphics[scale=0.75]{bitflip_JOFC}
-\caption{Bitflip Simulations for JOFC \label{bitflipJOFC}}
+\caption{Bitflip Simulations for JOFC \label{fig:bitflipJOFC}}
 \end{figure}
 
 
 \subsection{Experiments on Real data}
 
 \subsubsection{C. elegans connectome}
-As one of the real graph data, we consider two connectivity graphs of 279 neurons of the  nematode, \textit{Caenorhabditis elegans}. The two conditions correspond to the two ways of measuring connectivity among neurons $\G_c$ and $\G_g$ . The connectivity in the first connectome is defined by chemical synapses, a directed connection between two cells.  The  weight matrix for the first connectivity type is $A_c$ which is not symmetric, has values between 0 and 37 and is relatively sparse (has 2194 non-zero entries). The second connectivity type forms a unweighted graph $\G_g$ with the adjacency matrix $A_g$ and is defined by the existence of gap junctions between neurons. $\G_g$ is even sparser(1031 non-zero entries) than $\G_c$.
+As one of the real graph data, we consider two connectivity graphs of 279 neurons of the  nematode, \textit{Caenorhabditis elegans}. The two conditions correspond to the two ways of measuring connectivity among neurons $\G_c$ and $\G_g$ . The connectivity in the first connectome is defined by chemical synapses, a directed connection between two cells. This connectome is represented by a weighted graph where the weights correspond to number of synapses identified in images of C. elegans specimens.  The  weight matrix for the first connectivity type is $A_c$ which is not symmetric, has values between 0 and 37 and is relatively sparse (has 2194 non-zero entries). The second connectivity type forms a unweighted graph $\G_g$ with the adjacency matrix $A_g$ and is defined by the existence of gap junctions between neurons. $\G_g$ is even sparser(1031 non-zero entries) than $\G_c$.
 
-We remove isolated vertices from the two graphs and keep vertices which are connected in both graphs. This leaves $n=253$  vertices. We consider both the original weighted graphs and binarized version of the graphs and also symmetrized versions of each (which leads to directed and undirected graphs, respectively). In the case of weighted graphs, we normalize the two graphs, so that they approximately have the same scale. For JOFC, we use the weighted DICE dissimilarity (which simplifies to the generic DICE dissimilarity in the case of unweighted graphs) to compute $\Delta_c$ and $\Delta_g$.   
+We remove isolated vertices from the two graphs and keep vertices which are connected in both graphs. This leaves $n=253$  vertices. We consider both the original weighted graph for the first connectome and binarized version of the same graph. We  also consider symmetrized versions of each graph (which leads to directed and undirected graphs, respectively). In the case of weighted graphs, we normalize the two graphs, so that they approximately have the same scale. For the JOFC approach, we use the weighted DICE dissimilarity (which simplifies to the generic DICE dissimilarity in the case of unweighted graphs) to compute $\Delta_c$ and $\Delta_g$.   
 
 \begin{figure}
 \includegraphics[scale=0.75]{worm_jofc_vs_faq_wt_unwt-crop}
 \caption{Graph Matching experiments on the C. elegans connectomes using JOFC and FAQ algorithms \label{worm_graphmatch}}
 \end{figure}
 
-\subsubsection{Enron communication graph}
-The Enron communication graph is extracted from the  Enron  email corpus, which was made public during criminal investigations by the  Federal Energy Regulatory Commission. Though the number of actual users is about 150,  each email alias is considered as a vertex in the communication graph. The original number of email aliases is 184. The whole time interval is divided into 187 sub-intervals (each corresponding to a week). The emails are grouped according to which time interval their timestamps are in. We then construct a time series of graphs $\mathfrak{G}=\{G^{(t)} = (V,E^{(t)})\}$ where $E^{(t)}$ correspond to emails that were sent at $t^{th}$ interval. We are interested in the intervals $t=130$ , $t=131$ (and $t=132$ for some experiments), as previous  investigations of the corpus found chatter anomalies at these time intervals \cite{EnronStudy}. When isolated vertices (and their corresponding vertices in the other graph) are removed in these two graphs  , the number of vertices is reduced to 146. It is these two pruned graphs we match.
+We make  a comparison of the JOFC approach and the modified FAQ algorithm using the two connectomes. While the true matching ratio ($\delta^{(m)}$) of both approaches is helped by the number of seeds,  $\delta^{(m)}$ are relatively low compared to the maximum possible value ($1$). This means that the correlation between the two connectomes is small and we expect there are biological explanations for this conclusion.  
+The first conclusion we can reach from the comparison is that the two approaches are competitive. In fact, the JOFC approach provide significant improvement over the modified FAQ algorithm. The modified FAQ algorithm is not suitable for the situation when one graph is weighted, and the other graph is unweighted (as in the weighted case) or the number of non-zero entries are significantly different as in this case (as in both the weighted or unweighted cases). JOFC approach works much better in both weighted or unweighted cases. 
 
-\begin{figure}
-\includegraphics[scale=0.75]{JOFC-enron_dim_20}
-\caption{Experiments on the Enron communication graphs for JOFC \label{enron_graphmatch}}
-\end{figure}
+\subsubsection{Enron communication graph}
+The Enron communication graph is extracted from the  Enron  email corpus, which was made public during criminal investigations by the  Federal Energy Regulatory Commission. Though the number of actual users is about 150,  each email alias is considered as a vertex in the communication graph. The original number of email aliases is 184. The whole time interval is divided into 187 sub-intervals (each corresponding to a week). The emails are grouped according to which time interval their timestamps are in. We then construct a time series of graphs $\mathfrak{G}=\{G^{(t)} = (V,E^{(t)})\}$ where $E^{(t)}$ correspond to emails that were sent at $t^{th}$ interval. We are interested in the intervals $t=130$ , $t=131$ (and $t=132$ for some experiments), as previous  investigations of the corpus found chatter anomalies at these time intervals \cite{EnronStudy}. When isolated vertices (and their corresponding vertices in the other graph) are removed in these two graphs, the number of vertices is reduced to 146. It is these pruned graphs we match. The first two results are from matching of $G(130)$ and $G(131)$. We consider both the undirected and directed versions of the two graphs.
+
 
 \begin{figure}
 \includegraphics[scale=0.75]{enron-JOFC-FAQ-paper.pdf}
 \caption{Experiments on the Enron communication graphs for FAQ and JOFC \label{enron_graphmatch_faq_jofc}}
 \end{figure}
 
+We compare the performance of the modified-FAQ algorithm with the JOFC algorithm\ref{enron_graphmatch_faq_jofc}. Here the modified-FAQ algorithm is significantly better than JOFC. This observation  is valid for both directed and undirected versions of the graphs.  With a large  number of seeds, the difference between the two approaches gets smaller. We also note that the performance with the directed graphs is higher than for the undirected graph for the modified FAQ algorithm, while for the JOFC approach  results are   the undirected graph.
+
+\begin{figure}
+\includegraphics[scale=0.75]{JOFC-enron_dim_20}
+\caption{Experiments on the Enron communication graphs for JOFC \label{enron_graphmatch}}
+\end{figure}
+
+For the plot in  $\ref{enron_graphmatch}$, we chose the embedding dimension $d$ as 20. These results are better compared to \label{enron_graphmatch_faq_jofc} which leads us to conclude that $d$ is another parameter that must be chosen with care. 
+
 
 \begin{figure}
 \includegraphics[scale=0.75]{enron-paper.pdf}
 \caption{Experiments on the Enron communication graphs for FAQ for t=130,131,132 \label{enron_graphmatch_faq_t}}
 \end{figure}
+The plot in \autoref{enron_graphmatch_faq_t} is another result for matching the Enron graphs using the FAQ algorithm. The comparison of the three pairs from $t=130,131,132$. As one would expect the graph matching between $G(130)$ and $G(131)$ is much more successful than    the graph matching between $G(130)$ and $G(132)$. We also note that if enough seeds are available even the matching between  $G(130)$ and $G(132)$ can be improved significantly . In fact the improvement in the graph matching between  $G(130)$ and $G(132)$  is larger than for the graph matching of the other two pairs.
+
+We are also interested in the chatter anomaly detected in \cite{EnronStudy}. This anomaly is detected at $t=132$. We also see from the graph matching results that the matching between $t=130$ and $131$ is better than the matching between $G(131)$ and $G(132)$. If there is excessive change in the connectivity, we expect the graph matching performance to suffer. This makes one wonder if the true match ratio can be used for detecting anomalies in a time series of graphs. Graph matching can be carried out for the graph instances at consecutive time steps, and significant outliers would be labeled as outliers. The true matching ratio  for a fixed number of seeds would be a statistic for anomaly detection. 
 
 \subsubsection{Wikipedia hyperlink subgraph}
 
 Wikipedia is a free online encyclopedia created by volunteers around the world consisting of millions of article in hundreds of languages (30 million articles in 287 languages, including over 4.3 million in the English Wikipedia as of November 2013 \cite{wikipedia}). Articles contain text, links to other articles and multimedia content. We interpret the links as directed edges in a hyperlink graph where vertices correspond to articles. A collection of articles were collected from the English Wikipedia, consisting of the
- directed 2-neighborhood of the document "Algebraic Geometry". 
+ directed 2-neighborhood of the document "Algebraic Geometry"\cite{wikiwebpage}. 
    This  collection of 1382 articles and the correspondence of each article in French 
 Wikipedia is our real-life dataset. For inference tasks, it is possible to utilize both textual content of the documents and the hyperlink graph structure. The textual content of the documents is summarized by the bag-of-words model. Dissimilarities between documents  in the same language are computed by the Lin-Pantel discounted mutual information \cite{LinPantel,PantelLin}
  and cosine dissimilarity $k(x_{ik}; x_{jk}) = 1 - (x_{ik} x_{jk})/(\|x_{ik}\|_2\|x_{ik}\|_2)$. 
  The dissimilarities based on the hyperlink graph are shortest path distances in the graph:
  for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$. Due to the fact the French Wikipedia graph is sparser, the induced graph in French Wikipedia of 2-neighborhood in English Wikipedia might be a disconnected graph. Therefore the shortest path dissimilarities in French Wikipedia are set to 6 (maximum shortest path distance in English Wikipedia graph), if they are larger than 6.  Further details about this dataset is available in \cite{Zhiliang_disparate}.
  
- As this graph is relatively large compared to other real life graphs we considered, we only tested modified FAQ algorithm. Note testing JOFC on this graph is still tractable.
+ As this graph is relatively large compared to other real life graphs we considered, we only tested modified FAQ algorithm. Note that testing JOFC on this graph is still possible, but we had no reason to believe that another JOFC experiment would provide any new insight.
 
 \begin{figure}
 \includegraphics[scale=0.75]{wiki-all-with-unseeded.pdf}
 \caption{Graph Matching Experiments on the English and French Wikipedia subgraph for FAQ \label{wiki_graphmatch}}
 \end{figure}
+
+The results show that there is strong correlation between the two wikipedia graphs, and as many as 50 seeds is enough to improve graph matching dramatically. More seeds improve the true matching ratio,  but the improvements are much more modest. With graph matching using no seeds, we get a very small number of  true matches. 
+%The different values plotted in   \ref{wiki_graphmatch} for the no seed case are just independent repeat
       
 \subsubsection{Charitynet graph}
 
@@ -2473,7 +2640,7 @@ We match the two graphs represented by  $A^{\left[ tmin,tmid \right)}$, $A^{\lef
 \caption{Graph Matching experiments on the two Charitynet graphs for JOFC \label{charitynet_graphmatch}}
 \end{figure}
 
-\subsection{1-to-k matching of vertices} 
+\subsection{One-to-$k$ matching of vertices} 
 
 Consider the case where the correspondences between vertices of $\G_1=(V_1,E_1)$ and $\G_2= (V_2,E_2)$ (represented by adjacency matrices, $A$ and $B$ respectively) are not one-to-one. To describe the problem in its most general form, we could define group assignment functions $g_1{v_1}: V_1 \rightarrow \mcG={l_1,l_2,\ldots,l_{\upsilon}}$, $g_2{v_2}:V_2 \rightarrow \mcG$ where the inverse images of $g_1{l_i}$, $g_2{l_i}$ are always nonempty. A vertex $v_1 \in  V_1$ in one graph corresponds to a vertex $v_2 \in  V_2$  in another graph, if $g_1(v_1)=g_2(v_2)$. We want to make the simple restriction that $g_2$ is a one-to-one mapping, that is each vertex in $\G_2$ correspond to at least one vertex in  $\G_1$.
 For simulations, we consider a very simple case where the $i^{th}$ vertex in $B$ corresponds to $k_i$ vertices in $A$ where $1\leq k_i \leq k_{max}$ where $k_{max}$ is the maximum number of corresponding vertices a $B$ vertex can have.  Denote by $g(\cdot)=g_2^{-1}\circ g_1(\cdot) : V_1 \rightarrow V_2$ the correspondence function from vertices in $\G_1$ to vertices in $\G_2$. Given $r$ vertices in $B$, and the corresponding vertices in $V_1$ for each of the $r$ vertices ($u \in V_1$ such that $g(u)=v_2$), the task is  to find at most $k_max$ closest matches to each vertex of of $\G_2$. 
@@ -2491,7 +2658,7 @@ For each vertex of $\G_2$, the number of true matches is $k_i$. The three perfor
 \caption{Graph Matching experiments on simulated graphs for JOFC \label{1_k_graphmatch_sim}}
 \end{figure}
 
-The results provide evidence that JOFC is a suitable method for solving this variation of graph matching problem. While  both JOFC and modified FAQ were acceptable solutions for the approximate graph matching (AGM) problem with one-to-one correspondence between vertices, with comparable matching performance, modified FAQ  cannot directly solve  the 1-k correspondence variation of the GM problem. In contrast, JOFC is quite adequate for solving AGM with one-to-$k$ correspondence. One only needs to use a matching algorithm that allows multiple assignments for the vertices of one of the graphs. We should mention we use the full matching algorithm implemented in R package \cite{optmatch} which finds  `` a matching between units that minimizes the average within grouped distances, given a matrix describing the distances between two groups''\cite{optmatch_manual}. That is, the \emph{full} matching algorithm finds an assignment for all of the vertices in both graphs. As the assignment problem is independent of the embedding, other matching algorithms can be used with the same embedding.
+The results provide evidence that JOFC is a suitable method for solving this variation of graph matching problem. While  both JOFC and modified FAQ were acceptable solutions for the approximate graph matching (AGM) problem with one-to-one correspondence between vertices, with comparable matching performance, modified FAQ  cannot directly solve  the one-to-$k$ correspondence variation of the GM problem. In contrast, JOFC is quite adequate for solving AGM with one-to-$k$ correspondence. One only needs to use a matching algorithm that allows multiple assignments for the vertices of one of the graphs. We should mention we use the full matching algorithm implemented in R package \cite{optmatch} which finds  `` a matching between units that minimizes the average within grouped distances, given a matrix describing the distances between two groups''\cite{optmatch_manual}. That is, the \emph{full} matching algorithm finds an assignment for all of the vertices in both graphs. As the assignment problem is independent of the embedding, other matching algorithms can be used with the same embedding.
 
 
 
