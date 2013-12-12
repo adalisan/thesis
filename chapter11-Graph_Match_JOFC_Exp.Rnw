@@ -104,7 +104,7 @@ We perform SGM simulations with graphs generated according to a paired Erdos-Ren
 
   We first present our exploratory simulations to  test the JOFC approach, and figure out what are reasonable choices for  the dissimilarity measure and $w$ (Fidelity-Commensurability tradeoff parameter). We will also  see how sensitive the results are for different choices of the dissimilarity measure and different $w$ values. 
  
-  consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, \ie
+  Consider the following simulation: $A$ is the adjacency matrix of an Erdos-Renyi graph, \ie
   $\left[A\right]_{ij} \sim Binomial(p)$ where $\left[A\right]_{ij}$ is $ij$-th entry of the adjacency matrix  $A$. The adjacency matrix  $B$ is a entry-wise bit-flipped version of the adjacency matrix of $A$, \ie
     $\left[B\right]_{ij}|\left[A\right]_{ij}=0 \sim Binomial(p_{10})$ $\left[B\right]_{ij}|\left[A\right]_{ij}=1 \sim Binomial(p_{11})$. Suppose $p_{10}=p_{11}=p_{pert}$.
   
@@ -120,9 +120,9 @@ We perform SGM simulations with graphs generated according to a paired Erdos-Ren
   
 
  
+%require(arrayhelpers,quietly=TRUE)
 
-
-<<JOFC-on-ER-Graph-init, echo=FALSE,fig=FALSE,results='hide',cache=TRUE,trace=TRUE,eval=TRUE>>=
+<<JOFC-on-ER-Graph-init, echo=FALSE,fig=FALSE,results='hide',cache=TRUE,trace=TRUE,eval=TRUE,include=FALSE>>=
 root.dir<-Sys.getenv("PROJECT_DIR")
 setwd(root.dir)
 source("./JOFC_MatchDetect/lib/multipleMinimaTest_fn.R")
@@ -285,7 +285,7 @@ for(imc in 1:nmc)
 @
 
 
-<<JOFC_on_Graphs_Plot,echo=FALSE,eval=TRUE,fig.cap="The matching ratio for seeded graph matching via JOFC is different for different dissimilarity measures. For $n=50$ vertices and $m=30$ seeds, the true matching ratio is plotted against the perturbation parameter $p_{pert}$. Note the U-shape of some of the dissimilarities.",dependson='JOFC-on-ER-Graph-init'>>=
+<<JOFC_on_Graphs_Plot,echo=FALSE,eval=TRUE,fig.cap="The matching ratio for seeded graph matching via JOFC is different for different dissimilarity measures. For $n=50$ vertices and $m=30$ seeds, the true matching ratio is plotted against the perturbation parameter $p_{pert}$. Note the U-shape of some of the dissimilarities.",dependson='JOFC-on-ER-Graph-init',message=FALSE>>=
 require(arrayhelpers,quietly=TRUE)
 require(ggplot2,quietly=TRUE)
 dimnames(n.correct.match.jofc.agg)[[1]]<- pert
@@ -293,7 +293,7 @@ dimnames(n.correct.match.jofc.agg)[[3]] <- c("ShortestPath","WeightedCz-Dice","D
 nc.jofc.lf <- array2df(n.correct.match.jofc.agg,levels=list(pert=TRUE,mc=NULL,diss.meas=TRUE),label.x="nc.ratio")
 
 nc.ratio.mean.sd<-summarySE(data=nc.jofc.lf,measurevar="nc.ratio",groupvars=c("pert","diss.meas"))
-ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=diss.meas))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=diss.meas))+geom_line(aes(group=diss.meas))+theme(legend.position="bottom")
+ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=diss.meas))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=diss.meas))+geom_line(aes(group=diss.meas))+theme_minimal()+theme(legend.position="bottom")+guides(col = guide_legend(ncol=2))+ylab(expression(paste(delta^(m))))
 @
 
 Our first observation from the plot is that for low amounts of perturbation, JOFC performs satisfactorily, that is most of the test vertices are matched correctly. Various dissimilarity measures can be chosen for the dissimilarity matrix. The appropriate dissimilarity measure might depend on the degree distribution and the size of the graph. \autoref{fig:JOFC_on_Graphs_Plot} shows some dissimilarity measures result in significantly different behaviour as $p_{pert}$  changes.
@@ -316,7 +316,10 @@ nc.jofc.shortpath.lf <- subset(x=nc.jofc.lf,subset=(nc.jofc.lf$diss.meas=="Short
 nc.jofc.shortpath.lf$diss.meas <- "RawStressEmbed"
 nc.jofc.vs.cmds.lf <- rbind(nc.jofc.shortpath.lf,nc.cmds.lf)
 nc.ratio.mean.sd<-summarySE(data=nc.jofc.vs.cmds.lf ,measurevar="nc.ratio",groupvars=c("pert","diss.meas"))
-ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=diss.meas))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=diss.meas))+geom_line(aes(group=diss.meas))+theme(legend.position="bottom")
+ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=diss.meas))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=diss.meas))+geom_line(aes(group=diss.meas))+theme_minimal()+theme(legend.position="bottom")+
+  #guides(colour=guide_legend(title=NULL))
+  scale_colour_discrete(name = "Embedding Method")+
+  ylab(expression(paste(delta^(m))))
 @ 
 
 JOFC embedding  has significantly better performance compared to cMDS \ref{fig:JOFC_vs_cMDS_on_ER_graph}. 
@@ -395,18 +398,18 @@ for(imc in 1:nmc)
 @
 
 
-<<JOFC-on-ER-Graph-w_param-plot, echo=FALSE,trace=TRUE,eval=TRUE,dependson='JOFC-on-ER-Graph-init'>>=
+<<JOFC-on-ER-Graph-w_param-plot, echo=FALSE,trace=TRUE,eval=TRUE, dependson='JOFC-on-ER-Graph-w_param-run',fig.cap="">>=
 require(arrayhelpers,quietly=TRUE)
 require(ggplot2,quietly=TRUE)
-print(str(nc.jofc.unweighted.w))
+#print(str(nc.jofc.unweighted.w))
 dimnames(nc.jofc.unweighted.w)[[1]] <- pert
 dimnames(nc.jofc.unweighted.w)[[3]] <- w.vals.vec
 
 nc.jofc.w.lf<- array2df(nc.jofc.unweighted.w,levels=list(pert=TRUE,mc=NULL,w=TRUE),label.x="nc.ratio")
-print(str(nc.jofc.w.lf))
+#print(str(nc.jofc.w.lf))
 
 nc.ratio.mean.sd<-summarySE(data=nc.jofc.w.lf ,measurevar="nc.ratio",groupvars=c("pert","w"))
-ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=w))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=w))+geom_line(aes(group=w))+theme(legend.position="bottom")
+ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=w))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=w))+geom_line(aes(group=w))+theme_minimal()+theme(legend.position="bottom")+ylab(expression(paste(delta^(m))))
 
 @
 
@@ -417,11 +420,30 @@ This graph \ref{fig:JOFC-on-ER-Graph-w_param-plot} shows the effect of the weigh
 
 
 
-<<JOFC-on-ER-Graph-d_param-run, echo=FALSE,results='hide',cache=TRUE,trace=TRUE,eval=TRUE,warning=FALSE,dependson='JOFC-on-ER-Graph-init'>>=
+<<JOFC-on-ER-Graph-d_param-run, echo=FALSE,results='hide',cache=TRUE,trace=TRUE,eval=TRUE,warning=FALSE,dependson='JOFC-on-ER-Graph-init',message=FALSE>>=
 
+
+
+seed<-2893479
+set.seed(seed)
+
+debug.mode= TRUE
+a.embed.via.cMDS <-20
+
+n = 50
+m = 30 # the first m pairs are known matches ; the last n-m pairs are to-be-matched
+
+div=10
+
+nmc = 100
+
+if(debug.mode){
+  div=4
+  nmc=5
+}
 require(abind,quietly=TRUE)
 
-d.dim.vec<-c(4,6,8,11)
+d.dim.vec<-c(2,4,6,8,11)
 
 nc.jofc.diff.d       = array(0,dim=c(npert,nmc,length(d.dim.vec)))
 nc.jofc.weighted.d   = array(0,dim=c(npert,nmc,length(d.dim.vec)))
@@ -526,7 +548,7 @@ nc.jofc.cmds.d<- abind(nc.jofc.unweighted.d ,nc.cmds.d, along = 0.5) #fractional
 
 @
 
-<<JOFC_on_ER_Graph_d_param-plot, echo=FALSE,trace=TRUE,eval=TRUE,dependson='JOFC-on-ER-Graph-init'>>=
+<<JOFC_on_ER_Graph_d_param-plot, echo=FALSE,trace=TRUE,eval=TRUE,dependson='JOFC-on-ER-Graph-d_param-run',fig.cap="">>=
 require(arrayhelpers,quietly=TRUE)
 require(ggplot2,quietly=TRUE)
 
@@ -542,7 +564,7 @@ nc.jofc.d.lf<- array2df(nc.jofc.cmds.d,levels=list(stress.or.cMDS=TRUE,pert=TRUE
 print(str(nc.jofc.d.lf))
 
 nc.ratio.mean.sd<-summarySE(data=nc.jofc.d.lf ,measurevar="nc.ratio",groupvars=c("pert","d","stress.or.cMDS"))
-ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=d,shape=stress.or.cMDS))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=interaction(d,stress.or.cMDS)))+geom_line(aes(group=interaction(d,stress.or.cMDS)))
+ggplot(nc.ratio.mean.sd,aes(x=pert,y=nc.ratio,colour=d,shape=stress.or.cMDS))+geom_errorbar(aes(ymin=nc.ratio-se,ymax=nc.ratio+se),width=.3)+geom_point(aes(group=interaction(d,stress.or.cMDS)))+geom_line(aes(group=interaction(d,stress.or.cMDS)))+theme_minimal()+ylab(expression(paste(delta^(m))))
 
 @
 
@@ -651,12 +673,12 @@ Consider the case where the correspondences between vertices of $\G_1=(V_1,E_1)$
 For simulations, we consider a very simple case where the $i^{th}$ vertex in $B$ corresponds to $k_i$ vertices in $A$ where $1\leq k_i \leq k_{max}$ where $k_{max}$ is the maximum number of corresponding vertices a $B$ vertex can have.  Denote by $g(\cdot)=g_2^{-1}\circ g_1(\cdot) : V_1 \rightarrow V_2$ the correspondence function from vertices in $\G_1$ to vertices in $\G_2$. Given $r$ vertices in $B$, and the corresponding vertices in $V_1$ for each of the $r$ vertices ($u \in V_1$ such that $g(u)=v_2$), the task is  to find at most $k_max$ closest matches to each vertex of of $\G_2$. 
 
 These three information retrieval performance measures are used: Precision, Recall and F-measure.
-$$\mathrm{Precision} =\frac{\textrm{Number of correct matches found}}{\textrm{Number of found matches}}$$
-$$\mathrm{Recall}    =\frac{\textrm{Number of correct matches found}}{\textrm{Number of true matches}}$$
+$$\textrm{Precision} :=\frac{\textrm{Number of correct matches found}}{\textrm{Number of found matches}}$$
+$$\textrm{Recall}    :=\frac{\textrm{Number of correct matches found}}{\textrm{Number of true matches}}$$
 
-$$F-measure  =\frac{2 \times \textrm{Precision} \times \textrm{Recall}}{\textrm{Precision} + \textrm{Recall}}$$
+$$\textrm{F-measure}  :=\frac{2 \times \textrm{Precision} \times \textrm{Recall}}{\textrm{Precision} + \textrm{Recall}}$$
 
-For each vertex of $\G_2$, the number of true matches is $k_i$. The three performance measure is calculated for each vertex of $\G_2$ and then the three averages over all vertices $B$ is the performance measures computed for the  matching.
+For each vertex $i$ of $\G_2$, the number of true matches is $k_i$. The three performance measure is calculated for each vertex of $\G_2$ and then the three averages over all vertices $B$ is the performance measures computed for the  matching.
 
 \begin{figure}
 \includegraphics[scale=0.65]{Total_precision_JOFC_1_to_k_match_paper.pdf}
