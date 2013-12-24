@@ -60,7 +60,9 @@ Also note that starting around $w=0.8$ in Figure \ref{fig:Finalconfig-MultMin-w-
 
 <<multMinMDS,eval=TRUE,results='hide',tidy=FALSE,echo=FALSE,error=TRUE,cache=TRUE>>=
 verbose=TRUE
-root.dir<-Sys.getenv("PROJECT_DIR")
+#root.dir<-Sys.getenv("PROJECT_DIR")
+#hack for linux
+root.dir <- "~/Documents/projects/"
 setwd(root.dir)
 source("./JOFC_MatchDetect/lib/smacofM.R")
 source("./JOFC_MatchDetect/lib/oosIM.R")
