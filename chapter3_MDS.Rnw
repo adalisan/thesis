@@ -5,54 +5,56 @@
 
 
 \section{Multidimensional Scaling}
-Multidimensional Scaling (MDS) is the general term used to describe methods to  ~\cite{CMDS,borg+groenen:1997,duin2005dissimilarity}  embed dissimilarities in the Euclidean space  with a chosen dimension $d$ such that the distances between the embeddings are as close as possible (in various senses) to the original dissimilarities. Different criterion functions can be used to measure how close the distances are  to the given dissimilarities, leading to different embedded configurations. These different variants of MDS can be described using a single formulation which will be introduced in \autoref{sec:MDSvariant}.
+Multidimensional Scaling (MDS)~\cite{CMDS,borg+groenen:1997,duin2005dissimilarity}  is the general term that is used to describe methods to    embed dissimilarities in the Euclidean space  with a chosen dimension $d$ such that the distances between the embeddings are as close as possible (in various senses) to the original dissimilarities. Different criterion functions can be used to measure how close the distances are to the given dissimilarities, thereby leading to different embedded configurations. These different variants of MDS can be described using a single formulation, which are introduced in \autoref{sec:MDSvariant}.
 
-Consider a  set of n objects. For each pair of objects, the dissimilarity value, denoted by $d_{ij}$ is a non-negative real number which quantifies how dissimilar those two objects are. The collection of these values form the matrix $\Delta$ , which is  a $nxn$ dissimilarity matrix. %While, in general, dissimilarities between finite set of objects are being considered; for a dissimilarity matrix, we can consider the objects as points in a space, whose neighborhood relationships are defined by the dissimilarity measure.
-The dissimilarities have to satisfy $\delta_{ij}\geq 0$ and $\delta_{ii}=0$ and $d_{ij}=d_{ij}$. Therefore  $\Delta$ is non-negative, hollow and symmetric. If, in addition, each triplet of dissimilarities $\delta_{ij}$, $\delta_{ik}$ and $\delta_{ik}$  satisfy the triangle inequality, then D is called  an Euclidean distance matrix.
+Consider a  set of n objects. For each pair of objects, the dissimilarity value, denoted by $d_{ij}$, is a nonnegative real number that quantifies how dissimilar those two objects are. The collection of these values form the matrix $\Delta$, which is  an $nxn$ dissimilarity matrix. %While, in general, dissimilarities between finite set of objects are being considered; for a dissimilarity matrix, we can consider the objects to be points in a space, whose neighborhood relationships are defined by the dissimilarity measure.
+
+The dissimilarities have to satisfy $\delta_{ij}\geq 0$,  $\delta_{ii}=0$, and $d_{ij}=d_{ij}$. Therefore,  $\Delta$ is nonnegative, hollow, and symmetric. If, in addition, each triplet of dissimilarities $\delta_{ij}$, $\delta_{ik}$ and $\delta_{ik}$  satisfies the triangle inequality, then D is called a Euclidean distance matrix.
 
 
-\section{Different criterion for MDS \label{sec:MDSvariant}}
-Multidimensional Scaling finds a configuration of points consistent with given dissimilarities in a finite dimensional Euclidean space. There are various variants of MDS that use different measures of consistency.  In general, the criteria minimize discrepancy between $f(\delta_ij)$ and  $d(\bm{x_i},\bm{x_j})$ where $d(\cdot,\cdot)$ is the Euclidean distance function and $f(\cdot)$ is monotonically increasing function. Depending on whether ``metric" or ``non-metric" MDS is being considered, $f(\cdot)$ is either a linear transformation or a non-linear one. Specific variants of MDS are defined by $f(\cdot)$ and the measure of discrepancy between  $f(\cdot)$ and $d(\cdot,\cdot)$. We call the latter \emph{the criterion function} which is optimized with respect to the embedding coordinates.
+\section{Different criteria for MDS \label{sec:MDSvariant}}
+Multidimensional Scaling finds a configuration of points consistent with given dissimilarities in a finite-dimensional Euclidean space. There are various variants of MDS that use different measures of consistency.  In general, the criteria minimize the discrepancy between $f(\delta_ij)$ and  $d(\bm{x_i},\bm{x_j})$, where $d(\cdot,\cdot)$ is the Euclidean distance function and $f(\cdot)$ is a monotonically increasing function. Depending on whether ``metric" or ``non-metric" MDS is being considered, $f(\cdot)$ is either a linear or nonlinear transformation. Specific variants of MDS are defined by $f(\cdot)$ and the measure of discrepancy between  $f(\cdot)$ and $d(\cdot,\cdot)$. We call the latter \emph{the criterion function}, which is optimized with respect to the embedding coordinates.
 
 
 \subsection{Metric MDS}
  For metric MDS, transformations of the form  $f(x)=ax+b$ are allowed.
  \subsubsection{Stress Criterion}
- Setting $f(x)=x$ and choosing  the discrepancy measure between the dissimilarities and distances of embedded points to be $\ell_2$, the resulting criterion is called the raw stress criterion. Additionally weights ($w_{st}$) can be introduced for each discrepancy term. Denoting the matrix composed of the weights by $W$, we write
+ Setting $f(x)=x$ and choosing  the discrepancy measure between the dissimilarities and distances of embedded points to be $\ell_2$, the resulting criterion is called the raw stress criterion. Additionally, weights ($w_{st}$) can be introduced for each discrepancy term. Denoting the matrix composed of the weights by $W$, we write
  \begin{equation}
 \sigma_{W}(X)=\sum_{1\leq s\leq n;1\leq t\leq n} {w_{st}(d_{st}(X)-\delta_{st})^2  }\label{raw-stress}
 \end{equation}
-Subtypes of Stress criterion is identified by different choices for $w_st$ which depend on the original dissimilarities $\delta_{st}$ .
-For example, choosing $w_{st}=\left[{\sum{\delta_{st}^2}}\right]^{-1}$ normalizes the stress so that the stress value is always between 0 and 1. One can compare different configurations by this standardized stress value and conclude whether a configuration is a good fit or not based on this value.
+Subtypes of the Stress criterion are identified by different choices for $w_st$ that depend on the original dissimilarities $\delta_{st}$.
+For example, choosing $w_{st}=\left[{\sum{\delta_{st}^2}}\right]^{-1}$ normalizes the stress so that the stress value is always between 0 and 1. One can compare different configurations by this standardized stress value and determine whether a configuration is a good fit based on this value.
 
-A slightly different weighting scheme is $w_{st}=\left[ \sum_{st}{\delta_{st}-\bar{\delta} } \right]^{-1}$ 
+A slightly different weighting scheme is $w_{st}=\left[ \sum_{st}{\delta_{st}-\bar{\delta} } \right]^{-1}$, 
 where $\bar{\delta}=\frac{1}{(n)(n-1)} \sum_{st}{\delta_{st}}$ (average of dissimilarities).
 
-Another related criterion is SSTRESS criterion which involves squares of dissimilarities and distances:
+Another related criterion is the SSTRESS criterion, which involves squares of dissimilarities and distances
+% Editor: Do you mean the Stress criterion, instead of the SSTRESS criterion?
 \[
 =\sum_{s,1\leq s\leq n}\sum_{t;1\leq t\leq n} { \left(d_{st}^2(X)-\delta_{st}^2\right)^2  }
 \]
 
 
 \subsubsection{Sammon Mapping Criterion}
-This is a specific case of the Stress criterion where the weights $w_{st}$ are set to be $\delta_{st}^{-1} \left[\sum_{k<l}\delta_{kl} \right]^{-1}$. These set of weights normalizes the squared discrepancies in the stress criterion by the magnitude of the original dissimilarities, so that discrepancy terms for the larger dissimilarities do not dominate the optimization of the criterion function. As a result, small $\delta_{st}$ are preserved just as well as large $\delta_{st}$.
+This is a specific case of the Stress criterion in which the weights $w_{st}$ are set to be $\delta_{st}^{-1} \left[\sum_{k<l}\delta_{kl} \right]^{-1}$. These weights normalize the squared discrepancies in the stress criterion by the magnitude of the original dissimilarities so that the discrepancy terms for the larger dissimilarities do not dominate the optimization of the criterion function. As a result, small $\delta_{st}$ are preserved just as well as large $\delta_{st}$.
 
 \subsection{Ordinal (Nonmetric) MDS}
- For Nonmetric MDS, $f(\cdot)$    is allowed to be  any monotonic transformation. Specifically in psychometric applications of MDS, the assumption that the dissimilarities are a scaled-shifted version of the ``true"  dissimilarity is an unwarranted assumption. It is possible the existence of a ``true" dissimilarity is in question. Even if the dissimilarities are physical distances, humans tend to have biased estimates of those distances (long distances are usually underestimated ). \cite{Trosset1998}. This variant of MDS is also called ordinal, because what is preserved is the rank of dissimilarities, not their magnitude.
+ For Nonmetric MDS, $f(\cdot)$  is allowed to be any monotonic transformation. Specifically, in psychometric applications of MDS, the assumption that the dissimilarities are a scaled-shifted version of the ``true"  dissimilarity is an unwarranted assumption. The existence of a ``true" dissimilarity is questionable. Even if the dissimilarities are physical distances, humans tend to have biased estimates of those distances (long distances are usually underestimated ) \cite{Trosset1998}. This variant of MDS is also called ordinal because what is preserved is the rank of dissimilarities, not their magnitude.
 
 \subsection{Classical MDS and the Strain Criterion}
 
 An $n \times n$ matrix $\Delta = \left[\delta_{st}\right]$ is a distance matrix iff it is symmetric and $\delta_{ii}=0$ $\delta_{st} \geq 0 \onespace \forall s,t$ and if it obeys the triangle inequality $\delta_{sr}+\delta_{rt} \geq \delta_{st}$ for any triple $s,r,t$.
 
-$\Delta$ is Euclidean if there exist a configuration of points $\bm{x}_{i} \in \mathbf{R}^d$ such that for any pair $s,t \in \{1,\ldots,n\}$,    $\delta_{st}=d(\bm{x}_{s},\bm{x}_{t})$.
+$\Delta$ is Euclidean if there exists a configuration of points $\bm{x}_{i} \in \mathbf{R}^d$ such that for any pair $s,t \in \{1,\ldots,n\}$,    $\delta_{st}=d(\bm{x}_{s},\bm{x}_{t})$.
 
-Consider the case where $\Delta$ is Euclidean. Note that if $\bm{x}_{i},i \in \{1,\ldots,n\} $ satisfy $\delta_{st}=d(\bm{x}_{s},\bm{x}_{t})$ for any pair $s,t$, for any constant vector $\bm{u}$ and any rotation/reflection matrix $R$, the same group  of points transformed by $R$ and   $\bm{u}$ $R\bm{x}_{i}+\bm{u}$ . To remove the translational ambiguity, set   $\sum{\bm{x}_{i}}$  to $\bm{0}$. How could we recover the original configuration   $\{\bm{x}_{i}\}$ from $\Delta$ (perhaps up to rotation/reflection)?
+Consider the case in which $\Delta$ is Euclidean. Note that if $\bm{x}_{i},i \in \{1,\ldots,n\} $ satisfy $\delta_{st}=d(\bm{x}_{s},\bm{x}_{t})$ for any pair $s,t$, for any constant vector $\bm{u}$ and any rotation/reflection matrix $R$, the same group of points is transformed using $R$ and   $\bm{u}$ $R\bm{x}_{i}+\bm{u}$. To remove the translational ambiguity, set   $\sum{\bm{x}_{i}}$  to $\bm{0}$. How can we recover the original configuration   $\{\bm{x}_{i}\}$ from $\Delta$ (perhaps up to rotation/reflection)?
 The relation between the entries of $\Delta$ and $\bm{x}_{i}$ can be written as
 \[
 \delta_{st}^2= d(\bm{x}_{s},\bm{x}_{t})^2 = \|\bm{x}_{s}   \|^2 +   \|\bm{x}_{t}   \|^2   -   2  \bm{x}_{s} \cdot  \bm{x}_{t}   
 \label{eq:diss_wrt_embed_coords}
 \]
-Summing \eqref{eq:diss_wrt_embed_coords} over $s$, over $t$ and then over $s$ and $t$, we get the following identities
+Summing \eqref{eq:diss_wrt_embed_coords} over $s$, over $t$, and then over $s$ and $t$, we obtain the following identities
 \begin{align}
 \label{eq:diss_wrt_embed_coords_2_1}
 \sum_s{ \delta_{st}^2} &= \sum_s{\| \bm{x}_{s}   \|^2} + n \|\bm{x}_{t}   \|^2 -2 \sum_s{ \bm{x}_{s}   \cdot\bm{x}_{t}    } \quad s=1,\ldots,n\\
@@ -63,7 +65,7 @@ Summing \eqref{eq:diss_wrt_embed_coords} over $s$, over $t$ and then over $s$ an
 \end{align}
 .
 
-Dividing each equality by $\frac{1}{n}$ , $\frac{1}{n}$ and $\frac{1}{n^2}$ respectively and using the fact that $\sum{\bm{x}_{i}}=\bm{0}$,
+Dividing each equality by $\frac{1}{n}$ , $\frac{1}{n}$ and $\frac{1}{n^2}$, respectively, and using the fact that $\sum{\bm{x}_{i}}=\bm{0}$,
 \begin{align}
 \label{eq:diss_wrt_embed_coords_3_1}
 \frac{1}{n}\sum_s{ \delta_{st}^2} &= \frac{1}{n}\sum_s{\|\bm{x}_{s}   \|^2 } +  \|\bm{x}_{t}   \|^2 \quad   t=1,\ldots,n\\
@@ -73,7 +75,7 @@ Dividing each equality by $\frac{1}{n}$ , $\frac{1}{n}$ and $\frac{1}{n^2}$ resp
 \frac{1}{n^2}\sum_{st}{ \delta_{st}^2} &= \frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} 
 \end{align}
 
-Reorganizing terms, we get
+Reorganizing terms, we obtain
 \begin{align}
 \label{eq:diss_wrt_embed_coords_4_1}
 \|\bm{x}_{t}   \|^2  &= \frac{1}{n}\sum_s{ \delta_{st}^2} + \frac{1}{n}\sum_s{\|\bm{x}_{s}   \|^2   } \\
@@ -84,32 +86,32 @@ Reorganizing terms, we get
 \end{align} .
 
 
-Summing the three equations 
-\eqref{eq:diss_wrt_embed_coords_4_1}, \eqref{eq:diss_wrt_embed_coords_4_2}  and  \eqref{eq:diss_wrt_embed_coords_4_3} and replacing   $\|\bm{x}_{s}   \|^2 +\|\bm{x}_{t}\|^2$  in the original equation \eqref{eq:diss_wrt_embed_coords} with this sum, we get 
+Summing the three equations, 
+\eqref{eq:diss_wrt_embed_coords_4_1}, \eqref{eq:diss_wrt_embed_coords_4_2},  and  \eqref{eq:diss_wrt_embed_coords_4_3} and replacing  $\|\bm{x}_{s}   \|^2 +\|\bm{x}_{t}\|^2$  in the original equation \eqref{eq:diss_wrt_embed_coords} with this sum, we obtain 
 
 \[
 \delta_{st}^2= \frac{1}{n}\sum_s{ \delta_{st}^2} + \frac{1}{n}\sum_s{\|\bm{x}_{s}}   \|^2 + \frac{1}{n}\sum_t{ \delta_{st}^2} + \frac{1}{n}\sum_t{\|\bm{x}_{t}}  \|^2  -\frac{2}{n}\sum_{t}{\|\bm{x}_{t}   \|^2} +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2}   -2\bm{x}_{s}   \bm{x}_{t}  
 \].
 
-After simplification, we get
+After simplification, we obtain
 \[
 \delta_{st}^2= \frac{1}{n}\sum_s{ \delta_{st}^2} +  \frac{1}{n}\sum_t{ \delta_{st}^2}  +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2}  -2\bm{x}_{s}   \bm{x}_{t}   
 \]
 
-Rearranging terms, we get the dot product of $\bm{x}_{s}$ and $\bm{x}_{t}$ :
+Rearranging terms, we obtain the dot product of $\bm{x}_{s}$ and $\bm{x}_{t}$: 
 \[
 \bm{x}_{s}   \bm{x}_{t} = \frac{-1}{2} \{\delta_{st}^2 - \frac{1}{n}\sum_s{ \delta_{st}^2} -  \frac{1}{n}\sum_t{ \delta_{st}^2}  +\frac{1}{n^2}\sum_{st}{ \delta_{st}^2 }     \| \}
 \]
 
 
 
-Some of the sums in the above expression can be written in matrix notation
+Some of the sums in the above expression can be written in matrix notation as follows:
 \begin{align*}
 \bm{1}^{T}\Delta^2= \frac{1}{n}\sum_s{ \delta_{st}^2}\\
 \Delta^2 \bm{1} = \frac{1}{n}\sum_t{ \delta_{st}^2}
 \end{align*}.
 
-Using the above expressions and placing $\{\bm{x_i}\}$ rowwise into an $n \times d$ matrix $X$, we can write all of the terms in matrix notation
+Using the above expressions and placing $\{\bm{x_i}\}$ row-wise into an $n \times d$ matrix $X$, we can write all of the terms in matrix notation:
 \begin{align*}
 XX^T = \frac{-1}{2} \{\Delta^2 -  \frac{1}{n} \bm{1}\bm{1}^{T}\Delta^2  -  \frac{1}{n} \Delta^2 \bm{1}\bm{1}^{T} +   \frac{1}{n^2} \bm{1}\bm{1}^{T}\Delta^2 \bm{1}\bm{1}^{T}      \}
 \end{align*}.
@@ -119,49 +121,50 @@ The final expression is
 XX^T = \frac{-1}{2} \{(I_n- \frac{1}{n}\bm{1}\bm{1}^{T})\Delta^2 (I_n- \frac{1}{n}\bm{1}\bm{1}^{T} \} 
 \end{align*}.
 
-$X$ can be recovered using a eigenvalue decomposition of $Z=\frac{-1}{2} \{ H \Delta^2 H\} $ where $H= (I_n- \frac{1}{n}\bm{1}\bm{1}^{T})$ . For the eigenvalue decomposition $Z=UDV^T$, the solution for $X$ is $\hat{X}=UD^{\frac{1}{2}}$ and  $\hat{X}=XR$ for some rotation matrix $R$. Note that since  $\Delta$ is Euclidean, so  all diagonal elements of $D$ is non-negative and $D^{\frac{1}{2}}$ has positive real entries. 
+$X$ can be recovered using a eigenvalue decomposition of $Z=\frac{-1}{2} \{ H \Delta^2 H\} $, where $H= (I_n- \frac{1}{n}\bm{1}\bm{1}^{T})$. For the eigenvalue decomposition $Z=UDV^T$, the solution for $X$ is $\hat{X}=UD^{\frac{1}{2}}$ and  $\hat{X}=XR$ for some rotation matrix $R$. Note that because  $\Delta$ is Euclidean,  all diagonal elements of $D$ are nonnegative, and $D^{\frac{1}{2}}$ has positive real entries. 
 
-For dimensionality reduction, we require a lower dimensional configuration in $\R^{d'}$where $d'<d$. For classical MDS, we seek  the configuration $X_{(d')}$ that minimizes   $\|XX^T-X_{(d')}X_{(d')}^T\|_F^2$. This criterion function is called the ``strain'' criterion. The minimizer of strain is found by sorting the diagonal elements of $D$ (eigenvalues of $X$) from largest to smallest and  using the first $d'$ eigenvalues as the diagonal elements of  $D_{(d')}$ and the corresponding eigenvalues as columns of $U_{(d')}$. These matrices give us $n \times d'$ configuration matrix, $\hat{X_{(d')}}=U_{(d')}D_{(d')}^{\frac{1}{2}}$. 
+For dimensionality reduction, we require a lower-dimensional configuration in $\R^{d'}$, where $d'<d$. For classical MDS, we seek  the configuration $X_{(d')}$ that minimizes   $\|XX^T-X_{(d')}X_{(d')}^T\|_F^2$. This criterion function is called the ``strain'' criterion. The minimizer of the strain is found by sorting the diagonal elements of $D$ (eigenvalues of $X$) in decreasing order and  using the first $d'$ eigenvalues as the diagonal elements of  $D_{(d')}$ and the corresponding eigenvalues as the columns of $U_{(d')}$.
+ These matrices yield an $n \times d'$ configuration matrix, $\hat{X_{(d')}}=U_{(d')}D_{(d')}^{\frac{1}{2}}$. 
 
-If $\Delta$ is not Euclidean, there might be negative eigenvalues in $D$ which can be attributed to error and replaced by zeros.
+If $\Delta$ is not Euclidean, there might be negative eigenvalues in $D$, which can be attributed to error and replaced by zeros.
 
-Note also that the classical MDS solution  is nested, i.e. if the $n \times d'$ matrix, $X_{(d')}$,  is the cMDS solution among $d'$ dimensional configurations, the first $d'-1$ columns of $X_{(d')}$ is the solution for $d'-1$ dimensional configurations (assuming the diagonal entries of  $D_{(d')}$ are sorted according from largest to smallest.)
+Note also that the classical MDS solution is nested, i.e., if the $n \times d'$ matrix, $X_{(d')}$,  is the cMDS solution of the $d'$ dimensional configurations, the first $d'-1$ columns of $X_{(d')}$ comprise the solution for $d'-1$ dimensional configurations (assuming that the diagonal entries of  $D_{(d')}$ are sorted in descending order.)
 
 
-\subsection{Relation to other embedding methods\label{MDS_SpectralEmbed}}
+\subsection{Relationship with other embedding methods\label{MDS_SpectralEmbed}}
 
-Note that Tang et al.\cite{MinhTrosset_SpectralEmbed} point out another connection between embedding methods by showing that the spectral embedding for  an unnormalized Laplacian matrix, $L$ (subject to  an appropriate scaling of dimensions) is equivalent to the classical MDS solution with the inner product matrix $Z=L^{\dag}$ where $L^{\dag}$ is the psuedo-inverse of $L$ \cite{MinhTrosset_SpectralEmbed}. Therefore for any d-dimensional spectral embedding of the Laplacian $L$  with Laplacian Eigenmaps, there exists an omnibus dissimilarity matrix $M$, the ($d$-dimensional) cMDS embedding of which   would give the same configuration.
+Note that Tang et al.\cite{MinhTrosset_SpectralEmbed} note another connection between embedding methods by showing that the spectral embedding for an unnormalized Laplacian matrix, $L$ (subject to  an appropriate scaling of dimensions), is equivalent to the classical MDS solution with the inner product matrix $Z=L^{\dag}$, where $L^{\dag}$ is the pseudo-inverse of $L$ \cite{MinhTrosset_SpectralEmbed}. Therefore, for any d-dimensional spectral embedding of the Laplacian $L$  with Laplacian Eigenmaps, there exists an omnibus dissimilarity matrix $M$, the ($d$-dimensional) cMDS embedding of which would give the same configuration.
 
 
 \subsection{Effect of Perturbations}
-  To determine how robust the embeddings are to error in dissimilarity measurements, it is necessary to carry out perturbation analysis. Two papers by Sibson \cite{Sibson_perturbational1979} investigate how small changes in the dissimilarity matrix change the configuration matrix obtained by classical MDS embedding. The main result in  \cite{Sibson_perturbational1979} says that 
+  To determine how robust the embeddings are to error in dissimilarity measurements,  perturbation analysis is necessary. Two papers by Sibson \cite{Sibson_perturbational1979} investigate how small changes in the dissimilarity matrix change the configuration matrix obtained by classical MDS embedding. The main result in  \cite{Sibson_perturbational1979} says the following:
   
-    ``Let $\mcE=\Delta^2$ for an Euclidean distance matrix $\Delta$ and $B=-{\frac{1}{2}}H\mcE H$. Let $\lambda$ be a simple eigenvalue of $B$ with unit-length eigenvector $e$. Let $F$ be a symmetric matrix whose diagonal entries are zeros. Let $\widetilde \mcE(\epsilon)= \mcE +\epsilon F + \mcO(\epsilon ^2)$ be the perturbed version of $\mcE$. Then the eigenvalue and eigenvector of $\widetilde \mcE(\epsilon)$ (the perturbed versions of $\lambda$ and $e$ ) are  $\widetilde \lambda(\epsilon)= \lambda +\epsilon \upsilon + \mcO(\epsilon ^2)$ where $\upsilon=(-\frac{1}{2}e^TFe)$ and  $\widetilde e(\epsilon)= e +\epsilon (\frac{1}{2}\left(B-\lambda I\right)^{\dag}Fe + \frac{1}{2} \left(\lambda n\right)^{-1}(\1_N^T F e)\1_N) + \mcO(\epsilon ^2)$
+    ``Let $\mcE=\Delta^2$ for a Euclidean distance matrix $\Delta$ and $B=-{\frac{1}{2}}H\mcE H$. Let $\lambda$ be a simple eigenvalue of $B$ with unit-length eigenvector $e$. Let $F$ be a symmetric matrix whose diagonal entries are zeros. Let $\widetilde \mcE(\epsilon)= \mcE +\epsilon F + \mcO(\epsilon ^2)$ be the perturbed version of $\mcE$. Then, the eigenvalue and eigenvector of $\widetilde \mcE(\epsilon)$ (the perturbed versions of $\lambda$ and $e$ ) are  $\widetilde \lambda(\epsilon)= \lambda +\epsilon \upsilon + \mcO(\epsilon ^2)$, where $\upsilon=(-\frac{1}{2}e^TFe)$ and  $\widetilde e(\epsilon)= e +\epsilon (\frac{1}{2}\left(B-\lambda I\right)^{\dag}Fe + \frac{1}{2} \left(\lambda n\right)^{-1}(\1_N^T F e)\1_N) + \mcO(\epsilon ^2)$
     .''
-    Since  $\upsilon$, the first-order perturbation of $\lambda$ is linear with respect to $F$, we can conclude 
+    Because  $\upsilon$, the first-order perturbation of $\lambda$, is linear with respect to $F$, we can conclude 
   \[ E[\upsilon]= -\frac{1}{2}e^TE[F]e
   \]  
   
-  This result gives an intuition about how much the eigenvalue $\lambda$ would change for perturbation of $\epsilon$. Specifically the magnitude of change in the eigenvalue represented by $\upsilon$ is upperbounded  by the maximum eigenvalue of $F$ .
+  This result provides us with intuition about how much the eigenvalue $\lambda$ would change according to a perturbation of $\epsilon$. Specifically, the magnitude of change in the eigenvalue represented by $\upsilon$ is upperbounded  by the maximum eigenvalue of $F$.
 \subsection{Maximum Likelihood MDS and MULTISCALE}
-Various probabilistic MDS methods have been proposed, with specific error assumptions.  In \cite{MacKay1989}, Mackay assumes the ``original'' coordinates have normally distributed errors independent in each dimension in the embedded space (The correlated error case can be simplified to the independent error case). As a result, the individiual dissimilarities has the same distribution as a weighted sum of independent chi-square distributed  random variables. Estimation of the embedding coordinates can be carried out using the maximum likelihood method. This method is implemented in a MDS program named MULTISCALE\cite{multiscale,borg+groenen:1997}.
+Various probabilistic MDS methods with specific error assumptions have been proposed.  In \cite{MacKay1989}, Mackay assumes that the ``original'' coordinates have normally distributed errors that are independent in each dimension in the embedded space (the correlated error case can be simplified to the independent error case). As a result, the individual dissimilarities have the same distribution as a weighted sum of independent chi-square-distributed  random variables. The embedding coordinates can be estimated using the maximum likelihood method. This method is implemented in an MDS program named MULTISCALE\cite{multiscale,borg+groenen:1997}.
 
-\subsection{Threeway MDS\label{subsec:3wayMDS}}
-Threeway MDS refers to  a variant of MDS that is used for analyzing many different dissimilarity matrices on the same collection of $n$ objects.  The different conditions  can be dissimilarities judged by different people or different dissimilarity measures applied to the same group of observations. We will refer to these different dissimilarities as different conditions, as we have mentioned in \autoref{sec:intro} and denote them by $\{\Delta_k\}$. The index $k$ that denotes the condition provides the third direction in addition to the  two-dimensional dissimilarity matrices.
+\subsection{Three-way MDS\label{subsec:3wayMDS}}
+Three-way MDS refers to  a variant of MDS that is used to analyze many different dissimilarity matrices on the same collection of $n$ objects.  The different dissimilarity matrices  can consist of dissimilarities judged by different people or different dissimilarity measures applied to the same group of observations. We say that these different dissimilarity matrices are from different ``conditions'', as mentioned in \autoref{sec:intro}, and we denote them by $\{\Delta_k\}$, where $k$ indexes the conditions. The three-way array in which the third ``way'' is indexed by $k$ is comprised of  the stack of the  two-dimensional dissimilarity matrices.
 
-There are two ways of dealing with such 3-way data: One can compute a separate MDS solution for  each condition and match the configuration matrices by transformations. This two-step approach will be discussed in \autoref{chap:PoM}. The general approach assumes that there is a common configuration $\mathbf{G}$ ($n$ points in $\R^{d}$) and $K$ $d \times d$ transformation matrices ${\mathbf{T}_k}$ such that the dissimilarity matrix $\{\Delta_k\}$ arises  from the transformed configuration $\mathbf{G}_k =\mathbf{G}\mathbf{T}_k$. The inference problem is then computing $\mathbf{T}_k$.
+There are two ways of dealing with such three-way data. One can compute a separate MDS solution for  each condition and match the configuration matrices by transformations. This two-step approach will be discussed in \autoref{chap:PoM}. The general approach assumes that there is a common configuration $\mathbf{G}$ ($n$ points in $\R^{d}$) and $K$ $d \times d$ transformation matrices ${\mathbf{T}_k}$ such that the dissimilarity matrix $\{\Delta_k\}$ is obtained from the transformed configuration $\mathbf{G}_k =\mathbf{G}\mathbf{T}_k$. The inference problem then involves computing $\mathbf{T}_k$.
 
-Another approach mentioned in \cite{borg+groenen:1997} is  mapping the dissimilarities(or proximities) into one distance matrix (which is the idea behind Multiple Kernel Learning \ref{sec:MultiViewLearn}).
+Another approach mentioned in \cite{borg+groenen:1997} involves mapping the dissimilarities (or proximities) into one distance matrix (which is the idea behind Multiple Kernel Learning \ref{sec:MultiViewLearn}).
 
 
-\section{Principal Components Analysis}
-Let $X$ be a random vector of   $d$ dimensions and $\mu$ and $\Sigma$ be its mean vector and covariance matrix , respectively. Then, for a given dimension $d'\leq d$, the successive maximization of  $$Var[u_{i}^T (X-\mu)]= E[u_{i}^T (X-\mu)(X-\mu)^T u_i]=u_{i}^T\Sigma u_{i},  i \in \{1,\ldots,d'\},$$ where $u_{i}$ is a  $d$-dimensional unit vector ($u_i^Tu_i=1$)  and $E[u_{i}^T X X^T u_j]=0 , 1\leq j<i$ (\textit{i.e.} projections of $X$ along distinct dimensions are uncorrelated), gives the principal \emph{components} of $X$. These principal components are the directions in which $X$ has the maximum variance subject to the uncorrelatedness constraint of each direction. The $d' \times d$-matrix $U$ whose columns are $u_i, i \in \{1,\ldots,d'\}$  is the projection matrix that captures the maximum variance from $X$. That is, the elements of the random vector $UX$ are uncorrelated and have highest amount of variance in each dimension for any linear projection of $X$.
+\section{Principal Component Analysis}
+Let $X$ be a random vector of   $d$ dimensions and $\mu$ and $\Sigma$ be its mean vector and covariance matrix, respectively. Then, for a given dimension $d'\leq d$, the successive maximization of  $$Var[u_{i}^T (X-\mu)]= E[u_{i}^T (X-\mu)(X-\mu)^T u_i]=u_{i}^T\Sigma u_{i},  i \in \{1,\ldots,d'\},$$ where $u_{i}$ is a  $d$-dimensional unit vector ($u_i^Tu_i=1$)  and $E[u_{i}^T X X^T u_j]=0, 1\leq j<i$ (\textit{i.e.}, projections of $X$ along distinct dimensions are uncorrelated), gives the principal \emph{components} of $X$. These principal components are the directions in which $X$ has the maximum variance, subject to the uncorrelatedness constraint of each direction. The $d' \times d$-matrix $U$ whose columns are $u_i, i \in \{1,\ldots,d'\}$  is the projection matrix that captures the maximum variance from $X$. That is, the elements of the random vector $UX$ are uncorrelated and have the  highest amount of variance in each dimension for any linear projection of $X$.
 
-For a sample of size $n$ drawn from the same distribution as $X$, consider the sample estimates $\hat{\mu}$ ,  $\hat{\Sigma} $. Then, sample principal components  is computed by replacing the distribution parameters with the sample estimates:
+For a sample of size $n$ drawn from the same distribution as $X$, consider the sample estimates $\hat{\mu}$,  $\hat{\Sigma} $. The sample principal components  are computed by replacing the distribution parameters with the sample estimates
  \[\hat{u_i}=\argmax_{u_i^Tu_i=1} u_{i}^T \hat{\Sigma}u_i. \]
 for the $i^{th}$ principal component.
 
-Suppose $\X$ is a $n \times d$ configuration matrix, representing the sample of $X$ ($n$ \textit{i.i.d.} realizations of $X$). For simplicity of notation, suppose the configuration is zero-centered, i.e. $\1 ^T \X  = \bm{0}$. Also, suppose $\X$ has a singular value decomposition $$\X= V\Lambda U^T$$ where the singular values on the diagonal of $\Lambda$ are sorted from largest to smallest (possibly padded with zeros to make $\Lambda$  a $d \times d$ matrix), $V$ and $U$ are orthogonal $n \times n$ and $d \times d$ matrices respectively. The PCA solution is  given by the eigenvalue decomposition of 
+Suppose $\X$ is an $n \times d$ configuration matrix, representing the sample of $X$ ($n$ \textit{i.i.d.} realizations of $X$). For simplicity of notation, suppose that the configuration is zero-centered, i.e., $\1 ^T \X  = \bm{0}$. Additionally, suppose that $\X$ has a singular value decomposition $\X= V\Lambda U^T$, where the singular values on the diagonal of $\Lambda$ are sorted in descending order (possibly padded with zeros to make $\Lambda$  a $d \times d$ matrix) and $V$ and $U$ are orthogonal $n \times n$ and $d \times d$ matrices, respectively. The PCA solution is  given by the eigenvalue decomposition of 
 $\frac{1}{n} {\X}^T \X=U \left( \frac{1}{n} \Lambda^2 \right) U^T$. The columns of $U$, $\{ u_i \}$ are called the principal directions. 
 
 The principal coordinates are the projections of the samples of $X$ along the principal directions. For example, the first principal coordinates of the $n$ samples would be given by $u_1^T {\X}^T$. The  first $d'$ principal coordinates can be represented with the $n \times d'$ configuration matrix $\X_{d'} =  {\X}  U_{d'}$. Therefore, using the SVD decomposition of $\X$,  the principal coordinates are found to be  
@@ -176,6 +179,7 @@ I_{d'}
 where   $V_{d'}$ and $\Lambda_{d'}$  are the first $d'$ columns of $V$  of   $V$ and $\Lambda$,respectively.
 
 
-This dimensionality reduction method gives the same solution as classical Multidimensional Scaling when the dissimilarity matrix is $\Delta =d(\X)$. In the case of cMDS, $$\Delta^2=  \1_n \bm{y} +\bm{y} \1_n -2 \X \X^T \label{eq:dist_sqrd}$$ where $\bm{y}= \left(\X\X^T \right)_{(d)}$ is an n-dimensional vector that consists of  the diagonal of $\X\X^T$.
-For the classical MDS procedure, given the squared distance matrix $\Delta^2$ we compute $Z=  - \frac{1}{2} H\Delta^2 H \label{eq:tau_transform}$. Substituting $\Delta^2$ with \eqref{eq:dist_sqrd}   in \eqref{eq:tau_transform} gives $ Z= \X\X^T$ which has the same eigenvalues as the PCA solution. The MDS solution which is computed by the eigenvalue decomposition of $Z$ is given by the $n \times d'$ configuration matrix  $V_{d'} \Lambda_{d'}$. So for the same embedding dimension, $d'$, the two methods would give the same answer. We will refer to this result in future chapters.
+This dimensionality reduction method results in the same solution as classical Multidimensional Scaling when the dissimilarity matrix is $\Delta =d(\X)$. In the case of cMDS, $$\Delta^2=  \1_n \bm{y} +\bm{y} \1_n -2 \X \X^T \label{eq:dist_sqrd}$$ where $\bm{y}= \left(\X\X^T \right)_{(d)}$ is an n-dimensional vector that consists of  the diagonal of $\X\X^T$.
+For the classical MDS procedure, given the squared distance matrix $\Delta^2$, we compute $Z=  - \frac{1}{2} H\Delta^2 H \label{eq:tau_transform}$. Substituting $\Delta^2$ with \eqref{eq:dist_sqrd}   in \eqref{eq:tau_transform} gives $ Z= \X\X^T$, which has the same eigenvalues as the PCA solution. The MDS solution, which is computed by the eigenvalue decomposition of $Z$, is given by the $n \times d'$ configuration matrix  $V_{d'} \Lambda_{d'}$. For the same embedding dimension, $d'$, the two methods would yield the same answer. We will refer to this result in future chapters.
+
 

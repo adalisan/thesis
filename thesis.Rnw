@@ -1,4 +1,3 @@
-
 % This template was originally by R. Jacob Vogelstein
 % Updated on March 1, 2010 by Noah J. Cowan
 
@@ -34,7 +33,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
 
-%\usepackage{polski}
 \usepackage{ogonek}
 %\usepackage[garamond]{mathdesign}
 
@@ -152,7 +150,7 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 <<'child-chapter11_Graph_Match.Rnw', child='chapter11-Graph_Match_JOFC_Exp.Rnw',eval=TRUE>>=
 @
 
-<<'child-chapter15_conclusion.Rnw', child='chapter15_conclusion.Rnw',eval=TRUE>>=
+<<'child-chapter12_conclusion.Rnw', child='chapter12_conclusion.Rnw',eval=TRUE>>=
 @
 
 
@@ -174,4 +172,3 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 % 
 % \end{vita}
 \end{document}
-

@@ -89,7 +89,18 @@ i=1,\ldots,m$
 For $p=5$,$q=10$,$d=2$, and $c\in{0,0.01}$, for $n=150$ and $m=150$, the average of the power values for $nmc=150$ Monte Carlo replicates are computed at  different $\alpha$s and are plotted in Figure \ref{fig:MVN-c001-power-w} against $\alpha$ for the Gaussian setting.  
 %Qualititatively similar plots for the Dirichlet setting  are not included for brevity.  
 The plot in \autoref{fig:MVN-c001-power-w} shows that for different values of  $w$, $\beta$-$\alpha$ curves vary significantly.  The conclusion is that the match detection tests with JOFC embedding using specific $w$ values have better performance than other $w$ values in terms of power.  In Figure
- \ref{fig:MVN-c001-power-w},  $\beta(w)$ is plotted against $w$ for fixed values of $\alpha$. It is  interesting that the optimal value of $w$ seems to be in the range of $(0.85,1)$ for all settings, which suggests a significant emphasis on commensurability might be  critical for the match detection  task. 
+ \ref{fig:MVN-c001-power-w},  $\beta(w)$ is plotted against $w$ for fixed values of $\alpha$. It is  interesting that the optimal value of $w$ seems to be in the range of $(0.85,1)$ for all settings, which suggests a significant emphasis on commensurability might be  critical for the match detection  task.
+ 
+ 
+ The value of $w$ which results in the highest AUC measure  is different for each Monte Carlo replicate.  The number of  replicates  for  which a particular $w$ value led to the highest AUC measure is shown in  the bar chart in  Figure \ref{fig:ArgMaxWAUCW}. Only the non-zero counts are  shown in the plot. The estimate $\hat{w}^*$ can be chosen as   $0.925$, as it is the mode of $w^*$ estimates from all replicates.
+ 
+ For every MC replicate, the estimate of $w^*$ (the value of $w$ which results in the highest AUC measure) might have a different value. This is hinted by the fact that $\beta(w)$ vs $w$ plots have a plateau near the maximum.  The number of  replicates  for  which a particular $w$ value led to the highest AUC measure is shown in  the bar chart in  \autoref{fig:ArgMaxWAUCW} for 400 MC replicates.  \autoref{fig:ArgMaxWAUCW} shows  clearly that $w^*$ should be estimated from multiple MC replicates. The mode of the $w^*$ values from each MC replicate is an appropriate estimator. For the results plotted in  \autoref{fig:ArgMaxWAUCW}, the estimate $\hat{w}^*$ can be chosen as   $0.925$.
+ \begin{figure}
+\includegraphics[scale=0.80]{auc_argmax_hist-paper.pdf}
+\caption{Histogram of $w^*$ values for the Gaussian setting}
+\label{fig:ArgMaxWAUCW}
+\end{figure}
+
 
 
 

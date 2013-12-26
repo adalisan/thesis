@@ -427,7 +427,8 @@ This graph \ref{fig:JOFC-on-ER-Graph-w_param-plot} shows the effect of the weigh
 seed<-2893479
 set.seed(seed)
 
-debug.mode= TRUE
+debug.mode= FALSE
+embed.via.cMDS = TRUE
 a.embed.via.cMDS <-20
 
 n = 50
@@ -443,7 +444,8 @@ if(debug.mode){
 }
 require(abind,quietly=TRUE)
 
-d.dim.vec<-c(2,4,6,8,11)
+d.dim.vec<-c(4,6,8,10,11)
+diss_measure = "default"
 
 nc.jofc.diff.d       = array(0,dim=c(npert,nmc,length(d.dim.vec)))
 nc.jofc.weighted.d   = array(0,dim=c(npert,nmc,length(d.dim.vec)))
@@ -456,8 +458,6 @@ G<-ER(n,0.5)
 G.comb<-omnibusM(G,G,diag(n))
 Graph.M <- graph.adjacency(G.comb,weighted= NULL ,mode="undirected")
 D.M<-shortest.paths(Graph.M)
-
-seed<-123
 
 for (d.dim in d.dim.vec){
   dims.for.dist<-2:d.dim
