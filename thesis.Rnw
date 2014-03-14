@@ -6,8 +6,18 @@
 
 %\usepackage[utf8]{inputenc}
 \usepackage{cite}
-
+%
 \usepackage{amssymb,amsmath,amsthm,amscd}
+\usepackage{pgfplots}
+\usetikzlibrary{plotmarks}
+\pgfplotsset{compat=newest} 
+\pgfplotsset{plot coordinates/math parser=false}
+\usetikzlibrary{external}
+\tikzexternalize % activate!
+\tikzset{external/system call={pdflatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"}}
+\tikzset{external/force remake=true} 
+
+
 \usepackage{graphicx}
 \usepackage{subcaption}
 
@@ -18,25 +28,30 @@
 % justifying
 \usepackage{ragged2e}
 
-
-
-
 \graphicspath{{./}{./graphs/}{./figures/}{./../JOFC-GraphMatch/graphs/}{./../JOFC_MatchDetect/graphs/}{./../SeededGraphMatch/graphs/}{./../DataFusion/}{./../DataFusion/graphs/}{./../DataFusion-graphmatch/graphs/}{./../VertexCorrespondence/graphs/}}
 
 \usepackage{fixltx2e}
 \usepackage{array}
 % wrapfig is fragile: use sparingly
 \usepackage{wrapfig} 
-\usepackage{cmbright} %clean look
+%\usepackage{cmbright} %clean look
 %\usepackage{times}  % Use this for ugly fonts
 %\usepackage{ccfonts,eulervm} %Not bad looks nice for serif
+%\usepackage[T1]{fontenc}
+%\usepackage[urw-garamond]{mathdesign}
+%\usepackage{garamondx}
+%\usepackage[lf]{venturis} %% lf option gives lining figures as default; 
+  		  %% remove option to get oldstyle figures as default
+%\usepackage[T1]{fontenc}
+%\usepackage[garamond]{mathdesign}
+\usepackage[sfdefault]{quattrocento}
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
-
+%\usepackage{tipa}
 \usepackage{ogonek}
-%\usepackage[garamond]{mathdesign}
 
-\usepackage[none]{hyphenat}
+
+%\usepackage[none]{hyphenat}
 
 \usepackage{verbatim}
 
@@ -66,7 +81,7 @@
 \usepackage[refpage]{nomencl}
 \renewcommand{\nomname}{List of Notations}
 \renewcommand*{\pagedeclaration}[1]{\unskip\dotfill\hyperpage{#1}}
-
+%\DeclareTextCommand{\nobreakspace}{T1}{\leavevmode\nobreak\ }
 
 \makenomenclature
 
@@ -76,11 +91,12 @@
 %shorthand commands
 \input{common.tex}
 
-
+%\usepackage[T1]{fontenc}
 \usepackage{animate}
 %\tolerance=10000
 
 %\makeglossary % enable the glossary
+%\usepackage[protrusion=true,final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 
 \begin{document}
 
@@ -89,7 +105,7 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 @
 
 
-\title{Joint Optimization of Fidelity and Commensurability for Manifold Alignment and Graph Matching}
+\title{Joint Optimization of Fidelity and Commensurability\\ for Manifold Alignment and Graph Matching}
 \author{Sancar Adali}
 \degreemonth{January}
 \degreeyear{2014} 
@@ -150,7 +166,7 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 <<'child-chapter11_Graph_Match.Rnw', child='chapter11-Graph_Match_JOFC_Exp.Rnw',eval=TRUE>>=
 @
 
-<<'child-chapter12_conclusion.Rnw', child='chapter12_conclusion.Rnw',eval=TRUE>>=
+<<'child-chapter15_conclusion.Rnw', child='chapter15_conclusion.Rnw',eval=TRUE>>=
 @
 
 

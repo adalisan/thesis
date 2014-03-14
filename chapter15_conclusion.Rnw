@@ -1,6 +1,53 @@
 \chapter{Conclusion}
 \label{sec:conclusion}
-\chaptermark{Optional running chapter heading}
+\chaptermark{Conclusion}
 
 \section{Conclusion}
-\subsection{Future Directions}
+
+Our investigations began with a match detection problem where the data from disparate sources were available with dissimilarity representations. We formulated a joint embedding method to render the disparate data commensurate and applied the method to inference tasks such as match detection and graph matching. We introduced two criteria, fidelity and commensurability, that are essential for any inference task that uses such data. We investigated the tradeoff between fidelity and commensurability and its relation to the weighted raw stress criterion for MDS.
+
+   
+For hypothesis testing such as the exploitation task, different values of the tradeoff parameter $w$ were compared in terms of testing power.
+The results indicate that for a joint optimization, one should consider an optimal compromise point between fidelity and commensurability,
+which corresponds to an optimal weight $w^*$ of the weighted raw stress criterion, in contrast to uniform weighting. 
+       
+       We then proved under which conditions $w^*$ might exist. The uniqueness of $w^*$ is not settled upon, and further investigations are necessary.
+ In our search for the necessary conditions for the existence of $w^*$, we attempted to construct a counter-example in which $w^*$ does not exist. This led to an interesting setting in which  the  embedding configuration has a discontinuity with respect to $w$ in the raw stress function \ref{sec:MultMinima}. While this is an interesting finding, this unique phenomenon appears in a carefully constructed point configuration, and we can reasonably assume  that the probability measure of such a configuration  is zero for most data settings.
+       
+We also introduced two alternative approaches for solving the same multiple view data problems, which are based on Procrustes Analysis and Canonical Correlational Analysis. These methods can also be viewed in terms of the fidelity-commensurability tradeoff. Procrustes $\circ$ MDS optimizes fidelity with commensurability as the secondary priority. CCA optimizes commensurability subject to the linearity of projections to the commensurate space. Other studies in the scientific literature introduce fidelity and commensurability-
+like terms for solving multiple view problems. Our investigations of fidelity and commensurability are therefore relevant to understanding alternative approaches for solving similar multiview problems.
+       
+     
+The different views in the multiview data can include two different graphs with vertices that share the same set of labels. Here, we assume that the corresponding vertices sharing the same label represent the same object and that the edges incident to corresponding vertices are strongly correlated, if not identical. Given only the two simple graphs with no vertex label information, the graph matching problem is then the task of finding vertex correspondences. These correspondences are found by minimizing the edge disagreements between corresponding vertices. In some cases, a portion of the correspondences are known a priori, or can be discovered at no cost. If we know even a small portion of the correspondences, we can solve the seeded graph matching problem by inferring the rest of the correspondences by exploiting the vertices with the known correspondences known as seeds.
+
+We proposed two solutions for seeded graph matching. The first one is based on the JOFC approach, where we use a dissimilarity measure to compute dissimilarities between vertices in each graph separately and jointly embed the dissimilarities.  Using the pairwise distances between the embedded points as costs in an assignment problem, we find a match between the non-seeded vertices. 
+The second solution we proposed is based on a relaxation of the combinatorial optimization problem. Given the adjacency matrices of the two graphs to be matched, $A$ and $B$, we minimize $\|A-PBP^T\|_2$ with respect to the permutation matrix $P$. This problem is equivalent to a quadratic assignment problem. The continuous relaxation we consider minimizes the same function over the set of doubly stochastic matrices. The Frank-Wolfe algorithm  provides an iterative solution to this relaxed optimization problem over the convex domain of doubly stochastic matrices. The relaxed solution can then be projected to the set of permutation matrices.  We adapt this algorithm, called Fast Approximate Quadratic graph matching algorithm, to the seeded graph matching problem, where part of $P$ is known due to some number of seeds.  We are able to show through simulations and experiments on real graphs that even if a small portion of correspondences are known, our proposed modified FAQ algorithm is able to match the remaining vertex pairs much more successfully than  unseeded graph matching. 
+
+While modified FAQ is more suitable for matching pairs of simple graphs, there are many cases in which the correspondences are not well defined. A vertex in one graph may match to many or to none of the vertices in the other graph. The modified FAQ algorithm as it is currently described cannot handle such pathologies. For different variations of the simple seeded graph matching problem, the JOFC approach is much more suitable.
+
+We also tested our approaches using real-world  graph data.  The matching ratio for a given number of seeds depends on various factors, such as how correlated the graph pairs are and how connected the vertices are, among others. It is possible that even if most of the correspondences are known, we would not obtain satisfactory performance on matching  the rest of the vertices, such as in the Charitynet and C. elegans connectome graphs. However, even in these cases, seeds improve the graph matching performance significantly. In addition, our JOFC algorithm is competitive with and, in some cases, improves the modified FAQ algorithm, a modification of the state-of-the art graph matching algorithm presented in \cite{ConVog_gm}. 
+
+\section{Future Directions}
+Our findings  warrant further investigations. For example, under what conditions is the fidelity-commensurability tradeoff parameter $w^*$ unique? Our results indicate that for some settings, the value of  $w$ does not have a significant effect on performance in the neighborhood of the optimal value. For simulations using the data models in \autoref{chap:data_models}, the $AUC(w)$ function exhibited a plateau near the optimal value. For graph matching, most $w$ values yielded the same  matching performance. However, for match testing on the Wikipedia  data, different $w$ values had a very significant effect on matching performance.  The ability to predict whether the tradeoff parameter $w$ will have a significant effect on the performance for a particular dataset is important, and thus, further investigation of this sensitivity issue is needed.
+
+
+
+
+
+
+As in many data problems, model selection is an important issue that has significant impact on our  inference tasks.  What should be the embedding dimension of dissimilarities? While we considered different $d$ values,  we have not really addressed this issue. A useful heuristic for our graph matching experiments was the selection of the dimension based on the matching ratio of the in-sample dissimilarities. That is, we embed and match the in-sample dissimilarities (for which we know the true matching). We then choose the minimum embedding dimension which fully or mostly recovers the true matching of the in-sample dissimilarities.
+
+
+
+
+
+
+
+The seeded graph matching algorithm derived from the FAQ algorithm provides avenues for further research. Our efforts to improve the matching results by using a convex function as the objective function in the  rQAP\textsubscript{2} formulation yielded mixed results. For a small number of seeds, the average true matching ratio for the  rQAP\textsubscript{2} formulation  was larger compared to that of the  rQAP\textsubscript{1} formulation, whereas for  a large number of seeds, it was smaller. These findings are most likely due to  convergence issues, as shown in \autoref{rqap_iter_compare}. While the hybrid approach holds promise, it is still not good enough to provide the best of both worlds and calls for further tuning.   
+
+
+
+Various similar approaches in the literature for multiple view data can be investigated in the light of the fidelity and commensurability tradeoff. Most of these approaches have a tradeoff parameter that corresponds to our $w$. 
+Some of these tradeoff parameters could be more amenable to analysis, which could lead to rigorous results related to the uniqueness and the existence of the parameter $w$.
+% Editor: Do you mean " ... the existence of the parameter $w$"?
+

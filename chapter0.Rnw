@@ -6,24 +6,25 @@
 
 \begin{abstract}
 
-Abstract goes here.
+
+In this thesis, we investigate how to perform inference in settings in which the data consist of different modalities or views. For effective learning utilizing the information available, data fusion that considers all views of these \emph{multiview} data settings is needed. We also require dimensionality reduction to address the problems associated with high dimensionality, or ``the curse of dimensionality.'' We are interested in the type of information that is available in the multiview data that is essential for the inference task. We also seek to determine the  principles to be used throughout the dimensionality reduction and data fusion steps to provide acceptable task performance. Our research focuses on exploring how these queries and their solutions are relevant to particular data problems of interest.
+
 
 \vspace{1cm}
 
 \noindent Primary Reader: Carey E Priebe\\
-Secondary Reader: Daniel E Fishkind
+Secondary Reader: Donniell E Fishkind
 
 \end{abstract}
 
-\begin{acknowledgment}
+%\begin{acknowledgment}
 
-Thanks!
 
-\end{acknowledgment}
+
+%\end{acknowledgment}
 
 \begin{dedication}
- 
-This thesis is dedicated to myself who did all the hard work, my mother 
+This thesis is dedicated to myself because I did all the hard work and to my family who supported me in every way, especially my mother, from whom I inherit my love of science. 
 
 \end{dedication}
 

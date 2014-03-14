@@ -10,10 +10,10 @@
 \label{chap:FidComm}
 \chaptermark{Fidelity and Commensurability}
 
-\section{The concepts of  Fidelity and Commensurability\label{chap:FidComm}}
+\section[The concepts of  Fidelity and Commensurability]{The concepts of  Fidelity\\ and Commensurability\label{sec:FidComm_intro}}
 
 For the sake of argument, assume that the source of dissimilarities  are actually observations that are vectors in  Euclidean space. In general, MDS with raw stress will not result in a perfect reconstruction  of the original observations.
- Note that this point is not relevant to our work, as  the objective of the (joint) embedding is not \emph{perfect} reconstruction, but rather the best embedding for the inference task. What is considered a ``good''  representation will be dependent on how well the original dissimilarities that are relevant to the inference task are preserved. Fidelity and commensurability quantify this preservation of information.
+ Note that this point is not relevant to our work, as  the objective of the (joint) embedding is not \emph{perfect} reconstruction, but rather the best embedding for the inference task. What is considered a ``good''  representation will be dependent on how well the original dissimilarities that are relevant to the inference task are preserved. ``Fidelity'' and ``Commensurability'' quantify this preservation of information.
 
 Regardless of the inference task,  to expect reasonable performance from the embedded data in the commensurate space  for the inference task at hand, 
 %we have to use both the original dissimilarity information in each separate condition \emph{and}  the matchedness of dissimilarities. 
@@ -31,10 +31,10 @@ Here, $\delta_{ijkk}$ is the dissimilarity between the $i^{th}$ object and the $
 \label{comm-error}
 \]
  for conditions $k_1$ and $k_2$; $\delta_{iik_1k_2}$  is the dissimilarity between the $i^{th}$ object under  conditions   $k_1$ and  $k_2$. 
-Although  the between-condition dissimilarities of the same object, ${ \delta_{iik_1k_2}}$, are not available,  it is reasonable to set these dissimilarities to $0$ for all $i,k_1,k_2$. \footnote{These dissimilarities correspond to  diagonal  entries of the  submatrix $L$ in  the omnibus matrix  $M$ in equation \eqref{omnibus}.} Setting these diagonal entries to $0$ forces matched observations to be embedded close to each other. It is possible that this choice for between-condition dissimilarities is not optimal. However, seeking optimal values for these unknown dissimilarities would only serve to distract us from the problem of interest, namely, how much fidelity and commensurability are to be preserved for the inference task.
+Although  the between-condition dissimilarities of the same object, ${ \delta_{iik_1k_2}}$, are not available,  it is reasonable to set these dissimilarities to $0$ for all $i,k_1,k_2$. These dissimilarities correspond to  diagonal  entries of the  submatrix $L$ in  the omnibus matrix  $M$ in equation \eqref{omnibus}. Setting these diagonal entries to $0$ forces matched observations to be embedded close to each other. It is possible that this choice for between-condition dissimilarities is not optimal. However, seeking optimal values for these unknown dissimilarities would only serve to distract us from the problem of interest, namely, how much fidelity and commensurability are to be preserved for the inference task.
 \label{commens}  
 \end{itemize}
-By imputing the between-condition dissimilarities of the same object as 0, the commensurability error  term becomes
+When the between-condition dissimilarities of the same object are imputed with zeros, the commen\-surability error  term becomes
   \[
 \epsilon_{c_{k_1k_2}} = \frac{1}{n} \sum_{1 \leq i \leq n;k_1< k_2} (d(\widetilde{\bm{x}}_{ik_1},\widetilde{\bm{x}}_{ik_2})))^2
 \]
@@ -47,7 +47,7 @@ By imputing the between-condition dissimilarities of the same object as 0, the c
 %Although it is possible to impute these dissimilarities, the optimal  imputation is an open question, and ignoring these terms allows for the investigation of simpler, still open questions.
 
 
- %Because data sources are ``disparate", it is not obvious how   to  compute or define a dissimilarity between an object in one condition and another object in another condition. 
+ %Because data sources are ``disparate'', it is not obvious how   to  compute or define a dissimilarity between an object in one condition and another object in another condition. 
  The between-condition dissimilarities of different objects, ${ \delta_{ijk_1k_2}}, i\neq j$, in the ''separability'' criterion are also not available. Ignoring them in the embedding by setting the associated weights in the raw stress function to be 0 is a reasonable choice. \footnote{These dissimilarities correspond to  off-diagonal  entries of the  submatrix $L$ in the omnibus matrix  M in equation \eqref{omnibus}.}  
  We prefer these choices for between-condition dissimilarities to  restrict our attention to  the fidelity-commensurability tradeoff. An alternative solution would be to impute these dissimilarities using other available dissimilarities. This imputation approach is discussed in \ref{rem:imputationofdiss}.
   
@@ -56,35 +56,35 @@ By imputing the between-condition dissimilarities of the same object as 0, the c
 
 While  the expressions for  \emph{fidelity} and  \emph{commensurability} errors  are specific to the joint embedding of disparate dissimilarities, the concepts of fidelity and commensurability are  general enough to be applicable to other dimensionality reduction methods for multiview data.  For example, if the dissimilarities between different conditions were available, or imputed, a joint embedding could be performed using classical MDS. This joint embedding would also jointly optimize fidelity and commensurability, but we would have no control over which dissimilarities are prioritized for preservation in the embedding. We could thus not control the fidelity and commensurability tradeoff. This tradeoff is important for the inference task: we use simulations to show that there are significant improvements in statistical power when commensurability is prioritized compared with the baseline \emph{uniform-weighting} case.
    
-In general, we note that the omnibus embedding approach using any variant of MDS attempts to jointly optimize fidelity and commensurability by minimization of some measure of discrepancy between the given dissimilarities (which are either between-condition or within-condition dissimilarities) and the distances of the embedded configuration. This is most obvious in the raw stress version of MDS because the individual terms can be separated according to whether they are contributing to the fidelity or  commensurability  error.
+In general, we note that the omnibus embedding approach using any variant of MDS attempts to jointly optimize fidelity and commensurability by minimization of some measure of discrepancy between the given dissimilarities (which are either between-condition or within-condition dissimilarities) and the distances of the embedded configuration. This is most obvious in the raw stress version of MDS, because the individual terms can be separated according to whether they are contributing to the fidelity or  commensurability  error.
 
  Consider the weighted raw stress criterion $\sigma_{W}(\cdot)$ with a weighting matrix $W$, given in equation~\eqref{raw-stress}.
- The omnibus matrix $M$ \eqref{omnibus}  is a partitioned matrix consisting of matrices from two different conditions ($k={1,2}$). The entries of the matrix will be indexed by a 4-tuple, ${i,j,k_1,k_2}$, which refers to the entry in the $i^{th}$ row and $j^{th}$ column of the block matrix in  the $k_1^{th}$  row partition and  the $k_2^{th}$ column partition. For example, the entry ${M}_{2n,n}$ will have the indices $\{i,j,k_1,k_2\}=\{n,n,2,1\}$ in the new 4-tuple indexing scheme. $D(\cdot)$ and $W$, which are of the same size as $M$, follow the same 4-tuple indexing. Then, the weighted raw stress for the joint embedding with the weight matrix $W$ is
+ The omnibus matrix $M$ \eqref{omnibus}  is a partitioned matrix consisting of matrices from two different conditions ($k={1,2}$). The entries of the matrix will be indexed by a 4-tuple, ${i,j,k_1,k_2}$, which refers to the entry in the $i^{th}$ row and $j^{th}$ column of the block matrix in  the $k_1^{th}$  row partition and  the $k_2^{th}$ column partition. For example, the entry ${M}_{2n,n}$ will have the indices $\{i,j,k_1,k_2\}=\{n,n,2,1\}$ in the new 4-tuple indexing scheme. The matrix-valued function $\mathcal{D}(\cdot)$ and the weight matrix $W$, which are of the same size as $M$, follow the same 4-tuple indexing. Then, the weighted raw stress for the joint embedding with the weight matrix $W$ is
  
 \begin{align}
-\sigma_W(\cdot)  &= & &\sum_{i,j,k_1,k_2} {w_{ij{k_1}{k_2}}(d_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2 } \notag\\
-\hspace{3pt} &=& &\underbrace{\sum_{i=j,k_1<k_2}  {w_{ij{k_1}{k_2}}(d_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2}}_{Commensurability}  \hspace{10pt}  &  + &\hspace{2.5em} \underbrace{\sum_{i<j,k_1=k_2}  {w_{ij{k_1}{k_2}}(d_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Fidelity}\notag\\
-\hspace{3pt}&+&  &\underbrace{\sum_{i< j,k_1<k_2}  {w_{ij{k_1}{k_2}}(d_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Separability}\label{eq:FidCommSep}\hspace{10pt} .
+\sigma_W(\cdot)  &= & &\sum_{i,j,k_1,k_2} {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2 } \notag\\
+\hspace{3pt} &=& &\underbrace{\sum_{i=j,k_1<k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2}}_{Commensurability}  \hspace{10pt}  &  + &\hspace{2.5em} \underbrace{\sum_{i<j,k_1=k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Fidelity}\notag\\
+\hspace{3pt}&+&  &\underbrace{\sum_{i< j,k_1<k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Separability}\label{eq:FidCommSep}\hspace{10pt} .
 \end{align}
 
 
 \begin{comment}
 \begin{eqnarray}{ccc}
-\sigma_W(\cdot)\hspace{3pt}   &= &\sum_{i,j,k_1,k_2} {w_{ij{k_1}{k_2}}(d_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2 } \notag\\
-\hspace{3pt} &= &\underbrace{\sum_{i=j,k_1\neq k_2}  {w_{ij{k_1}{k_2}}(d_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2}}_{Commensurability}  \hspace{10pt}  &  + & \underbrace{\sum_{i\neq j,k_1=k_2}  {w_{ij{k_1}{k_2}}(d_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Fidelity}\notag\\
-\hspace{3pt}&+ &\underbrace{\sum_{i\neq j,k_1\neq k_2}  {w_{ij{k_1}{k_2}}(d_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Separability}\label{eq:FidCommSep2}\hspace{10pt} .
+\sigma_W(\cdot)\hspace{3pt}   &= &\sum_{i,j,k_1,k_2} {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2 } \notag\\
+\hspace{3pt} &= &\underbrace{\sum_{i=j,k_1\neq k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2}}_{Commensurability}  \hspace{10pt}  &  + & \underbrace{\sum_{i\neq j,k_1=k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Fidelity}\notag\\
+\hspace{3pt}&+ &\underbrace{\sum_{i\neq j,k_1\neq k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Separability}\label{eq:FidCommSep2}\hspace{10pt} .
 \end{eqnarray}
 \end{comment}
 
 
-Because ${ \delta_{k_1k_2}}(\bm{x}_{ik_1},\bm{x}_{ik_2}) $ are set to 0, the corresponding entries of $M$ in the commensurability terms will be 0.
+Because ${ \delta_{k_1k_2}}(\bm{x}_{ik_1},\bm{x}_{ik_2}) $ are set to 0, the corresponding entries of the matrix $M$ which appear in the commen\-surability terms of the sum will be 0.
 
 Because the separability error is ignored,  the weights for separability terms are chosen to be 0. Thus, the off-diagonal elements of $L$ in equation \eqref{omnibus} can also be ignored. When the separability terms are removed from equation \eqref{eq:FidCommSep}, the resulting equation is the sum of the fidelity and commensurability error terms:
 
 
 \begin{align}
 \sigma_W(\cdot)\hspace{3pt}   
-\hspace{3pt}&=&\underbrace{\sum_{i=j,k_1< k_2}  {w_{ij{k_1}{k_2}}(d_{ij{k_1}{k_2}}(\cdot))^2}}_{Commensurability}  \hspace{10pt}  &  +&\underbrace{\sum_{i< j,k_1=k_2}  {w_{ij{k_1}{k_2}}(d_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Fidelity}\notag\label{eq:FidCommSep}\hspace{10pt} .
+\hspace{3pt}&=&\underbrace{\sum_{i=j,k_1< k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot))^2}}_{Commensurability}  \hspace{10pt}  &  +&\underbrace{\sum_{i< j,k_1=k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Fidelity}\notag\label{eq:FidCommSep}\hspace{10pt} .
 \end{align}
 
 This motivates  our reference to the omnibus embedding approach as JOFC.
@@ -94,5 +94,5 @@ This motivates  our reference to the omnibus embedding approach as JOFC.
  The weights in the raw stress function allow us to address the question of the optimal tradeoff of  fidelity and commensurability. Let $w \in (0,1)$. Setting the weights ($\{w_{ijk_1k_2}\}$)  for the commensurability  and fidelity  terms    to $w$ and $1-w$, respectively,  will allow us to control the relative importance of fidelity and commensurability terms in the objective function. Let us denote the raw stress function with these simple weights by $\sigma_w(\widetilde{X};M)$.  With simple weighting, when $w=0.5$, all terms in the objective function have the same weights. We will refer to this weighting scheme in the rest of this dissertation as \emph{uniform weighting}. The alternative scheme, $w \neq 0.5$, is called \emph{nonuniform weighting}.
  
  
-The initial expectation in the investigation of fidelity and commensurability was that there is a $w^*$ that is optimal for the specific match detection task (the $w$ value, which results in the best power for hypothesis testing) \ref{chap:match_detection}. In fact,  the exploratory simulations presented in \ref{sec:Simulation Results} confirm that the power of the tests varies with $w$ and indicate the range in which the optimal  $w^*$ lies, assuming it exists. We show that $w$ exists under certain conditions for the match detection task. Although we cannot provide  a rigorous proof of the uniqueness of $w^*$, for various data settings, simulations in \autoref{sec:Simulation Results} always resulted in \emph{unimodal}  estimates for the AUC function, which indicates a unique $w^*$ value.
-Specifically, for the match detection task, we provide evidence in \ref{sec:Simulation Results} that  uniform weighting does not necessarily yield the best fidelity-commensurability tradeoff in terms of subsequent inference and that one should consider nonuniform weighting for better performance in the inference task\cite{JOFC_Tradeoff}.
+The initial expectation in the investigation of fidelity and commensurability was that there is a $w^*$ that is optimal for the specific match detection task \ref{chap:match_detection} (the $w$ value, which yields the best statistical power for hypothesis testing) . In fact,  the exploratory simulations presented in \ref{sec:Simulation Results} confirm that the power of the tests varies with $w$ and indicate the range in which the optimal  $w^*$ lies, assuming it exists. We show that $w$ exists under certain conditions for the match detection task. Although we cannot provide  a rigorous proof of the uniqueness of $w^*$, for various data settings, simulations in \autoref{sec:Simulation Results} always resulted in \emph{unimodal}  estimates for the AUC function, which indicates a unique $w^*$ value.
+Specifically, for the match detection task, we provide evidence in \autoref{sec:Simulation Results} that  uniform weighting does not necessarily yield the best fidelity-commensurability tradeoff in terms of subsequent inference and that one should consider nonuniform weighting for better performance in the inference task\cite{JOFC_Tradeoff}.

@@ -4,9 +4,9 @@
 
  We are interested in problems in which the data sources are disparate and the inference task requires that observations from different data sources can be judged to be similar or dissimilar.
   
-	Consider a collection of  English Wikipedia articles and French articles on the same topics. A pair of documents in different languages on the same topic are said to be ``matched". The ``matched'' wiki documents are  not necessarily direct translations of each other, and therefore,  we do not restrict ``matchedness'' to be a well-defined bijection between documents in different languages.
+	Consider a collection of  English Wikipedia articles and French articles on the same topics. A pair of documents in different languages on the same topic are said to be ``matched''. The ``matched'' wiki documents are  not necessarily direct translations of each other, and therefore,  we do not restrict ``matchedness'' to be a well-defined bijection between documents in different languages.
 	%therefore the matchedness relation does not require  a bijection from the document space to another.
-	However the matched ``documents''  provide examples of  ``similar"  observations coming from disparate sources, and we assume that the training data consist of  a collection of ``matched'' documents.
+	However the matched ``documents''  provide examples of  ``similar''  observations coming from disparate sources, and we assume that the training data consist of  a collection of ``matched'' documents.
 	
   The inference task that we consider is match detection, i.e., determining whether a new English article and a new French article have the same topic. Whereas a document in one language, say English, can be compared with other documents in English, a  French document  cannot be represented using the same features and therefore cannot be directly compared with English documents.  It is necessary to derive a data representation in which the documents from different languages can be compared (are commensurate).  %This data representation  should preserve the high similarity of ``matched''  observations, the degree of  similarity of observations coming from the same source, and the dissimilarity of ``unmatched'' observations. 
 	We will use a finite-dimensional Euclidean space for this commensurate representation in which standard statistical inference tools can be used.
@@ -36,7 +36,7 @@ so that for $[x_1,\cdots,x_K]' \in \Xi_1 \times \cdots \times \Xi_K$,
 we may evaluate distances $d(\rho_{k_1}(x_{k_1}),\rho_{k_2}(x_{k_2}))$ in $\mX$.
 
 
-Given $\xi_1,\xi_2 \iid \mcP$ in $\Xi$,
+Given $\xi_1,\xi_2 \iidsuper \mcP$ in $\Xi$,
 %For any distinct $\xi_1,\xi_2 \in \Xi$,
 we may reasonably hope that the random variable
 $d(\rho_{k_1}\circ\pi_{k_1}(\xi_1),\rho_{k_2}\circ\pi_{k_2}(\xi_1))$
@@ -45,10 +45,10 @@ $d(\rho_{k_1}\circ\pi_{k_1}(\xi_1),\rho_{k_2}\circ\pi_{k_2}(\xi_2))$.
 That is, matched measurements 
 $\pi_{k_1}(\xi_1),\pi_{k_2}(\xi_1)$
 representing a single point $\xi_1$ in $\Xi$
-are mapped closer to each other than are
+are mapped closer to each other than 
 unmatched measurements 
 $\pi_{k_1}(\xi_1),\pi_{k_2}(\xi_2)$
-representing two different points in $\Xi$.
+ are in $\Xi$.
 This property allows for inference to proceed in the common representation space $\mX$.
 
 
@@ -58,18 +58,18 @@ As the inference proceeds from dissimilarities, we cannot directly observe the o
 $\delta_k:\Xi_k \times \Xi_k \to \mathbb{R}_+ = [0,\infty)$
 such that $\delta_k( \pi_k(\xi_1) , \pi_k(\xi_2) )$
 represents the ``dissimilarity'' of  the mappings of $\xi_1$ and $\xi_2$
-under map $\pi_k$.
+under map $\pi_k$. 
 The data we have consist of dissimilarities between a sample of $n$ objects using $\{\delta_k\}_{k=1,\ldots,K}$.
 We propose to use sample dissimilarities for matched data in the disparate spaces $\Xi_k$
 to simultaneously learn maps $\rho_k$ that allow for a powerful test of matchedness
 in the common representation space $\mX$.
-
  This setting is visualized in  Figure ~\ref{fig:multisensor}.
+
 
 \begin{figure}
   \begin{center}
 \includegraphics[scale=0.75]{gen-model-orig-proj.pdf}
- \caption{Maps $\pi_k$ induce disparate data spaces $\Xi_k$ from ``object space'' $\Xi$.
+ \caption[Maps $\pi_k$ induce disparate data spaces $\Xi_k$ from ``object space'' $\Xi$.]{Maps $\pi_k$ induce disparate data spaces $\Xi_k$ from ``object space'' $\Xi$.
     Manifold matching involves using matched data $\{\bm{x}_{ik}\}$
     to simultaneously learn maps $\rho_1,\ldots,\rho_K$
     from disparate spaces 
@@ -92,7 +92,7 @@ If the source of dissimilarities  are actually observations that are vectors in 
 \item the dissimilarity matrix is the Euclidean distance matrix of the original observations, and 
 \item the embedding dimension is greater than or equal to the dimension of the original observations,
 \end{itemize},
-MDS with raw stress will not result in a perfect reconstruction of the original observations. Note that the objective of the (joint) embedding is not \emph{perfect} reconstruction, but the best embedding for the exploitation task, which is to test whether two sets of dissimilarities are ``matched". What is considered a ``good''  representation will be dependent on how well the information in original dissimilarities that is relevant to the the match detection task is preserved. Fidelity and commensurability quantify this preservation of information.
+MDS with raw stress will not result in a perfect reconstruction of the original observations. Note that the objective of the (joint) embedding is not \emph{perfect} reconstruction, but the best embedding for the exploitation task, which is to test whether two sets of dissimilarities are ``matched''. What is considered a ``good''  representation will be dependent on how well the information in original dissimilarities that is relevant to the the match detection task is preserved. Fidelity and commensurability quantify this preservation of information.
 \end{comment}
 
 
@@ -100,7 +100,7 @@ MDS with raw stress will not result in a perfect reconstruction of the original 
 In the problem setting considered here,  $n$ different objects are measured under $K$ different conditions (corresponding  to, for example, $K$ different sensors). We begin with dissimilarity measures. These will be represented in matrix form as $K$ $n \times n$ matrices $\{\Delta_k,k=1 ,\ldots,K\}$.  In addition, for each condition, dissimilarities between a new object  and the previous 
 $n$ objects $\{\mathcal{D}_k,k=1 ,\ldots,K\}$ are available in the form of $n$-length vectors. Under  the null hypothesis, ``these new dissimilarities represent a single \emph{new} object  compared with the previous $n$ objects'', measured under $K$ different conditions (the dissimilarities are matched). Under the alternative hypothesis, ``the dissimilarities $\{\mathcal{D}_k\}$ represent separate \emph{new} objects compared with the the previous $n$ objects'',  measured under $K$ different conditions (the dissimilarities are unmatched)~\cite{JOFC}. %The test dissimilarities are referred to as OOS dissimilarities. 
 
-In the case of the example of the English-French Wikipedia articles in the Introduction, dissimilarities between the new English article and $n$ other English articles $(\mathcal{D}_1)$ are available, as they are for the new French article  and other $n$ French articles $(\mathcal{D}_2)$ \footnote{In addition to the dissimilarities between articles in the same language  ($\{\Delta_k\})$ }. The null hypothesis is that the new English and French articles are on the same topic, whereas the alternative hypothesis is that they are on different topics.
+In the case of  the English-French Wikipedia example mentioned in the beginning of the chapter, dissimilarities between the new English article and $n$ other English articles $(\mathcal{D}_1)$ are available, as they are for the new French article  and other $n$ French articles $(\mathcal{D}_2)$ \footnote{In addition to the dissimilarities between articles in the same language  ($\{\Delta_k\})$ }. The null hypothesis is that the new English and French articles are on the same topic, whereas the alternative hypothesis is that they are on different topics.
 
   To derive a data representation in which dissimilarities from disparate sources ($\{\mathcal{D}_k\}$)  can be compared, the dissimilarities must be embedded in a commensurate metric space in which the metric can be used to distinguish between ``matched'' and ``unmatched'' observations.
 
@@ -119,7 +119,7 @@ For the purposes of exposition, we will consider $K=2$; the generalization to $K
 \end{remark}
 
 \begin{remark}
-The imputation of the entries of $L$  is an important detail. The entries correspond to dissimilarities between different conditions. We have clarified that we do not assume that these dissimilarities are available  \ref{rem:between_cond_diss} in our approach. Assuming that the dissimilarities are not strongly disparate, which means that the dissimilarities between a pair of objects in two different conditions are strongly  correlated,  the dissimilarities in $L$ can be imputed as the average of the corresponding dissimilarities in $\Delta_1$ and $\Delta_2$. $$L=\frac{\Delta_1 + \Delta_2}{2}$$. For example, the dissimilarity between the $i^{th}$ and $j^{th}$ objects under the first and  second conditions, respectively, ($\left[L \right]_{ij}$), can be imputed as the average of the dissimilarities between the $i^{th}$ and $j^{th}$ objects under the first condition ($ \left[\Delta_1 \right]_{ij}$) and between the same objects under the second condition ($ \left[\Delta_2 \right]_{ij}$): $[L]_{ij}= ( [\Delta_1]_{ij}) + ( [\Delta_2]_{ij})$. Note that this would also lead to $[L]_{ii}$, with the dissimilarities between the same object  under the first and  second conditions  being equal to $0$. This is consistent with our idea of matchedness, because we want the representations of ``matched'' observations to be highly similar. Therefore, $0$ is a reasonable value for these dissimilarities between measurements of the same object.  A more detailed reasoning for this choice is provided in \ref{commens}.
+The imputation of the entries of $L$  is an important detail. The entries correspond to dissimilarities between different conditions. We have clarified that we do not assume that these dissimilarities are available in our approach  \ref{rem:between_cond_diss}. Assuming that the dissimilarities are not strongly disparate, which means that the dissimilarities between a pair of objects in two different conditions are strongly  correlated,  the dissimilarities in $L$ can be imputed as the average of the corresponding dissimilarities in $\Delta_1$ and $\Delta_2$: $$L=\frac{\Delta_1 + \Delta_2}{2}.$$ For example, the dissimilarity between the $i^{th}$ and $j^{th}$ objects under the first and  second conditions, respectively, ($\left[L \right]_{ij}$), can be imputed as the average of the dissimilarities between the $i^{th}$ and $j^{th}$ objects under the first condition ($ \left[\Delta_1 \right]_{ij}$) and between the same objects under the second condition ($ \left[\Delta_2 \right]_{ij}$), i.e., $[L]_{ij}= \left( [\Delta_1]_{ij} +[\Delta_2]_{ij}\right)/2$. Note that this imputation would also make  $[L]_{ii}=0$ (the dissimilarities between the same object  under the first and  second conditions). This is consistent with our idea of matchedness, because we want the representations of ``matched'' observations to be highly similar. Therefore, $0$ is a reasonable value for these dissimilarities between measurements of the same object.  A more detailed reasoning for this choice is provided in \ref{commens}.
 
 Another imputation strategy is to treat nondiagonal elements of $L$ as missing data ($NA$) and to set the diagonal entries ($[L]_{ii}$)  to 0. We are then required to use an MDS embedding method that can deal with dissimilarity matrices that have NA entries. This is one of the justifications for our use of weighted raw stress \ref{raw-stress} as the MDS criterion function. We mention this point along with other justifications in  \autoref{sec:FidCommTradeoff}.
 \label{rem:imputationofdiss}
@@ -142,10 +142,12 @@ We will use $x_{ik}$ to denote the -- possibly notional --  observation  for the
    
    
 
-\section{Definition of  $w^{*}$}
+\section{Definition of an optimal  embedding weight parameter: $w^{*}$}
+
+We have noted that we use the  the weighted raw stress criterion function, $\sigma_W(\widetilde{X};M)$ \ref{raw-stress}, for the joint embedding the omnibus matrix $M$. Rather than consider how each entry of $W$ separately effects the embedding, we will assume there is a single parameter $w \in (0,1)$ which determines all of the entries of $W$, and consider its effect on the embedding, and its effect indirectly on the inference task. We will refer to this choice of the embedding weights as the simple weighting scheme. We do not provide  details on how $W$ is determined by $w$ until $\autoref{chap:FidComm}$, because we first need to introduce fidelity and commensurability concepts. 
 
 \begin{remark}
-In our notation for this section, $(.)$  represents either one of the two hypotheses, either $(m)$ or $(u)$. In the former case, the expression refers to values under  a ``matched'' hypothesis; in the latter, the expression refers to values under  an ``unmatched''   hypothesis.
+In our notation for this section, $(.)$ in superscript  represents either one of the two hypotheses, either $(m)$ or $(u)$. In the former case, the expression refers to values under  a ``matched'' hypothesis; in the latter, the expression refers to values under  an ``unmatched''   hypothesis.
 \end{remark}
 Let us denote the test dissimilarities ($\mathcal{D}_1$, $\mathcal{D}_2$)  by  ($\mathcal{D}_1^{(m)}$, $\mathcal{D}_2^{(m)}$)  under the  ``matched'' hypothesis and  by ($\mathcal{D}_1^{(u)}$, $\mathcal{D}_2^{(u)}$)  under the alternative. The OOS embedding of ($\mathcal{D}_1^{(m)}$, $\mathcal{D}_2^{(m)}$) involves the  augmentation of  the omnibus matrix $M$, which consists of $n$ matched  pairs of dissimilarities,  with ($\mathcal{D}_1^{(m)}$, $\mathcal{D}_2^{(m)}$). The resulting augmented  $(2n+2)\times (2n+2)$ matrix  has the following form:
 
@@ -158,11 +160,11 @@ Let us denote the test dissimilarities ($\mathcal{D}_1$, $\mathcal{D}_2$)  by  (
      \end{array}  \right]     \label{aug_omnibus} 
 \end{equation}  where
 the scalar $\mathcal{D}_{NA}$ and $\vec{\mathcal{D}}_{NA}$ (an $n$-length vector of $NA$s) represent dissimilarities that are not available. 
-In our JOFC procedure, these unavailable entries in $\Delta^{(m)}$ are either imputed using other dissimilarities that are available, in the way described in equation \eqref{raw-stress}, or ignored in the embedding optimization. The former imputation method will result in  a simpler  notation, and thus, from now on, it will be assumed that the missing dissimilarities are imputed. Also note that $\Delta^{(u)}$  has the same form as $\Delta^{(m)}$, where $\mathcal{D}_k^{(m)}$ is replaced by $\mathcal{D}_k^{(u)}$. Therefore, we will use  $(.)$ in place of $(m)$ and $(u)$ to represent the two expressions under the two hypotheses with one expression. 
+In our JOFC procedure, these unavailable entries in $\Delta^{(m)}$ are either imputed using other dissimilarities that are available, in the way described in equation \eqref{raw-stress}, or ignored in the embedding optimization. The former imputation method will result in a simpler notation, and thus, from now on, it will be assumed that the missing dissimilarities are imputed. Additionally, note that $\Delta^{(u)}$ has the same form as $\Delta^{(m)}$, where $\mathcal{D}_k^{(m)}$ is replaced by $\mathcal{D}_k^{(u)}$. Therefore, we will use $(.)$ in place of $(m)$ and $(u)$ to represent the two expressions under the two hypotheses with one expression. 
 
-We define the dissimilarity matrices \{$\Delta^{(m)},\Delta^{(u)}$\} to be two matrix-valued random variables, $\Delta^{(m)}:\Omega \rightarrow \mathbf{M}_{(2n+2)\times (2n+2)} $ and  $\Delta^{(u)}:\Omega \rightarrow \mathbf{M}_{(2n+2)\times (2n+2)} $), for the appropriate sample  space $(\Omega)$.
+We define the dissimilarity matrices \{$\Delta^{(m)},\Delta^{(u)}$\} which are of size  $(2n+2)\times (2n+2)$ to be  matrix-valued random variables. %$\Delta^{(m)}:\Omega \rightarrow \mathbf{M}_{(2n+2)\times (2n+2)} $ and  $\Delta^{(u)}:\Omega \rightarrow \mathbf{M}_{(2n+2)\times (2n+2)} $), for the appropriate sample  space $(\Omega)$.
 \begin{remark}
-Suppose the objects in the $k^{th}$  condition can be represented as points in a measurable space $\Xi_k$, and the dissimilarities in the $k^{th}$ condition are given by  a dissimilarity measure $\delta_k$ acting on pairs of points in $\Xi_k$. Assume that $\mathcal{P}_{(m)}$ is the joint probability distribution over matched objects, whereas the joint distribution of unmatched objects \{$k=1,\ldots,K$\}  is $\mathcal{P}_{(u)}$. Assuming that the data are i.i.d., under the two hypotheses (''matched`` and ''unmatched``, respectively), the $n+1$ pairs of objects are governed  by the product distributions $\{\mathcal{P}_{(m)}\}^n \times \mathcal{P}_{(m)} $ and $\{\mathcal{P}_{(m)}\}^n \times \mathcal{P}_{(u)} $.  The distributions of $\Delta^{(m)}$ and $\Delta^{(u)}$ are the induced probability distributions of  these product distributions (induced by the  dissimilarity measure $\delta_k$ applied to  objects in $k^{th}$ condition \{$k=1,\ldots,K$\}).
+Suppose the objects in the $k^{th}$  condition can be represented as points in a measurable space $\Xi_k$, and the dissimilarities in the $k^{th}$ condition are given by  a dissimilarity measure $\delta_k$ acting on pairs of points in $\Xi_k$. Assume that $\mathcal{P}_{(m)}$ is the joint probability distribution over matched objects, whereas the joint distribution of unmatched objects \{$k=1,\ldots,K$\}  is $\mathcal{P}_{(u)}$. Assuming that the data are i.i.d., under the two hypotheses (``matched'' and ``unmatched'', respectively), the $n+1$ pairs of objects are governed  by the product distributions $\{\mathcal{P}_{(m)}\}^n \times \mathcal{P}_{(m)} $ and $\{\mathcal{P}_{(m)}\}^n \times \mathcal{P}_{(u)} $.  The distributions of $\Delta^{(m)}$ and $\Delta^{(u)}$ are the induced probability distributions of  these product distributions (induced by the  dissimilarity measure $\delta_k$ applied to  objects in $k^{th}$ condition \{$k=1,\ldots,K$\}).
 \end{remark}
 
 
@@ -177,7 +179,7 @@ Suppose the objects in the $k^{th}$  condition can be represented as points in a
 \end {array}
 \right]$$ where ${\widetilde{\mathcal{T}}}$ is the argument for the in-sample embedding of the first $n$ pairs of matched points, 
  $\widetilde{y}_{1}^{(.)} $ and $\widetilde{y}_{2}^{(.)} $ are the arguments for the embedding coordinates of the matched  or unmatched pair,
-and the omnibus dissimilarity matrix $\Delta^{(.)}$ is equal to  $\Delta^{(m)}$  (or $\Delta^{(u)}$) for the embedding of the matched (unmatched) pair. Note that we use the simple weighting scheme; with a slight abuse of notation, we rewrite the criterion function as  $\sigma_w(\widetilde{X}; \Delta^{(.)})$, where $w$ is a scalar parameter.
+and the omnibus dissimilarity matrix $\Delta^{(.)}$ is equal to  $\Delta^{(m)}$  (or $\Delta^{(u)}$) for the embedding of the matched (unmatched) pair. Note that we use the simple weighting scheme; with a slight abuse of notation, we rewrite the criterion function as  $\sigma_w(\widetilde{X}; \Delta^{(.)})$, where $w \in (0,1)$ is a scalar parameter.
 The embedding coordinates for the matched or unmatched pair  ${\hat{y}_{1}^{(.)},\hat{y}_{2}^{(.)}}$ are given by
  \[
 {\hat{y}_{1}^{(.)},\hat{y}_{2}^{(.)}}
@@ -204,9 +206,10 @@ The embedding coordinates for the matched or unmatched pair  ${\hat{y}_{1}^{(.)}
  Note also that  all of the random variables following the embedding, such as $\{\hat{y}_{k}^{(.)}\}\!$,  are dependent on $w$; for the sake of simplicity, this will  be suppressed in the notation. 
 \end{remark}
 
- Under reasonable assumptions, the embeddings $\Delta^{(m)} \rightarrow  \{\hat{y}_{1}^{(m)},\hat{y}_{2}^{(m)}\!\}$  and $\Delta^{(u)}\rightarrow \{\hat{y}_{1}^{(u)}, \hat{y}_{2}^{(u)}\}$ are measurable maps for all $w \in (0,1)$ \cite{measurable_Niemiro1992}. Then, the distances between the embedded points are random variables, and we can define the test statistic $\tau$ as $d(\hat{y}_{1}^{(m)},\hat{y}_{2}^{(m)})$ under the null hypothesis  and $d(\hat{y}_{1}^{(u)},\hat{y}_{2}^{(u)})$ under the alternative. Under the null hypothesis, the distribution of the statistic is governed by the distribution of $\hat{y}_{1}^{(m)}$ and $\hat{y}_{2}^{(m)}$; under the alternative, it is governed by  the distribution of $\hat{y}_{1}^{(u)}$ and $\hat{y}_{2}^{(u)}$.
+ Under reasonable assumptions, the embeddings $\Delta^{(m)} \rightarrow  \{\hat{y}_{1}^{(m)},\hat{y}_{2}^{(m)}\!\}$  and $\Delta^{(u)}\rightarrow \{\hat{y}_{1}^{(u)}, \hat{y}_{2}^{(u)}\}$ are measurable maps for all $w \in (0,1)$ \cite{measurable_Niemiro1992}. Then, the distances between the embedded points are random variables  and the test statistic $\tau$ is defined as the distance between the embedded points for a dissimilarity matrix sample of $\Delta^{(m)}$ or $\Delta^{(u)}$ (depending on whether the null or alternative hypothesis is true). % $d(\hat{y}_{1}^{(.)},\hat{y}_{2}^{(.)})$ . 
+ Under the null hypothesis, the distribution of the statistic is governed by the distribution of $\hat{y}_{1}^{(m)}$ and $\hat{y}_{2}^{(m)}$; under the alternative, it is governed by  the distribution of $\hat{y}_{1}^{(u)}$ and $\hat{y}_{2}^{(u)}$.
 
- Then, the statistical power as a function of $w$ is given by  \[\beta\left( w,\alpha\right)=1-F_{d \left(\hat{y}_{1}^{(u)},\hat{y}_{2}^{(u)}\right)} \left(F_{d\left(\hat{y}_{1}^{(m)},\hat{y}_{2}^{(m)}\right)}^{-1}(1-\alpha) \right)\], where $F_Y$ denotes  the   cumulative distribution function of  $Y$. The area under the curve (AUC)  as a function of $w$ is defined as  
+ Then, the statistical power as a function of $w$ is given by  \[\beta\left( w,\alpha\right)=1-F_{d \left(\hat{y}_{1}^{(u)},\hat{y}_{2}^{(u)}\right)} \left(F_{d\left(\hat{y}_{1}^{(m)},\hat{y}_{2}^{(m)}\right)}^{-1}(1-\alpha) \right),\] where $F_Y$ denotes  the   cumulative distribution function of  $Y$. The area under the curve (AUC)  as a function of $w$ is defined as  
 \begin{equation} 
 AUC(w)=\int_{0}^{1}\! \beta\left( w,\alpha\right)\,\mathrm{d}\alpha \; . \label{AUC_def}
 \end{equation} 
@@ -224,13 +227,13 @@ Although finding an analytical expression for the value of $w^*$ is intractable,
 
 \subsection{Continuity of $AUC(\cdot)$\label{subsec:auc_cont}} 
  Let $T_0(w)=d(\hat{y}_{1}^{{(m)}},\hat{y}_{2}^{{(m)}})$, and $T_a(w)=d(\hat{y}_{1}^{(u)},\hat{y}_{2}^{(u)})$ denote the value of the test statistic under the distributions for the null and alternative hypotheses for the embedding with the simple weighting $w$.  %stochastic process whose sample path is  a function of $w$ where the randomness comes from $\Delta^{(m)}$, $\Delta^{(u)}$ and %$\mathcal{T}$ . 
-%Consider $\beta_{\alpha}(\cdot)$ to be a function of $w$, which can be written as $P\left[T_a(\cdot)>c_{\alpha}(\cdot)\right]$ where $c_{\alpha}(\cdot)$ is the critical value for level $\alpha$. Instead of  $\beta_{\alpha}(\cdot)$  
-The AUC function can be written as $$AUC(w)=P\left[T_a(w)>T_0(w)\right]$$, where $T_a(\cdot)$ and $T_0(\cdot)$  can be considered  stochastic processes whose sample paths are functions of $w$. We will prove that $AUC(w)$ is continuous with respect to $w$.
+%Consider $\beta_{\alpha}(\cdot)$ to be a function of $w$, which can be written as $\Pry \left[T_a(\cdot)>c_{\alpha}(\cdot)\right]$ where $c_{\alpha}(\cdot)$ is the critical value for level $\alpha$. Instead of  $\beta_{\alpha}(\cdot)$  
+The AUC function can be written as $$AUC(w)=\Pry \left[T_a(w)>T_0(w)\right],$$ where $T_a(\cdot)$ and $T_0(\cdot)$  can be considered  stochastic processes whose sample paths are functions of $w$. We will prove that $AUC(w)$ is continuous with respect to $w$.
 % except at a finite number of points in $(0,1)$.
 We start with this lemma from \cite{Raik1972}.
 
 \begin{lem}
-Let $z$ be a random variable. The functional $g(z;\gamma) = P\left[z \geq \gamma \right]$ is upper semi-continuous in probability with respect to $z$. Furthermore, if $P\left[z = \gamma \right]=0$, $g(z;\gamma)$ is continuous in probability with respect to $z$. \label{lemma_1}
+Let $z$ be a random variable. The functional $g(z;\gamma) = \Pry \left[z \geq \gamma \right]$ is upper semi-continuous in probability with respect to $z$. Furthermore, if $\Pry \left[z = \gamma \right]=0$, $g(z;\gamma)$ is continuous in probability with respect to $z$. \label{lemma_1}
 \end{lem}
 
 \begin{proof}
@@ -257,7 +260,7 @@ g_(z;\gamma+\delta) - g(z_n;\gamma) \leq \epsilon. \label{lower_semicont}
 \end{equation}
 
 
-In addition, assume that  $P\left[z = \gamma \right]=0$. Then, $g(z;\gamma)$ is also right-continuous with respect to $\gamma$. Therefore, 
+In addition, assume that  $\Pry \left[z = \gamma \right]=0$. Then, $g(z;\gamma)$ is also right-continuous with respect to $\gamma$. Therefore, 
 $g(z_n;\gamma) -g(z;\gamma) \leq g(z_n;\gamma) -g(z;\gamma+\delta)$, and the difference between the two sides of the inequality can be made as small as possible. 
 Along with \eqref{lower_semicont}, this means that
 
@@ -290,11 +293,11 @@ Let $T(w)=T_a(w)-T_0(w).$ Then, Theorem \ref{main_thm} applies everywhere in the
 
 In any closed interval that is a subset of $(0,1)$, the AUC function is continuous and therefore attains its global maximum in that closed interval.
 
- We do not have closed-form expressions for the distributions under the null and alternative hypotheses of the test statistic $\tau$ (as a function of  $w$), and therefore, we cannot provide a rigorous proof of the uniqueness of $w^*$. However, for various data settings, the simulations \ref{sec:simexp_results} always resulted in \emph{unimodal}  estimates for the AUC function, which indicates a unique $w^*$ value.
+ We do not have closed-form expressions for the distributions under the null and alternative hypotheses of the test statistic $\tau$ (as a function of  $w$), and therefore, we cannot provide a rigorous proof of the uniqueness of $w^*$. However, for various data settings, the simulations described in \autoref{sec:simexp_results} always resulted in \emph{unimodal}  estimates for the AUC function, which indicates a unique $w^*$ value.
 
 
 
-We should also mention that the stochastic continuity of the test statistics $T(w)$ as a function of $w$  is a reasonable assumption. Discontinuity in the test statistic can arise as  a result of discontinuity of the embedded configurations with respect to the $w$ parameter. The embedded configurations, which are the global minimizers of the criterion function, can have discontinuities if  there exist multiple local minima, and  infinitesimal changes in $w$ will change the ordering of the ``distinct'' local minima. Although we present an example in which multiple local minima of the criterion function  lead to  a discontinuity of the embedded configuration  with respect to $w$ \ref{subsubsec:Discontinuity}, other than such carefully constructed examples, we do not expect  such discontinuities in the embedded configurations to occur for data generated from continuous case probability distributions. 
+We should also mention that the stochastic continuity of the test statistics $T(w)$ as a function of $w$  is a reasonable assumption. Discontinuity in the test statistic can arise as  a result of discontinuity of the embedded configurations with respect to the $w$ parameter. The embedded configurations, which are the global minimizers of the criterion function, can have discontinuities if  there exist multiple local minima, and  infinitesimal changes in $w$ will change the ordering of the ``distinct'' local minima. Although we present an example in which multiple local minima of the criterion function  lead to  a discontinuity of the embedded configuration  with respect to $w$ in \autoref{sec:MultMinima}, other than such carefully constructed examples, we do not expect  such discontinuities in the embedded configurations to occur for data generated from continuous case probability distributions. 
 One can conclude  that the stochastic continuity of the test statistic with respect to $w$  is a valid assumption.
 
 

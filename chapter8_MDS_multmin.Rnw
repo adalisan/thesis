@@ -3,25 +3,27 @@
 \chaptermark{Multiple Minima in  Multidimensional Scaling}
 
 
-While previously we have considered  configurations embedded via optimization of  MDS criterion functions,   we have not mentioned  the difficulties that might rise in optimization, such as lack of convergence or the existence  of  multiple local minima. Since the raw stress minimization is solved with the iterative majorization algorithm, the MDS embedding method is prone to these global optimization problems. Their severity depends on the value of  original dissimilarities. We are particularly interested in the multiple local minima problem, as the configuration yielded by the  optimization of MDS criterion might be  a local minimum instead of the global minimum. In fact, a unique global minimum of the MDS criterion might not exist. In \cite{TrossetLocalMin}, the multiple local minima problem is discussed for raw stress. A simple example is constructed which is shown to have multiple local minima of which one is a global minimum.
+We previously considered  configurations embedded via optimization of the MDS criterion functions, but we have not mentioned the difficulties that might rise in optimization, such as the lack of convergence or the existence of multiple local minima. Because raw stress minimization is solved using the iterative majorization algorithm, the MDS embedding method is prone to these global optimization problems. Their severity depends on the value of the original dissimilarities. We are particularly interested in the multiple local minima problem, as the configuration yielded by the optimization of MDS criterion might be a local minimum instead of the global minimum. In fact, a unique global minimum of the MDS criterion might not exist. In \cite{TrossetLocalMin}, the multiple local minima problem is discussed for raw stress. A simple example is constructed, which is shown to have multiple local minima, one of which is the global minimum.
 
 
-We focus our attention not  on proving  evidence of the existence of multiple local minima  in our matched data settings, but investigating how multiple local minima might be related to $w$, in the case they do exist. We know the weighted raw stress function is continuous with respect to $w$. As $w$ changes, the weighted raw stress function will change continuously, and the value of $w$ might have an  effect on  which local minimum  the iterative algorithm\footnote{Since we are using raw-stress embedding, we are using iterative majorization to find the MDS solution.} might terminate in. Or as a result of $w$ changing,  another local minimum can become the global minimum. In the latter case, this means that the $\argmin$ of the MDS criterion function jumps from one local minimum (a particular configuration) to another minimum/configuration with an infinitesimal change of $w$. In this case, the embedded configuration,$\X$ viewed as a matrix-valued function of $w$ has a point discontinuity. As $AUC(w)=auc(\X (w))$ is a function of the embedded configuration, the discontinuity of the configuration $\X(w)$ at $w= w_{d}$ might also cause $AUC(w)$ to be discontinuous at that $w=w_{d}$ .   For investigating these issues, following the approach of\cite{TrossetLocalMin}, we design a simple example that is as informative as it is instructive.  
+We focus our attention not  on providing evidence of the existence of multiple local minima  in our matched data settings but on investigating how multiple local minima might be related to $w$, when they do exist. We know the weighted raw stress function is continuous with respect to $w$. As $w$ changes, the weighted raw stress function will change continuously, and the value of $w$ might have an effect the local minimum in which the iterative algorithm\footnote{Because we are using raw-stress embedding, we are using iterative majorization to find the MDS solution.} might terminate. 
+As a result of a change in $w$,  another local minimum can become the global minimum. In the latter case, the $\argmin$ of the MDS criterion function jumps from one local minimum (a particular configuration) to another minimum/configuration with an infinitesimal change in $w$. 
+In this case, the embedded configuration, $\X$, viewed as a matrix-valued function of $w$, has a point discontinuity. Because $AUC(w)=auc(\X (w))$ is a function of the embedded configuration, the discontinuity of the configuration $\X(w)$ at $w= w_{d}$ might also cause $AUC(w)$ to be discontinuous at that $w=w_{d}$.   To investigate these issues, following the approach of \cite{TrossetLocalMin}, we design a simple example that is as informative as it is instructive.  
 
 \section{ Discontinuity in weighted raw stress OOS configurations\label{subsubsec:Discontinuity}}
- It is  possible to construct an example  where the weight parameter $w$ controls which of the local minima is the global minimum among the configurations of $\hat{X}_{.}$.
+ It is  possible to construct an example in which the weight parameter $w$ controls which of the local minima is the global minimum among the configurations of $\hat{X}_{.}$.
 
 %Global Minimum Configuration determined by $w$ .
 
-Consider five in-sample points in $\mathbb{R}^2$ with locations $X_1=(0,0)$, $X_2=(1,0)$, $X_3=(1,1)$
-and $X_4=(1,0)$, $X_5=(.5,.5)$ and two out-of-sample  points with coordinates $X_6=(1,0)$ and $X_7=(0,1)$.
+Consider five in-sample points in $\mathbb{R}^2$ with locations $X_1=(0,0)$, $X_2=(1,0)$, $X_3=(1,1)$,
+$X_4=(1,0)$, and $X_5=(.5,.5)$ and two OOS points with coordinates $X_6=(1,0)$ and $X_7=(0,1)$.
 \begin{figure}
 \centering
 \includegraphics[scale=0.85]{multmin-diag}
 \caption{True configuration of $X_{i}$, $i \in {1,\ldots,7}$}
 \label{original-config}
 \end{figure} 
-We assume $X_6$ is matched with $X_2$ and $X_7$ is matched with $X_4$. Therefore, the weights for the dissimilarities between $X_6$ and  $X_2$ (also  $X_7$ and $X_4$)  are $w$. The weights of other dissimilarities are $1-w$.
+We assume that $X_6$ is matched with $X_2$ and that $X_7$ is matched with $X_4$. Therefore, the weights for the dissimilarities between $X_6$ and  $X_2$ (also  $X_7$ and $X_4$)  are $w$. The weights of other dissimilarities are $1-w$.
 
 Denote the Euclidean distance matrix by $D$. 
 Suppose, due to noise, or due to dissimilarities corresponding to a non-Euclidean distance, 
@@ -30,39 +32,62 @@ D_{ij}-1.4 & \textrm{if  $(i,j) \in \{(4,6),(6,4),(2,7),(7,2)   \}$ }\\
 D_{ij}  & \textrm{ otherwise}\\
 \end{cases}.$$ 
 
+The approximate values of the dissimilarity matrix is shown in \autoref{table:diss_mat}.
+
+\begin{table}[ht]
+\centering
+\ttfamily
+\begin{tabular}{r|rrrrrrr}
+  \hline
+ & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ 
+  \hline
+  1 & 0.00 & 1.00 & 1.41 & 1.00 & 0.71 &1.00 & 1.00  \\ 
+  2 & 1.00 & 0.00 & 1.00 & 1.41 & 0.71 & 0.00 & 0.01 \\ 
+  3 & 1.41 & 1.00 & 0.00 & 1.00 & 0.71 & 1.00 & 1.00  \\ 
+  4 & 1.00 & 1.41 & 1.00 & 0.00 & 0.71 & 0.01 & 0.00  \\ 
+  5 & 0.71 & 0.71 & 0.71 & 0.71 & 0.00 & 0.71 & 0.71   \\ 
+  6 & 1.00 & 0.00 & 1.00 & 0.01 & 0.71 & 0.00 & 1.41  \\ 
+  7 & 1.00 & 0.01 & 1.00 & 0.00 & 0.71 & 1.41 & 0.00  \\ 
+  
+   \hline
+\end{tabular}
+
+\caption{The entries of the dissimilarity matrix (rounded to two decimal digits)\label{table:diss_mat}}
+\end{table}
+
+
+
 \begin{remark}
-This data setting doesn't exactly fit the data setting we use for the match detection task, as one of each matched pair is an in-sample point, and there are not any multiple conditions. As we pointed out, we are really constructing  a  simple  enough setting that shows interesting behaviour.
+This data setting does not exactly fit the data setting that we use for the match detection task because one of each matched pair is an in-sample point and there are not any multiple conditions. As we have noted, our aim is to just set up a simple setting with the weighted raw stress criterion function that still demonstrates interesting behavior.
 \end{remark}
 
 The MDS criterion function is optimized with the iterative majorization algorithm starting with different initial configurations.   Depending on the initial configuration, the final embedding coordinates of $\hat{X}_6$ might be closer
-to $X_4$ compared to $X_2$, because the iterative majorization algorithm terminates in that  local minimum in the configuration space. Since $D_{46}\approx 0$ and $D_{27}\approx 0$, the configurations  which place $\hat{X}_6$ and $X_4$ together (and $\hat{X}_7$ and $X_2$ together) would have  raw stress  close to the  original  configuration which has $\hat{X}_6$ and $X_2$ together (and $\hat{X}_7$ and $X_4$ together). So we have at least two local minima for this data setting.
+to $X_4$ than to $X_2$ because the iterative majorization algorithm terminates in that local minimum in the configuration space. Because $D_{46}\approx 0$ and $D_{27}\approx 0$, the configurations  that place $\hat{X}_6$ and $X_4$ together (and $\hat{X}_7$ and $X_2$ together) would have raw stress close to the original configuration that has $\hat{X}_6$ and $X_2$ together (and $\hat{X}_7$ and $X_4$ together). We therefore have at least two local minima for this data setting.
 
-We distinguish between these two kinds of local minima, one where the embedded OOS points $\hat{X}_6$ and $\hat{X}_7$ end up in the same side as their respective matched points $X_2$ and $X_4$ (named ``true'' or real config.) and the other where they end up in sides  opposite their matched points (named ``alternative" local min.). 
+We distinguish between these two types of local minima, one in which the embedded OOS points $\hat{X}_6$ and $\hat{X}_7$ end up on the same side as their respective matched points $X_2$ and $X_4$ (named ``true'' or real config.) and the other in which they end up on the sides opposite to their matched points (named ``alternative'' local min.). 
 
-For  initial configurations where the initial coordinates of $\hat{X}_6$ is on the $X_4$ side of the $y=x$ line  in  $\mathbb{R}^2$, and $\hat{X}_7$ is on the $X_2$ side, the iterative majorization might terminate  in an ``alternative" local minimum.
-Assume we start from such an initial configuration, interpreting the steps of iterative majorization as points moving toward low-stress configurations, $\hat{X}_6$  has to cross paths with the embeddings of  ${X}_1,{X}_3,{X}_5$. However embedding $\hat{X}_6$ close to these points would result in a high-stress configuration, since it has   nonzero dissimilarities with those points. The same argument can be made for $\hat{X}_7$. To qualitatively describe the situation, the three points $X_1$, $X_5$ and $X_3$ form a barrier which the OOS points need to cross  to reach their matched counterparts. 
+For  initial configurations in which the initial coordinates of $\hat{X}_6$ lie on the $X_4$ side of the $y=x$ line  in  $\mathbb{R}^2$ and $\hat{X}_7$ is on the $X_2$ side, the iterative majorization might terminate in an ``alternative'' local minimum.
+Assume that we start from such an initial configuration, interpreting the steps of iterative majorization as points moving toward low-stress configurations, $\hat{X}_6$ has to cross paths with the embeddings of  ${X}_1,{X}_3,{X}_5$. However, embedding $\hat{X}_6$ close to these points would result in a high-stress configuration because it has nonzero dissimilarities with those points. The same argument can be made for $\hat{X}_7$. To qualitatively describe the situation, the three points $X_1$, $X_5$, and $X_3$ form a barrier that the OOS points need to cross to reach their matched counterparts. 
 
-The ``alternative" local minima correspond to the case where the OOS points are unable to cross the ``barrier''. Other configurations such as the ones where $\hat{X}_6$ and $\hat{X}_7$  are  in the same side of $y=x$ line are not local minima, since the original dissimilarity between $X_6$ and $X_7$)is large ($\sqrt{2}$) compared to dissimilarities between other pairs of points (the dissimilarity  values are $0$,$1$, $\frac{\sqrt{2}}{2}$ ) and embedding them close would increase raw stress significantly.
+The ``alternative'' local minima correspond to the case in which the OOS points are unable to cross the ``barrier''. Other configurations such as those in which $\hat{X}_6$ and $\hat{X}_7$  are  on the same side of $y=x$ line are not local minima because the original dissimilarity between $X_6$ and $X_7$) is large ($\sqrt{2}$) compared with dissimilarities between other pairs of points (the dissimilarity values are $0$, $1$, and $\frac{\sqrt{2}}{2}$) and because embedding them close would increase the raw stress significantly.
 
-Based on value of $w$, it might be easier or harder to get out of the  ``alternative" local minimum.
-In addition, depending on $w$, these  ``alternative"   configurations can have a lower stress than  the ``true'' (real) configuration  be a global minimum. 
-That is, if $w$ is small enough, the configuration where $\hat{X}_6$ stays on the side of $X_4$ instead of $X_2$ might have a lower stress than the configuration where $\hat{X}_6$ is near its matched point $X_2$, due to the fact that  contribution of $ D_{ij}-d(X_i,X_j)$ to the raw stress where $(i,j)=(4,6)$  is  multiplied by $1-w$ while every other dissimilarity is multiplied by $w$. 
+Whether it is easier or harder to get out of the ``alternative'' local minimum is based on the value of $w$.
+In addition, depending on $w$, these  ``alternative''   configurations can have a lower stress than  the ``true'' (real) configuration and result in a global minimum. 
+That is, if $w$ is small enough, the configuration in which $\hat{X}_6$ stays on the side of $X_4$ instead of that of $X_2$ might have a lower stress than the configuration in which $\hat{X}_6$ is near its matched point $X_2$ because the  contribution of $ D_{ij}-d(X_i,X_j)$ to the raw stress where $(i,j)=(4,6)$ is multiplied by $1-w$, whereas every other dissimilarity is multiplied by $w$. 
 
-For our simulation, we chose a grid of starting points for $X_6$ has the x-coordinates of  ${X_6}_x \in \{-0.5,0.4,\ldots,1.5\}$  and the y-coordinates ${X_6}_y \in  \{-0.2,-0.1,0,\ldots,1.6\}$. For  $X_7$, the corresponding starting points were $(1-{X_6}_x,1-{X_6}_y)$. We embedded the pair of OOS points  by minimizing raw stress with the IM algorithm starting from pair of corresponding points from the grid.
+For our simulation, we chose a grid of starting points for $X_6$ with the x-coordinates of  ${X_6}_x \in \{-0.5,0.4,\ldots,1.5\}$ and the y-coordinates ${X_6}_y \in  \{-0.2,-0.1,0,\ldots,1.6\}$. For $X_7$, the corresponding starting points were $(1-{X_6}_x,1-{X_6}_y)$. We embedded the pair of OOS points  by minimizing raw stress with the IM algorithm starting from a pair of corresponding points from the grid.
 
-Starting from a small enough value for $w$ and increasing it until $w$ is arbitrarily close to $1$, there are two $w$ values where important changes in embedding configurations and final stress values occur.
+Starting from a small enough value for $w$ and increasing it until $w$ is arbitrarily close to $1$, there are two $w$ values for which important changes in embedding configurations occur and final stress values are obtained.
 
-The plots in Figures \ref{fig:Finalconfig-MultMin-w-0_1}, \ref{fig:Finalconfig-MultMin-w-0_5}, \ref{fig:Finalconfig-MultMin-w-0_8}, \ref{fig:Finalconfig-MultMin-w-0_81} , \ref{fig:Finalconfig-MultMin-w-0_84} show the  embedding configurations of ${X}_6$ (in red circles) and ${X}_7$(in blue plusses). Each point in the plots is where the IM algorithm terminates in in starting from different initial configurations (One red and one blue point for each  initial configuration). The point pairs plotted in the left box for each figure pair are those configurations  where the  ${X}_6$ and ${X}_7$ end up in the side of their matched points (``true'' final configuration). The configurations in the right are those where the points end up in the opposite side of their matched points. For the last 4 $w$ values $(0.82,0.83,0.84,0.85)$, there are no initial configurations that end up in ``alternative''-kind configurations. Both kinds of  configurations (``true'' and ``alternative'') for selected $w$ values are plotted in Figure \ref{fig:plot_final_pts_all_w}. The plots for different $w$ are also animated\ref{fig:config_w_ani}.
+The plots in Figures \ref{fig:Finalconfig-MultMin-w-0_1}, \ref{fig:Finalconfig-MultMin-w-0_5}, \ref{fig:Finalconfig-MultMin-w-0_8}, \ref{fig:Finalconfig-MultMin-w-0_81}, and \ref{fig:Finalconfig-MultMin-w-0_84} show the  embedding configurations of ${X}_6$ (in red circles) and ${X}_7$ (in blue pluses). Each point in the plots is a point at which the IM algorithm terminates after starting from different initial configurations (one red and one blue point for each initial configuration). The point pairs plotted in the left box for each figure pair are those configurations in which ${X}_6$ and ${X}_7$ end up on the side of their matched points (``true'' final configuration). The configurations on the right are those in which the points end up on the opposite side of their matched points. For the last four $w$ values, $(0.82, 0.83, 0.84, 0.85)$, there are no initial configurations that end up in ``alternative''-type configurations. Both types of  configurations (``true'' and ``alternative'') for selected $w$ values are plotted in Figure \ref{fig:plot_final_pts_all_w}. The plots for different $w$ are also animated \ref{fig:config_w_ani}.
 
-We are also interested in which kind of local minima has lower stress and contains the global minima solution. We compute  the minimum stress value among each kind of local minima and compare these final stress values. The final stress values of the final configurations listed in  \autoref{table:stress_val} and plotted in figure \ref{fig:final_stress_plot} indicate that around $w=0.5$ the  ``true''-kind local minima   starts having a lower stress value compared to ``alternative''-kind.  This is the first $w$ value that corresponds to an important change. This transition provides evidence that different local minima might become global minima, depending on value of $w$.
+We are also interested in which type of local minima has lower stress and contains the global minimum solution. We compute the minimum stress value among each type of local minima and compare these final stress values. The final stress values of the final configurations listed in  \autoref{table:stress_val} and plotted in figure \ref{fig:final_stress_plot} indicate that around $w=0.5$, the  ``true'' local minimum, begins to have a lower stress value compared with the ``alternative'' local minimum.  This is the first $w$ value that corresponds to an important change. This transition provides evidence that different local minima might become global minima, depending on the value of $w$.
 
-Also note that starting around $w=0.8$ in Figure \ref{fig:Finalconfig-MultMin-w-0_8}, all of the $\hat{X}_6$ and $\hat{X}_7$  pairs are on the verge of passing throught the barrier and start ending up in the side of their matched points, due to the fact that the barrier starts to become negligible and there are no separate local minima. When $w>0.8$, all of the point pairs end up in  the ``real'' configuration \ref{fig:Finalconfig-MultMin-w-0_81}. This is the other $w$ value where important changes in configurations and stress values occur. Further increasing $w$ changes the final stress value, and  the final embedding configuration moves closer to the original locations of $X_{i}$ in \ref{original-config} \ref{fig:Finalconfig-MultMin-w-0_84}.
+It is also noteworthy that starting around $w=0.8$ in Figure \ref{fig:Finalconfig-MultMin-w-0_8}, all of the $\hat{X}_6$ and $\hat{X}_7$  pairs are on the verge of passing through the barrier and ending up on the side of their matched points because the barrier starts to become negligible and there are no separate local minima. When $w>0.8$, all of the point pairs end up in  the ``real'' configuration \ref{fig:Finalconfig-MultMin-w-0_81}. This is the other $w$ value at which important changes in configurations and stress values occur. Further increasing $w$ changes the final stress value, and  the final embedding configuration moves closer to the original locations of $X_{i}$ in \ref{original-config} \ref{fig:Finalconfig-MultMin-w-0_84}.
 
 <<multMinMDS,eval=TRUE,results='hide',tidy=FALSE,echo=FALSE,error=TRUE,cache=TRUE>>=
 verbose=TRUE
-#root.dir<-Sys.getenv("PROJECT_DIR")
-#hack for linux
-root.dir <- "~/Documents/projects/"
+root.dir<-Sys.getenv("PROJECT_DIR")
 setwd(root.dir)
 source("./JOFC_MatchDetect/lib/smacofM.R")
 source("./JOFC_MatchDetect/lib/oosIM.R")
@@ -484,7 +509,7 @@ print(g1)
 @
 
 
-<<config_w_ani,eval=TRUE, fig.show='animate',echo=FALSE,out.width='6in'>>=
+<<config_w_ani,eval=TRUE, fig.show='animate',echo=FALSE,out.width='6in',fig.cap="Embedded Point Pairs ($\\hat{X}_6$ and $\\hat{X}_7$) for all initial configurations for different $w$ values">>=
 for (w.it in w.vals){
 sub.final.pts.lf.logical<-all.final.pts.lf$w %in% w.it
 sub.final.pts.lf<- all.final.pts.lf[sub.final.pts.lf.logical,]
@@ -626,7 +651,7 @@ if (create.ani){
 \label{fig:Finalconfig-MultMin-w-0_1_b}
 \end{minipage}
 
-\caption{Final configurations for for different $w=0.1$ }
+\caption{Final configurations for different initial configurations, $w=0.1$ }
 \label{fig:Finalconfig-MultMin-w-0_1}
 
 
@@ -652,7 +677,7 @@ if (create.ani){
 
 \end{minipage}
 
-\caption{Final configurations for for different $w=0.5$ }
+\caption{Final configurations for different initial configurations, $w=0.5$ }
 \label{fig:Finalconfig-MultMin-w-0_5}
 
 \end{figure}
@@ -669,12 +694,12 @@ if (create.ani){
 \begin{minipage}[b]{0.5\linewidth}
 \centering
 \includegraphics[scale=0.45]{other-min-w0_8.pdf}
-\label{fig:Finalconfig-MultMin-w-0_8_a}
+\label{fig:Finalconfig-MultMin-w-0_8_b}
 
 
 \end{minipage}
 
-\caption{Final configurations for for different $w=0.8$ }
+\caption{Final configurations for different initial configurations, $w=0.8$ }
 \label{fig:Finalconfig-MultMin-w-0_8}
 
 \end{figure}
@@ -696,7 +721,7 @@ if (create.ani){
 
 \end{minipage}
 
-\caption{Final configurations for for different $w=0.81$ }
+\caption{Final configurations for different initial configurations, $w=0.81$ }
 \label{fig:Finalconfig-MultMin-w-0_81}
 
 \end{figure}
@@ -719,7 +744,7 @@ if (create.ani){
 
 \end{minipage}
 
-\caption{Final configurations for for different $w=0.84$ }
+\caption{Final configurations for different initial configurations, $w=0.84$ }
 \label{fig:Finalconfig-MultMin-w-0_84}
 
 \end{figure}
@@ -793,7 +818,7 @@ Alternative local min & 0.39 & 1.53 & 1.65 & 1.74 & NA \\
 \end{table}
 \end{comment}
 
-<<final_stress_plot,fig.show='asis',echo=FALSE,warning=FALSE,out.width='\\maxwidth'>>=
+<<final_stress_plot,echo=FALSE,warning=FALSE,out.width='\\maxwidth',fig.cap='Final stress values vs $w$ for the two true and alternative local minima configurations'>>=
 w.cache <- c(
   0.1, 0.2, 0.3, 0.4, 0.41, 0.42, 0.43, 0.44, 0.45, 0.46, 0.47
  , 0.48, 0.49, 0.5, 0.51, 0.52, 0.53, 0.54, 0.55, 0.6, 0.65, 0.7 
@@ -824,7 +849,7 @@ print(g2)
 @
 
 
-This example was constructed carefully with a symmetric configuration of points. Under reasonable probability distributions for point configurations, it is unexpected that such a symmetry will appear with non-zero probability. Thus, we conjecture that such discontinuities with respect to $w$ in the embedded configuration  have zero measure. Since the test statistic is a continuous function of the embedded configuration, this would mean that the event that the test statistic has discontinuities with respect to $w$ also have zero measure. This suggests the assumption of stochastic continuity of the test statistic  that is used to show the continuity of $AUC$ function in \autoref{subsec:auc_cont} is a reasonable assumption.
+This example was constructed carefully using a symmetric configuration of points. Under reasonable probability distributions for point configurations, it is unexpected that such a symmetry will appear with nonzero probability. Thus, we conjecture that such discontinuities with respect to $w$ in the embedded configuration have a zero measure. Because the test statistic is a continuous function of the embedded configuration, the events for which the test statistic has discontinuities with respect to $w$ also have a zero measure. This result suggests that the assumption of stochastic continuity of the test statistic that is used to show the continuity of the $AUC$ function in \autoref{subsec:auc_cont} is a reasonable assumption.
 
 %Other than such carefully constructed examples, it is  unexpected that slight changes in $w$  will change the ordering of the ``distinct''  local minima according to their stress values.
 %Therefore,  the argmin among the local minima configurations is independent of $w$. The minimum configuration is then a continuous function of $w$. 

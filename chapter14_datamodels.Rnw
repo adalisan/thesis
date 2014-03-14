@@ -1,48 +1,48 @@
-\chapter{Data Models for Match Detection Task}
+\chapter{Data Models for the Match Detection Task}
 \label{chap:data_models}
-\chaptermark{Optional running chapter heading}
+\chaptermark{Data Models for the Match Detection Task}
 
 
 
 \section{Two data settings for Match Detection\label{sec:data_settings}}
 
 
-  In this chapter, we present two generative data models that illustrate the idea of matchedness.
+  In this chapter, we present two generative data models that illustrate the idea of matchedness. We will use  the Multivariate  Normal and Dirichlet probability distributions, with the parameters $p$,$r$,$q$,$c$ to generate matched dissimilarity data in $K=2$ conditions. 
 \subsection{Gaussian setting\label{subsec:GaussianSet}}
   Let    $\Xi_1 = \mathbb{R}^{p}$ and $\Xi_2 = \mathbb{R}^{p}$.
-  Let $\bm{\alpha}_i \sim^{iid} MVNormal(\bm{0},I_p)$ represent $n$ ``objects".  Let $X_{ik} \sim^{iid} MVNormal(\bm{\alpha_i},\Sigma)$ represent $K=2$ matched measurements (each under a different condition).
-  $\Sigma$ is a positive-definite $p\times p$ matrix such that  $\max(\Lambda(\Sigma))=\frac{1}{r} $ where $\Sigma=U\Lambda(\Sigma)U'$  is the eigenvalue decomposition of $\Sigma$. See Figure~\ref{fig:Fig1}.
+  Let $\bm{\alpha}_i \sim^{iid} MVNormal(\bm{0},I_p)$ represent $n$ ``objects''.  Let $X_{ik} \sim^{iid} MVNormal(\bm{\alpha_i},\Sigma),\quad i \in \{1,\ldots,n\}, k \in \{1,2\} $ represent $K=2$ matched measurements (each under a different condition).
+  $\Sigma$ is a positive-definite $p\times p$ matrix such that  the maximum eigenvalue of $\Sigma$ $\frac{1}{r} $ and other eigenvalues are drawn from the uniform distribution between $0$ and $\frac{1}{r}$ (see Figure~\ref{fig:Fig1}).
 
-The parameter $r$ controls the variability between ``matched" measurements. If $r$ is large, it is expected that the distance between matched measurements
-$X_{i1}$ and $X_{i2}$ to be stochastically smaller than $X_{i1}$ and $X_{i'2}$ for $i \neq i'$ ; if r is small, then ``matched" is not informative in terms of similarity of measurements.
- Smaller $r$ will make the decision problem harder and will lead to higher rate of errors or tests with smaller power for fixed type I error rate $\alpha$.
+The parameter $r$ controls the variability between ``matched'' measurements. If $r$ is large, it is expected that the distance between matched measurements
+$X_{i1}$ and $X_{i2}$ is stochastically smaller than $X_{i1}$ and $X_{i'2}$ for $i \neq i';\, i,i' \in \{1,\ldots,n\}$ ; if $r$ is small, then ``matched'' is not informative in terms of the similarity of measurements.
+ Smaller $r$ values will make the decision problem harder and will lead to higher rates of errors or tests with smaller power for a fixed type I error rate $\alpha$.
   
     \begin{figure}
   \begin{center}
-    \includegraphics[scale=0.75]{MVN_alpha_r_multiple_sancar.pdf}
-    \caption{For the  Gaussian setting (Section \ref{subsec:GaussianSet}), the $\alpha_i$ are denoted by black points and the $X_{ik}$ are denoted by red and blue points respectively.\label{fig:Fig1}}
+    \includegraphics[width=\columnwidth]{MVN_alpha_r_multiple_sancar.pdf}
+    \caption[ The multiple-condition data generated according to the Gaussian setting]{For the  Gaussian setting (Section \ref{subsec:GaussianSet}), the $\alpha_i$ are denoted by black points, and the $X_{ik}$ are denoted by red and blue points.\label{fig:Fig1}}
 	\end{center}
   \end{figure}
 
 \subsection{Dirichlet setting\label{subsec:DirichletSet}}
 Let $S^p=\{\bm{x}:\bm{x}\in\mathbb{R}^{(p+1)}, \sum_{l=1}^p{x_l}=1\}$ be the standard $p$-simplex in $\mathbb{R}^{p+1}$.
- Let $\Xi_1 = S^p$ and $\Xi_2 = S^p$.   Denote a vector of ones by $\bm{1}_{p+1}\in \mathbb{R}^{(p+1)}$.
-  Let $\bm{\alpha}_i \sim^{iid} Dirichlet(\bm{1}_{p+1})$ represent $n$  ``objects'' and let $X_{ik} \sim^{iid} Dirichlet(r\bm{\alpha}_i+\bm{1}_{p+1})$ represent $K$ measurements. See Figure~\ref{fig:Fig2}.
+ Let $\Xi_1 = S^p$ and $\Xi_2 = S^p$.   Denote a $p+1$-length vector of  ones by $\bm{1}_{p+1}\in \mathbb{R}^{(p+1)}$.
+  Let $\bm{\alpha}_i \sim^{iid} Dirichlet(\bm{1}_{p+1})$ represent $n$  ``objects'', and let $X_{ik} \sim^{iid} Dirichlet(r\bm{\alpha}_i+\bm{1}_{p+1})$ represent $K$ measurements (Figure~\ref{fig:Fig2}).
 
- The parameter $r$ again controls the variability between ``matched" measurements.
+ The parameter $r$ controls the variability between ``matched'' measurements.
     \begin{figure}
 	\begin{center}
-    \includegraphics[scale=0.75]{Dirichlet_alpha_r_multiple_sancar.pdf}
-   \caption{ For the  Dirichlet setting (Section \ref{subsec:DirichletSet}),  the $\alpha_i$ are denoted by black points and the $X_{ik}$ are denoted by red and blue points respectively.}
+    \includegraphics[width=\columnwidth]{Dirichlet_alpha_r_multiple_sancar.pdf}
+   \caption[The multiple-condition data generated according to the Dirichlet setting]{ For the  Dirichlet setting (Section \ref{subsec:DirichletSet}),  the $\alpha_i$ are denoted by black points, and the $X_{ik}$ are denoted by red and blue points .}
 \label{fig:Fig2}
 	\end{center}
   \end{figure}
 
 \subsection{Noise\label{subsec:noise}}
-Measurements $X_{ik}$ carry the signal that is relevant to the exploitation task. Noise dimensions can be introduced to  the measurements by concatenating a $q$-dimensional error vector whose magnitude is controlled by the parameter $c$. The noisy measurements will be  represented by the random vectors 
+Measurements $\{X_{ik}\}$ carry the signal that is relevant to the exploitation task. Noise dimensions can be introduced to  the measurements by concatenating a $q$-dimensional error vector whose magnitude is controlled by the parameter $c$. The noisy measurements will be  represented by the random vectors 
  \begin{equation}
-\breve{X}_{ik}=[(1-c)X_{ik}\hspace{5pt} cE_{ik}]\label{eq:noise-expr}
+\frak{X}_{ik}=[(1-c)X_{ik}\hspace{5pt} cE_{ik}]\label{eq:noise-expr}
 \end{equation}
- where $E_{ik} \sim^{iid} Dirichlet(\bm{1}_{(q+1)})\label{eq:noise-model-dir} $ for the Dirichlet setting and $E_{ik} \sim^{iid} MVNormal(\bm{0} , (1+\frac{1}{r})I_{q+1}) \label{eq:noise-model-mvn} $ for the Gaussian setting. $\breve{X}_{ik}$ will be used instead of ${X}_{ik}$ for computing dissimilarities in the ``noisy" version of the problem. These noisy measurements allow the comparison of  different methods applied to the problem with respect to their robustness.
+ where $E_{ik} \sim^{iid} Dirichlet(\bm{1}_{(q+1)})\label{eq:noise-model-dir} $ for the Dirichlet setting and $E_{ik} \sim^{iid} MVNormal(\bm{0}, (1+\frac{1}{r})I_{q+1}) \label{eq:noise-model-mvn} $ for the Gaussian setting. $\frak{X}_{ik}$ will be used instead of ${X}_{ik}$ to compute dissimilarities in the ``noisy'' version of the problem. These noisy measurements allow for the comparison of  different methods applied to the problem with respect to their robustness.
   
 
