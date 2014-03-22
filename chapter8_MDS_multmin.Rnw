@@ -79,7 +79,8 @@ For our simulation, we chose a grid of starting points for $X_6$ with the x-coor
 
 Starting from a small enough value for $w$ and increasing it until $w$ is arbitrarily close to $1$, there are two $w$ values for which important changes in embedding configurations occur and final stress values are obtained.
 
-The plots in Figures \ref{fig:Finalconfig-MultMin-w-0_1}, \ref{fig:Finalconfig-MultMin-w-0_5}, \ref{fig:Finalconfig-MultMin-w-0_8}, \ref{fig:Finalconfig-MultMin-w-0_81}, and \ref{fig:Finalconfig-MultMin-w-0_84} show the  embedding configurations of ${X}_6$ (in red circles) and ${X}_7$ (in blue pluses). Each point in the plots is a point at which the IM algorithm terminates after starting from different initial configurations (one red and one blue point for each initial configuration). The point pairs plotted in the left box for each figure pair are those configurations in which ${X}_6$ and ${X}_7$ end up on the side of their matched points (``true'' final configuration). The configurations on the right are those in which the points end up on the opposite side of their matched points. For the last four $w$ values, $(0.82, 0.83, 0.84, 0.85)$, there are no initial configurations that end up in ``alternative''-type configurations. Both types of  configurations (``true'' and ``alternative'') for selected $w$ values are plotted in Figure \ref{fig:plot_final_pts_all_w}. The plots for different $w$ are also animated \ref{fig:config_w_ani}.
+The plots in Figures \ref{fig:Finalconfig-MultMin-w-0_1}, \ref{fig:Finalconfig-MultMin-w-0_5}, \ref{fig:Finalconfig-MultMin-w-0_8}, \ref{fig:Finalconfig-MultMin-w-0_81}, and \ref{fig:Finalconfig-MultMin-w-0_84} show the  embedding configurations of ${X}_6$ (in red circles) and ${X}_7$ (in blue pluses). Each point in the plots is a point at which the IM algorithm terminates after starting from different initial configurations (one red and one blue point for each initial configuration). The point pairs plotted in the left box for each figure pair are those configurations in which ${X}_6$ and ${X}_7$ end up on the side of their matched points (``true'' final configuration). The configurations on the right are those in which the points end up on the opposite side of their matched points. For the last four $w$ values, $(0.82, 0.83, 0.84, 0.85)$, there are no initial configurations that end up in ``alternative''-type configurations. Both types of  configurations (``true'' and ``alternative'') for selected $w$ values are plotted in Figure \ref{fig:plot_final_pts_all_w}.
+%The plots for different $w$ are also animated \ref{fig:config_w_ani}.
 
 We are also interested in which type of local minima has lower stress and contains the global minimum solution. We compute the minimum stress value among each type of local minima and compare these final stress values. The final stress values of the final configurations listed in  \autoref{table:stress_val} and plotted in figure \ref{fig:final_stress_plot} indicate that around $w=0.5$, the  ``true'' local minimum, begins to have a lower stress value compared with the ``alternative'' local minimum.  This is the first $w$ value that corresponds to an important change. This transition provides evidence that different local minima might become global minima, depending on the value of $w$.
 
@@ -509,7 +510,7 @@ print(g1)
 @
 
 
-<<config_w_ani,eval=TRUE, fig.show='animate',echo=FALSE,out.width='6in',fig.cap="Embedded Point Pairs ($\\hat{X}_6$ and $\\hat{X}_7$) for all initial configurations for different $w$ values">>=
+<<config_w_ani,eval=TRUE, fig.show='hide',echo=FALSE,out.width='6in',fig.cap="Embedded Point Pairs ($\\hat{X}_6$ and $\\hat{X}_7$) for all initial configurations for different $w$ values">>=
 for (w.it in w.vals){
 sub.final.pts.lf.logical<-all.final.pts.lf$w %in% w.it
 sub.final.pts.lf<- all.final.pts.lf[sub.final.pts.lf.logical,]
@@ -637,16 +638,16 @@ if (create.ani){
 @
 
 \begin{figure}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{minipage}[b]{0.46\linewidth}
 \centering
-\includegraphics[scale=0.45]{true-min-w-0_1.pdf}
+\includegraphics[scale=0.41]{true-min-w-0_1.pdf}
 
 \label{fig:Finalconfig-MultMin-w-0_1_a}
 \end{minipage}
 \hspace{0.5cm}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{minipage}[b]{0.46\linewidth}
 \centering
-\includegraphics[scale=0.45]{other-min-w-0_1.pdf}
+\includegraphics[scale=0.41]{other-min-w-0_1.pdf}
 
 \label{fig:Finalconfig-MultMin-w-0_1_b}
 \end{minipage}
@@ -661,17 +662,17 @@ if (create.ani){
 
 
 \begin{figure}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{minipage}[b]{0.46\linewidth}
 \centering
-\includegraphics[scale=0.45]{true-min-w0_5}
+\includegraphics[scale=0.41]{true-min-w0_5}
 
 \label{fig:Finalconfig-MultMin-w-0_5_a}
 
 \end{minipage}
 \hspace{0.5cm}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{minipage}[b]{0.46\linewidth}
 \centering
-\includegraphics[scale=0.45]{other-min-w0_5.pdf}
+\includegraphics[scale=0.41]{other-min-w0_5.pdf}
 
 \label{fig:Finalconfig-MultMin-w-0_5_b}
 
@@ -683,17 +684,17 @@ if (create.ani){
 \end{figure}
 
 \begin{figure}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{minipage}[b]{0.46\linewidth}
 \centering
-\includegraphics[scale=0.45]{true-min-w0_8.pdf}
+\includegraphics[scale=0.41]{true-min-w0_8.pdf}
 \label{fig:Finalconfig-MultMin-w-0_8_a}
 
 
 \end{minipage}
 \hspace{0.5cm}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{minipage}[b]{0.46\linewidth}
 \centering
-\includegraphics[scale=0.45]{other-min-w0_8.pdf}
+\includegraphics[scale=0.41]{other-min-w0_8.pdf}
 \label{fig:Finalconfig-MultMin-w-0_8_b}
 
 
@@ -707,16 +708,16 @@ if (create.ani){
 
 
 \begin{figure}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{minipage}[b]{0.46\linewidth}
 \centering
-\includegraphics[scale=0.45]{true-min-w0_81.pdf}
+\includegraphics[scale=0.41]{true-min-w0_81.pdf}
 
 
 \end{minipage}
 \hspace{0.5cm}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{minipage}[b]{0.46\linewidth}
 \centering
-\includegraphics[scale=0.45]{other-min-w0_81.pdf}
+\includegraphics[scale=0.41]{other-min-w0_81.pdf}
 
 
 \end{minipage}
@@ -730,16 +731,16 @@ if (create.ani){
 
 
 \begin{figure}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{minipage}[b]{0.46\linewidth}
 \centering
-\includegraphics[scale=0.45]{true-min-w0_84.pdf}
+\includegraphics[scale=0.41]{true-min-w0_84.pdf}
 
 \label{fig:figure2-1}
 \end{minipage}
 \hspace{0.5cm}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{minipage}[b]{0.46\linewidth}
 \centering
-\includegraphics[scale=0.45]{other-min-w0_84.pdf}
+\includegraphics[scale=0.41]{other-min-w0_84.pdf}
 
 
 \end{minipage}

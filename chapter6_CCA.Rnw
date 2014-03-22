@@ -28,7 +28,7 @@ $$
    For sample CCA, $E[XX^T]$,$E[YY^T]$ and $E[XY^T]$ are replaced with their sample estimates.
 
 
-Note that $s$, the dimension of $X$ and $Y$, is the embedding dimension  $s$ we use in the CCA approach. So we use  MDS to separately embed  the dissimilarities in $\Delta_1$ and $\Delta_2$ in ${\R}^s$, and  then use CCA to project the embeddings to the $d$-dimensional Euclidean space. CCA $\circ$ MDS provides the complete mapping from dissimilarities to the commensurate space.
+Note that $s$, the dimension of $X$ and $Y$, is the embedding dimension  $s$ we use in the CCA approach. So we use  MDS to separately embed  the dissimilarities in $\Delta_1$ and $\Delta_2$ in ${\R}^s$, and  then use CCA to project the embeddings to the $d$-dimensional Euclidean space. CCA$\circ$MDS provides the complete mapping from dissimilarities to the commensurate space.
 
 
 As in P$ \circ $M, new dissimilarities are OOS embedded and mapped to a commensurate  space by maps provided by CCA. The test statistic $\tau$, which is the distance between the points in the commensurate space that correspond to the OOS dissimilarities,  can now be computed, and the null hypothesis is rejected for ``large'' values of the test statistic $\tau$, as in Section \ref{chap:PoM}.
@@ -54,7 +54,7 @@ We already know that CCA/CVA maximizes the correlation of the variates. Let us w
 
 
 
-\section[Relationship between CCA and Commensurability]{Relationship between Canonical Correlational Analysis and Commensurability} 
+\section[Relationship between CCA and Commensurability]{Relationship between \\ Canonical  Correlational Analysis and \\ Commensurability} 
 
 \begin{thm}
 
@@ -143,7 +143,7 @@ Consider to the spectral embedding generalization of CCA we have just presented,
 
 Whereas CCA is defined for $K=2$ conditions, multiple generalizations are available because the correlation between more than two configurations can be defined in multiple ways \cite{generalCCA}. Let $X_1,\ldots,X_K$ be random vectors for which a generalized CCA representation will be computed.  Consider the first set of canonical variates to be computed, $Z_1^{(1)},\ldots,Z_K^{(1)}$. Denote  the correlation matrix of  $Z_1^{(1)},\ldots,Z_K^{(1)}$ by $\Phi^{(1)}$.   The following three criteria  are proposed in \cite{generalCCA}:
 \begin{itemize}
-\item SUMCOR. Maximize the sum of the elements of $\Phi^{(1)}$ : $\mathbf{1^T}(\Phi^{(1)})\mathbf{1^T}$,
+\item SUMCOR. Maximize the sum of the elements of $\Phi^{(1)}$ : ${\1}^T(\Phi^{(1)}){\1}$,
 \item MAXVAR. Maximize the largest eigenvalue of $\Phi^{(1)}$ : $\lambda^{(1)}_1$ ,
 \item  MINVAR. Minimize  the smallest eigenvalue of $\Phi^{(1)}$ : $\lambda^{(m)}_1$.
 \end{itemize}

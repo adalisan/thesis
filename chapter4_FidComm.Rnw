@@ -62,16 +62,17 @@ In general, we note that the omnibus embedding approach using any variant of MDS
  The omnibus matrix $M$ \eqref{omnibus}  is a partitioned matrix consisting of matrices from two different conditions ($k={1,2}$). The entries of the matrix will be indexed by a 4-tuple, ${i,j,k_1,k_2}$, which refers to the entry in the $i^{th}$ row and $j^{th}$ column of the block matrix in  the $k_1^{th}$  row partition and  the $k_2^{th}$ column partition. For example, the entry ${M}_{2n,n}$ will have the indices $\{i,j,k_1,k_2\}=\{n,n,2,1\}$ in the new 4-tuple indexing scheme. The matrix-valued function $\mathcal{D}(\cdot)$ and the weight matrix $W$, which are of the same size as $M$, follow the same 4-tuple indexing. Then, the weighted raw stress for the joint embedding with the weight matrix $W$ is
  
 \begin{align}
-\sigma_W(\cdot)  &= & &\sum_{i,j,k_1,k_2} {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2 } \notag\\
-\hspace{3pt} &=& &\underbrace{\sum_{i=j,k_1<k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2}}_{Commensurability}  \hspace{10pt}  &  + &\hspace{2.5em} \underbrace{\sum_{i<j,k_1=k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Fidelity}\notag\\
-\hspace{3pt}&+&  &\underbrace{\sum_{i< j,k_1<k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Separability}\label{eq:FidCommSep}\hspace{10pt} .
+\sigma_W(\cdot) &=  &\sum_{i,j,k_1,k_2} {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2 } \notag\\
+\hspace{3pt}&= &\underbrace{\sum_{i=j,k_1<k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2}}_{Commensurability}  \hspace{4pt}  &+ & \underbrace{\sum_{i<j,k_1=k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Fidelity}\notag\\
+&+  &\underbrace{\sum_{i< j,k_1<k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Separability}\label{eq:FidCommSep} .
 \end{align}
 
 
 \begin{comment}
 \begin{eqnarray}{ccc}
 \sigma_W(\cdot)\hspace{3pt}   &= &\sum_{i,j,k_1,k_2} {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2 } \notag\\
-\hspace{3pt} &= &\underbrace{\sum_{i=j,k_1\neq k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2}}_{Commensurability}  \hspace{10pt}  &  + & \underbrace{\sum_{i\neq j,k_1=k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Fidelity}\notag\\
+\hspace{3pt} &= &\underbrace{\sum_{i=j,k_1\neq k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2}}_{Commensurability} +  \notag\\ 
+& & \underbrace{\sum_{i\neq j,k_1=k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Fidelity}\notag\\
 \hspace{3pt}&+ &\underbrace{\sum_{i\neq j,k_1\neq k_2}  {w_{ij{k_1}{k_2}}(\mathcal{D}_{ij{k_1}{k_2}}(\cdot)-M_{ijk_1k_2})^2  }  } _{Separability}\label{eq:FidCommSep2}\hspace{10pt} .
 \end{eqnarray}
 \end{comment}

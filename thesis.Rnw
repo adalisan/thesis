@@ -21,7 +21,9 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 
-\usepackage{hyperref, mathrsfs, bm}
+\usepackage{ mathrsfs, bm}
+\usepackage[pdfa]{hyperref}
+
 \usepackage{algorithm2e}
 \usepackage{url}
 \renewcommand{\thesubfigure}{}
@@ -39,12 +41,12 @@
 %\usepackage{ccfonts,eulervm} %Not bad looks nice for serif
 %\usepackage[T1]{fontenc}
 %\usepackage[urw-garamond]{mathdesign}
-%\usepackage{garamondx}
+\usepackage{garamondx}
 %\usepackage[lf]{venturis} %% lf option gives lining figures as default; 
   		  %% remove option to get oldstyle figures as default
 %\usepackage[T1]{fontenc}
 %\usepackage[garamond]{mathdesign}
-\usepackage[sfdefault]{quattrocento}
+%\usepackage[sfdefault]{quattrocento}
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
 %\usepackage{tipa}
@@ -91,6 +93,61 @@
 %shorthand commands
 \input{common.tex}
 
+%PDF compliance
+\input {glyphtounicode-cmr.tex}
+\pdfgentounicode=1
+
+\def\Title{Joint Optimization of Fidelity and Commensurability\\ for Manifold Alignment and Graph Matching}
+\def\Author{Sancar Adali}
+\def\Subject{Dissertation Submitted for Doctoral Degree}
+\def\Keywords{thesis,Multidimensional Scaling,Graph Matching,Fidelity and Commensurability}
+ 
+%***************************************************************************
+% \convertDate converts D:20080419103507+02'00' to 2008-04-19T10:35:07+02:00
+%___________________________________________________________________________
+
+ 
+%\def\pdfcreationdate{2013-03-21T10:35:07+05:00}
+
+%*********
+% XMP data
+%_________
+
+\usepackage{hyperxmp}
+
+
+% ----------------------------------------------
+% Add metadata
+
+\hypersetup{% 
+       pdftitle={\Title},
+       pdfauthor={\Author},
+       pdfauthortitle={},
+       pdfcopyright={Copyright (C) 2014, Sancar Adali},
+       pdfsubject={\Subject},
+       pdfkeywords={\Keywords},
+       pdflicenseurl={},
+       pdfcaptionwriter={},
+       pdfcontactaddress={Johns Hopkins University},
+       pdfcontactcity={Baltimore},
+       pdfcontactpostcode={21218},
+       pdfcontactcountry={USA},
+       pdfcontactemail={sadali1@jhu.edu},
+       pdfcontacturl={http://www.ams.jhu.edu/~adali},
+       pdflang={en},
+       bookmarksopen=true,
+       bookmarksopenlevel=3,
+       hypertexnames=false,
+       linktocpage=true,
+       plainpages=false,
+       breaklinks
+     }
+
+
+
+
+
+
 %\usepackage[T1]{fontenc}
 \usepackage{animate}
 %\tolerance=10000
@@ -107,11 +164,12 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 
 \title{Joint Optimization of Fidelity and Commensurability\\ for Manifold Alignment and Graph Matching}
 \author{Sancar Adali}
-\degreemonth{January}
+\degreemonth{March}
 \degreeyear{2014} 
 \dissertation
 \doctorphilosophy
 \copyrightnotice
+
 
 
 % add your chapters, best way is to have separate TeX files for each chapter
@@ -178,13 +236,17 @@ opts_chunk$set(concordance=TRUE,eval=FALSE)
 \bibliographystyle{IEEEtran}
 \bibliography{priebe-thesis-JOFC}
 % 
-% \begin{vita}
+ \begin{vita}
 % 
-% \begin{wrapfigure}{l}{0pt}
-% \includegraphics[width=2in,height=2.5in,clip,keepaspectratio]{rjvheadshot}
-% \end{wrapfigure}
-% 
-% 
-% 
-% \end{vita}
+ \begin{wrapfigure}{l}{0pt}
+ \includegraphics[width=2in,height=2.5in,clip,keepaspectratio]{sancarheadshot}
+ \end{wrapfigure}
+Sancar Adali received the B. Sc. degree in Electrical and Electronics  Engineering 
+from Bogazici University in Istanbul, Turkey  in 2003,  and enrolled in the Electrical Sciences and Computer Engineering graduate program in the School of Engineering at Brown University. He received the M. Sc.  in Engineering degree  from Brown University in 2005.  He enrolled in the Applied Mathematics and Statistics 
+Ph.D.\ program at Johns Hopkins University in 2006 and he received the M. Sc. degree from the same department in 2008. In 2010,  he  received  Acheson J. Duncan award for the Advancement of Research in Statistics.  His research focuses on statistical machine learning, applications of dissimilarity representation in pattern recognition in addition to analysis of graph data  and graph inference problems.
+
+ 
+
+ 
+ \end{vita}
 \end{document}

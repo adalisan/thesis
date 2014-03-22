@@ -14,15 +14,16 @@ Determining the existence of such an isomorphism between the two graphs is an  e
 %Although an efficient algorithm  for the general  graph matching problem is not known, there are various principled heuristic algorithms for approximate solutions of the graph matching problem in the literature\cite{GraphMatchReview}.
 
 Regardless of the existence of  an isomorphism between the two graphs, we are interested in the bijections $\{f:V_2 \rightarrow V_1\}$  such that the graph ($G_1'$) consisting of $V_1$ and the edges $(f(u_2),f(v_2)) \, \forall u_2,v_2 \in V_2$   is a good approximation of $G_1$. The \emph{approximate} graph matching problem\footnote{We will refer to this problem as \emph{the} graph matching problem in this document.} is defined as the task of  finding such a bijection $f$ that minimizes ``the degree of mismatch'' between $G_1'$ and  $G_1$  . We measure this degree of mismatch with  a function denoted by $\tau(f;G_1,G_2)$. In unweighted graphs, this degree of mismatch is the number of edge disagreements.
-\begin{equation}
-\tau(f;G_1,G_2)= |{(u_2,v_2)\in E_2: (f(u_2),f(v_2)) \notin E_1 }|+ |{(u_1,v_1)\in E_1: (f^{-1}(u_2),f^{-1}(v_2)) \notin E_2 }|
-\end{equation}
+\begin{align}
+\tau(f;G_1,G_2) &= &|{(u_2,v_2)\in E_2: (f(u_2),f(v_2)) \notin E_1 }| \notag \\ 
+ &+ &|{(u_1,v_1)\in E_1: (f^{-1}(u_2),f^{-1}(v_2)) \notin E_2 }|
+\end{align}
 In weighted graphs, the degree of mismatch would be a function  of the difference of the weights of the corresponding edges, such as:
 \begin{equation}
 \tau(f;G_1,G_2)= \sum_{u_2,v_2 \in V_2 } |{w(u_2,v_2)-w(f(u_2),f(v_2)) }|
 \end{equation}
 where $w(a,b)$ is the weight of the edge between vertices $a$ and $b$ . %If the weights for an edge between two vertices are $0$ and $1$ according to w corresponding to  an edge.
-If the existence and nonexistence of an edge between two vertices in an unweighted graph correspond to an edge weight of 1 and 0, respectively,  for a  weighted graph, then the degree of mismatch defined for the unweighted graph case is  a special case of that defined for the weighted graph \footnote{The $\tau$ function could depend on another function of the weights \cite{GradAssign}. We choose to  use the absolute difference between the weights to maintain the connection between the weighted and unweighted cases.}.
+If the existence and nonexistence of an edge between two vertices in an unweighted graph correspond to an edge weight of 1 and 0, respectively,  for a  weighted graph, then the degree of mismatch defined for the unweighted graph case is  a special case of that defined for the weighted graph. \footnote{The $\tau$ function could depend on another function of the weights \cite{GradAssign}. We choose to  use the absolute difference between the weights to maintain the connection between the weighted and unweighted cases.}
 %, i.e.  \[(u_2,v_2) \in E_1 \leftrightarrow \quad  w(u_2,v_2)=1 \\
 %$(u_2,v_2) \notin E_1 \leftrightarrow \quad  w(u_2,v_2)=0$ 
 %\]
@@ -31,7 +32,7 @@ If the existence and nonexistence of an edge between two vertices in an unweight
 
   The \emph{approximate} graph matching problem is an important research topic, and has many practical applications \cite{GraphMatchReview,Bengoetxea2002,recentdevGraphMatching2000,VogConGraphMatchFAQ,Zaslavskiy2009}. We will propose two approaches to solve this problem. In this chapter, we  present the optimization based approach; in \autoref{sec:sgm-jofc}, we will present the approach based on the JOFC embedding.
 
-Assume that $G_1$ and $G_2$ are unweighted graphs \footnote{We should note that most of the notation and methods carry over to the weighted case.}. We consider a specific version of the approximate graph matching problem in which part of a bijection between $V_1$ and $V_2$ are given, and the task is to complete the bijection minimizing number of disagreements.  For $1\leq  r<n=|V_1|$, let $S$ be a set containing $r$ tuples with each tuple containing a unique element from $V_1$ and $V_2$. Then,  given the two graphs $G_1$, $G_2$ and the tuple set  $S$, the objective function for the seeded graph matching problem is
+Assume that $G_1$ and $G_2$ are unweighted graphs. \footnote{We should note that most of the notation and methods carry over to the weighted case.} We consider a specific version of the approximate graph matching problem in which part of a bijection between $V_1$ and $V_2$ are given, and the task is to complete the bijection minimizing number of disagreements.  For $1\leq  r<n=|V_1|$, let $S$ be a set containing $r$ tuples with each tuple containing a unique element each from $V_1$ and $V_2$. Then,  given the two graphs $G_1$, $G_2$ and the tuple set  $S$, the objective function for the seeded graph matching problem is
 \begin{equation}
 \tau_{sgm}(f;G_1,G_2,S) := \tau(f;G_1,G_2) 
 \end{equation} 
@@ -55,7 +56,7 @@ Without loss of generality, suppose that $V_1=[m+l]$, $V_2=[m+l]$  and $S=\{(i,i
 of  $G_1$,  correspond  to the first $m$  vertices of  $G_2$, respectively in the given part of the bijection. We wish to complete the bijection by matching the remaining $l$ pairs of  vertices. 
 That is, we seek a permutation matrix $P \in \Mat_{l \times l} $ such that the permutation represented by $(I_{m \times m}\oplus P)$  is the bijection $f$ that minimizes $\tau_{sgm}(f;G_1,G_2,S)$.
 
-It is obvious that $P$ and the seed tuples in $S$ determine $f$: $V_2 \rightarrow V_1$, the bijection  between the two graphs. So given the seeding $S$, we define $\mathcal{F}_S{(\cdot)}$, a one-to-one mapping from   the set of $l \times l$ permutation matrices denoted by $\Pi_l$ to the set of bijections from $V_2$ to $V_1$ denoted by $\mcB_{V_2\rightarrow V_1} =\{{g: V_2 \rightarrow V_1, \, g\textrm{  is one-to-one }}\}$ :  $$\mathcal{F}_S{(P)}:\Pi_l \rightarrow \mcB_{V_2\rightarrow V_1}. $$ Solving for a $l \times l$ permutation matrix that minimizes $\mathcal{F}_S{(P)}$ is equivalent to solving for a bijection that minimizes $\tau_{sgm}(f;G_1,G_2,S)$.
+It is obvious that $P$ and the seed tuples in $S$ determine $f$: $V_2 \rightarrow V_1$, the bijection  between the two graphs. So given the seeding $S$, we define $\mathcal{F}_S{(\cdot)}$, a one-to-one mapping from   the set of $l \times l$ permutation matrices denoted by $\Pi_l$ to the set of bijections from $V_2$ to $V_1$ denoted by $\mcB_{V_2\rightarrow V_1} =\{{g: V_2 \rightarrow V_1, \, g\textrm{  is one-to-one }}\}$ :  $$\mathcal{F}_S{(P)}:\Pi_l \rightarrow \mcB_{V_2\rightarrow V_1}. $$ Solving for a $l \times l$ permutation matrix that minimizes $\tau_{sgm}(\mathcal{F}_S{(P)};G_1,G_2,S)$  is equivalent to solving for a bijection that minimizes $\tau_{sgm}(f;G_1,G_2,S)$.
 
 So we formulate the seeded graph matching problem as an optimization problem: we seek $P$ that minimizes $h(P)$ over all permutation matrices of size $l \times l$, where the function $h(P)=\tau_{sgm}(\mathcal{F}_S{(P)};G_1,G_2,S)$ measures the mismatch between $G_1$ and the resulting graph when the permutation represented by $P$ is applied to the vertices of $G_2$.
 For unweighted graphs, the degree of mismatch is characterized by the number of adjacency disagreements, which is conveniently represented in terms of $P$ and the adjacency matrices of $G_1$ and $G_2$: 
@@ -99,8 +100,8 @@ The minimization of $h(P)$ over the set of all permutation matrices can also be 
  \end{equation}
  by expanding out $\|A-\mathscr{P}B\mathscr{P}^T\|_2^2=
 \|A\|_2^2 + \|B\|_2^2 -  2 \cdot \tr({A^T \mathscr{P} B \mathscr{P}^T)}$  and ignoring the constant terms. 
-Note that this $\ell_2$  formulation is a special case of the quadratic assignment problem (QAP). The quadratic assignment problem minimizes 
-$\sum_{i,j\in \left[ p \right]}{\theta_{ij}{\omega}_{\pi{(i)}\pi{(j)}}} $ with respect to a permutation $\pi$ of $p$ elements, given a collection of  weights $\{\theta_{ij}; \quad i,j \in \left[ p \right] \}$ and  distances $\{\omega_{ij};\quad i,j \in  \left[ p \right] \}$. The objective function can be written in matrix form as $\tr(\Theta P\Omega P^T)$, where $P$ is a permutation matrix and $\Theta$ and $\Omega$ are the matrices of weights $\{\theta_{ij}\}$  and distances $\{\omega_{ij}\}$ , respectively . The $\ell_2$  formulation in \eqref{item:squareofdist_eq_tr_crossprod} is equivalent to the  the special case of QAP, when weights and distances are constrained to be 0 or 1.
+Note that this simplified $\ell_2$  formulation is a special case of the quadratic assignment problem (QAP). The quadratic assignment problem minimizes 
+$\sum_{i,j\in \left[ p \right]}{\theta_{ij}{\omega}_{\pi{(i)}\pi{(j)}}} $ with respect to a permutation $\pi$ of $p$ elements, given a collection of  weights $\{\theta_{ij}; \quad i,j \in \left[ p \right] \}$ and  distances $\{\omega_{ij};\quad i,j \in  \left[ p \right] \}$. The objective function can be written in matrix form as $\tr(\Theta P\Omega P^T)$, where $P$ is a permutation matrix and $\Theta$ and $\Omega$ are the matrices of weights $\{\theta_{ij}\}$  and distances $\{\omega_{ij}\}$ , respectively. Thus, the $\ell_2$  formulation in \eqref{item:squareofdist_eq_tr_crossprod} is equivalent to the  the special case of QAP, when weights and distances are constrained to be 0 or 1.
 
    The different formulations  are equivalent for the set of permutation matrices, i.e.,  their global extrema are the same. We will  consider  relaxations of each formulation, where we  remove the integrality constraint of $P$  and optimize the objective function  over the set of $l \times l$ doubly stochastic matrices, $\mathcal{DS}_{l}$. For example, for the $\ell_1$ formulation,
    
@@ -140,12 +141,12 @@ is relaxed to
    %when applied to the approximate graph matching problem 
    %(see \autoref{subsec:rqap2}).
    
-\section{Fast Approximate Quadratic Programming\\ for  Seeded Graph Matching}
+\section[Fast Approximate  Quadratic Programming for \\ the  Seeded Graph Matching problem]{Fast Approximate \\ Quadratic Programming for  the  Seeded Graph Matching problem}
 
 Consider the formulation \eqref{item:squareofdist_eq_tr_crossprod} and its relaxation by expanding the feasible region to the set of doubly stochastic  matrices.
 Solutions to this relaxation can be found via an iterative nonlinear optimization algorithm, the Frank-Wolfe Method. The idea of this method   is to successively solve local linearizations of the objective function, using the solution of previous iteration as the location of the linearization in the current iteration. For the  graph matching problem, the subproblem of solving the local linearization is equivalent to solving the linear assignment problem for which polynomial time algorithms exist. Most notable of these is the Hungarian algorithm \cite{Hung-algo}. 
 
-Once the algorithm terminates due to a stopping criteria, the output of the algorithm is an approximation to the solution of the relaxed problem.  The algorithm might terminate in a local minimum, and a common solution for this issue is  multiple randomized initializations of the  algorithm.  Also the solution found by the Frank-Wolfe algorithm is possibly a non-integer solution. Since we must provide a permutation matrix as the solution to the seeded graph matching problem. This final step of projecting to the set of permutation matrices is also equivalent to the  linear assignment problem which can be solved via the Hungarian algorithm \cite{Hung-algo}. 
+Once the algorithm terminates due to a stopping criteria, the output of the algorithm is an approximation to the solution of the relaxed problem.  The algorithm might terminate in a local minimum, and a common solution for this issue is  multiple randomized initializations of the  algorithm.  Also the solution found by the Frank-Wolfe algorithm is possibly a non-integer solution. Since we must provide a permutation matrix as the solution to the seeded graph matching problem, we must choose a permutation matrix that is close to the solution of the Frank-Wolfe algorithm. This final step of projecting to the set of permutation matrices is also equivalent to the  linear assignment problem which can be solved via the Hungarian algorithm \cite{Hung-algo}. 
 
  To summarize, the three steps of the FAQ algorithms are:
  \begin{itemize}
@@ -185,9 +186,9 @@ over a bounded and convex domain $\mathbf{S}$.
   \caption{Frank-Wolfe algorithm}
  \end{algorithm}
 
-In each iteration of  the F-W algorithm, a linear approximation of the function $h(x) \approx h(x^i)+{{(\nabla{h(x^i)})}^T}(x-x^i)$ is minimized. In the second step  the original function is minimized with the domain restricted to the line segment between $\hat{y}$ and $x^{i}$. When $h(x)$ is quadratic, a $\hat{\alpha}$ can be found analytically. The two steps are repeated until termination conditions are met.
+In each iteration of  the F-W algorithm, in the first step, a linear approximation of the function $h(x) \approx h(x^i)+{{(\nabla{h(x^i)})}^T}(x-x^i)$ is minimized. In the second step,  the original function is minimized with the domain restricted to the line segment between $\hat{y}$ and $x^{i}$. When $h(x)$ is quadratic, a $\hat{\alpha}$ can be found analytically. The two steps are repeated until termination conditions are met.
 
-\subsection{rQAP\textsubscript{1} formulation of the Seeded Graph Matching \\ and  FAQ Algorithm}
+\subsection[rQAP\textsubscript{1} formulation of  the Seeded  Graph Matching problem \\ and  the FAQ Algorithm]{rQAP\textsubscript{1} formulation of  the Seeded \\ Graph Matching problem \\ and  the FAQ Algorithm}
 Let us now present the derivation of the steps of  the FAQ algorithm.  The objective function that we use for FAQ is $\tr {A^T(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P^T)}$ in \eqref{item:squareofdist_eq_tr_crossprod}. This is a reformulation of the $\ell_2$ norm of the matrix difference between $A$ and $(I_{m \times m}\oplus P)B(I_{m \times m}\oplus P)^T$ when $P$ is a permutation matrix. The feasible region for the optimization is the set of permutation matrices, $\Pi_l$.
 %The minimization of  a cost function over the set of permutations (each one corresponding to an assignment) is known as the quadratic assignment problem. In this case, the cost function has a value of $1$ when the adjacency matrices ($B$ with the vertex labels  permuted and  $A$) agree i.e., between two pairs of assigned vertices, and there is an edge in one of the graphs and no edges in the other.  The cost function has a value of $0$ when the adjacency matrices disagree.
 We relax this combinatorial optimization problem  by expanding the feasible region to the set of double stochastic matrices (the convex hull of the set of permutation matrices) of the same size. This yields our first formulation for the seeded graph matching problem which we call the relaxed quadratic assignment problem (rQAP\textsubscript{1}).
@@ -218,7 +219,7 @@ The objective function is
 which has the gradient $\nabla_{P}(h)$, presented  as a matrix-valued function of $P$ as 
 \begin{eqnarray*}
 \boldsymbol{\nabla}(P):=A_{21}B_{21}^T+A_{12}^TB_{12}+A_{22}PB_{22}^T+A_{22}^TPB_{22} .
-\end{eqnarray*} Note that $h(P)$ has a quadratic form with respect to $P$, which will help us with the one-dimensional optimization subproblem in the second step of the F-W iterations.
+\end{eqnarray*} Note that $h(P)$ has a quadratic form with respect to $P$, which will help us with the one-dimensional optimization subproblem in the second step of each F-W iteration.
 
 
 In our experiments,  the Frank-Wolfe Algorithm was initialized with
@@ -229,16 +230,17 @@ We now adapt the F-W algorithm to the minimization of $h(P)$.  Consider iteratio
  $\hat{Q}$ can be assumed to be a permutation matrix. The Birkhoff-von Neumann theorem\cite{MatrixTheory} states that the set of doubly stochastic matrices is the convex hull of the permutation matrices. Because $\tr{\left(Q^{T}\boldsymbol{\nabla}(\tilde{P}^{(i)})\right)}$ is a linear function of $Q$, one of the extremum points   of the convex hull (which are permutation matrices)  will be a  maximizer.\footnote{Although the maximizer is possibly  non-unique, the Hungarian algorithm that solves this linear problem will return one of the extremum points as its output. }
 %To see this, assume that $\hat{Q}$ is not a permutation matrix and there exists a row, say $i^{th}$ row of $\hat{Q}$,named $q_i$, that is not a standard basis of $\R^{l}$($\mathbf{e}_j \in \R^{l}$ with $1$ in $j^{th}$ coordinate, $0$ in other coordinates). Note that the contribution of $q_{i}$ to trace of $Q^{T}G(\tilde{P}^{(i)})$ is $\sum_{k}{q_{ik}\boldsymbol{\nabla}{}_{ik}}$. Because $\hat{Q}$ is a doubly stochastic  matrix, we also have the constraint $\sum_{k}{q_{ik}}=1$. Of the convex combinations of $\boldsymbol{\nabla}{}_{ik}$, the maximum value achievable is  $\max_k{\boldsymbol{\nabla}{}_{ki}}$ and this maximum is achieved by $q_i=\mathbf{e}_{\argmax_k{\boldsymbol{\nabla}{}_{ki}} }$. As that makes $q_i$ a standard basis $\R^{l}$ , we arrive at a contradiction. 
 Thus, $\hat{Q}$  is a permutation matrix, and we can limit the feasible region to the set of permutation matrices.
-Therefore, the  Hungarian Algorithm that minimizes $-\tr Q^{T}\boldsymbol{\nabla}(\tilde{P}^{(i)})$ subject to the constraint $Q$ is a permutation matrix will yield the optimal $Q$, which we denote by $\hat{Q}$.
+Therefore, the  Hungarian Algorithm  is used to minimize $-\tr \left(Q^{T}\boldsymbol{\nabla}(\tilde{P}^{(i)})\right)$ subject to the constraint $Q$ is a permutation matrix and will yield the optimal $Q$, which we denote by $\hat{Q}$.
 
 The next step in the Frank-Wolfe algorithm 
 is maximizing the objective function over the line
 segment from $\tilde{P}^{(i)}$ to $\hat{Q}$;  i.e., maximizing the scalar-valued univariate function $z(\alpha):=h(\alpha \tilde{P}
 +(1-\alpha ) \hat{Q})$ over $\alpha \in [0,1]$. This one-dimensional optimization can be solved with the quadratic formula once the coefficients have been computed. Denote
-$$c:=\tr A^T_{22} \tilde{P} B_{22} \tilde{P}^T,\quad d:=\tr (A^T_{22} \tilde{P} B_{22} \tilde{Q}^T +
-    A^T_{22} \tilde{Q} B_{22} \tilde{P}^T), \onespace e:=\tr A^T_{22} \tilde{Q} B_{22} \tilde{Q}^T$$ and
-$$\quad u:=\tr ( \tilde{P}^TA_{21}B_{21}^T   + \tilde{P}^TA_{12}^TB_{12} ), \quad v:=\tr ( \tilde{Q}^TA_{21}B_{21}^T   + \tilde{Q}^TA_{12}^TB_{12} ).$$ Then
-(ignoring the additive constant $\tr A_{11}^TB_{11}$ without loss of
+$$c:=\tr \left(A^T_{22} \tilde{P} B_{22} \right) \tilde{P}^T,\, d:=\tr \left(A^T_{22} \tilde{P} B_{22} \tilde{Q}^T +
+    A^T_{22} \tilde{Q} B_{22} \tilde{P}^T \right)$$,
+    $e:=\tr \left(A^T_{22} \tilde{Q} B_{22} \tilde{Q}^T \right)$ and
+$$\quad u:=\tr \left( \tilde{P}^TA_{21}B_{21}^T   + \tilde{P}^TA_{12}^TB_{12} \right), \quad v:=\tr \left( \tilde{Q}^TA_{21}B_{21}^T   + \tilde{Q}^TA_{12}^TB_{12} \right).$$ Then
+(ignoring the additive constant $\tr (A_{11}^T B_{11})$ without loss of
 generality),
 we have $$z(\alpha)=c \alpha^2+d \alpha (1-\alpha)
 +e(1-\alpha)^2+u \alpha + v(1-\alpha),$$  which simplifies to
@@ -255,20 +257,20 @@ At the termination of the Frank-Wolfe algorithm, it is quite possible that $\hat
 
 We will demonstrate that  the FAQ algorithm for SGM works by using graph data generated via the following data model:
 
-Let $\Graph_1=(V_1,E_1)$ be an  Erd\H{o}s-Renyi graph that consists of $n$ vertices and let $A$ be its adjacency matrix. The probability of an edge between any two vertices in $V_1$ is an independent Bernoulli trial. Thus, 
-  $\left[A\right]_{ij} \sim Bernoulli(0.5),\quad \forall i<j,\quad i,j \in \oneton$, where $\left[A\right]_{ij}$ is the ${ij}^{th}$ entry of the adjacency matrix  $A$. Because $A$ is symmetric,  $\left[A\right]_{ji}= \left[A\right]_{ij}$.  Another adjacency matrix, $B$, is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is,
-    $\{\left[B \right]_{ij}|\left[A\right]_{ij}=0 \} \sim Bernoulli(p_{10}), \quad \forall i<j,\, i,j \in \oneton$ $\{\left[B\right]_{ij}|\left[A\right]_{ij}=1 \} \sim Bernoulli(p_{11}), \quad \forall i<j,\, i,j \in \oneton$  . We will introduce a perturbation parameter $p_{pert}$ that determines the probability of bit-flipping an edge, $p_{pert}=p_{10}=1-p_{11}$.
+Let $\Graph_1=(V_1,E_1)$ be an  Erd\fakeH{o}s-Renyi graph that consists of $n$ vertices and let $A$ be its adjacency matrix. The probability of an edge between any two vertices in $V_1$ is an independent Bernoulli trial. Thus, 
+  $\left[A\right]_{ij} \sim Bernoulli(0.5),\quad \forall i<j,\quad i,j \in \oneton$, where $\left[A\right]_{ij}$ is the ${(i,j)}^{th}$ entry of the adjacency matrix  $A$. Because $A$ is symmetric,  $\left[A\right]_{ji}= \left[A\right]_{ij}$.  Another adjacency matrix, $B$, is a entry-wise bit-flipped version of the adjacency matrix of $A$, that is,
+    $\{\left[B \right]_{ij}|\left[A\right]_{ij}=0 \} \sim Bernoulli(p_{10}), \quad \forall i<j,\, i,j \in \oneton$ $\{\left[B\right]_{ij}|\left[A\right]_{ij}=1 \} \sim Bernoulli(p_{11}), \quad \forall i<j,\, i,j \in \oneton$. We will introduce a perturbation parameter $p_{pert}$ that determines the probability of bit-flipping an edge, $p_{pert}=p_{10}=1-p_{11}$. $B$  is also symmetric, $\left[B\right]_{ji}= \left[B\right]_{ij}$.
     
     %Let the isomorphism from  $V_1$ to the vertices of the second graph, $V_2$, be denoted by $\psi$. Thus,
     We define the second graph $\Graph_2=(V_2,E_2)$ with the adjacency matrix $B$. Note then, there is a true correspondence between $\Graph_1$   and $\Graph_2$, given by the identity permutation.
     
     %$B=P_{\psi}B'P_{\psi}$,    
     %where $P_{\psi}$ is the permutation matrix that corresponds to the bijection $\psi$. 
-    From $n$ pairs of vertices, $m$ ($0\leq m<n$) seeds are randomly selected, yielding the subsets of vertices which are the seeds in each graph: $\sigma_m \subset V_1$  and  $\sigma_m \subset V_2$ (because the correspondence is given by the identity permutation, the seed pairs have the same vertex labels) .
+    From $n$ pairs of vertices, $m$ ($0\leq m<n$) seeds are randomly selected, yielding the subsets of vertices which are the seeds in each graph: $\sigma_m \subset V_1 = V_2$ (because the correspondence is given by the identity permutation, the seed pairs have the same vertex labels) .
     %$\{\psi(i), i \in \sigma_m \}\subset V_2 $.
     The assignment problem for the remaining $n-m$ pairs of vertices is solved using FAQ. The quality of the solution , $\hat{f}_m: V_2 \rightarrow V_1$ , to the assignment problem,  is evaluated  by $\delta^{(m)} = \frac{|\{i\in V_1-\sigma_m: \hat{f}_m(i)=i\}|}{n-m}$.  %$\delta^{(m)} = \frac{|\{i\in V_1-\sigma_m: \hat{f}_m(i)=\psi(i)\}|}{n-m}$.
   
-  The results of our simulations are plotted in the figures \ref{fig:sim_bitflip_rqap_fig1},\ref{sim_bitflip_rqap_fig2},\ref{sim_bitflip_rqap_fig3}. For the graph size, we chose $n=600$. We generated pairs of random Erd\H{o}s-Renyi graphs  for different number of seeds, $m$, and  we solved the FAQ problem for the remaining $n-m$ vertex pairs. The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$, which is the variable on the x-axis. The performance measure, the proportion of true matches to the number of matches, is the variable on the y-axis.
+  The results of our simulations are plotted in the figures \ref{fig:sim_bitflip_rqap_fig1},\ref{sim_bitflip_rqap_fig2},\ref{sim_bitflip_rqap_fig3}. For the graph size, we chose $n=600$. We generated pairs of random Erd\fakeH{o}s-Renyi graphs  for different number of seeds, $m$, and  we solved the FAQ problem for the remaining $n-m$ vertex pairs. The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$, which is the variable on the x-axis. The performance measure, the proportion of true matches to the number of matches, is the variable on the y-axis.
   Note that 
   under chance, the expected number of true matches is 1. This means that for completely random assignments of vertices, the performance measure of the assignments would be $\frac{1}{n-m}$, as shown with the dashed line.  $p_{pert}$ varies from $0$ to $1$ in increments of $0.1$. 
 
@@ -301,14 +303,14 @@ Let $\Graph_1=(V_1,E_1)$ be an  Erd\H{o}s-Renyi graph that consists of $n$ verti
 \subsection{Relaxations of alternate formulations of \\ the approximate seeded graph matching problem \label{subsec:rqap2}}
 Another quadratic assignment problem formulation of  the approximate seeded graph matching problem, in which the objective function is minimized, is presented here, which we call  rQAP\textsubscript{2}.
 The objective function for rQAP\textsubscript{2} is
-$\|A\mathscr{P}-\mathscr{P}B\|_2^2$, where $\mathscr{P}=(I_m\oplus P)$. Note that this function is \emph{convex}.
+$h(P)=\|A\mathscr{P}-\mathscr{P}B\|_2^2$, where $\mathscr{P}=(I_m\oplus P)$. Note that this function is \emph{convex}.
 
 For  the unrelaxed problem, the feasible set for  $P$ is  the set of  permutation matrices. $P$ is a orthogonal matrix, i.e., $\|PX\|_2=\|X\|_2, \forall X \in \Mat_{l\times l}$ . Using this norm-preserving property of  $P$, the rQAP\textsubscript{2}  objective function simplifies to  -2 times the objective function of  rQAP\textsubscript{1}.
 
 The objective function for  rQAP\textsubscript{2} can be simplified as follows:
 \begin{align*}
-h(P) & = & \lVert A(I_m\oplus P)-(I_m\oplus P)B\rVert _{F}^2\\
- & = & \underbrace{{\left\Vert A_{21}-PB_{21}\right\Vert _{F}^2}}_{\textrm{Term (1)}} & + & \underbrace{{\left\Vert A_{12}P-B_{12}\right\Vert _{F}^2}}_{\textrm{Term (2)}} & + \underbrace{{\left\Vert A_{22}P-PB_{22}\right\Vert _{F}^2}}_{\textrm{Term(3)} } +  \underbrace{{\left\Vert A_{11}-B_{11}\right\Vert _{F}^2}}_{\textrm{Constant}}
+h(P) &= &\lVert A(I_m\oplus P)-(I_m\oplus P)B\rVert _{F}^2\\
+ &= &\underbrace{{\left\Vert A_{21}-PB_{21}\right\Vert _{F}^2}}_{\textrm{Term (1)}}  +  \underbrace{{\left\Vert A_{12}P-B_{12}\right\Vert _{F}^2}}_{\textrm{Term (2)}}+ \underbrace{{\left\Vert A_{22}P-PB_{22}\right\Vert _{F}^2}}_{\textrm{Term(3)} } +  \underbrace{{\left\Vert A_{11}-B_{11}\right\Vert _{F}^2}}_{\textrm{Constant}}
 \end{align*}
 We now consider each term in turn. Consider term (1)
 \begin{align*}
@@ -369,7 +371,8 @@ $\boldsymbol{\nabla}_{P}f(P)=
 +\underbrace{2A_{12}^{T}A_{12}P}_{(2.1)}
 +\underbrace{2A_{22}^{T}A_{22}P}_{(3.1)}
 +\underbrace{2PB_{22}B_{22}^{T}}_{(3.3)}
--\underbrace{4A_{22}^{T}PB_{22}}_{(3.2)}$. The numbers below the underbraces indicate which term  of $h(P)$ each gradient term comes from.
+-\underbrace{4A_{22}^{T}PB_{22}}_{(3.2)}$.\linebreak 
+The numbers below the underbraces indicate which term  of $h(P)$ each gradient term comes from.
 
 For the second step of the F-W algorithm, we set  $P=(1-\alpha) \hat{P}+ \alpha\hat{Q}$ and maximize $h(P)$ with respect to $\alpha$ for $\hat{Q}$ found in the first step. We will now derive a simplification of this one-dimensional optimization problem.
 
@@ -428,7 +431,7 @@ The experiment in the \autoref{subsubsec:sgm_sim_results} was repeated with both
 
 
 \begin{figure}
- \centering
+ %\centering
   \caption[ Fraction of correctly matched non-seed vertices for $m$ seeds (x-axis).]{ Fraction of correctly matched non-seed vertices for $m$ seeds (x-axis). Different colors correspond to different  $p_{pert}$. Solid and dashed lines correspond to rQAP\textsubscript{1} and rQAP\textsubscript{2} solutions, respectively, for the matching problem.
  \label{rqap2}}
  %\includegraphics[width=\columnwidth]{sim_bitflip_rqap2_300_hsv.pdf}
@@ -441,7 +444,7 @@ The experiment in the \autoref{subsubsec:sgm_sim_results} was repeated with both
 %  \label{figell2}}
 %  \includegraphics[scale=0.8]{sim_bitflip_rqap2_cluster_300_hsv_fit_2.png}
 % \end{figure}
-The distinction between the two formulations are most prominently visible for $p_pert=0.35$. Note that for a small number of hard seeds, the rQAP\textsubscript{2} is slightly better,  , whereas for a large number of hard seeds, the rQAP\textsubscript{1} formulation is clearly better. This observations are valid for other $p_pert$ values, also, albeit to a smaller degree.
+The distinction between the two formulations are most prominently visible for $p_{pert}=0.35$. Note that for a small number of hard seeds, the rQAP\textsubscript{2} is slightly better, whereas for a large number of hard seeds, the rQAP\textsubscript{1} formulation is clearly better. This observations are valid for other $p_{pert}$ values, also, albeit to a smaller degree.
 
 The average number of iterations of the Frank-Wolfe algorithm until termination for the two formulation are shown in \autoref{rqap_iter_compare}.
 
@@ -449,7 +452,7 @@ The average number of iterations of the Frank-Wolfe algorithm until termination 
  \centering
   \caption{Number of Iterations  for the rQAP\textsubscript{1} and rQAP\textsubscript{2} formulations to converge
  \label{rqap_iter_compare}}
- \includegraphics[width=\columnwidth]{rqap_itercounts_clip_4.pdf}
+ \includegraphics[width=0.85\columnwidth]{rqap_itercounts_clip_4.pdf}
  %\input{./../SeededGraphMatch/graphs/rqap_itercounts_clip_2.pdf_tex}
 \end{figure}
 
@@ -476,7 +479,7 @@ $-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$, which is 
   %\centering 
  \caption[ Fraction of correctly matched non-seed vertices for $m$ seeds (x-axis).]{ Fraction of correctly matched non-seed vertices for $m$ seeds (x-axis). Different colors correspond to different $p_{pert}$. Dashed and solid lines correspond to rQAP\textsubscript{1} (FAQ) and the hybrid of the rQAP\textsubscript{2} and rQAP\textsubscript{1} (hybrid) solutions, respectively, for the matching problem.
  \label{fig:hybrid}}
- \includegraphics[scale=0.85]{./figure/sim_bitflip_hybrid_cluster_300_hsv.pdf}
+ \includegraphics[scale=0.83]{./figure/sim_bitflip_hybrid_cluster_300_hsv_paper.pdf}
  %\input{./graphs/rqap_1_hybrid_comp_plot_whole.tikz}
  %\input{./graphs/rqap_1_hybrid_comp_plot_leg.tikz}
 \end{figure}
@@ -497,3 +500,6 @@ $-2*(A_{21}B_{21}^T+A_{12}^TB_{12})+A_{22}PB_{22}^T+A_{22}^TPB_{22})$, which is 
  \label{fig:hybrid_zoomed}}
 	
 \end{figure}
+
+
+We find that the hybrid approach is always better than rQAP\textsubscript{2} formulation and mostly better than rQAP\textsubscript{1}. For large values of $m$(the number of seeds), and for large values of $p_{pert}$, rQAP\textsubscript{1} may be slightly better than hybrid. This suggests some tuning may be necessary for the hybrid approach and further investigations into why rQAP\textsubscript{2} is worse than rQAP\textsubscript{1} for large number of seeds.

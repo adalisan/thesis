@@ -90,7 +90,7 @@ i=1,\ldots,m$
 \label{fig:Dir-c001-power-w}
 \end{figure}
 
-For $p=5$,$q=10$,$d=2$, and $c\in{0,0.01}$ and for $n=150$ and $m=150$, the average of the power values for $nmc=150$ Monte Carlo replicates are computed at  different $\alpha$s and are plotted in Figure \ref{fig:MVN-c001-power-w} against $\alpha$ for the Gaussian setting.  
+For $p=5$, $q=10$, $d=2$, and $c\in\{ 0, 0.01\}$ and for $n=150$ and $m=150$, the average of the power values for $nmc=150$ Monte Carlo replicates are computed at  different $\alpha$s and are plotted in Figure \ref{fig:MVN-c001-power-w} against $\alpha$ for the Gaussian setting.  
 %Qualititatively similar plots for the Dirichlet setting  are not included for brevity.  
 The plot in \autoref{fig:MVN-c001-power-w} shows that for different values of $w$, the $\beta$-$\alpha$ curves vary significantly.  The conclusion is that the match detection tests with JOFC embedding using specific $w$ values perform better than other $w$ values in terms of power.  In Figure
  \ref{fig:MVN-c001-power-w},  $\beta(w)$ is plotted against $w$ for fixed values of $\alpha$. It is interesting that the optimal value of $w$ seems to be in the range of $(0.85,1)$ for all settings, which suggests that a significant emphasis on commensurability might be critical for the match detection task. 
@@ -152,12 +152,12 @@ To test the statistical significance of this observation, we consider the follow
 McNemar's test will be used to compare the two predictors (referred to as $C_1$ and $C_2$ with $w$=0.5 and $w$=$w^*$ at a fixed $\alpha$ value.
 \subsection{McNemar's Test\label{subsec:McNemarstest}}
 Using the previous notation,  the test statistic will be denoted by $T_a(w)$ under the alternative hypothesis and by $T_0(w)$ under the null hypothesis.
-For a fixed $\alpha$ value, one can compute two critical values $c(0.5)=max_l \{  \Pry \left[T_0(0.5)>c \right]<\alpha\}$,  $c(w^*)=max_l \{  \Pry \left[ T_0(w_2)>c \right] <\alpha\}$. These critical values determine two binary classifiers if we interpret the hypothesis testing as deciding whether a new pair is ``matched'' or not and the test statistic as a score. Hypothesis testing is more nuanced than a binary decision problem, but for the sake of comparing the two tests, we can treat it as such.
+For a fixed $\alpha$ value, one can compute two critical values: $$c_{0.5}=max_l \{  \Pry \left[T_0(0.5)>l \right]<\alpha\},\onespace  c_{w^*}=max_l \{  \Pry \left[ T_0(w^*)>l \right] <\alpha\}$$. These critical values determine two binary classifiers if we interpret the hypothesis testing as deciding whether a new pair is ``matched'' or not and the test statistic as a score. Hypothesis testing is more nuanced than a binary decision problem, but for the sake of comparing the two tests, we can treat it as such.
 %The values of the decision function that uses these critical  values, for each pair of embedded points (indexed by $i$, are  $(\tilde{y}_i^{(1)},\tilde{y}_i^{(2)}),\quad i=1,\ldots,m$.
-To compare the two statistical tests with $w=0.5$ and $w$=$w^*$, simulation results are used to compute $2\times 2$ contingency tables of correct decisions and incorrect decisions made by each statistical test (or, equivalently, true and false classifications made by two classifiers). Let $\mathcal{D}$ denote the test dissimilarities for a new test pair, let $\tau(\mathcal{D})$ denote the test statistic for the oos-embedding of that pair, and let $m_{\mathcal{D}}$ denote a binary variable whose value is $1$ if the pair is matched and $0$ otherwise. We denote the decision outcome (whether the true or false decision is made) for the $i^{th}$ test pair by two binary variables $g_1^{i}$ and $g_2^{i}$,respectively.  If $g_1^{i} =1$ and $g_2^{i}=0$  for the $l^{th}$ MC replicate,  the first test made the correct decision and the second test made the incorrect decision with regard to the null and alternative hypotheses. 
+To compare the two statistical tests with $w=0.5$ and $w$=$w^*$, simulation results are used to compute $2\times 2$ contingency tables of correct decisions and incorrect decisions made by each statistical test (or, equivalently, true and false classifications made by two classifiers). Let $\mathscr{D}^{(i)}$ denote the test dissimilarities for the $i^{th}$ new test pair, let $\tau(\mathscr{D}^{(i)})$ denote the test statistic for the oos-embedding of that pair, and let $m_{\mathscr{D}^{(i)}}$ denote a binary variable whose value is $1$ if the pair is matched and $0$ otherwise. We denote the decision outcome (whether the true or false decision is made) for the $i^{th}$ test pair by two binary variables $g_1^{i}$ and $g_2^{i}$,respectively.  If $g_1^{i} =1$ and $g_2^{i}=0$  for the $l^{th}$ MC replicate,  the first test made the correct decision and the second test made the incorrect decision with regard to the null and alternative hypotheses. 
 \begin{align*}
-g_1^{i}=\I(\I(\tau(\mathcal{D^{(i)}})>c(0.5))=m_{\mathcal{D}^{(i)}}) \textrm{for the first statistical test} \\
-g_2^{i}=\I(\I(\tau(\mathcal{D^{(i)}})>c(w^*))=m_{\mathcal{D}^{(i)}}) \textrm{for the second statistical test}
+g_1^{i}=\I(\I(\tau(\mathscr{D}^{(i)})>c_{0.5})=m_{\mathscr{D}^{(i)}}) \textrm{ for the first statistical test} \\
+g_2^{i}=\I(\I(\tau(\mathscr{D}^{(i)})>c_{w^*})=m_{\mathscr{D}^{(i)}}) \textrm{  for the second statistical test}
 \end{align*}
 % McNemar's test was used to compare the two contingency tables for fixed $\alpha$. McNemar's test is a statistical test for %comparing two binary classifiers based on a 2-by-2 table of the counts of misclassifications of each. That is,
 Consider the contingency table for any Monte Carlo replicate given by $$G^{(l)}= \begin{array}{|c|c|}
@@ -169,12 +169,12 @@ Consider the contingency table for any Monte Carlo replicate given by $$G^{(l)}=
       \end{array}      $$  where  $e_{uv}^{(l)}=\sum_{i}{\I(\{g_1^{i}=u\} \&\& \{g_2^{i}=v\})}$ is equal to the number of instances at which the true hypothesis was identified correctly ($g_1^{i}=1$) or incorrectly ($g_1^{i}=0$) by the first test and correctly ($g_2^{i}=1$) or incorrectly ($g_2^{i}=0$) by the second test \emph{ in the $l^{th}$  MC replicate}.
 
 Under the null  hypothesis that the two predictors have the same power at $\alpha$,
- $\Pry[\left(\{g_1^{i}=1\} \&\& \{g_2^{i}=0\}\right)]=\Pry[\left(\{g_1^{i}=0\} \&\& \{g_2^{i}=1\}\right)]$. Thus, a one-sided sign test is appropriate,  in which the test statistic $e_{01}^{(l)}$ is distributed according to  the binomial distribution, $\mcB(e_{10}^{(l)}+e_{01}^{(l)},0.5)$. 
+ $$\Pry[\left(\{g_1^{i}=1\} \&\& \{g_2^{i}=0\}\right)]=\Pry[\left(\{g_1^{i}=0\} \&\& \{g_2^{i}=1\}\right)].$$ Thus, a one-sided sign test is appropriate,  in which the test statistic $e_{01}^{(l)}$ is distributed according to  the binomial distribution, $\mcB(e_{10}^{(l)}+e_{01}^{(l)},0.5)$. 
 
-We consider simulated data with the noisy version of the Gaussian setting for this McNemar's test. The critical values $c(0.5)$ and $c(w^*)$ were computed with type I error $\alpha=0.05$ for the two tests. When comparing  the null hypothesis that  $\mcH_{0}: \beta_{\alpha}({\hat{w}^*})=\beta_{\alpha}({w=0.5})$ against the alternative $\mcH_{A}=\beta_{\alpha}({\hat{w}^*})>\beta_{\alpha}({w=0.5})$, the p-value is $p<1.09E-24$, which indicates that the power obtained using the estimate of the optimal $w^*$ is significantly greater than the power obtained when using $w=0.5$.
+We consider simulated data with the noisy version of the Gaussian setting for this McNemar's test. The critical values $c_{0.5}$ and $c_{w^*}$ were computed with type I error $\alpha=0.05$ for the two tests. When comparing  the null hypothesis that  $\mcH_{0}: \beta_{\alpha}({\hat{w}^*})=\beta_{\alpha}({w=0.5})$ against the alternative $\mcH_{A}=\beta_{\alpha}({\hat{w}^*})>\beta_{\alpha}({w=0.5})$, the p-value is $p<1.09E-24$, which indicates that the power obtained using the estimate of the optimal $w^*$ is significantly greater than the power obtained when using $w=0.5$.
 
 Under the null distribution, we expect the p-values for each MC replicate to be uniformly distributed. We find that
- the distribution of p-values from McNemar's tests  is skewed, and  we reject $\beta_{0.5}>=\beta_{w^*} $ for  55\%  of the Monte Carlo replicates.
+ the distribution of p-values from McNemar's tests  is skewed, and  we reject  $\mcH_{0}$ for  55\%  of the Monte Carlo replicates.
 %Insert plot here? 
 
 \section{Effects of the parameters of the data model }
@@ -197,7 +197,7 @@ To adapt the P$\circ$M approach to this setting, one can use Procrustes Analysis
 
 We have also described generalized CCA in \autoref{sec:GenCCA}.  Of the different choices for the generalization of CCA, the SUMCOR criterion was chosen.
 
-To test whether the P$\circ$M, JOFC, CCA and generalized CCA approaches are appropriate for this setting,
+To test whether the P$\circ$M, JOFC, and generalized CCA approaches are appropriate for this setting,
 the simulations in \autoref{sec:Simulation Results} were repeated with $K$-condition data that were generated by a multivariate normal model with $K=3$ conditions. 
  
  We investigate the  ``noisy'' case for this setting, i.e., 
@@ -207,7 +207,7 @@ the simulations in \autoref{sec:Simulation Results} were repeated with $K$-condi
 
 
 \begin{figure}
-\includegraphics[scale=0.95]{MVN-FC-Tradeoff-OOS-3cond.pdf}
+\includegraphics[scale=0.75]{MVN-FC-Tradeoff-OOS-3cond.pdf}
 \caption{Power ($\beta$) vs Type I error ($\alpha$) plot for different $w$ values for the Gaussian setting with $K=3$ conditions (noisy case)}
 \label{fig:MVN-c001-power-w-Kcond}
 \end{figure}
@@ -216,7 +216,7 @@ The results indicate behavior that is similar to that of the $K=2$ case. Differe
 
 
 \section{Experiments on Wiki Data}
-To test the JOFC approach with real data, articles that formed the
+To test the JOFC approach with real data with different conditions, we used a collection of online Wikipedia articles. Based on the hyperlinks between Wikipedia articles, the
  directed 2-neighborhood of the document ``Algebraic Geometry'' were collected from the English Wikipedia site. 
    This  collection of 1382 articles and the correspondence of each article to the French 
 Wikipedia site is our real-life dataset. It is possible to utilize both the textual content of the documents and the hyperlink graph structure. The textual content of the documents is summarized by the bag-of-words model. Dissimilarities between documents in the same language are computed using the Lin-Pantel discounted mutual information \cite{LinPantel,PantelLin}

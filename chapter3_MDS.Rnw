@@ -26,7 +26,7 @@ Multidimensional Scaling methods find a configuration of points $\{ \bm{x_i}; i\
 \sigma_{W}({\X})=\sum_{s,t \in \oneton} {w_{st}(\mathcal{D}_{st}({\X})-\delta_{st})^2  }\label{raw-stress}
 \end{equation}
 Subtypes of the Stress criterion are identified by different choices for $\{w_{st},{s,t \in \oneton}\}$ that depend on the original dissimilarities $\delta_{st}$.
-For example, choosing $w_{st}=\left[{\sum_{k,l \in \oneton}{\delta_{kl}^2}}\right]^{-1},$ $\forall s,t\in \oneton $ normalizes the stress so that the stress value is always between 0 and 1. One can compare different configurations by this standardized stress value and determine whether a configuration is a good fit based on this value.
+For example, choosing all $w_{st}$ to be $\left[{\sum_{k,l \in \oneton}{\delta_{kl}^2}}\right]^{-1},$ $\forall s,t\in \oneton $ normalizes the stress so that the stress value is always between 0 and 1. One can compare different configurations by this standardized stress value and determine whether a configuration is a good fit based on this value.
 
 %A slightly different weighting scheme is $w_{st}=\left[ \sum_{pq}{\delta_{pq}-\bar{\delta} } \, \right]^{-1}$, 
 %where $\bar{\delta}=\frac{1}{(n)(n-1)} \sum_{pq}{\delta_{pq}}$ (average of dissimilarities).
@@ -137,7 +137,7 @@ Therefore, the configuration matrix $\X$ can be recovered using a eigenvalue dec
 
 Here it is useful to make the following definition:
 \begin{defn}
-A $n\times n$ matrix $\Delta$ is $d$-Euclidean Distance Matrix($d$-EDM) iff it is Euclidean for embedding dimension $d$, but not $d-1$.
+A $n\times n$ matrix $\Delta$ is $d$-Euclidean Distance Matrix ($d$-EDM) iff it is Euclidean for embedding dimension $d$, but not $d-1$.
 \end{defn}
 %$\Delta$ is $d$-EDM iff the eigenvalue matrix $D$
 
@@ -178,7 +178,7 @@ Another approach mentioned in \cite{borg+groenen:1997} involves mapping the diss
 
 
 \section{Principal Components Analysis}
-Let $X$ be a random vector of   $d$ dimensions and $\mu$ and $\Sigma$ be its mean vector and covariance matrix, respectively. Then, for a given dimension $d'\leq d$,  consider the successive (as $i$ goes from $1$ to $d'$) maximization of  $$Var[u_{i}^T (X-\mu)]= E[u_{i}^T (X-\mu)(X-\mu)^T u_i]=u_{i}^T\Sigma u_{i}  $$ with respect to $u_{i}$, where $u_{i}$ is a  $d$-dimensional unit vector ($u_i^Tu_i=1$)  and $u_i \perp u_j,\quad  1\leq j<i$ \footnote{Due to the  orthogonality constraints, the projections of $X$  to the different dimensions are uncorrelated. \textit{i.e.}, $E[u_{i}^T (X-\mu) (X-\mu)^T u_j]=0, 1\leq j<i$.}. The maximizers $\{u_i,1\leq i \leq d'\}$ are the principal directions and the projections of $X$ via  $\{u_i\}$ yield the principal \emph{components} of $X$. These principal components capture the  maximum variance  possible from $X$, subject to the orthogonality constraints of all pairs of directions. 
+Let $X$ be a random vector of   $d$ dimensions and $\mu$ and $\Sigma$ be its mean vector and covariance matrix, respectively. Then, for a given dimension $d'\leq d$,  consider the successive (as $i$ goes from $1$ to $d'$) maximization of  $$Var[u_{i}^T (X-\mu)]= E[u_{i}^T (X-\mu)(X-\mu)^T u_i]=u_{i}^T\Sigma u_{i}  $$ with respect to $u_{i}$, where $u_{i}$ is a  $d$-dimensional unit vector ($u_i^Tu_i=1$)  and $u_i \perp u_j,\quad  1\leq j<i$\footnote{Due to the  orthogonality constraints, the projections of $X$  to the different dimensions are uncorrelated. \textit{i.e.}, $E[u_{i}^T (X-\mu) (X-\mu)^T u_j]=0, 1\leq j<i$.}. The maximizers $\{u_i,1\leq i \leq d'\}$ are the principal directions and the projections of $X$ via  $\{u_i\}$ yield the principal \emph{components} of $X$. These principal components capture the  maximum variance  possible from $X$, subject to the orthogonality constraints of all pairs of directions. 
 
 Another way of understanding PCA is  considering the principal directions jointly. Consider $d' \times d$-matrix $U$ whose rows are $u_i, \, i \in \{1,\ldots,d'\}$ which forms an orthonormal basis. $U^TU$  is the projection matrix that captures the maximum variance from $X$.       That is, the elements of the random vector $UX$ are uncorrelated and have the  highest amount of ``total variance'' for any orthogonal projection of $X$. The term  ``total variance'' should be interpreted  as the sum of the variances of the variates in the principal directions which is equal to the trace of the covariance matrix of $UX$.
 

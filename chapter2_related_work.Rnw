@@ -6,7 +6,7 @@
 
 \section{Multiple View Learning}
 \label{sec:MultiViewLearn}
-When data are collected using a multitude of sensors or under significantly different environmental conditions, we refer to  the data setting as a multiple view setting, in which each ``view'' provides possibly complementary  information about the observed objects\footnote{We use the term ``object''  loosely because  the observed objects could be topics or concepts and the collected data could be text documents about those topics or images that are related to a concept, for example}. Multiple view learning seeks to exploit these views simultaneously to be more successful in the learning task.
+When data are collected using a multitude of sensors or under significantly different environmental conditions, we refer to  the data setting as a multiple view setting, in which each ``view'' provides possibly complementary  information about the observed objects\footnote{We use the term ``object''  loosely because  the observed objects could be topics or concepts and the collected data could be text documents about those topics or images that are related to a concept, for example.}. Multiple view learning seeks to exploit these views simultaneously to be more successful in the learning task.
 
 
 In data settings for multiview learning, the data are observations from $K\geq 2$ views,

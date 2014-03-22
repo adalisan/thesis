@@ -171,7 +171,7 @@ Suppose the objects in the $k^{th}$  condition can be represented as points in a
 %is embedded in $d$-dimensional space with the constraint that the embedding of the first $2n$ points is the same as the embedding of $M$:
 
 
- We now consider the embedding of $\Delta^{(m)}$ and $\Delta^{(u)}$ with the criterion function  $\sigma_W(\widetilde{X}; \Delta^{(.)})$. The arguments of the function are  $$\widetilde{X}= \left[
+ We now consider the embedding of $\Delta^{(m)}$ and $\Delta^{(u)}$ with the weighted raw stress criterion function  $\sigma_W(\widetilde{X}; \Delta^{(.)})$. The arguments of the function are  $$\widetilde{X}= \left[
 \begin{array}{c}
 {\widetilde{\mathcal{T}}} \\
 \widetilde{y}_{1}^{(.)} \\

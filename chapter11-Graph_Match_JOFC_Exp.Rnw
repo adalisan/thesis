@@ -3,12 +3,16 @@
 \chaptermark{Seeded Graph Matching and JOFC}
 
 \section{Overview}
-We first explain the relevance of the JOFC approach to the graph matching problem. The task of finding vertex correspondences is similar to  detecting matched pairs \ref{chap:match_detection} in that both of the tasks require the quantification of a distance between vertex pairs in different graphs. A joint commensurate representation of the vertices of the two graphs  can be used to compute these distances between vertex pairs. A dissimilarity matrix can be computed for each graph using a dissimilarity measure for graph vertices. The choice of the dissimilarity measure is an important issue and we will consider this issue during our investigations. If we treat the known corresponding vertices in the seeded graph matching problem as matched, we can form an omnibus matrix by using dissimilarity matrices from the two graphs. We impute the off-diagonal matrix $L$ in the omnibus matrix the usual way (the matched dissimilarities are zeros, other between-condition dissimilarities are missing).
+We first explain the relevance of the JOFC approach to the graph matching problem. The task of finding vertex correspondences is similar to  detecting matched pairs\ref{chap:match_detection} in that both of the tasks require the quantification of a distance between vertex pairs in different graphs. A joint commensurate representation of the vertices of the two graphs  can be used to compute these distances between vertex pairs.
+
+Following our dissimilarity-centric approach, a dissimilarity matrix can be computed for each graph using a dissimilarity measure for graph vertices. The choice of the dissimilarity measure is an important issue and we will consider this issue during our investigations. If we treat the known corresponding vertices in the seeded graph matching problem as matched, we can form an omnibus matrix by using dissimilarity matrices from the two graphs. We impute the off-diagonal matrix $L$ in the omnibus matrix the usual way (the matched dissimilarities are zeros, other between-condition dissimilarities are missing).
 The joint embedding of the omnibus matrix yields the vertices of two graphs in a commensurate space.
-Therefore, the JOFC approach can be used to determine the pairwise distances in the commensurate space between  the vertices of $A$ and $B$.
-The next step is to use the pairwise distances as costs to find the optimal one-to-one assignment using the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total cost, which is the sum of the pairwise distances of matched nodes, is minimized.
+Therefore, the JOFC approach can be used to determine the pairwise distances in the commensurate space between  the vertices of two graphs.
+
+The next step is to use the pairwise distances as costs to find the optimal one-to-one assignment using the Hungarian algorithm \cite{Hung-algo}. The Hungarian algorithm finds an optimal matching between two sets of vertices such that the total cost, which is the sum of the pairwise distances of matched nodes, is minimized. This matching provides the bijection solution for the seeded graph matching problem.
 %This matching step is separate from the embedding;  we can investigate compare  different parameters for the JOFC approach on a equal footing.
-\section{Joint Embedding of Graphs via JOFC for Seeded Graph Matching\label{sec:JOFCforSGM}}
+\section{Joint Embedding of Graphs via JOFC  for  \\
+Seeded Graph Matching\label{sec:JOFCforSGM}}
 Now, we describe in detail how we use JOFC embedding for seeded graph matching. We begin by jointly embedding our two graphs, $\Graph_1$ and $\Graph_2$, into a common Euclidean space. Let $\Delta_1\in \Mat_{n \times n}$ and $\Delta_2\in \Mat_{n \times n}$ be two dissimilarity matrices computed by the application of the dissimilarity measure to the vertices of the two graphs. Because we have two separate graphs, we have two conditions, and the default assumption is that we do not have between-graph (between-condition) dissimilarities. We will assume that prior to embedding, the dissimilarities have been normalized to have the same scale of magnitude.
 %see Remark \ref{rem:norm} for further discussion.
 
@@ -25,7 +29,7 @@ $$\Delta^{(1)}=\bordermatrix{&S_{1}&U_{in}\cr
                 &  \gD^{(2)}_{{oos},{oos}}}.$$
 
 
-Note that the seeds correspond to the in-sample dissimilarities that we considered in the match detection task \ref{chap:match_detection}. Because these seeds provide the known correspondences (matched observations in the match detection task), we embed them using the in-sample JOFC embedding methodology we introduced in \ref{sec:jointembed}. That is, we find a $2m \times d$ configuration matrix  $$\X= \left[\begin{array}{c}
+Note that the dissimilarities between seed vertices correspond to the matched in-sample dissimilarities that we considered in the match detection task \ref{chap:match_detection}. Because these seeds provide the known correspondences (matched observations in the match detection task), we embed them using the in-sample JOFC embedding methodology we introduced in \ref{sec:jointembed}. That is, we find a $2m \times d$ configuration matrix  $$\X= \left[\begin{array}{c}
 \X_1 \\
 \X_2 
 \end{array}\right]$$ such that the $2m \times 2m$ distance matrix $\mathcal{D}(\X)$ is as close as possible to the omnibus dissimilarity matrix, $$M= \left[\begin{array}{cc}
@@ -33,7 +37,7 @@ Note that the seeds correspond to the in-sample dissimilarities that we consider
  L^T &\gD^{(2)}_{in,in}
 \end{array} \right] . $$
 
-The remaining non-seed vertices are embedded using OOS embedding with respect to the embedded seeds, i.e., we seek the configuration ${ \hat{\mathbf{Y}}}$ consisting of points in $\mathbb{R}^{d'}$ that consists of the $n-m$ unseeded vertices of $G_1$, with the embedded coordinates  $\{\yhat^{(1)}_{(m+1)},\ldots,\yhat^{(1)}_{(n)}\}$, and the $n-m$ unseeded vertices of $G_2$, with the embedded coordinates  $\{\yhat^{(2)}_1,\ldots,\yhat^{(2)}_{(n-m)}\}$, where $\yhat_{i}^{(k)}, \onespace 1\leq i \leq (n-m), k \in {1,2}$  minimize the stress function:
+The remaining non-seed vertices are embedded using OOS embedding with respect to the embedded seeds, i.e., we seek the configuration ${ \hat{\mathbf{Y}}}$ consisting of $2(n-m)$ points in $\mathbb{R}^{d'}$ that correspond to the non-seed vertices of $G_1$ and $G_2$.  The $n-m$ non-seed vertices of $G_1$, with the embedded coordinates  $\{\yhat^{(1)}_{(m+1)},\ldots,\yhat^{(1)}_{(n)}\}$, and the $n-m$ non-seed vertices of $G_2$, with the embedded coordinates  $\{\yhat^{(2)}_1,\ldots,\yhat^{(2)}_{(n-m)}\}$, where $\yhat_{i}^{(k)}, \onespace 1\leq i \leq (n-m), k \in {1,2}$  minimize the stress function:
 
 \begin{align}
 \sigma({\bf Y})&=\sum_{s=1}^{m}\sum_{t=m+1}^{n} {W^{(1)}_{in,oos}(s,t-m)  \left(d(X^{(1)}_{s},\yhat_t^{(1)})-\gD^{(1)}_{in,oos}(s,t-m)\right)^2 } \label{eq:oos}\\
@@ -55,23 +59,42 @@ W^{(1,2)}_{in,oos}(s,t-m) \left(d(X^{(1)}_{s},\yhat_t^{(2)})-\delta(X^{(1)}_{s},
 %where again $\widetilde w(\cdot,\cdot):V_1\times V_2 \mapsto\mathbb{R}$ are weighting functions representing our confidence in the computed/imputed dissimilarity between pairs of vertices, and as before $\delta$ is the unknown across--graph dissimilarity. 
 where $W_{a,b}^{(k)}$ and $W_{a,b}^{(k_1,k_2)}$ (for $a,b \in \{`in', `oos'\}$) are the weights for dissimilarities between in-/out-of-sample observations in $k^{th}$ (or $k_1^{th}$ and $k_2^{th}$) conditions.
 
-Note that \ref{eq:oos5}, \ref{eq:oos6} and \ref{eq:oos7} involve dissimilarities $\delta(.^{(1)},.^{(2)})$ between different conditions, which are generally not available. Whereas  the dissimilarities in \ref{eq:oos6} and \ref{eq:oos7} can be imputed via known dissimilarities, the dissimilarities in \ref{eq:oos5}  cannot be imputed in any way. In fact, if these dissimilarities in  \ref{eq:oos5}   between OOS observations in different conditions were known, we could provide a solution to the assignment task because we would have the assignment cost of any two OOS observations in two different condition. The solution of the linear assignment problem with these costs would give us the matching of vertices from different graphs.
+Note that \ref{eq:oos5}, \ref{eq:oos6} and \ref{eq:oos7} involve dissimilarities $\delta({\cdot}^{(1)},{\cdot}^{(2)})$ between different conditions, which are generally not available. Whereas  the dissimilarities in \ref{eq:oos6} and \ref{eq:oos7} can be imputed via known dissimilarities, the dissimilarities in \ref{eq:oos5}  cannot be imputed in any way. In fact, if these dissimilarities in  \ref{eq:oos5}   between OOS observations in different conditions were known, we could provide a solution to the assignment task because we would have the assignment cost of any two OOS observations in two different conditions. The solution of the linear assignment problem with these costs would give us the matching of vertices from different graphs.
 
-\ref{eq:oos3} and \ref{eq:oos4} contain dissimilarities between OOS observations in the same condition. They can be  used or ignored in the joint embedding, depending on whether one wishes to embed OOS observations all together or one at a time. If between-condition oos dissimilarities are ignored, the OOS embedding function $\sigma({\bf Y})$ is separable with respect to different  $\yhat^{(k)}_{s}, \quad s \in \{ m+1,\ldots n\}$. Then, we would obtain the same embedding configuration if the OOS observations $\yhat^{(k)}_{s},\quad s \in \{m+1,\ldots n\}$ are embedded one at a time.
+\ref{eq:oos3} and \ref{eq:oos4} contain dissimilarities between OOS observations in the same condition. They can be  used or ignored in the joint embedding, depending on whether one wishes to embed OOS observations all together or one at a time. If between-condition OOS dissimilarities are ignored, the OOS embedding function $\sigma({\bf Y})$ is separable with respect to different  $\yhat^{(k)}_{s}, \quad s \in \{ m+1,\ldots n\},k \in \{1,2\}$. Then, we would obtain the same embedding configuration if the OOS observations $\yhat^{(k)}_{s}$ are embedded one at a time or all at once.
 
 Once we find a minimum configuration ${ \hat{\mathbf{Y}}}$, we compute the pairwise distances between the points $c_{(s-m)(t-m)}=d(\yhat^{(1)}_s,\yhat^{(2)}_t),\onespace s \in \{(m+1),\ldots n\}, t \in  \{(m+1),\ldots n\}$, which correspond to the entries of the off-diagonal block matrix of the distance matrix, $\mathcal{D}({ \hat{\mathbf{Y}}})$. This block matrix provides the assignment cost matrix $C$ (whose $(i,j)^{th}$   entry is $c_{ij}$) for the linear assignment problem, which is to minimize $\tr(A^{T}C)=\sum_{i,j \in \{(1),\ldots n-m\}} a_{ij}*c_{ij}$  with respect to the permutation matrix $A$ ( whose $(i,j)^{th}$   entry is $a_{ij}$). 
 
-We provide a solution for the seeded graph matching problem by a jointly embedding  the two graphs, followed by a solution of  the linear assignment problem where the distances between embedded points are the assignment costs.
+In summary, we provide a solution for the seeded graph matching problem by  jointly embedding  the two graphs, followed by a solution of  the linear assignment problem where the assignment costs are the distances between embedded points.
  
-One useful property of dissimilarity representation is that the structure of  the data is irrelevant once an appropriate dissimilarity function  for the data is available. 
+ 
+ While it is plausible that the JOFC approach can also be used to solve the seeded graph matching (SGM) problem, it is not obvious that it can compete with the  FAQ algorithm, which is specifically formulated to solve the  seeded approximate graph matching problem. Why, then, should one choose to use the JOFC approach for SGM?
+One of the many problems with the analysis of real  data is that the graph representation of real data is 
+ not always well-defined and that the correspondence of vertices may be  ambiguous, one-to-many, or many-to-many. 
+In such situations, we would prefer a robust algorithm that would still match seeded graphs with satisfactory performance. 
+The FAQ algorithm, in the form that we have presented, cannot handle such pathologies, and significant changes must be made to the  FAQ algorithm before it can handle them. 
+
+
+
+Our simulations using the correlated Erd{\fakeH{o}}s-Renyi graphs and experiments with real graph data are tailored for a comparison of  the two approaches. Some of these results are presented in \autoref{sec:sgm_jofc_exp}. If the true match ratios of the assignments given by the JOFC approach is at least as high as the ones given by the FAQ algorithm, we can  conclude that JOFC is reasonably competitive with the FAQ algorithm for seeded graph matching.  We compared the algorithms whenever both of the approaches  were  feasible for the problem size (the running times are acceptable). 
+
+This application of the JOFC approach for seeded graph matching is also presented  in \cite{SGMviaJOFC} along with our experimental results.
+
+
+ 
+ 
+ \subsection{Dissimilarity Measures for Vertices}
+ 
+One useful property of dissimilarity representation is that the structure of  the data is irrelevant once an appropriate dissimilarity function  for the data is available. That is why the JOFC approach is directly applicable once an appropriate dissimilarity measure has been chosen.
+
 There are many dissimilarities that can be defined between vertices in graphs. We assume that an appropriate dissimilarity measure between the vertices is available to us.
 %See \cite{diffdist}, \cite{dis1}, \cite{dis2} for a wealth of possible dissimilarity measures.  
 In our experiments, we will use five different dissimilarities/distances between vertices in a graph:
 \begin{itemize}
- \item the shortest path on the  unweighted graph whose adjacency matrix is available
- \item the shortest path on a weighted version of the graph whose weight matrix is available
- \item the diffusion distance between vertices on the (unweighted) graph.
- \item the weighted extension of the Czekanowski-Dice dissimilarity\cite{DICE,weightedDICE}, which simplifies to the original Czekanowski-Dice dissimilarity in the case of unweighted graphs (the C-D dissimilarity quantifies the local similarity of two vertices in a graph).
+ \item the shortest path on the  unweighted graph whose adjacency matrix is available,
+ \item the shortest path on a weighted version of the graph whose weight matrix is available,
+ \item the diffusion distance between vertices on the (unweighted) graph,
+ \item the weighted extension of the Czekanowski-Dice dissimilarity\cite{DICE,weightedDICE}, which simplifies to the original Czekanowski-Dice dissimilarity in the case of unweighted graphs (the C-D dissimilarity quantifies the local similarity of two vertices in a graph),
  \item the expected commute time for random walks on the graph.
  \end{itemize}
  %We will omit the results for weighted graph dissimilarities, since they seem to have the same performance as the weighted dissimilarities.
@@ -81,30 +104,18 @@ In our experiments, we will use five different dissimilarities/distances between
  We would again choose 0 for the dissimilarities between matched vertices and then either impute the remaining unknown dissimilarities or ignore them in the embedding.
  \end{remark}
  
- While it is plausible that the JOFC approach can also be used to solve the seeded graph matching (SGM) problem, it is not obvious that it can compete with the modified FAQ algorithm, which is specifically formulated to solve the  seeded approximate graph matching problem. Why, then, should one choose to use JOFC for SGM?
-One of the many problems with the analysis of real data is that the graph representation of real data is 
- not always well-defined and that the correspondence of vertices may be  ambiguous, one-to-many, or many-to-many. 
-In such situations, we would prefer a robust algorithm that would still match seeded graphs with satisfactory performance. 
-Modified FAQ, in the form that we have presented, cannot handle such pathologies, and significant changes must be made to the modified FAQ algorithm before it can handle them. 
-
-
-If the true match ratios of the assignments given by the JOFC approach is at least as high as the ones given by the modified FAQ algorithm, we can thus conclude that JOFC is reasonably competitive with the modified FAQ algorithm for seeded graph matching. 
-
-Our simulations using the correlated Erd{\o}s-Renyi graphs and experiments with real graph data are tailored for a comparison of  the two approaches. We compared the algorithms whenever both of the approaches  were  feasible for the problem size (the running times are acceptable). 
- This application of JOFC for seeded graph matching is  investigated  in \cite{SGMviaJOFC} with simulation and real datasets, and some of these results are presented herein.
- 
 
  
- \section{Demonstrations}
+ \section{Demonstrations\label{sec:sgm_jofc_exp}}
 
-We perform SGM simulations with graphs generated according to a paired Erd{\o}s-Renyi graph and experiments on real-life graphs for both the modified FAQ approach and JOFC. The performance measure that we consider is the true match ratio: the number of true matchings of vertices divided by the number of pairs of vertices.
+We perform SGM simulations with graphs generated according to a paired Erd{\fakeH{o}}s-Renyi graph model described in \autoref{subsubsec:sgm_sim_results} and experiments on real-life graphs for both the FAQ algorithm and the  JOFC approach. The performance measure that we consider is the true match ratio: the number of true matchings of vertices divided by the number of pairs of vertices.
 
 \subsection{Simulations}
 
 
-  We first present our exploratory simulations to test the JOFC approach and determine the reasonable choices for  the dissimilarity measure and $w$ (Fidelity-Commensurability tradeoff parameter). We will also see how sensitive the results are for different choices of the dissimilarity measure and different $w$ values. 
+  We first present our exploratory simulations to test the JOFC approach and determine the reasonable choices for  the dissimilarity measure and $w$ (the parameter that controls the Fidelity-\-Commensurability tradeoff ). We will also see how sensitive the results are for different choices of the dissimilarity measure and different $w$ values. 
  
-  We consider the same Erd{\o}s-Renyi correlated graphs as in the modified FAQ simulations introduced in \autoref{subsubsec:sgm_sim_results}.
+  We consider the same Erd{\fakeH{o}}s-Renyi correlated graphs as in the FAQ simulations introduced in \autoref{subsubsec:sgm_sim_results}.
   
   The probability of flipping an entry of the adjacency matrix is the perturbation parameter $p_{pert}$, which is the variable on the x-axis. 
   The performance measure is the proportion of true matches to the number of matches. Note that 
@@ -415,7 +426,7 @@ for(imc in 1:nmc)
 @
 
 
-<<JOFC-on-ER-Graph-w_param-plot, echo=FALSE,trace=TRUE,eval=TRUE, dependson='JOFC-on-ER-Graph-w_param-run',fig.cap="">>=
+<<JOFC-on-ER-Graph-w_param-plot, echo=FALSE,trace=TRUE,eval=TRUE, dependson='JOFC-on-ER-Graph-w_param-run',fig.cap="Seeded Graph matching performance (The true matching ratio) via JOFC for different $w$ values (Fidelity-Commensurability tradeoff parameter). For $n=50$ vertices and $m=30$ seeds, the true matching ratio is plotted against the perturbation parameter $p_{pert}$. ">>=
 require(arrayhelpers,quietly=TRUE)
 require(ggplot2,quietly=TRUE)
 #print(str(nc.jofc.unweighted.w))
@@ -566,7 +577,7 @@ nc.jofc.cmds.d<- abind(nc.jofc.unweighted.d ,nc.cmds.d, along = 0.5) #fractional
 
 @
 
-<<JOFC_on_ER_Graph_d_param-plot, echo=FALSE,trace=TRUE,eval=FALSE,dependson='JOFC-on-ER-Graph-d_param-run',fig.cap="">>=
+<<JOFC_on_ER_Graph_d_param-plot, echo=FALSE,trace=TRUE,eval=FALSE,dependson='JOFC-on-ER-Graph-d_param-run',fig.cap="Seeded Graph matching performance (The true matching ratio) via JOFC for different $d$ (embedding dimension). For $n=50$ vertices and $m=30$ seeds, the true matching ratio is plotted against the perturbation parameter $p_{pert}$.">>=
 require(arrayhelpers,quietly=TRUE)
 require(ggplot2,quietly=TRUE)
 
@@ -596,14 +607,14 @@ There are a lot  of interesting questions to ponder about the number of known co
 \item How many known correspondences are necessary for satisfactory performance for graphs of a given  size?
 \item Are there  any ``elbows'' in the curve for the ``match ratio'' vs the number of known correspondences,  after which the cost of more correspondences is not justified by the accompanying increase in ``match ratio''?
 \end{itemize}.
-We attempt to answer these questions using the Erd{\o}s-Renyi graph pair model that we introduced along with some real-world graphs.
+We attempt to answer these questions using the Erd{\fakeH{o}}s-Renyi graph pair model that we introduced along with some real-world graphs.
 
-Figure \ref{fig:bitflipJOFC} shows the ``match ratio'' plotted against the number of ``seeds'' for the bitflip simulations (the data are generated using the Erd{\o}s-Renyi graph pair model) using the Czekanowski-Dice dissimilarity measure. 
+Figure \ref{fig:bitflipJOFC} shows the ``match ratio'' plotted against the number of ``seeds'' for the bitflip simulations (the data are generated using the Erd{\fakeH{o}}s-Renyi graph pair model) using the Czekanowski-Dice dissimilarity measure. 
 These results, along with the previous simulations, suggest that even with the perturbation, when a portion of the correspondences are known, it is possible to recover most of the remaining correspondences using JOFC embedding of the pair of graphs. 
 We note that the number of correspondences that must be known before the proportion of true matches are satisfactory depends on various factors, such as the size and average connectivity of the graphs, the connectivity of the seed vertices, the dissimilarity measure, and the amount of perturbation between the two graphs. Further investigations into these factors could be fruitful. 
 \begin{figure}
-\includegraphics[scale=0.75]{bitflip_JOFC}
-\caption{Bitflip Simulations for JOFC \label{fig:bitflipJOFC}}
+\includegraphics[scale=0.75]{bitflip_JOFC_paper.pdf}
+\caption{Seeded Graph Matching performance of the JOFC approach for bitflipped graph pairs of size $n=100$. Fraction of correctly matched vertices among non-seeded vertices are plotted against number of seeds. Different colors correspond to different $p_{pert}$ values. \label{fig:bitflipJOFC}}
 \end{figure}
 
 
@@ -616,36 +627,36 @@ We remove isolated vertices from the two graphs and keep the vertices that are c
 
 \begin{figure}
 \includegraphics[scale=0.75]{worm_jofc_vs_faq_wt_unwt-crop}
-\caption{Graph Matching experiments on the C. elegans connectomes using JOFC and FAQ algorithms \label{worm_graphmatch}}
+\caption{Seeded Graph Matching performance for the C. elegans connectomes using JOFC and FAQ algorithms. The true matching ratio is plotted against the number of seeds. \label{worm_graphmatch}}
 \end{figure}
 
-We compare the JOFC approach and the modified FAQ algorithm using the two connectomes. Whereas the true matching ratio ($\delta^{(m)}$) of both approaches is enhanced by the number of seeds,  $\delta^{(m)}$ are relatively low compared with the maximum possible value ($1$). The correlation between the two connectomes is thus small, and we expect that there are biological explanations for this conclusion.  
-The first conclusion we can reach from the comparison is that the two approaches are competitive. In fact, the JOFC approach provides significant improvement over the modified FAQ algorithm. The modified FAQ algorithm is not suitable for the situation when one graph is weighted and the other graph is unweighted (as in the weighted case) or the number of nonzero entries are significantly different, as in this case (as in both the weighted or unweighted cases). The JOFC approach works much better in both the weighted and unweighted cases. 
+We compare the JOFC approach and the FAQ algorithm using the two connectomes. Whereas the true matching ratio ($\delta^{(m)}$) of both approaches is enhanced by the number of seeds,  $\delta^{(m)}$ are relatively low compared with the maximum possible value ($1$). The correlation between the two connectomes is thus small, and we expect that there are biological explanations for this conclusion.  
+The first conclusion we can reach from the comparison is that the two approaches are competitive. In fact, the JOFC approach provides significant improvement over the FAQ algorithm. The FAQ algorithm is not suitable for the situation when one graph is weighted and the other graph is unweighted (as in the weighted case) or the number of nonzero entries are significantly different, as in this case (as in both the weighted or unweighted cases). The JOFC approach works much better in both the weighted and unweighted cases. 
 
 \subsubsection{Enron communication graph}
 The Enron communication graph is extracted from the Enron email corpus, which was made public during criminal investigations by the  Federal Energy Regulatory Commission. Though the number of actual users is approximately 150, each email alias is considered a vertex in the communication graph. The original number of email aliases is 184. The whole time interval is divided into 187 subintervals (each corresponding to a week). The emails are grouped according to the time interval of their timestamps. We then construct a time series of graphs $\mathfrak{G}=\{G^{(t)} = (V,E^{(t)})\}$, where $E^{(t)}$ correspond to emails that were sent at the $t^{th}$ interval. We are interested in the intervals $t=130$  and $t=131$ (and $t=132$ for some experiments), as previous  investigations of the corpus found chatter anomalies at these time intervals \cite{EnronStudy}. When isolated vertices (and their corresponding vertices in the other graph) are removed in these two graphs, the number of vertices is reduced to 146. It is these pruned graphs that we match. The first two results are from matching $G(130)$ and $G(131)$. We consider both the undirected and directed versions of the two graphs.
 
 
 \begin{figure}
-\includegraphics[scale=0.75]{enron-JOFC-FAQ-paper.pdf}
-\caption{Experiments on the Enron communication graphs for FAQ and JOFC \label{enron_graphmatch_faq_jofc}}
+\includegraphics[scale=0.67]{enron-JOFC-FAQ-paper.pdf}
+\caption{Seeded Graph Matching experiments on the Enron communication graphs for FAQ and JOFC and for undirected and directed versions of the two graphs. \label{enron_graphmatch_faq_jofc}}
 \end{figure}
 
-We compare the performance of the modified-FAQ algorithm with the JOFC algorithm \ref{enron_graphmatch_faq_jofc}. Here, the modified-FAQ algorithm is significantly better than JOFC. This observation  is valid for both directed and undirected versions of the graphs.  With a large  number of seeds, the difference between the two approaches gets smaller. We also note that the performance with the directed graphs is higher than that for the undirected graph for the modified FAQ algorithm, while for the JOFC approach, the  results are  better with  the undirected graph.
+We compare the performance of the modified-FAQ algorithm with the JOFC algorithm \ref{enron_graphmatch_faq_jofc}. Here, the modified-FAQ algorithm is significantly better than JOFC. This observation  is valid for both directed and undirected versions of the graphs.  With a large  number of seeds, the difference between the two approaches gets smaller. We also note that the performance with the directed graphs is higher than that for the undirected graph for the FAQ algorithm, while for the JOFC approach, the  results are  better with  the undirected graph.
 
 \begin{figure}
 \includegraphics[scale=0.75]{JOFC-enron_dim_20}
-\caption{Experiments on the Enron communication graphs for JOFC \label{enron_graphmatch}}
+\caption{Seeded Graph Matching experiments on the Enron communication graphs for JOFC when the embedding dimension $d=20$. \label{enron_graphmatch}}
 \end{figure}
 
 For the plot in  $\ref{enron_graphmatch}$, we chose the embedding dimension $d$ to be 20. These results are better compared with those in \autoref{enron_graphmatch_faq_jofc}, which leads us to conclude that $d$ is another parameter that must be chosen with care. 
 
 
 \begin{figure}
-\includegraphics[scale=0.75]{enron-paper.pdf}
-\caption{Experiments on the Enron communication graphs for FAQ for t=130, 131, and 132 \label{enron_graphmatch_faq_t}}
+\includegraphics[scale=0.67]{enron-paper.pdf}
+\caption{Seeded Graph Matching experiments on the Enron communication graphs for FAQ for t=130, 131, and 132 \label{enron_graphmatch_faq_t}}
 \end{figure}
-The plot in \autoref{enron_graphmatch_faq_t} is another result obtained from matching the Enron graphs using the FAQ algorithm, showing a comparison of the three pairs from $t=130, 131, \textrm{ and } 132$. 
+The plot in \autoref{enron_graphmatch_faq_t} is another result obtained from matching the Enron graphs using the FAQ algorithm, showing a comparison of the three pairs from $t=130, 131,$ and  $132$. 
 As one would expect, the graph matching between $G(130)$ and $G(131)$ is much more successful than is the graph matching between $G(130)$ and $G(132)$. We also note that if enough seeds are available, even the matching between  $G(130)$ and $G(132)$ can be improved significantly. In fact, the improvement in the graph matching between  $G(130)$ and $G(132)$  is larger than that obtained for the graph matching of the other two pairs.
 
 We are also interested in the chatter anomaly detected in \cite{EnronStudy}. This anomaly is detected at $t=132$. We also see from the graph matching results that the matching between $t=130$ and $131$ is better than the matching between $G(131)$ and $G(132)$. If there is excessive change in the connectivity, we expect the graph matching performance to suffer. This makes us wonder whether the true match ratio can be used to detect anomalies in a time series of graphs. Graph matching can be performed for the graph instances at consecutive time steps, and significant outliers would be labeled as outliers. The true matching ratio for a fixed number of seeds would be a statistic for anomaly detection. 
@@ -661,11 +672,11 @@ Wikipedia site is our real-life dataset. For inference tasks, it is possible to 
  for each pair of vertices $i$ and $j$, the number of vertices one must travel to go from $i$ to $j$. We consider the connected neighborhood of the English  ``Algebraic Geometry'' topic; the induced graph for the French Wikipedia site of the 2-neighborhood from the English Wikipedia site might be a disconnected graph. 
 Therefore, the shortest path dissimilarities from the French Wikipedia site are cut off at 6 (maximum shortest-path distance in the English Wikipedia graph).  Further details about this dataset are available in \cite{Zhiliang_disparate}.
  
- Because this graph is relatively large compared with other real-life graphs that we considered, we only tested the modified FAQ algorithm. Note that testing JOFC on this graph is still possible, but we had no reason to believe that another JOFC experiment would provide any new insight.
+ Because this graph is relatively large compared with other real-life graphs that we considered, we only tested the FAQ algorithm. Note that testing JOFC on this graph is still possible, but we had no reason to believe that another JOFC experiment would provide any new insight.
 
 \begin{figure}
-\includegraphics[scale=0.75]{wiki-all-with-unseeded.pdf}
-\caption{Graph Matching Experiments on the English and French Wikipedia subgraph for FAQ \label{wiki_graphmatch}}
+\includegraphics[scale=0.67]{wiki-all-with-unseeded.pdf}
+\caption{Seeded Graph Matching experiments on the English and French Wikipedia subgraph for FAQ \label{wiki_graphmatch}}
 \end{figure}
       
 The results show that there is a strong correlation between the two Wikipedia graphs and that as many as 50 seeds are enough to improve graph matching dramatically. More seeds improve the true matching ratio,  but the improvements are much more modest. With graph matching using no seeds, we obtain a very small number of  true matches. 
@@ -688,7 +699,7 @@ which depends on the computation time allotted for the graph matching. We match 
 There is no guarantee that  either of these subgraphs are connected; however, for strongly correlated $\Graph_1$ and $\Graph_2$, they should be mostly connected, i.e., the largest connected component size  is close to the graph size. This connection occurs because the local neighborhood of vertices must be the same for two strongly correlated graphs.
 
 \begin{figure}
-\includegraphics[scale=0.4]{charitynet_SGM_JOFCvsFAQ}
+\includegraphics[scale=0.33]{charitynet_SGM_JOFCvsFAQ.png}
 \caption{Graph Matching experiments on the two Charitynet graphs for JOFC \label{charitynet_graphmatch}}
 \end{figure}
 The comparison of the JOFC and FAQ  approaches for CharityNet data\ref{charitynet_graphmatch} show that the two approaches have comparable performances. Both of the approaches have small true matching ratios compared with $1$, which is either  due to the weak correlation between the two graphs, $\Graph_1$ and $\Graph_2$, or due to the related fact that the sampled subgraphs are not mostly connected.
@@ -712,4 +723,4 @@ For each vertex $i$ of $\Graph_2$, the number of true matches is $k_i$. The thre
 \caption{Graph Matching experiments on simulated graphs for JOFC \label{1_k_graphmatch_sim}}
 \end{figure}
 
-The results provide evidence that JOFC is a suitable method for solving this variation of  the graph matching problem. While both the JOFC approach and modified FAQ were acceptable algorithms for the approximate graph matching (AGM) problem with one-to-one corres\-pondence between vertices, with comparable matching performances, modified FAQ  cannot directly solve  the one-to-$k$ correspondence variation of the GM problem. In contrast, JOFC is quite adequate for solving AGM with one-to-$k$ correspondence. We only need to use a matching algorithm that allows for multiple assignments for the vertices of one of the graphs. We use the full matching algorithm implemented in the R package \cite{optmatch}, which finds  ``a matching between units that minimizes the average within-group distances, given a matrix describing the distances between two groups''\cite{optmatch_manual}. That is, the \emph{full} matching algorithm finds an assignment for all of the vertices in both graphs. Because the assignment problem is independent of the embedding, other matching algorithms can be used with the same embedding, if one is concerned about efficiency or other aspects of the matching algorithm.
+The results provide evidence that the  JOFC approach is a suitable method for solving this variant of  the graph matching problem. While both the JOFC approach and the FAQ algorithm were acceptable algorithms for the approximate graph matching (AGM) problem with one-to-one corres\-pondence between vertices, with comparable matching performances, the FAQ algorithm cannot directly solve the GM problem when  the vertex correspondences are  one-to-$k$. In contrast, JOFC is quite adequate for solving AGM with one-to-$k$ correspondence. We only need to use a matching algorithm that allows for multiple assignments for the vertices of one of the graphs. We use the full matching algorithm implemented in the R package \cite{optmatch}, which finds  ``a matching between units that minimizes the average within-group distances, given a matrix describing the distances between two groups''\cite{optmatch_manual}. That is, the \emph{full} matching algorithm finds an assignment for all of the vertices in both graphs. Because the assignment problem is independent of the embedding, other matching algorithms can be used with the same embedding, if one is concerned about efficiency or other aspects of the matching algorithm.
